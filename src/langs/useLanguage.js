@@ -4,7 +4,7 @@ import i18next from "i18next";
 import localeFa from "antd/lib/locale/fa_IR";
 import localeEn from "antd/lib/locale/en_US";
 
-import { getFromStorage, setToStorage } from "@/utils/storage";
+import { getFromStorage, setToStorage } from "utils/storage";
 
 let defaultLanguage = getFromStorage("language") || "fa";
 
@@ -18,9 +18,9 @@ const useLanguage = () => {
 		setToStorage("language", lang);
 	};
 	// init langs
-	let direction = language === "en" ? "ltr" : "rtl";
-	let placement = language === "en" ? "right" : "left";
-	let locale = language === "en" ? localeEn : localeFa;
+	let direction = language !== "fa" ? "ltr" : "rtl";
+	let placement = language !== "fa" ? "right" : "left";
+	let locale = language !== "fa" ? localeEn : localeFa;
 	// return
 	return { language, direction, locale, placement, changeLanguage };
 };

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { setToCookie, getFromCookie } from "@/utils/storage";
+import { setToCookie, getFromCookie } from "utils/storage";
 
 export const getCurrentUser = createAsyncThunk("auth/currentUser", async ({ callApi }) => {
 	const token = getFromCookie("access_token")

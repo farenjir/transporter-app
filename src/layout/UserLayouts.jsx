@@ -2,10 +2,10 @@ import { useCallback, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { useAppContext } from "@/hooks";
+import { useAppContext } from "hooks";
 
 import { Layout, theme, Typography } from "antd";
-import { Drawers, SettingDrawer } from "@/components";
+import { Drawers, SettingDrawer } from "components";
 import MainNavbar from "./components/Navbar";
 
 const { Text } = Typography;

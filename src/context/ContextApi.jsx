@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ConfigProvider, theme } from "antd";
 
-import callApi from "@/service";
-import useLanguage from "@/langs/useLanguage";
-import useTheme from "@/theme/useTheme";
-import { getCurrentUser } from "@/store/auth/action";
+import callApi from "service";
+import useLanguage from "langs/useLanguage";
+import useTheme from "theme/useTheme";
+import { getCurrentUser } from "store/auth/action";
 
 import AppContext from "./index";
 

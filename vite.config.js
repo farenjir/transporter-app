@@ -1,17 +1,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import jsconfigPaths from "vite-jsconfig-paths";
 
 import { VitePWA } from "vite-plugin-pwa";
 import * as path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	resolve: {
-		// eslint-disable-next-line no-undef
-		alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
-	},
 	plugins: [
 		react(),
+		jsconfigPaths(),
 		// https://www.saurabhmisra.dev/setup-react-pwa-using-vite/
 		VitePWA({
 			registerType: "autoUpdate",

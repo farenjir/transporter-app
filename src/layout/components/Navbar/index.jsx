@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Typography } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
 
-import { userSelector } from "@/store/selector";
+import { userSelector } from "store/selector";
 
 import NavbarMobileMenu, { links } from "./components/MobileMenu";
 

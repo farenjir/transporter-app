@@ -1,12 +1,12 @@
-const HomePage = () => {
+const AuthenticationPage = () => {
 	// handles
 	const onSubmit = (formValues) => {};
 	// return
 	return (
 		<>
-			<center>HOME</center>
+			<center>AuthenticationPage</center>
 		</>
 	);
 };
 
-export default HomePage;
+export default AuthenticationPage;

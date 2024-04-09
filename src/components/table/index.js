@@ -1,6 +1,6 @@
 import { Table } from "antd";
-import { uIdMaker } from "@/utils/jsHandlers";
-import useSearch from "@/hooks/useSearch";
+import { uIdMaker } from "utils/jsHandlers";
+import useSearch from "hooks/useSearch";
 
 const defaultOptions = {
 	onChange: () => { },

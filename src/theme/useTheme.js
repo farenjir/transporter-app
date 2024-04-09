@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { getFromStorage, setToStorage } from "@/utils/storage";
-import tokens from "@/theme";
+import { getFromStorage, setToStorage } from "utils/storage";
+import tokens from "theme";
 
 let defaultTheme = getFromStorage("theme") || "default";
 let defaultFontSize = getFromStorage("fontSize") || "none";

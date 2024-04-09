@@ -5,12 +5,12 @@ import { Provider } from "react-redux";
 import store from "../store/store";
 import i18n from "../langs/i18n";
 
-import ContextApi from "@/context/ContextApi";
+import ContextApi from "context/ContextApi";
 // layout
-import { Loadings } from "@/components";
-import UserLayout from "@/layout/UserLayouts";
+import { Loadings } from "components";
+import UserLayout from "layout/UserLayouts";
 // pages
-import Authentication from "@/pages/main/auth";
+import Authentication from "pages/main/auth";
 
 const mainRoutes = {
 	path: "/",
@@ -39,17 +39,14 @@ const adminRoutes = {};
 
 const router = createBrowserRouter([mainRoutes, userRoutes, adminRoutes]);
 
-function App() {
-	// return
-	return (
-		<Provider store={store}>
-			<I18nextProvider i18n={i18n}>
-				<ContextApi>
-					<RouterProvider router={router} fallbackElement={<Loadings />} />
-				</ContextApi>
-			</I18nextProvider>
-		</Provider>
-	);
-}
+const App = () => (
+	<Provider store={store}>
+		<I18nextProvider i18n={i18n}>
+			<ContextApi>
+				<RouterProvider router={router} fallbackElement={<Loadings />} />
+			</ContextApi>
+		</I18nextProvider>
+	</Provider>
+);
 
 export default App;
