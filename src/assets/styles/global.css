@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: "Dana-FaNum-Bold";
+	src: url("../fonts/Dana-FaNum-Bold.ttf");
+}
+
+@layer base {
+	* {
+		font-family: Dana-FaNum-Bold !important;
+	}
+	.borders {
+		border: 1px solid whitesmoke !important;
+	}
+	.borders-black {
+		border: 1px solid black !important;
+	}
+	.ltr {
+		direction: ltr !important;
+	}
+	.rtl {
+		direction: rtl !important;
+	}
+}
+
+/* document style */
+html {
+	overflow-x: hidden;
+}
+body {
+	position: relative;
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* scroll style */
+* {
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: #0000000d #0000000d;
+}
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+*::-webkit-scrollbar-track {
+	background: #0000000d;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: #0000004d;
+	border: 3px solid #0000000d;
+}

@@ -1,0 +1,77 @@
+{
+	"schemas": {
+		"required": "این فیلد الزامی است",
+		"mobile": "شماره همراه را به درستی وارد نمایید"
+	},
+	"commons": {
+		"status": "وضعیت",
+		"save": "ذخیره",
+		"edit": "ویرایش",
+		"delete": "حذف",
+		"info": "اطلاعات",
+		"active": "فعال",
+		"deActive": "غیر فعال",
+		"accept": "معتبر",
+		"notAccept": "غیر معتبر"
+	},
+	"messages": {
+		"noAccess": " ... درحال بررسی سطح دسترسی",
+		"loading": "لطفا صبر نمایید",
+		"delete": "آیا از حذف ( {{name}} ) اطمینان دارید ؟",
+		"deleteDes": "این {{name}} برای همیشه از سامانه حذف می شود .",
+		"pageNotFound": "صفحه مورد نظر یافت نشد !",
+		"goBack": "بازگشت به صفحه نخست"
+	},
+	"notification": {
+		"success": "عملیات با موفقیت انجام شد",
+		"error": "عملیات با به درستی انجام نشد"
+	},
+	"upload": {
+		"nationalCard": "بارگزاری کارت ملی و شناسنامه",
+		"uploadHint": "فقط فایل با پسوند jpg یا png و حداکثر 5mb بارگزاری شود ."
+	},
+	"header": {
+		"auth": "ورود / ثبت نام",
+		"contactUs": "تماس با ما"
+	},
+	"layouts": {
+		"drawerTitle": "تنظیمات",
+		"theme": "پوسته سایت :",
+		"mode": "حالت سایت :",
+		"language": "زبان سایت :",
+		"light": "روشن",
+		"dark": "تاریک",
+		"fontSize": "مقیاس سایت :",
+		"fontDefault": "نرمال",
+		"fontSmall": "کوچک",
+		"version": "نسخه سایت :",
+		"versionNumber": "0.9.1",
+		"footer": {
+			"copyWrite": "تمام حقوق این سایت متعلق به ? می باشد"
+		}
+	},
+	"register": {
+		"accountInfo": "ثبت اطلاعات کاربری",
+		"register": "تکمیل اطلاعات",
+		"registered": "ثبت نام",
+		"registerForm": "فرم ثبت نام",
+		"username": "نام کاربری",
+		"mobile": "شماره همراه",
+		"signUp": "ثبت نام در سامانه",
+		"emailDes": "لینک تایید حساب ایمیل برای شما ارسال شد",
+		"email": "ایمیل خود را بررسی نمایید"
+	},
+	"login": {
+		"login": "ورود",
+		"loginForm": "ورود",
+		"title": "ورود به سامانه",
+		"description": "نکات امنیتی",
+		"needSignUp": "حساب کاربری نیاز دارم",
+		"remember": "یادآوری ورود",
+		"signUp": "ایجاد حساب کاربری",
+		"email": "ایمیل",
+		"password": "کلمه عبور",
+		"emailNumber": "شماره همراه",
+		"mobile": "شماره همراه"
+	}
+}
