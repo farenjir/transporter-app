@@ -11,12 +11,12 @@
 	* {
 		font-family: Dana-FaNum-Bold !important;
 	}
-	.borders {
+	/* .borders {
 		border: 1px solid whitesmoke !important;
 	}
 	.borders-black {
 		border: 1px solid black !important;
-	}
+	} */
 	.ltr {
 		direction: ltr !important;
 	}
