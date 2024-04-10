@@ -1,12 +1,12 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import { SettingOutlined, MenuOutlined } from "@ant-design/icons";
+import { Layout, theme, Typography } from "antd";
 import { useAppContext } from "hooks";
 
-import { Layout, theme, Typography } from "antd";
 import { Drawers, SettingDrawer } from "components";
-import MainNavbar from "./components/Navbar";
 
 const { Text } = Typography;
 // layoutModules
@@ -14,24 +14,49 @@ const { Header, Content, Footer } = Layout;
 
 const UserLayout = () => {
 	const [open, setOpen] = useState(false);
+	const [openMenu, setOpenMenu] = useState(false);
 	// hooks
 	const { t } = useTranslation();
 	const { token } = theme.useToken();
 	// theme
 	const { direction, placement, ...otherParams } = useAppContext();
 	// handles
-	const onCloseDrawer = useCallback((navAction) => {
-		setOpen(navAction ? (perValue) => !perValue : false);
-	}, []);
+	const onClose = () => {
+		setOpen(false);
+		setOpenMenu(false);
+	};
+	const onOpen = (isMenu) => {
+		if (isMenu) {
+			setOpenMenu(true);
+		} else {
+			setOpen(true);
+		}
+	};
 	// return
 	return (
 		<Layout dir={direction} className="h-screen">
 			<Header style={{ background: token?.colorPrimaryLight, height: 50 }}>
-				<MainNavbar {...{ onCloseDrawer, token }} />
+				<div className="relative flex h-12 items-center justify-between">
+					<MenuOutlined
+						className={`text-[${token?.colorPrimary}] text-xl pt-1`}
+						onClick={() => onOpen("menu")}
+					/>
+					<SettingOutlined
+						className={`text-[${token?.colorPrimary}] text-xl pt-1`}
+						onClick={() => onOpen()}
+					/>
+				</div>
+				<Drawers
+					title={t("layouts.menu")}
+					open={openMenu}
+					onClose={onClose}
+					placement={placement === "left" ? "right" : "left"}
+					content={"<MainNavbar {...{ onCloseDrawer: onClose, token }} />"}
+				/>
 				<Drawers
 					title={t("layouts.drawerTitle")}
 					open={open}
-					onClose={onCloseDrawer}
+					onClose={onClose}
 					placement={placement}
 					content={<SettingDrawer {...otherParams} />}
 				/>

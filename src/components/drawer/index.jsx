@@ -10,19 +10,18 @@ const PublicDrawer = ({
 	content,
 }) => {
 	return (
-		<>
-			<Drawer
-				key={placement}
-				title={title}
-				placement={placement}
-				closable={closable}
-				onClose={onClose}
-				destroyOnClose={destroyOnClose}
-				open={open}
-			>
-				{content}
-			</Drawer>
-		</>
+		<Drawer
+			id={title}
+			key={title}
+			title={title}
+			placement={placement}
+			closable={closable}
+			onClose={onClose}
+			destroyOnClose={destroyOnClose}
+			open={open}
+		>
+			{content}
+		</Drawer>
 	);
 };
 export default PublicDrawer;
