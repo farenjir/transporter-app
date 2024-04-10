@@ -24,12 +24,12 @@ const userRoutes = {
 		{
 			index: true,
 			id: "user",
-			// element: <HomePage />,
-			// 	lazy: async () => ({ Component: (await import("../pages/main/search")).default }),
+			lazy: async () => ({ Component: (await import("../pages/user/home")).default }),
 		},
 		// {
 		// 	path: "search",
 		// 	id: "search",
+		// element: <HomePage />, OR
 		// 	lazy: async () => ({ Component: (await import("../pages/main/search")).default }),
 		// },
 	],

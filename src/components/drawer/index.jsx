@@ -3,6 +3,7 @@ import { Drawer } from "antd";
 const PublicDrawer = ({
 	title = "",
 	placement = "left",
+	width = "300px",
 	open = false,
 	onClose = () => {},
 	closable = false,
@@ -14,6 +15,7 @@ const PublicDrawer = ({
 			id={title}
 			key={title}
 			title={title}
+			width={width}
 			placement={placement}
 			closable={closable}
 			onClose={onClose}

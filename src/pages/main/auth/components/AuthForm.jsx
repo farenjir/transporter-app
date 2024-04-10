@@ -17,7 +17,10 @@ export default function AuthForm() {
 			<Form onFinish={onSubmit} dir={direction} layout="vertical" form={form}>
 				<div className="mb-7">
 					<h3 className="text-2xl font-extrabold">{t("auth.title")}</h3>
-					<p className="text-xs mt-4">{t("auth.description")}</p>
+					<p className="text-xs mt-4">
+						{t("auth.description")}
+						<strong className="text-blue-500 cursor-pointer">{t("auth.register")}</strong>
+					</p>
 				</div>
 				<Inputs
 					name="username"
@@ -33,7 +36,7 @@ export default function AuthForm() {
 					required={true}
 					addonAfter={<LockOutlined />}
 				/>
-				<Buttons htmlType="submit" block={true} content={"ورود"} classes="mt-3" />
+				<Buttons htmlType="submit" block={true} content={t("auth.login")} classes="mt-3" />
 			</Form>
 		</>
 	);

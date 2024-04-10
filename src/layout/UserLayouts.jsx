@@ -7,6 +7,7 @@ import { Layout, theme, Typography } from "antd";
 import { useAppContext } from "hooks";
 
 import { Drawers, SettingDrawer } from "components";
+import Sidebar from "./components/Sidebar";
 
 const { Text } = Typography;
 // layoutModules
@@ -41,17 +42,18 @@ const UserLayout = () => {
 						className={`text-[${token?.colorPrimary}] text-xl pt-1`}
 						onClick={() => onOpen("menu")}
 					/>
+					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25}/>
 					<SettingOutlined
 						className={`text-[${token?.colorPrimary}] text-xl pt-1`}
 						onClick={() => onOpen()}
 					/>
 				</div>
 				<Drawers
-					title={t("layouts.menu")}
+					title={t("layouts.sidebar.menu")}
 					open={openMenu}
 					onClose={onClose}
 					placement={placement === "left" ? "right" : "left"}
-					content={"<MainNavbar {...{ onCloseDrawer: onClose, token }} />"}
+					content={<Sidebar {...{ token }} />}
 				/>
 				<Drawers
 					title={t("layouts.drawerTitle")}
