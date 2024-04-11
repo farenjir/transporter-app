@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 const SupportSection = ({ background }) => {
+	const { t } = useTranslation();
 	return (
 		<div className="responsive-layout mt-10 mb-5 p-5 rounded-3xl border" style={{ background }}>
 			<div className="flex md:gap-4 flex-wrap items-start border-light rounded">
@@ -14,7 +17,7 @@ const SupportSection = ({ background }) => {
 									height="46"
 								/>
 							</div>
-							<span className="text-body-md md:mr-2 text-grays-500">احراز هویت کاربران</span>
+							<span className="text-body-md md:mr-2 text-grays-500">{t("home.support.auth")}</span>
 						</div>
 					</div>
 				</span>
@@ -30,7 +33,7 @@ const SupportSection = ({ background }) => {
 									height="46"
 								/>
 							</div>
-							<span className="text-body-md md:mr-2 text-grays-500">بیمه بسته ارسالی</span>
+							<span className="text-body-md md:mr-2 text-grays-500">{t("home.support.garanty")}</span>
 						</div>
 					</div>
 				</span>
@@ -46,7 +49,7 @@ const SupportSection = ({ background }) => {
 									height="46"
 								/>
 							</div>
-							<span className="text-body-md md:mr-2 text-grays-500">ارسال ایمن</span>
+							<span className="text-body-md md:mr-2 text-grays-500">{t("home.support.safe")}</span>
 						</div>
 					</div>
 				</span>
@@ -62,7 +65,7 @@ const SupportSection = ({ background }) => {
 									height="46"
 								/>
 							</div>
-							<span className="text-body-md md:mr-2 text-grays-500">ارسال سریع بسته</span>
+							<span className="text-body-md md:mr-2 text-grays-500">{t("home.support.fast")}</span>
 						</div>
 					</div>
 				</span>

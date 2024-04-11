@@ -16,6 +16,7 @@ const Calendars = ({
 	initialValue = null, // "2015/02/08"
 	required = false,
 	disabled = false,
+	size = "large",
 }) => {
 	const { t } = useTranslation();
 	let initDate = dateToPersian(initialValue || new Date());
@@ -32,22 +33,21 @@ const Calendars = ({
 			labelCol={{ xs: 24 }}
 			wrapperCol={{ xs: 24 }}
 			className={`${extraClasses}`}
-			label={
-				<>
-					<span>{label}</span>
-					<Icons title={t("messages.typeDate")} classes="mx-2 icon-info" type="ExclamationCircleOutlined"/>
-				</>
-			}
+			label={label}
 			name={name}
-			initialValue={dayjs(initDate, "YYYY-MM-DD").locale("fa")}
+			// initialValue={dayjs(initDate, "YYYY-MM-DD").locale("fa")}
 			rules={rules}
 		>
 			<DatePicker
-				disabled={disabled}
-				locale={locale}
+				className="w-full"
 				placement={placement}
-				format={"YYYY-MM-DD"}
-				allowClear={false}
+				locale={locale}
+				size={size}
+				// disabled={disabled}
+				// locale={locale}
+				// placement={placement}
+				// format={"YYYY-MM-DD"}
+				// allowClear={false}
 			/>
 		</Form.Item>
 	);
