@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { DatePicker, Form } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { dateToPersian } from "utils/globalHandlers";
+import { dateToPersian } from "utils/globals";
 import { Icons } from "components";
 
 const Calendars = ({
@@ -45,7 +45,6 @@ const Calendars = ({
 			<DatePicker
 				disabled={disabled}
 				locale={locale}
-				bordered={true}
 				placement={placement}
 				format={"YYYY-MM-DD"}
 				allowClear={false}

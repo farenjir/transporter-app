@@ -1,9 +1,11 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
-import { Form } from "antd";
+import { Form, Typography } from "antd";
 
 import { useAppContext } from "hooks";
 import { Buttons, Inputs } from "components";
+
+const { Paragraph, Title } = Typography;
 
 export default function AuthForm() {
 	const { callApi, direction } = useAppContext();
@@ -16,11 +18,13 @@ export default function AuthForm() {
 		<>
 			<Form onFinish={onSubmit} dir={direction} layout="vertical" form={form}>
 				<div className="mb-7">
-					<h3 className="text-2xl font-extrabold">{t("auth.title")}</h3>
-					<p className="text-xs mt-4">
+					<Title level={3} className="text-2xl font-extrabold">
+						{t("auth.title")}
+					</Title>
+					<Paragraph className="text-xs mt-4">
 						{t("auth.description")}
 						<strong className="text-blue-500 cursor-pointer">{t("auth.register")}</strong>
-					</p>
+					</Paragraph>
 				</div>
 				<Inputs
 					name="username"

@@ -8,13 +8,21 @@ import i18n from "../langs/i18n";
 import ContextApi from "context/ContextApi";
 // layout
 import { Loadings } from "components";
-import UserLayout from "layout/UserLayouts";
+import MainLayout from "layout/MainLayout";
+import UserLayout from "layout/UserLayout";
 // pages
 import Authentication from "pages/main/auth";
 
 const mainRoutes = {
 	path: "/",
-	element: <Authentication />,
+	element: <MainLayout />,
+	children: [
+		{
+			index: true,
+			id: "auth",
+			element: <Authentication />,
+		},
+	],
 };
 
 const userRoutes = {
@@ -26,12 +34,6 @@ const userRoutes = {
 			id: "user",
 			lazy: async () => ({ Component: (await import("../pages/user/home")).default }),
 		},
-		// {
-		// 	path: "search",
-		// 	id: "search",
-		// element: <HomePage />, OR
-		// 	lazy: async () => ({ Component: (await import("../pages/main/search")).default }),
-		// },
 	],
 };
 

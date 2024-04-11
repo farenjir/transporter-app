@@ -35,19 +35,14 @@ const UserLayout = () => {
 	};
 	// return
 	return (
-		<Layout dir={direction} className="h-screen">
-			<Header style={{ background: token?.colorPrimaryLight, height: 50 }}>
-				<div className="relative flex h-12 items-center justify-between">
-					<MenuOutlined
-						className={`text-[${token?.colorPrimary}] text-xl pt-1`}
-						onClick={() => onOpen("menu")}
-					/>
-					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25}/>
-					<SettingOutlined
-						className={`text-[${token?.colorPrimary}] text-xl pt-1`}
-						onClick={() => onOpen()}
-					/>
-				</div>
+		<Layout dir={direction} className="min-h-screen">
+			<Header
+				className="relative flex h-12 items-center justify-between"
+				style={{ background: token?.colorPrimaryLight }}
+			>
+				<MenuOutlined className={`text-[${token?.colorPrimary}] text-xl pt-1`} onClick={() => onOpen("menu")} />
+				<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
+				<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl pt-1`} onClick={() => onOpen()} />
 				<Drawers
 					title={t("layouts.sidebar.menu")}
 					open={openMenu}
@@ -63,9 +58,9 @@ const UserLayout = () => {
 					content={<SettingDrawer {...otherParams} />}
 				/>
 			</Header>
-			<Content className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+			<Content>
 				{/* children */}
-				<Outlet key={"main-layout"} />
+				<Outlet key={"user-layout"} />
 				{/* children */}
 			</Content>
 			<Footer>
