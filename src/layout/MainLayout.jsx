@@ -12,7 +12,7 @@ const MainLayout = () => {
 	// return
 	return (
 		<Layout dir={direction} className="h-screen" style={{ background: token.colorBgBase }}>
-			<Content className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+			<Content className="mx-auto px-2">
 				{/* children */}
 				<Outlet key={"main-layout"} />
 				{/* children */}

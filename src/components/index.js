@@ -6,10 +6,11 @@ export { default as Inputs } from "./input";
 export { default as InputType } from "./inputType";
 export { default as Selects } from "./select";
 export { default as RadioGroup } from "./radio";
-export { default as AppTabs } from "./tab";
+export { default as Tables } from "./table";
 
 // module
 export { default as Icons } from "./icon";
+export { default as AppTabs } from "./tab";
 export { default as Modals } from "./modal";
 export { default as confirm } from "./submit";
 export { default as Drawers } from "./drawer";

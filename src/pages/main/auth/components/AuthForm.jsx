@@ -20,7 +20,7 @@ export default function AuthForm() {
 			<Form onFinish={onSubmit} dir={direction} layout="vertical" form={form}>
 				<div className="mb-7">
 					<Title level={3} className="text-2xl font-extrabold">
-						{t("auth.title")}
+						<Link to={"/user"}>{t("auth.title")}</Link>
 					</Title>
 					<Paragraph className="text-xs mt-4">
 						{t("auth.description")}

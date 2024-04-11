@@ -37,24 +37,25 @@ export default function AuthForm() {
 				<Col xs={24} md={12}>
 					<Inputs name="email" type="email" label={t("auth.email")} required={true} />
 				</Col>
-				<Col xs={24} md={12}>
+				<Col xs={24} md={24}>
 					<Row gutter={[8, 8]} align={"middle"}>
-						<Col xs={24} md={6}>
-							<Selects name="weight" placeholder={"+98"} label={"پیش شماره"} />
-						</Col>
-						<Col xs={24} md={18}>
+					<Col xs={24} md={12}>
 							<Inputs name="password" type="password" label={t("شماره همراه")} required={true} />
 						</Col>
+						<Col xs={24} md={4}>
+							<Selects name="weight" placeholder={"+98"} label={"پیش شماره"} />
+						</Col>
+					
 					</Row>
 				</Col>
-				<Col xs={24} md={12}>
+				<Col xs={24} md={8}>
 					<Selects name="weight" label={"ملیت"} required={true} />
 				</Col>
-				<Col xs={24} md={12}>
+				<Col xs={24} md={8}>
 					<Selects name="weight" label={"جنسیت"} required={true} />
 				</Col>
-				<Col xs={{ span: 24 }} md={{ span: 12, offset: 12 }} lg={{ span: 8, offset: 16 }}>
-					<Buttons htmlType="submit" block={true} content={t("ثبت نام")} classes="mt-3" />
+				<Col xs={{ span: 24 }} md={8} lg={80}>
+					<Buttons htmlType="submit" block={true} content={t("ثبت نام")} classes="mt-8" />
 				</Col>
 			</Row>
 		</Form>

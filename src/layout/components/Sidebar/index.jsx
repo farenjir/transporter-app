@@ -12,8 +12,8 @@ const links = [
 		title: "orders",
 		icon: "FileDoneOutlined",
 		children: [
-			{ to: "/", title: "send", key: "2-1", icon: "LogoutOutlined" },
-			{ to: "/", title: "get", key: "2-2", icon: "LoginOutlined" },
+			{ to: "/user/history", title: "send", key: "2-1", icon: "LogoutOutlined" },
+			{ to: "/user/history", title: "get", key: "2-2", icon: "LoginOutlined" },
 		],
 	},
 ];

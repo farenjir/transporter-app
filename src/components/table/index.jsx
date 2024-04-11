@@ -1,6 +1,6 @@
 import { Table } from "antd";
-import { uIdMaker } from "utils/jsHandlers";
-import useSearch from "hooks/useSearch";
+
+import { uIdMaker } from "utils/globals";
 
 const defaultOptions = {
 	onChange: () => { },
@@ -43,13 +43,13 @@ const defaultOptions = {
 const Tables = ({ dataSource = [], columns = [], ...props }) => {
 	const options = Object.assign({}, defaultOptions, props);
 	// add search on column
-	const { getColumnSearchProps } = useSearch();
+	// const { getColumnSearchProps } = useSearch();
 	const initColumns = columns.map(({ searchable, dataIndex, ...item }) => {
-		const search = searchable ? { ...getColumnSearchProps(dataIndex) } : {};
+		// const search = searchable ? { ...getColumnSearchProps(dataIndex) } : {};
 		return {
 			dataIndex,
 			...item,
-			...search,
+			// ...search,
 		};
 	});
 	// return
