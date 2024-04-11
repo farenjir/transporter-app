@@ -22,6 +22,11 @@ const mainRoutes = {
 			id: "auth",
 			element: <Authentication />,
 		},
+		{
+			path: "register",
+			id: "register",
+			lazy: async () => ({ Component: (await import("../pages/main/register")).default }),
+		},
 	],
 };
 

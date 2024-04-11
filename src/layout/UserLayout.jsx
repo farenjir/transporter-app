@@ -58,12 +58,12 @@ const UserLayout = () => {
 					content={<SettingDrawer {...otherParams} />}
 				/>
 			</Header>
-			<Content>
+			<Content style={{ background: token?.colorPrimaryLighter }}>
 				{/* children */}
 				<Outlet key={"user-layout"} />
 				{/* children */}
 			</Content>
-			<Footer>
+			<Footer style={{ background: token?.colorPrimaryLighter }}>
 				<div
 					style={{ background: token?.colorPrimaryLight, border: "1px solid", height: 50 }}
 					className="grid place-content-center rounded-lg mt-3"

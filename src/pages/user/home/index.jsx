@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { theme, Form } from "antd";
 
+import { FlightIcon, FlightIntIcon } from "components/icon/custom";
 import {
 	RadioGroup,
 	DomesticSearch,
@@ -11,7 +12,6 @@ import {
 	DomesticGetSearch,
 	InternationalGetSearch,
 } from "components";
-import { FlightIcon, FlightIntIcon } from "components/icon/custom";
 import SupportSection from "./components/Support";
 import RequeuedSend from "./components/RequeuedSend";
 import RequeuedGet from "./components/RequeuedGet";

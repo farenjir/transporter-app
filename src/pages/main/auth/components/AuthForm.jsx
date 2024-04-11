@@ -1,5 +1,6 @@
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Form, Typography } from "antd";
 
 import { useAppContext } from "hooks";
@@ -23,7 +24,9 @@ export default function AuthForm() {
 					</Title>
 					<Paragraph className="text-xs mt-4">
 						{t("auth.description")}
-						<strong className="text-blue-500 cursor-pointer">{t("auth.register")}</strong>
+						<strong className="text-blue-500 cursor-pointer">
+							<Link to={"/register"}>{t("auth.register")}</Link>
+						</strong>
 					</Paragraph>
 				</div>
 				<Inputs
