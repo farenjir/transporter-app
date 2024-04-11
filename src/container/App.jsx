@@ -39,6 +39,11 @@ const userRoutes = {
 			id: "user",
 			lazy: async () => ({ Component: (await import("../pages/user/home")).default }),
 		},
+		{
+			path: "search",
+			id: "search",
+			lazy: async () => ({ Component: (await import("../pages/user/search")).default }),
+		},
 	],
 };
 

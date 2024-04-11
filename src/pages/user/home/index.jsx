@@ -3,15 +3,9 @@ import { useTranslation } from "react-i18next";
 
 import { theme, Form } from "antd";
 
+import { Domestic, International, DomesticGet, InternationalGet } from "components/App";
+import { AppTabs, RadioGroup } from "components";
 import { FlightIcon, FlightIntIcon } from "components/icon/custom";
-import {
-	RadioGroup,
-	DomesticSearch,
-	AppTabs,
-	InternationalSearch,
-	DomesticGetSearch,
-	InternationalGetSearch,
-} from "components";
 import SupportSection from "./components/Support";
 import RequeuedSend from "./components/RequeuedSend";
 import RequeuedGet from "./components/RequeuedGet";
@@ -49,14 +43,14 @@ const HomePage = () => {
 			{
 				key: "International",
 				label: t("home.International"),
-				children: <InternationalSearch />,
+				children: <International />,
 				icon: <FlightIntIcon />,
 				className: "mt-5",
 			},
 			{
 				key: "Domestic",
 				label: t("home.Domestic"),
-				children: <DomesticSearch />,
+				children: <Domestic />,
 				icon: <FlightIcon />,
 				className: "mt-5",
 			},
@@ -65,14 +59,14 @@ const HomePage = () => {
 			{
 				key: "International",
 				label: t("home.International"),
-				children: <InternationalGetSearch />,
+				children: <InternationalGet />,
 				icon: <FlightIntIcon />,
 				className: "mt-5",
 			},
 			{
 				key: "Domestic",
 				label: t("home.Domestic"),
-				children: <DomesticGetSearch />,
+				children: <DomesticGet />,
 				icon: <FlightIcon />,
 				className: "mt-5",
 			},

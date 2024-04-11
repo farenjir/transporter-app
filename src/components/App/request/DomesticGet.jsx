@@ -4,7 +4,7 @@ import { Col, Row } from "antd";
 
 import { Buttons, Inputs, Selects } from "components";
 
-const DomesticGetSearch = () => {
+const DomesticGet = () => {
 	// hooks
 	const { t } = useTranslation();
 	// return
@@ -15,4 +15,4 @@ const DomesticGetSearch = () => {
 	);
 };
 
-export default DomesticGetSearch;
+export default DomesticGet

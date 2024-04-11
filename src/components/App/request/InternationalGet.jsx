@@ -3,7 +3,7 @@ import { Col, Row } from "antd";
 
 import { Buttons, Calendars, Icons, Inputs, Selects } from "components";
 
-const InternationalGetSearch = () => {
+const InternationalGet = () => {
 	// hooks
 	const { t } = useTranslation();
 	// return
@@ -66,4 +66,4 @@ const InternationalGetSearch = () => {
 	);
 };
 
-export default InternationalGetSearch;
+export default InternationalGet

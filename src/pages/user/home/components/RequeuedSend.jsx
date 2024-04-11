@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Typography } from "antd";
 import { DoubleLeftOutlined } from "@ant-design/icons";
 
 import { useAppContext } from "hooks";
-import { Buttons, CarouselModule, AppCard } from "components";
+import { Buttons, CarouselModule } from "components";
+import { AppCard } from "components/App";
 
 const { Title } = Typography;
 
 const title = "میلان به تهران";
-const description =	"توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر توضیحات توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر ";
+const description =
+	"توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر توضیحات توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر ";
 
 export default function RequeuedSend() {
 	const [producers, setProducers] = useState([{ key: "1" }, { key: "2" }, { key: "3" }]);
@@ -24,24 +27,26 @@ export default function RequeuedSend() {
 	}, []);
 	return (
 		<section className="producer-sections mx-auto p-5 mt-8 md:mx-12">
-			<div className="producer-title text-center">
+			<div className="producer-title md:text-center">
 				<Title level={2}>درخواست های ارسال</Title>
-				<p className="my-1 text-slate-400 text-xs p-2 md:text-base">
+				<p className="my-1 text-slate-400 text-xs md:text-base">
 					شما دراین بخش می توانید درخواست خود را پیدا کنید
 				</p>
 			</div>
-			<Buttons
-				content={
-					<div className="flex gap-2 align-middle items-center ">
-						<span className="p-1"> مشاهده همه </span>
-						<DoubleLeftOutlined />
-					</div>
-				}
-				type="dashed"
-				htmlType="button"
-				size="default"
-				classes="text-sm float-left"
-			/>
+			<Link to={"/user/search"} className="text-white">
+				<Buttons
+					content={
+						<div className="flex gap-2 align-middle items-center">
+							<span className="p-1"> مشاهده همه </span>
+							<DoubleLeftOutlined />
+						</div>
+					}
+					type="dashed"
+					htmlType="button"
+					size="default"
+					classes="text-sm float-left mt-3"
+				/>
+			</Link>
 			<CarouselModule
 				name="producers"
 				swiperSliders={producers.map(({ key }) => (

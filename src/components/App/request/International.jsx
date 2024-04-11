@@ -3,7 +3,7 @@ import { Col, Row } from "antd";
 
 import { Buttons, CalenderDateRange, Icons, Inputs, Selects } from "components";
 
-const InternationalSearch = () => {
+const International = () => {
 	// hooks
 	const { t } = useTranslation();
 	// return
@@ -66,4 +66,4 @@ const InternationalSearch = () => {
 	);
 };
 
-export default InternationalSearch;
+export default International

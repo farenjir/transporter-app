@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { SettingOutlined, MenuOutlined } from "@ant-design/icons";
 import { Layout, theme, Typography } from "antd";
 import { useAppContext } from "hooks";
 
-import { Drawers, SettingDrawer } from "components";
+import { Drawers } from "components";
+import { SettingDrawer } from "components/App";
+
 import Sidebar from "./components/Sidebar";
+import FloatLabel from "./components/Float";
 
 const { Text } = Typography;
 // layoutModules
@@ -41,7 +44,9 @@ const UserLayout = () => {
 				style={{ background: token?.colorPrimaryLight }}
 			>
 				<MenuOutlined className={`text-[${token?.colorPrimary}] text-xl pt-1`} onClick={() => onOpen("menu")} />
-				<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
+				<Link to={"/user"}>
+					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
+				</Link>
 				<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl pt-1`} onClick={() => onOpen()} />
 				<Drawers
 					title={t("layouts.sidebar.menu")}
@@ -58,7 +63,8 @@ const UserLayout = () => {
 					content={<SettingDrawer {...otherParams} />}
 				/>
 			</Header>
-			<Content style={{ background: token?.colorPrimaryLighter }}>
+			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">
+				<FloatLabel />
 				{/* children */}
 				<Outlet key={"user-layout"} />
 				{/* children */}
