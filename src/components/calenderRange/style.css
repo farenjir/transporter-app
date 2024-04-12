@@ -1,0 +1,5 @@
+@media (max-width: 480px) {
+	.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panels {
+		flex-direction: column !important;
+	}
+}

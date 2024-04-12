@@ -36,7 +36,6 @@ const AppTable = () => {
 			>
 				<Input
 					ref={searchInput}
-					// placeholder={`جست و جو`}
 					value={selectedKeys[0]}
 					onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
 					onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -54,7 +53,7 @@ const AppTable = () => {
 							width: 120,
 						}}
 					>
-						جست و جو
+						جستجو
 					</Button>
 					<Button
 						onClick={() => clearFilters && handleReset(clearFilters)}
@@ -122,34 +121,44 @@ const AppTable = () => {
 			title: "تاریخ",
 			dataIndex: "date",
 			key: "date",
+			width: 250,
 			...getColumnSearchProps("date"),
 		},
 		{
 			title: "وزن بار",
 			dataIndex: "weight",
 			key: "weight",
+			width: 120,
 			...getColumnSearchProps("weight"),
 		},
 		{
 			title: "تعداد",
 			dataIndex: "count",
 			key: "count",
+			width: 60,
 			...getColumnSearchProps("count"),
 		},
 		{
 			title: "توضیحات",
 			dataIndex: "description",
 			key: "description",
+			width: 200,
 			...getColumnSearchProps("description"),
+			render: (description) => (
+				<p className="truncate" style={{ width: 180 }}>
+					{description}
+				</p>
+			),
 		},
 		{
 			title: "عملیات",
 			dataIndex: "actions",
 			key: "actions",
+			width: 150,
 			render: () => (
-				<div className="flex justify-around align-middle items-center">
+				<div className="flex justify-center align-middle items-center">
 					<Icons type="InfoCircleOutlined" classes="text-blue-500" title="اطلاعات" onClick={() => {}} />
-					<Icons type="EditOutlined" classes="text-orange-500" title="ویرایش" onClick={() => {}} />
+					<Icons type="EditOutlined" classes="text-orange-500 mx-4 md:mx-6" title="ویرایش" onClick={() => {}} />
 					<Icons type="DeleteOutlined" classes="text-red-500" title="حذف" onClick={() => {}} />
 				</div>
 			),

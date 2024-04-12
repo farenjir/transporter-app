@@ -1,46 +1,52 @@
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import * as Icons from "@ant-design/icons";
 import { Typography } from "antd";
+import { Icons } from "components";
 
 const { Paragraph } = Typography;
 
 const links = [
 	{ title: "home", to: "/user", icon: "HomeOutlined" },
 	{
+		title: "search",
+		icon: "FileSearchOutlined",
+		children: [
+			{ to: "/user/search", title: "send", icon: "LogoutOutlined", state: { defaultType: "send" } },
+			{ to: "/user/search", title: "get", icon: "LoginOutlined", state: { defaultType: "get" } },
+		],
+	},
+	{
 		title: "orders",
 		icon: "FileDoneOutlined",
 		children: [
-			{ to: "/user/history", title: "send", key: "2-1", icon: "LogoutOutlined" },
-			{ to: "/user/history", title: "get", key: "2-2", icon: "LoginOutlined" },
+			{ to: "/user/history", title: "send", icon: "LogoutOutlined", state: { defaultType: "send" } },
+			{ to: "/user/history", title: "get", icon: "LoginOutlined", state: { defaultType: "get" } },
 		],
 	},
 ];
 
-const Sidebar = ({ token }) => {
+const Sidebar = ({ token = {} }) => {
 	const { t } = useTranslation();
 	return (
-		<div className="flex flex-col">
+		<div className={`flex flex-col`}>
 			{links.map(({ title, to, icon, children }) => {
-				const Icon = Icons[icon];
 				return (
 					<>
 						{children ? (
 							<>
 								<Paragraph key={title}>
-									<Icon />
+									<Icons type={icon} classes="text-lg" />
 									<span className="mx-2 text-base"> {t(`layouts.sidebar.${title}`)}</span>
 								</Paragraph>
 								<ul className="mx-8" key={`children-${title}`}>
 									{children.map((child) => {
-										const ChildIcon = Icons[child.icon];
 										return (
 											<li key={`li-${child.title}`}>
-												<NavLink to={child.to}>
+												<NavLink to={child.to} state={child.state}>
 													<Paragraph className={`hover:text-[${token?.colorPrimary}]`}>
-														<ChildIcon />
-														<span className="mx-2 text-base">
+														<Icons type={child.icon} />
+														<span className="mx-2 text-sm">
 															{t(`layouts.sidebar.${child.title}`)}
 														</span>
 													</Paragraph>
@@ -53,7 +59,7 @@ const Sidebar = ({ token }) => {
 						) : (
 							<NavLink key={title} to={to}>
 								<Paragraph className={`hover:text-[${token?.colorPrimary}]`}>
-									<Icon />
+									<Icons type={icon} classes="text-lg" />
 									<span className="mx-2 text-base">{t(`layouts.sidebar.${title}`)}</span>
 								</Paragraph>
 							</NavLink>

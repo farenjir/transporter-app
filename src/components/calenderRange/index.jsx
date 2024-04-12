@@ -1,8 +1,12 @@
+import { useTranslation } from "react-i18next";
+
 import "dayjs/locale/fa";
 import locale from "antd/locale/fa_IR";
 
+import "./style.css";
 import { DatePicker, Form } from "antd";
-import { useTranslation } from "react-i18next";
+
+const { RangePicker } = DatePicker;
 
 const CalenderDateRange = ({
 	required = false,
@@ -30,12 +34,7 @@ const CalenderDateRange = ({
 			initialValue={initialValue}
 			rules={rules}
 		>
-			<DatePicker.RangePicker
-				className="w-full"
-				placement={placement}
-				locale={locale}
-				size={size}
-			/>
+			<RangePicker className="w-full" placement={placement} locale={locale} size={size} />
 		</Form.Item>
 	);
 };

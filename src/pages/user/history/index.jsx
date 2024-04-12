@@ -6,7 +6,9 @@ import { RadioGroup, Tables } from "components";
 import AppTable from "./components/Table";
 
 const SearchPage = () => {
-	const [activeType, setActiveType] = useState("send");
+	const {  defaultType = "send" } = history?.state?.usr || {};
+	// state
+	const [activeType, setActiveType] = useState(defaultType);
 	// hooks
 	const { t } = useTranslation();
 	const { token } = theme.useToken();

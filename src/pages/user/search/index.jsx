@@ -19,8 +19,10 @@ const description =
 const { Title } = Typography;
 
 const SearchPage = () => {
+	const {  defaultType = "send" } = history?.state?.usr || {};
+	// state
 	const [items, setItems] = useState(Array.from({ length: 50 }).map((_, idx) => `${idx + 1}`));
-	const [activeType, setActiveType] = useState("send");
+	const [activeType, setActiveType] = useState(defaultType);
 	// hooks
 	const { t } = useTranslation();
 	const [form] = Form.useForm();

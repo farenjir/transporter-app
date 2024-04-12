@@ -38,7 +38,7 @@ const InternationalGetSearch = () => {
 					<CalenderDateRange label={"تاریخ"} />
 				</Col>
 				<Col xs={24} md={12} lg={3}>
-					<Buttons content={t("جست و جو")} htmlType="submit" classes="float-end mt-8" block={true} />
+					<Buttons content={t("جستجو")} htmlType="submit" classes="float-end mt-8" block={true} />
 				</Col>
 			</Row>
 		</>
