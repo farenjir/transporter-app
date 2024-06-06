@@ -1,25 +1,36 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { logger } from "redux-logger";
+import logger from "redux-logger";
+
+import { combineReducers } from "redux";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./auth";
-
-
-const reducer = {
-	auth: authReducer,
-};
+import { basesReducer } from "./base";
 
 const additionalMiddleware = [];
-// eslint-disable-next-line no-undef
-if (process.env.NODE_ENV !== "production") {
+if (import.meta.env.NODE_ENV !== "production") {
 	additionalMiddleware.push(logger);
 }
 
-// *** initialize redux store
-export const store = configureStore({
-	reducer,
-	// eslint-disable-next-line no-undef
-	devTools: process.env.NODE_ENV !== "production",
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(additionalMiddleware),
+const reducers = combineReducers({
+	auth: authReducer,
+	bases: basesReducer,
 });
 
-export default store;
+const persistedReducer = persistReducer(
+	{
+		key: "root:sc",
+		storage,
+		blacklist: ["auth"]
+	},
+	reducers,
+);
+
+export const store = configureStore({
+	reducer: persistedReducer,
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(additionalMiddleware),
+	devTools: import.meta.env.NODE_ENV !== "production",
+});
+
+export const persistor = persistStore(store);

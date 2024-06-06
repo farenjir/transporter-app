@@ -2,7 +2,7 @@ import i18n from "i18next";
 import dayjs from "dayjs";
 
 // *** export handles
-export { dateToGeo, dateToPersian, dateToInitializeOnForm, dateToGregorian, uIdMaker };
+export { dateToGeo, dateToPersian, dateToInitializeOnForm, dateToGregorian, uIdMaker, transformerAppData };
 
 // ***
 const dateToGeo = (year, month, day, language = i18n.language || "fa") => {
@@ -67,4 +67,21 @@ const uIdMaker = (uIdLength = 20) => {
 		uId += codePattern[randomNumber];
 	}
 	return uId;
+};
+
+const transformerAppData = (object, [codeParam, titleParam], afterObjAdded, useNameAsId = false) => {
+	const code = object[codeParam]
+	const title = object[titleParam]
+	return {
+		...object,
+		code,
+		title,
+		id: useNameAsId ? title : code,
+		pId: useNameAsId ? title : code,
+		value: useNameAsId ? title : code,
+		label: title,
+		name: title,
+		text: title,
+		...afterObjAdded
+	}
 };

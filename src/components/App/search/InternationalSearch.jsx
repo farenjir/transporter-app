@@ -17,7 +17,7 @@ const InternationalSearch = () => {
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مبدا ( شهر , فرودگاه )</span>
+								<span> مبدا ( کشور , شهر , فرودگاه )</span>
 							</div>
 						}
 					/>
@@ -29,7 +29,7 @@ const InternationalSearch = () => {
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مقصد ( شهر , فرودگاه )</span>
+								<span> مقصد ( کشور , شهر , فرودگاه )</span>
 							</div>
 						}
 					/>

@@ -1,37 +1,48 @@
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Col, Row } from "antd";
 
-import { Buttons, Calendars, Icons, Inputs, Selects } from "components";
+import { RequestContext } from "./context";
+import { Buttons, Calendars, Icons, Inputs, Selects, TreeSelects } from "components";
 
 const InternationalGet = () => {
 	// hooks
 	const { t } = useTranslation();
+	const { onLoadData, treeData } = useContext(RequestContext);
 	// return
 	return (
 		<>
 			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={12} lg={8}>
-					<Selects
+					<TreeSelects
 						name="source"
 						label={"مبدا"}
-						required={true}
+						treeLine
+						required
+						dropdownStyle={{ direction: "ltr" }}
+						treeData={treeData}
+						onLoadData={onLoadData}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مبدا ( شهر , فرودگاه )</span>
+								<span> مبدا ( کشور , شهر , فرودگاه )</span>
 							</div>
 						}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<Selects
+					<TreeSelects
 						name="destination"
 						label={"مقصد"}
-						required={true}
+						treeLine
+						required
+						dropdownStyle={{ direction: "ltr" }}
+						treeData={treeData}
+						onLoadData={onLoadData}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مقصد ( شهر , فرودگاه )</span>
+								<span> مقصد ( کشور , شهر , فرودگاه )</span>
 							</div>
 						}
 					/>
@@ -45,7 +56,13 @@ const InternationalGet = () => {
 					<Selects name="weight" placeholder={"مقیاس"} label={"مقیاس"} />
 				</Col>
 				<Col xs={24} md={12} lg={6}>
-					<Inputs type={"number"} name="names" placeholder={t("وزن بسته")} label="وزن" required={true} />
+					<Inputs
+						type={"number"}
+						name="names"
+						placeholder={t("وزن بسته")}
+						label="وزن"
+						required={true}
+					/>
 				</Col>
 				{/* <Col xs={24} md={12} lg={8}>
 					<Inputs type={"number"} name="names" placeholder={t("تعداد")} label="تعداد" required={true} />
@@ -53,7 +70,12 @@ const InternationalGet = () => {
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={12} lg={8}>
-					<Inputs name="description" placeholder={t("توضیحات بسته")} label="توضیحات بسته" required={true} />
+					<Inputs
+						name="description"
+						placeholder={t("توضیحات بسته")}
+						label="توضیحات بسته"
+						required={true}
+					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
 					<Inputs name="description" placeholder={t("توضیحات")} label="توضیحات ( اختیاری )" />
@@ -66,4 +88,4 @@ const InternationalGet = () => {
 	);
 };
 
-export default InternationalGet
+export default InternationalGet;

@@ -27,51 +27,49 @@ const Selects = ({
 }) => {
 	const { t } = useTranslation();
 	return (
-		<>
-			<Form.Item
-				labelCol={{ xs: 24 }}
-				wrapperCol={{ xs: 24 }}
-				name={name}
-				label={label}
-				rules={[
-					{
-						required: required,
-						message: t("schemas.required"),
-					},
-				]}
-				className={formItemClassName}
-				initialValue={initialValue}
+		<Form.Item
+			labelCol={{ xs: 24 }}
+			wrapperCol={{ xs: 24 }}
+			name={name}
+			label={label}
+			rules={[
+				{
+					required: required,
+					message: t("schemas.required"),
+				},
+			]}
+			className={formItemClassName}
+			initialValue={initialValue}
+		>
+			<Select
+				size={size}
+				getPopupContainer={(trigger) => trigger.parentNode}
+				onChange={onChange}
+				mode={mode}
+				defaultValue={initialValue}
+				className={`${classes} w-100`}
+				disabled={disabled}
+				onClick={onClick}
+				ref={reference}
+				value={value}
+				showSearch={showSearch}
+				optionFilterProp={optionFilterProp}
+				filterOption={filterOption}
+				onSelect={onSelect}
+				autoComplete="dontshow"
+				onSearch={onSearch}
+				placeholder={placeholder}
 			>
-				<Select
-					size={size}
-					getPopupContainer={(trigger) => trigger.parentNode}
-					onChange={onChange}
-					mode={mode}
-					defaultValue={initialValue}
-					className={`${classes} w-100`}
-					disabled={disabled}
-					onClick={onClick}
-					ref={reference}
-					value={value}
-					showSearch={showSearch}
-					optionFilterProp={optionFilterProp}
-					filterOption={filterOption}
-					onSelect={onSelect}
-					autoComplete="dontshow"
-					onSearch={onSearch}
-					placeholder={placeholder}
-				>
-					{options &&
-						options.map((item) => {
-							return (
-								<Select.Option value={item.id} key={item.id} className={optionClassName}>
-									{nameKey ? item[nameKey] : item.name}
-								</Select.Option>
-							);
-						})}
-				</Select>
-			</Form.Item>
-		</>
+				{options &&
+					options.map((item) => {
+						return (
+							<Select.Option value={item.id} key={item.id} className={optionClassName}>
+								{nameKey ? item[nameKey] : item.name}
+							</Select.Option>
+						);
+					})}
+			</Select>
+		</Form.Item>
 	);
 };
 

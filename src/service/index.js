@@ -2,6 +2,20 @@ import axios from "axios";
 
 import { getFromCookie } from "../utils/storage";
 
+// eslint-disable-next-line no-undef
+const baseURL = import.meta.env.VITE_BACKEND_SERVER
+// create axiosInstance
+const axiosInstance = axios.create({
+	baseURL,
+	headers: {
+		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Allow-Headers": "*",
+		Accept: "application/json",
+		"Accept-Language": "en",
+		"Api-Version": "1.0",
+	},
+});
+
 const callApi = ({
 	url = "",
 	method = "GET",
@@ -9,19 +23,6 @@ const callApi = ({
 	params = {}, // query
 	contentType = "application/json",
 }) => {
-	// eslint-disable-next-line no-undef
-	const baseURL = "http://84.32.10.113:5800/api/"
-	// create axiosInstance
-	const axiosInstance = axios.create({
-		baseURL,
-		headers: {
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Headers": "*",
-			// Accept: "application/json",
-			// "Accept-Language": "en",
-			// "Api-Version": "1.0",
-		},
-	});
 	// set request configs
 	const token = getFromCookie("access_token");
 	axiosInstance.interceptors.request.use(

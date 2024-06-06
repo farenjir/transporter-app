@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ConfigProvider, theme } from "antd";
 
-import callApi from "service";
 import useLanguage from "langs/useLanguage";
 import useTheme from "theme/useTheme";
-import { getCurrentUser } from "store/auth/action";
 
+import { getCurrentUser } from "store/auth/action";
+import { getCountries } from "store/base/action";
+
+import callApi from "service";
 import AppContext from "./index";
 
 function ContextApi({ children }) {
@@ -18,9 +20,11 @@ function ContextApi({ children }) {
 	const { themeAntMode, fontAntMode, fontMode, selectedToken, tokens, ...handles } = useTheme(theme);
 	// user
 	useEffect(() => {
-		const promise = dispatch(getCurrentUser({ callApi }));
+		const auth = dispatch(getCurrentUser({ callApi }));
+		const countries = dispatch(getCountries({ callApi }));
 		return () => {
-			promise.abort();
+			auth.abort();
+			countries.abort();
 		};
 	}, [dispatch]);
 	// return

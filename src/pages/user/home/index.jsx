@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { theme, Form } from "antd";
 
-import { Domestic, International, DomesticGet, InternationalGet } from "components/App";
+import { Domestic, International, DomesticGet, InternationalGet, RequestContextApi } from "components/App";
+
 import { AppTabs, RadioGroup } from "components";
 import { FlightIcon, FlightIntIcon } from "components/icon/custom";
 import SupportSection from "./components/Support";
@@ -74,7 +75,13 @@ const HomePage = () => {
 	};
 	return (
 		<>
-			<img src={`/assets/images/${imagesList[activeType]}`} alt="bg-banner" height={320} className="-mt-16" />
+			<img
+				src={`/assets/images/${imagesList[activeType]}`}
+				alt="bg-banner"
+				loading="lazy"
+				height={320}
+				className="-mt-16 min-h-[320px]"
+			/>
 			<section
 				className={`responsive-layout md:-mt-44 sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
 				style={{ background: token?.colorBgBase }}
@@ -87,7 +94,9 @@ const HomePage = () => {
 					onChange={onChangeType}
 				/>
 				<Form name={"name"} form={form} className="search-form" layout="vertical" onFinish={onSubmit}>
-					<AppTabs items={tabItems[activeType]} centered />
+					<RequestContextApi>
+						<AppTabs items={tabItems[activeType]} centered />
+					</RequestContextApi>
 				</Form>
 			</section>
 			<SupportSection background={token?.colorBgBase} />

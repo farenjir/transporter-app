@@ -40,9 +40,8 @@ body {
 
 /* scroll style */
 * {
-	scroll-behavior: smooth;
 	scrollbar-width: thin;
-	scrollbar-color: #0000000d #0000000d;
+	scrollbar-color: #0000004d #0000000d;
 }
 *::-webkit-scrollbar {
 	width: 8px;
