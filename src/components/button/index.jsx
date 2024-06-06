@@ -1,7 +1,6 @@
 import { Button, Form } from "antd";
 
 const Buttons = ({
-	onClick = () => {},
 	loading = false,
 	disabled = false,
 	content,
@@ -11,6 +10,7 @@ const Buttons = ({
 	formClasses = "",
 	block,
 	size = "large",
+	onClick = () => {},
 }) => {
 	// return
 	return (
@@ -22,7 +22,7 @@ const Buttons = ({
 				type={type}
 				htmlType={htmlType}
 				onClick={onClick}
-				disabled={disabled}
+				disabled={disabled || loading}
 				className={classes}
 			>
 				{content}

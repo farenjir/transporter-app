@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form, Typography, Row, Col, theme } from "antd";
@@ -14,6 +15,8 @@ import { Buttons, Inputs, Selects } from "components";
 const { Paragraph, Title } = Typography;
 
 export default function AuthForm() {
+	const [loading, setLoading] = useState(false);
+	// options
 	const countries = useSelector(baseCountriesSelector);
 	const telecomPrefix = countries.map(({ telecomPrefix: value, nameAndTelPrefix: label }) => ({
 		value,
@@ -30,11 +33,14 @@ export default function AuthForm() {
 		if (values.uPassword !== uPass) {
 			notificationMaker(t("commons.error"), "error", t("notification.password"));
 		}
+		setLoading(true);
 		const response = await userRegister(callApi, values);
 		if (response?.result) {
 			navigate("/", { replace: true });
+			notificationMaker(t("commons.success"), "success", t("auth.successRegister"));
 		} else {
 			notificationMaker(t("commons.error"), "error", t("notification.error"));
+			setLoading(false);
 		}
 	};
 	return (
@@ -97,7 +103,13 @@ export default function AuthForm() {
 					<Selects name="genderTypeId" label={"جنسیت"} required={true} />
 				</Col>
 				<Col xs={{ span: 24 }} md={8} lg={80}>
-					<Buttons htmlType="submit" block={true} content={t("ثبت نام")} classes="mt-8" />
+					<Buttons
+						htmlType="submit"
+						block={true}
+						content={t("ثبت نام")}
+						classes="mt-8"
+						loading={loading}
+					/>
 				</Col>
 			</Row>
 		</Form>
