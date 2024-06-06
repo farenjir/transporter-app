@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { theme, Form } from "antd";
-
-import { Domestic, International, DomesticGet, InternationalGet, RequestContextApi } from "components/App";
-
+import { theme, Spin } from "antd";
 import { AppTabs, RadioGroup } from "components";
 import { FlightIcon, FlightIntIcon } from "components/icon/custom";
+
+import RequestContextApi from "./components/forms/context";
+import International from "./components/forms/International";
+import Domestic from "./components/forms/Domestic";
+import InternationalGet from "./components/forms/InternationalGet";
+import DomesticGet from "./components/forms/DomesticGet";
+
 import SupportSection from "./components/Support";
 import RequeuedSend from "./components/RequeuedSend";
 import RequeuedGet from "./components/RequeuedGet";
@@ -16,14 +20,18 @@ const imagesList = {
 	send: "international-banner.webp",
 };
 
+const Loading = () => (
+	<div className="grid place-content-center min-h-[350px]">
+		<Spin spinning size="large" />
+	</div>
+);
+
 const HomePage = () => {
 	const [activeType, setActiveType] = useState("send");
 	// hooks
 	const { t } = useTranslation();
-	const [form] = Form.useForm();
 	const { token } = theme.useToken();
 	// handles
-	const onSubmit = (formValues) => {};
 	const onChangeType = (type) => {
 		setActiveType(type);
 	};
@@ -86,22 +94,24 @@ const HomePage = () => {
 				className={`responsive-layout md:-mt-44 sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
 				style={{ background: token?.colorBgBase }}
 			>
-				<RadioGroup
-					plainOptions={requestType}
-					name="requestType"
-					initialValue={activeType}
-					required={true}
-					onChange={onChangeType}
-				/>
-				<Form name={"name"} form={form} className="search-form" layout="vertical" onFinish={onSubmit}>
-					<RequestContextApi>
-						<AppTabs items={tabItems[activeType]} centered />
-					</RequestContextApi>
-				</Form>
+				<RequestContextApi>
+					<RadioGroup
+						plainOptions={requestType}
+						name="requestType"
+						initialValue={activeType}
+						required={true}
+						onChange={onChangeType}
+					/>
+					<AppTabs items={tabItems[activeType]} centered />
+				</RequestContextApi>
 			</section>
 			<SupportSection background={token?.colorBgBase} />
-			<RequeuedSend />
-			<RequeuedGet />
+			<Suspense fallback={<Loading />}>
+				<RequeuedSend />
+			</Suspense>
+			<Suspense fallback={<Loading />}>
+				<RequeuedGet />
+			</Suspense>
 		</>
 	);
 };

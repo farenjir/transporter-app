@@ -5,12 +5,14 @@ import { baseCountriesSelector } from "store/selector";
 
 import { useAppContext } from "hooks";
 import { getAllLocationByCountry } from "service/user";
+import { Form } from "antd";
 
 export const RequestContext = createContext({});
 
 function RequestContextApi({ children }) {
 	const [treeData, setTreeData] = useState([]);
 	// hooks
+	const [form] = Form.useForm();
 	const { callApi } = useAppContext();
 	const countries = useSelector(baseCountriesSelector);
 	// handles
@@ -19,11 +21,26 @@ function RequestContextApi({ children }) {
 		const updatedState = treeData.concat(locations);
 		setTreeData(updatedState);
 	};
+	const onSubmit = (formValues) => {
+		console.log({ formValues });
+	};
 	// init
 	useEffect(() => {
 		setTreeData(countries);
 	}, [countries]);
-	return <RequestContext.Provider value={{ onLoadData, treeData }}>{children}</RequestContext.Provider>;
+	return (
+		<RequestContext.Provider value={{ onLoadData, treeData }}>
+			<Form
+				form={form}
+				name="request-form"
+				className="request-form"
+				layout="vertical"
+				onFinish={onSubmit}
+			>
+				{children}
+			</Form>
+		</RequestContext.Provider>
+	);
 }
 
 export default RequestContextApi;

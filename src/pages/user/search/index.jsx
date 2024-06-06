@@ -1,25 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Typography, Form, theme } from "antd";
+import { Form, theme } from "antd";
+import { AppCard } from "components/App";
 import { RadioGroup, ListModule, AppTabs } from "components";
-import {
-	AppCard,
-	DomesticGetSearch,
-	DomesticSearch,
-	InternationalGetSearch,
-	InternationalSearch,
-} from "components/App";
 import { FlightIcon, FlightIntIcon } from "components/icon/custom";
+
+import InternationalSearch from "./components/forms/InternationalSearch";
+import DomesticSearch from "./components/forms/DomesticSearch";
+import InternationalGetSearch from "./components/forms/InternationalGetSearch";
+import DomesticGetSearch from "./components/forms/DomesticGetSearch";
 
 const title = "میلان به تهران";
 const description =
 	"توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر توضیحات توضیحات بیشتر توضیحات بیشتر توضیحات بیشتر ";
 
-const { Title } = Typography;
-
 const SearchPage = () => {
-	const {  defaultType = "send" } = history?.state?.usr || {};
+	const { defaultType = "send" } = history?.state?.usr || {};
 	// state
 	const [items, setItems] = useState(Array.from({ length: 50 }).map((_, idx) => `${idx + 1}`));
 	const [activeType, setActiveType] = useState(defaultType);
