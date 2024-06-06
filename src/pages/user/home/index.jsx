@@ -80,7 +80,7 @@ const HomePage = () => {
 				alt="bg-banner"
 				loading="lazy"
 				height={320}
-				className="-mt-16 min-h-[320px]"
+				className="-mt-16 lg:min-h-[320px]"
 			/>
 			<section
 				className={`responsive-layout md:-mt-44 sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
