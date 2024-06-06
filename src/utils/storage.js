@@ -35,12 +35,13 @@ export const removeFromStorage = (key = "", sessionStorage = false) => {
 	}
 };
 
-export const setToCookie = (key = "", value = {}, { httpOnly = true, maxAge = 24 * 24 * 3600, path = "/" }) => {
+export const setToCookie = (key = "", value = {}, potions = {}) => {
 	try {
-		cookie.set(key, JSON.stringify(value), {
-			httpOnly,
-			maxAge,
-			path,
+		cookie.set(key, value, {
+			httpOnly: false,
+			maxAge: 24 * 24 * 3600,
+			path: "/",
+			...potions,
 		});
 	} catch {
 		return null;
@@ -51,7 +52,7 @@ export const getFromCookie = (key = "") => {
 	try {
 		const value = cookie.get(key);
 		if (value) {
-			return JSON.parse(value);
+			return value
 		}
 	} catch {
 		return null;
@@ -60,7 +61,6 @@ export const getFromCookie = (key = "") => {
 
 export const removeFromCookie = (key = "") => {
 	try {
-		const cookie = new Cookie();
 		cookie.remove(key);
 	} catch {
 		return null;

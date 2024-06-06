@@ -56,6 +56,7 @@ const SearchPage = () => {
 				children: <DomesticSearch />,
 				icon: <FlightIcon />,
 				className: "mt-5",
+				disabled: true,
 			},
 		],
 		get: [
@@ -72,6 +73,7 @@ const SearchPage = () => {
 				children: <DomesticGetSearch />,
 				icon: <FlightIcon />,
 				className: "mt-5",
+				disabled: true,
 			},
 		],
 	};

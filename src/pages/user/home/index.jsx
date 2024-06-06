@@ -62,6 +62,7 @@ const HomePage = () => {
 				children: <Domestic />,
 				icon: <FlightIcon />,
 				className: "mt-5",
+				disabled: true,
 			},
 		],
 		get: [
@@ -78,6 +79,7 @@ const HomePage = () => {
 				children: <DomesticGet />,
 				icon: <FlightIcon />,
 				className: "mt-5",
+				disabled: true,
 			},
 		],
 	};

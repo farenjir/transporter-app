@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { Form, Select } from "antd";
 
+const defaultFilterOption = (input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+
 const Selects = ({
 	label,
 	name,
@@ -16,16 +18,15 @@ const Selects = ({
 	formItemClassName,
 	showSearch = false,
 	optionFilterProp,
-	filterOption,
-	optionClassName,
+	filterOption = defaultFilterOption,
 	onSelect,
 	onSearch,
-	nameKey,
 	options,
 	size = "large",
 	placeholder = "",
 }) => {
 	const { t } = useTranslation();
+
 	return (
 		<Form.Item
 			labelCol={{ xs: 24 }}
@@ -52,23 +53,15 @@ const Selects = ({
 				onClick={onClick}
 				ref={reference}
 				value={value}
+				onSelect={onSelect}
+				placeholder={placeholder}
 				showSearch={showSearch}
 				optionFilterProp={optionFilterProp}
 				filterOption={filterOption}
-				onSelect={onSelect}
-				autoComplete="dontshow"
 				onSearch={onSearch}
-				placeholder={placeholder}
-			>
-				{options &&
-					options.map((item) => {
-						return (
-							<Select.Option value={item.id} key={item.id} className={optionClassName}>
-								{nameKey ? item[nameKey] : item.name}
-							</Select.Option>
-						);
-					})}
-			</Select>
+				autoComplete="dontshow"
+				options={options}
+			/>
 		</Form.Item>
 	);
 };

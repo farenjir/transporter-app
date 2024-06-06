@@ -19,8 +19,8 @@ const axiosInstance = axios.create({
 const callApi = ({
 	url = "",
 	method = "GET",
-	data = {}, // body
-	params = {}, // query
+	data, // body
+	params, // query
 	contentType = "application/json",
 }) => {
 	// set request configs
@@ -57,7 +57,7 @@ const callApi = ({
 	return new Promise((resolve, reject) => {
 		axiosInstance({ url, method, params, data })
 			.then((res) => {
-				resolve(res?.data);
+				resolve(res?.data || res);
 			})
 			.catch((e) => {
 				reject(e);

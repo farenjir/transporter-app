@@ -23,6 +23,7 @@ const Inputs = ({
 	size = "large",
 	addonBefore,
 	addonAfter,
+	autoComplete,
 }) => {
 	const { t } = useTranslation();
 	const rules = [
@@ -57,6 +58,7 @@ const Inputs = ({
 				prefix={prefix}
 				addonBefore={addonBefore}
 				addonAfter={addonAfter}
+				autoComplete={autoComplete}
 				size={size}
 				min={min}
 				max={max}

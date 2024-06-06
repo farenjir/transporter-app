@@ -20,7 +20,7 @@ const reducers = combineReducers({
 
 const persistedReducer = persistReducer(
 	{
-		key: "root:sc",
+		key: "root",
 		storage,
 		blacklist: ["auth"]
 	},
