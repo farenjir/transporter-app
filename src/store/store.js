@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
 import { combineReducers } from "redux";
-import { persistReducer, persistStore } from "redux-persist";
+import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./auth";
@@ -27,10 +27,10 @@ const persistedReducer = persistReducer(
 	reducers,
 );
 
-export const store = configureStore({
+export default configureStore({
 	reducer: persistedReducer,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(additionalMiddleware),
 	devTools: import.meta.env.NODE_ENV !== "production",
 });
 
-export const persistor = persistStore(store);
+

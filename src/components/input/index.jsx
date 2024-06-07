@@ -12,7 +12,7 @@ const Inputs = ({
 	required,
 	pattern,
 	patternMessage,
-	defaultValue,
+	initialValue,
 	placeholder,
 	disabled,
 	min,
@@ -43,7 +43,7 @@ const Inputs = ({
 			className={extraClasses}
 			label={label}
 			name={name}
-			initialValue={defaultValue}
+			initialValue={initialValue}
 			rules={rules}
 		>
 			<Input
@@ -53,7 +53,7 @@ const Inputs = ({
 				className={classes}
 				onChange={onChange}
 				value={value}
-				defaultValue={defaultValue}
+				defaultValue={initialValue}
 				disabled={disabled}
 				prefix={prefix}
 				addonBefore={addonBefore}

@@ -22,13 +22,15 @@ const { RangePicker } = DatePicker;
 const defaultValue = dayjs(defaultValues[lang] || new Date(), "YYYY-MM-DD");
 
 const CalenderDateRange = ({
-	required = false,
-	initialValue = defaultValue,
 	extraClasses = "",
 	label = "",
+	placement = "",
 	name = "dateRange",
-	placement = "bottomLeft",
 	size = "large",
+	initialValue = defaultValue,
+	required = false,
+	allowClear = false,
+	format = "YYYY/MM/DD",
 }) => {
 	const { t } = useTranslation();
 	const rules = [
@@ -41,13 +43,18 @@ const CalenderDateRange = ({
 		<Form.Item
 			labelCol={{ xs: 24 }}
 			wrapperCol={{ xs: 24 }}
-			className={extraClasses}
+			className={`${extraClasses}`}
 			label={label}
 			name={name}
 			rules={rules}
 			initialValue={initialValue}
 		>
-			<RangePicker className="w-full" placement={placement} size={size} defaultValue={initialValue} />
+			<RangePicker
+				className="w-full "
+				maxTagCount="responsive"
+				defaultValue={initialValue}
+				{...{ placement, size, allowClear, format }}
+			/>
 		</Form.Item>
 	);
 };

@@ -3,3 +3,7 @@
 		flex-direction: column !important;
 	}
 }
+
+.ant-picker-dropdown .ant-picker-panel-container .ant-picker-panels {
+	direction: rtl !important;
+}

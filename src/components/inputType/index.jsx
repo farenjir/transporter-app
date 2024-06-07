@@ -41,7 +41,7 @@ const InputType = ({
 				<InputNumber
 					disabled={disabled}
 					onChange={onChange}
-					className={`${classes} w-96`}
+					className={`${classes} w-full`}
 					formatter={formatter}
 					size={`${size || `large`}`}
 					min={min}

@@ -47,14 +47,8 @@ const dateToInitializeOnForm = (date, language = i18n.language || "fa") => {
 };
 
 // ***
-const dateToGregorian = (date, language = i18n.language || "fa") => {
-	return dayjs
-		.from(
-			date, // "YYYY-MM-DD"
-			language,
-			"YYYY-MM-DD",
-		)
-		.format("YYYY-MM-DD");
+const dateToGregorian = (date, format = "YYYY-MM-DD", language = i18n.language || "fa") => {
+	return dayjs.from(date, language, format).format(format);
 };
 
 // ***
@@ -70,8 +64,8 @@ const uIdMaker = (uIdLength = 20) => {
 };
 
 const transformerAppData = (object, [codeParam, titleParam], afterObjAdded, useNameAsId = false) => {
-	const code = object[codeParam]
-	const title = object[titleParam]
+	const code = object[codeParam];
+	const title = object[titleParam];
 	return {
 		...object,
 		code,
@@ -82,6 +76,6 @@ const transformerAppData = (object, [codeParam, titleParam], afterObjAdded, useN
 		label: title,
 		name: title,
 		text: title,
-		...afterObjAdded
-	}
+		...afterObjAdded,
+	};
 };

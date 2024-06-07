@@ -1,6 +1,6 @@
 export const userAuthentication = (callApi, cpid, pNumber) => {
     return callApi({ url: "UserProflie/login", method: "POST", params: { cpid, pNumber } })
-        .then((data = {}) => data)
+        .then((response = {}) => response)
         .catch((_e) => { });
 };
 
@@ -20,6 +20,6 @@ export const userRegister = (callApi, userData = {}) => {
         roleTypeId: 0,
     };
     return callApi({ url: "UserProflie/login", method: "POST", data })
-        .then((data = {}) => data)
+        .then((response = {}) => response)
         .catch((_e) => { });
 };

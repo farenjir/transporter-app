@@ -2,8 +2,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 
-import { store, persistor } from "../store/store";
+import store from "../store/store";
 import i18n from "../langs/i18n";
 
 import ContextApi from "context/ContextApi";
@@ -56,6 +57,8 @@ const userRoutes = {
 const adminRoutes = {};
 
 const router = createBrowserRouter([mainRoutes, userRoutes, adminRoutes]);
+
+const persistor = persistStore(store);
 
 const App = () => (
 	<Provider store={store}>

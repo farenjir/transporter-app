@@ -1,25 +1,34 @@
-import "dayjs/locale/fa";
-import locale from "antd/locale/fa_IR";
 import dayjs from "dayjs";
 
 import { DatePicker, Form } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { dateToPersian } from "utils/globals";
-import { Icons } from "components";
+import { getFromStorage } from "utils/storage";
+import { LOCALE } from "utils/const";
+
+import { defaultValues } from "./calenderRange/utils";
+
+const lang = getFromStorage(LOCALE);
+
+const defaultValue = dayjs(defaultValues[lang] || new Date(), "YYYY-MM-DD");
 
 const Calendars = ({
 	name = "datePicker",
 	label = "",
 	extraClasses = "",
-	placement = "bottomLeft",
-	initialValue = null, // "2015/02/08"
+	initialValue = defaultValue,
+	placement = "",
+	size = "large",
+	format = "YYYY/MM/DD - hh:mm",
 	required = false,
 	disabled = false,
-	size = "large",
+	showHour = true,
+	showMinute = true,
+	showTime = true,
+	showNow = false,
+	allowClear = false,
 }) => {
 	const { t } = useTranslation();
-	let initDate = dateToPersian(initialValue || new Date());
 	const rules = [
 		{
 			type: "object",
@@ -35,19 +44,15 @@ const Calendars = ({
 			className={`${extraClasses}`}
 			label={label}
 			name={name}
-			// initialValue={dayjs(initDate, "YYYY-MM-DD").locale("fa")}
+			initialValue={initialValue}
 			rules={rules}
 		>
 			<DatePicker
 				className="w-full"
-				placement={placement}
-				locale={locale}
-				size={size}
-				// disabled={disabled}
-				// locale={locale}
-				// placement={placement}
-				// format={"YYYY-MM-DD"}
-				// allowClear={false}
+				maxTagCount="responsive"
+				defaultValue={initialValue}
+				{...{ format, disabled, size, placement }}
+				{...{ allowClear, showNow, showTime, showHour, showMinute }}
 			/>
 		</Form.Item>
 	);

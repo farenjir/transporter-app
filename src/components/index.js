@@ -19,5 +19,5 @@ export { default as CarouselModule } from "./carousel";
 export { default as ListModule } from "./list";
 
 // calender
-export { default as CalenderDateRange } from "./calenderRange";
+export { default as CalenderDateRange } from "./calendar/calenderRange";
 export { default as Calendars } from "./calendar";
