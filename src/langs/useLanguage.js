@@ -6,7 +6,12 @@ import localeEn from "antd/lib/locale/en_US";
 
 import { getFromStorage, setToStorage } from "utils/storage";
 
-let defaultLanguage = getFromStorage("language") || "fa";
+let defaultLanguage = getFromStorage("language");
+
+if (!defaultLanguage) {
+	defaultLanguage = "fa";
+	setToStorage("language", defaultLanguage);
+}
 
 const useLanguage = () => {
 	const [language, setLanguage] = useState(defaultLanguage);
