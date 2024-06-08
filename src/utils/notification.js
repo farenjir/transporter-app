@@ -5,7 +5,7 @@ const isPersian = getFromStorage("language") !== "en";
 
 export const notificationMaker = (message, type = "error", description, duration = 4, closeIcon = true) => {
 	notification.config({
-		placement: "bottomLeft",
+		placement: "top",
 		duration,
 		rtl: isPersian,
 		closeIcon,

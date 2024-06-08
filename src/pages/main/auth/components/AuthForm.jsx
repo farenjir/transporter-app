@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Form, Typography, theme } from "antd";
 
-import { TOKEN_NAME } from "utils/const";
+import { TOKEN_NAME } from "utils/constance";
 import { setToCookie } from "utils/storage";
 
 import { useAppContext } from "hooks";

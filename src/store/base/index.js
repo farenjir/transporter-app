@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getCountries, getCountryLocations } from "./action";
+import { getCountries, getCountryLocations, getEnums } from "./action";
 
 const initialState = {
 	countries: [],
 	locations: [],
+	enums: {},
 	loading: true,
 };
 
@@ -36,6 +37,18 @@ const baseSlice = createSlice({
 			})
 			.addCase(getCountryLocations.fulfilled, (state, action) => {
 				state.locations = action.payload;
+				state.loading = false;
+			})
+			// getEnums
+			.addCase(getEnums.pending, (state) => {
+				state.loading = true;
+			})
+			.addCase(getEnums.rejected, (state) => {
+				state.enums = [];
+				state.loading = false;
+			})
+			.addCase(getEnums.fulfilled, (state, action) => {
+				state.enums = action.payload;
 				state.loading = false;
 			});
 	},

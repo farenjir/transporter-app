@@ -1,24 +1,4 @@
-import { dateToGregorian, transformerAppData } from "utils/globals";
-
-export const countriesTransformData = (arrayData) => {
-	const data = [];
-	Array.isArray(arrayData) &&
-		arrayData.forEach((item) =>
-			data.push(transformerAppData(item, ["id", "countryBaseName"], { pId: 0, isLeaf: false })),
-		);
-	return data;
-};
-
-export const locationsTransformData = (arrayData, pId) => {
-	const data = [];
-	Array.isArray(arrayData) &&
-		arrayData.forEach((item) =>
-			data.push(transformerAppData(item, ["id", "geoLocationTitle"], { pId, isLeaf: true })),
-		);
-	return data;
-};
-
-export const requestCarrierTransformData = (formValues) => {
+export const requestCarrierTransformData = (formValues = {}) => {
 	return {
 		id: formValues.id,
 		requesterUserId: formValues.userId,
@@ -34,12 +14,12 @@ export const requestCarrierTransformData = (formValues) => {
 		toLocationId: formValues.toLocationId,
 		fromLocationDesc: formValues.fromLocationDesc,
 		toLocationDesc: formValues.toLocationDesc,
-		fromDateValidOfDeliver: formValues.from.format("YYYY-MM-DDThh:mm:ssZ"),
-		toDateValidOfDeliver: formValues.to.format("YYYY-MM-DDThh:mm:ssZ"),
+		fromDateValidOfDeliver: formValues.from,
+		toDateValidOfDeliver: formValues.to,
 		timeZoneId: formValues.timeZoneId,
 		priceIsNegotiable: formValues.priceIsNegotiable,
 		proposedPrice: formValues.proposedPrice,
 		priceCurrencyTypeId: formValues.priceCurrencyTypeId,
-		imageId: "",
+		imageId: formValues.imageId,
 	};
 };

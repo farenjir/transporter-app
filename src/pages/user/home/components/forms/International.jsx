@@ -3,23 +3,17 @@ import { useTranslation } from "react-i18next";
 import { Col, Row } from "antd";
 
 import { RequestContext } from "./context";
-import { Buttons, CalenderDateRange, Icons, InputType, Inputs, Selects, TreeSelects } from "components";
+import { Buttons, CalenderDateRange, Icons, InputType, Selects, TreeSelects } from "components";
 
 const International = () => {
 	const [priceType, setPriceType] = useState(true);
 	// hooks
 	const { t } = useTranslation();
-	const { onLoadData, treeData } = useContext(RequestContext);
+	const { onLoadData, loading, treeData, enums, priceTypes } = useContext(RequestContext);
 	// handles
 	const onChangePriceType = (value) => {
-		console.log(value);
 		setPriceType(value);
 	};
-	// options
-	const priceTypes = [
-		{ label: "توافقی", value: true },
-		{ label: "مقطوع", value: false },
-	];
 	// return
 	return (
 		<>
@@ -84,7 +78,13 @@ const International = () => {
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={12} lg={2}>
-					<Selects name="cargoWeightUnitIssueId" placeholder={"مقیاس"} label={"مقیاس"} />
+					<Selects
+						name="cargoWeightUnitIssueId"
+						placeholder={"مقیاس"}
+						label={"مقیاس"}
+						options={enums["104"] || []}
+						initialValue={enums["104"]?.[0]?.id}
+					/>
 				</Col>
 				<Col xs={24} md={12} lg={6}>
 					<InputType
@@ -106,11 +106,12 @@ const International = () => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<Inputs
-						type={"text"}
+					<Selects
 						name="cargoSize"
 						label={t("سایز بسته")}
-						placeholder="2m * 1m * 1m"
+						placeholder={t("سایز بسته")}
+						options={enums["107"] || []}
+						initialValue={enums["107"]?.[2]?.id}
 					/>
 				</Col>
 			</Row>
@@ -126,10 +127,16 @@ const International = () => {
 				</Col>
 				{!priceType && (
 					<>
-						<Col xs={24} md={12} lg={2}>
-							<Selects name="priceCurrencyTypeId" placeholder={"واحد"} label={"واحد"} />
+						<Col xs={24} md={12} lg={8}>
+							<Selects
+								name="priceCurrencyTypeId"
+								placeholder={"واحد"}
+								label={"واحد"}
+								options={enums["105"] || []}
+								initialValue={enums["105"]?.[2]?.id}
+							/>
 						</Col>
-						<Col xs={24} md={12} lg={6}>
+						<Col xs={24} md={12} lg={8}>
 							<InputType
 								type={"number"}
 								name="proposedPrice"
@@ -160,7 +167,12 @@ const International = () => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<Buttons content={t("ثبت درخواست")} htmlType="submit" classes="float-end mt-8" />
+					<Buttons
+						content={t("ثبت درخواست")}
+						htmlType="submit"
+						classes="float-end mt-8"
+						loading={loading}
+					/>
 				</Col>
 			</Row>
 		</>

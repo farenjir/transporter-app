@@ -4,7 +4,7 @@ import { DatePicker, Form } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { getFromStorage } from "utils/storage";
-import { LOCALE } from "utils/const";
+import { LOCALE } from "utils/constance";
 
 import { defaultValues } from "./calenderRange/utils";
 

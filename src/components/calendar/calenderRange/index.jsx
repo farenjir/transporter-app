@@ -9,7 +9,7 @@ import "dayjs/locale/fa";
 
 import { defaultValues, langConfigs } from "./utils";
 import { getFromStorage } from "utils/storage";
-import { LOCALE } from "utils/const";
+import { LOCALE } from "utils/constance";
 
 const lang = getFromStorage(LOCALE);
 

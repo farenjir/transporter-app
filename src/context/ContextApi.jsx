@@ -6,7 +6,7 @@ import useLanguage from "langs/useLanguage";
 import useTheme from "theme/useTheme";
 
 import { getCurrentUser } from "store/auth/action";
-import { getCountries } from "store/base/action";
+import { getCountries, getEnums } from "store/base/action";
 
 import callApi from "service";
 import AppContext from "./index";
@@ -22,9 +22,11 @@ function ContextApi({ children }) {
 	useEffect(() => {
 		const auth = dispatch(getCurrentUser({ callApi }));
 		const countries = dispatch(getCountries({ callApi }));
+		const bases = dispatch(getEnums({ callApi }));
 		return () => {
 			auth.abort();
 			countries.abort();
+			bases.abort();
 		};
 	}, [dispatch]);
 	// return

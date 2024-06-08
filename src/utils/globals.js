@@ -38,9 +38,9 @@ const dateToPersian = (
 };
 
 // ***
-const dateToInitializeOnForm = (date, language = i18n.language || "fa") => {
+const dateToInitializeOnForm = (date, language = i18n.language || "fa", format = "YYYY-MM-DD",) => {
 	if (date) {
-		return dayjs(date, "YYYY-MM-DD").locale(language);
+		return dayjs(date, "YYYY-MM-DD").locale(language).format(format)
 	} else {
 		return null;
 	}
@@ -48,7 +48,7 @@ const dateToInitializeOnForm = (date, language = i18n.language || "fa") => {
 
 // ***
 const dateToGregorian = (date, format = "YYYY-MM-DD", language = i18n.language || "fa") => {
-	return dayjs.from(date, language, format).format(format);
+	return dayjs.from(date, language, "YYYY-MM-DD").format(format);
 };
 
 // ***
