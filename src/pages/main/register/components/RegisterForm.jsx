@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Form, Typography, Row, Col, theme } from "antd";
 
 import { useSelector } from "react-redux";
-import { baseCountriesSelector } from "store/selector";
+import { baseSelector } from "store/selector";
 
 import { useAppContext } from "hooks";
 import { notificationMaker } from "utils/notification";
@@ -17,7 +17,7 @@ const { Paragraph, Title } = Typography;
 export default function AuthForm() {
 	const [loading, setLoading] = useState(false);
 	// options
-	const countries = useSelector(baseCountriesSelector);
+	const { countries = [] } = useSelector(baseSelector);
 	const telecomPrefix = countries.map(({ telecomPrefix: value, nameAndTelPrefix: label }) => ({
 		value,
 		label,

@@ -2,7 +2,7 @@ import i18n from "i18next";
 import dayjs from "dayjs";
 
 // *** export handles
-export { dateToGeo, dateToPersian, dateToInitializeOnForm, dateToGregorian, uIdMaker, transformerAppData };
+export { dateToGeo, dateToLocale, dateToInitializeOnForm, uIdMaker, transformerAppData };
 
 // ***
 const dateToGeo = (year, month, day, language = i18n.language || "fa") => {
@@ -18,8 +18,9 @@ const dateToGeo = (year, month, day, language = i18n.language || "fa") => {
 };
 
 // ***
-const dateToPersian = (
+const dateToLocale = (
 	date,
+	language = "fa-IR-u-nu-latn",
 	options = {
 		year: "numeric",
 		month: "2-digit",
@@ -27,8 +28,7 @@ const dateToPersian = (
 	},
 ) => {
 	if (date) {
-		return new Date(date).toLocaleString("fa-IR-u-nu-latn", {
-			// 'fa-IR'
+		return new Date(date).toLocaleString(language, {
 			timeZone: "Asia/Tehran",
 			...options,
 		});
@@ -38,17 +38,12 @@ const dateToPersian = (
 };
 
 // ***
-const dateToInitializeOnForm = (date, language = i18n.language || "fa", format = "YYYY-MM-DD",) => {
+const dateToInitializeOnForm = (date, format = "YYYY-MM-DD", language = i18n.language || "fa") => {
 	if (date) {
-		return dayjs(date, "YYYY-MM-DD").locale(language).format(format)
+		return dayjs(date, "YYYY-MM-DD").locale(language).format(format);
 	} else {
 		return null;
 	}
-};
-
-// ***
-const dateToGregorian = (date, format = "YYYY-MM-DD", language = i18n.language || "fa") => {
-	return dayjs.from(date, language, "YYYY-MM-DD").format(format);
 };
 
 // ***

@@ -4,8 +4,11 @@ import { DatePicker, Form } from "antd";
 import "./style.css";
 
 import dayjs from "dayjs";
-import updateLocale from "dayjs/plugin/updateLocale";
+import "dayjs/locale/en";
 import "dayjs/locale/fa";
+
+import updateLocale from "dayjs/plugin/updateLocale";
+import utc from "dayjs/plugin/utc";
 
 import { defaultValues, langConfigs } from "./utils";
 import { getFromStorage } from "utils/storage";
@@ -15,11 +18,12 @@ const lang = getFromStorage(LOCALE);
 
 dayjs.locale(lang);
 dayjs.extend(updateLocale);
+dayjs.extend(utc);
 dayjs.updateLocale(lang, langConfigs[lang] || {});
 
 const { RangePicker } = DatePicker;
 
-const defaultValue = dayjs(defaultValues[lang] || new Date(), "YYYY-MM-DD");
+const defaultValue = dayjs(defaultValues[lang], "YYYY/MM/DD");
 
 const CalenderDateRange = ({
 	extraClasses = "",

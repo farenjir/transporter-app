@@ -83,7 +83,7 @@ const International = () => {
 						placeholder={"مقیاس"}
 						label={"مقیاس"}
 						options={enums["104"] || []}
-						initialValue={enums["104"]?.[0]?.id}
+						initialValue={enums["104"]?.[1]?.id}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={6}>
@@ -168,7 +168,7 @@ const International = () => {
 				</Col>
 				<Col xs={24} md={12} lg={8}>
 					<Buttons
-						content={t("ثبت درخواست")}
+						content={t("ثبت درخواست ارسال")}
 						htmlType="submit"
 						classes="float-end mt-8"
 						loading={loading}

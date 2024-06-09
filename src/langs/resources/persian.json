@@ -83,14 +83,23 @@
 		"pNumber": "شماره همراه",
 		"description": "برای ورود به سامانه ایمیل یا شماره همراه خود را همراه با کللمه عبور وارد نمایید و درصورت نیاز می توانید ",
 		"failed": "شماره همراه در سامانه موجود نیست",
-		"successRegister":"ثبت نام به درستی انجام شد",
-		"successLogin":"ورود به حساب کاربری"
+		"successRegister": "ثبت نام به درستی انجام شد",
+		"successLogin": "ورود به حساب کاربری"
 	},
 	"home": {
 		"get": "درخواست دریافت",
 		"send": "درخواست ارسال",
 		"International": "پرواز بین المللی",
 		"Domestic": "پرواز داخلی",
+		"cards": {
+			"sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) به {{toCountryName}} ( {{toLocationName}} )",
+			"priceIsNegotiable": "توافقی",
+			"price": "قیمت : {{price}} {{label}}",
+			"weight": "مشخصات بسته :",
+			"weightDes": "وزن : {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - تعداد : {{cargoItemNo}} - سایز : {{cargoSize}}",
+			"dateFrom": "تاریخ مبدا ( دریافت ) : {{from}}",
+			"dateTo": "تاریخ مقصد ( تحویل ) : {{to}}"
+		},
 		"support": {
 			"auth": "احراز هویت",
 			"garanty": "بیمه بسته ارسالی",

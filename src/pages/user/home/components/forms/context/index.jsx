@@ -1,6 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Form, Spin } from "antd";
+import { Form } from "antd";
 
 import { useSelector } from "react-redux";
 import { baseSelector } from "store/selector";
@@ -40,7 +40,7 @@ function RequestContextApi({ children }) {
 		setTreeData(updatedState);
 	};
 	const onSubmit = async (formValues) => {
-		setLoading(true);
+		setLoading(false);
 		const { requestType, dateRange, ...value } = formValues;
 		let response = {};
 		switch (requestType) {

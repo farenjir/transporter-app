@@ -1,4 +1,4 @@
-import { dateToPersian } from "utils/globals";
+import { dateToLocale } from "utils/globals";
 
 const faMonths = [
     "فروردین",
@@ -23,5 +23,5 @@ export const langConfigs = {
 };
 
 export const defaultValues = {
-    fa: dateToPersian(new Date())
+    fa: dateToLocale(new Date())
 };
