@@ -17,7 +17,7 @@ import { AppCard } from "components/App";
 const { Title } = Typography;
 
 export default function RequeuedGet() {
-	const [producers, setProducers] = useState([]);
+	const [requested, setRequested] = useState([]);
 	const [loading, setLoading] = useState(true);
 	// hooks
 	const { t } = useTranslation();
@@ -35,7 +35,7 @@ export default function RequeuedGet() {
 			const cardGroups = [content.slice(0, 3), content.slice(3, 6), content.slice(6, 9)].filter(
 				(item) => item?.length,
 			);
-			setProducers(cardGroups);
+			setRequested(cardGroups);
 			setLoading(false);
 		};
 		getAllProducers();
@@ -43,14 +43,14 @@ export default function RequeuedGet() {
 	return (
 		<section className="producer-sections mx-auto p-5 mt-8 md:mx-12">
 			<div className="producer-title md:text-center">
-				<Title level={2}>درخواست های ارسال</Title>
+				<Title level={2}>درخواست های دریافت</Title>
 				<p className="my-1 text-slate-400 text-xs md:text-base">
 					شما دراین بخش می توانید درخواست خود را پیدا کنید
 				</p>
 			</div>
 			<Buttons
 				content={
-					<Link to={"/user/search"} className="text-white">
+					<Link to={"/user/search"} state={"get"} className="text-white">
 						<div className="flex gap-2 align-middle items-center">
 							<span className="p-1"> مشاهده همه </span>
 							<DoubleLeftOutlined />
@@ -63,9 +63,9 @@ export default function RequeuedGet() {
 				classes="text-sm float-left mt-3"
 			/>
 			<CarouselModule
-				name="producers"
+				name="get-requested"
 				loading={loading}
-				swiperSliders={producers.map((cardGroups = [], idx) => (
+				swiperSliders={requested.map((cardGroups = [], idx) => (
 					<div className="pb-10 pt-5" key={`cardGroups-${idx}`}>
 						<section className="producer-sections flex flex-col md:flex-row justify-between align-middle items-center gap-8">
 							{cardGroups.map(

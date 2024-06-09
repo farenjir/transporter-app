@@ -8,8 +8,11 @@ import storage from "redux-persist/lib/storage";
 import { authReducer } from "./auth";
 import { basesReducer } from "./base";
 
+// eslint-disable-next-line no-undef
+const isNotProduction = process.env.NODE_ENV !== "production"
+
 const additionalMiddleware = [];
-if (import.meta.env.NODE_ENV !== "production") {
+if (isNotProduction) {
 	additionalMiddleware.push(logger);
 }
 
@@ -30,7 +33,7 @@ const persistedReducer = persistReducer(
 export default configureStore({
 	reducer: persistedReducer,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(additionalMiddleware),
-	devTools: import.meta.env.NODE_ENV !== "production",
+	devTools: isNotProduction,
 });
 
 

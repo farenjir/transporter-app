@@ -170,7 +170,7 @@ const InternationalGet = () => {
 					<Buttons
 						content={t("ثبت درخواست دریافت")}
 						htmlType="submit"
-						classes="float-end mt-3"
+						classes="float-end mt-8"
 						loading={loading}
 					/>
 				</Col>

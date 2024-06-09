@@ -1,18 +1,10 @@
-import { useTranslation } from "react-i18next";
-
-import { Col, Row } from "antd";
-
-import { Buttons, Inputs, Selects } from "components";
-
 const DomesticGet = () => {
-	// hooks
-	const { t } = useTranslation();
 	// return
 	return (
-		<Row gutter={[8, 8]} align={"middle"}>
-		
-		</Row>
+		<center className="m-5">
+			<h1>DomesticGet</h1>
+		</center>
 	);
 };
 
-export default DomesticGet
+export default DomesticGet;

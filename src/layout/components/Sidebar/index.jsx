@@ -8,14 +8,14 @@ const { Paragraph } = Typography;
 
 const links = [
 	{ title: "home", to: "/user", icon: "HomeOutlined" },
-	{
-		title: "search",
-		icon: "FileSearchOutlined",
-		children: [
-			{ to: "/user/search", title: "send", icon: "LogoutOutlined", state: { defaultType: "send" } },
-			{ to: "/user/search", title: "get", icon: "LoginOutlined", state: { defaultType: "get" } },
-		],
-	},
+	// {
+	// 	title: "search",
+	// 	icon: "FileSearchOutlined",
+	// 	children: [
+	// 		{ to: "/user/search", title: "send", icon: "LogoutOutlined", state: { defaultType: "send" } },
+	// 		{ to: "/user/search", title: "get", icon: "LoginOutlined", state: { defaultType: "get" } },
+	// 	],
+	// },
 	{
 		title: "orders",
 		icon: "FileDoneOutlined",

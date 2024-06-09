@@ -50,7 +50,7 @@ export default function RequeuedSend() {
 			</div>
 			<Buttons
 				content={
-					<Link to={"/user/search"} className="text-white">
+					<Link to={"/user/search"} state={"send"} className="text-white">
 						<div className="flex gap-2 align-middle items-center">
 							<span className="p-1"> مشاهده همه </span>
 							<DoubleLeftOutlined />

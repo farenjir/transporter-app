@@ -4,7 +4,7 @@
 
 @font-face {
 	font-family: "YekanBakh-Regular";
-	src: url("../fonts/YekanBakh-Regular.woff"), url("../fonts/YekanBakh-Regular.woff2");
+	src: url("../fonts/YekanBakh-Regular.woff2");
 }
 
 @layer base {
@@ -12,12 +12,6 @@
 		font-family: YekanBakh-Regular !important;
 		font-weight: 700 !important;
 	}
-	/* .borders {
-		border: 1px solid whitesmoke !important;
-	}
-	.borders-black {
-		border: 1px solid black !important;
-	} */
 	.ltr {
 		direction: ltr !important;
 	}
