@@ -16,14 +16,13 @@ import { LOCALE } from "utils/constance";
 
 const lang = getFromStorage(LOCALE);
 
-dayjs.locale(lang);
 dayjs.extend(updateLocale);
 dayjs.extend(utc);
 dayjs.updateLocale(lang, langConfigs[lang] || {});
 
 const { RangePicker } = DatePicker;
 
-const defaultValue = dayjs(defaultValues[lang], "YYYY/MM/DD");
+const defaultValue = dayjs(defaultValues[lang], "YYYY/MM/DD").locale(lang);
 
 const CalenderDateRange = ({
 	extraClasses = "",
@@ -54,7 +53,7 @@ const CalenderDateRange = ({
 			initialValue={initialValue}
 		>
 			<RangePicker
-				className="w-full "
+				className="w-full"
 				maxTagCount="responsive"
 				defaultValue={initialValue}
 				{...{ placement, size, allowClear, format }}
