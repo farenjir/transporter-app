@@ -84,12 +84,20 @@ const DrawerContent = ({
 					optionType="button"
 					options={[
 						{
+							label: "English",
+							value: "en",
+						},
+						{
+							label: "Italy",
+							value: "it",
+						},
+						{
 							label: "فارسی",
 							value: "fa",
 						},
 						{
-							label: "English",
-							value: "en",
+							label: "عربی",
+							value: "ar",
 						},
 					]}
 				/>

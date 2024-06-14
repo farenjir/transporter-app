@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
-import "dayjs/locale/en";
+import "dayjs/locale/ar";
 import "dayjs/locale/fa";
+import "dayjs/locale/it";
+import "dayjs/locale/en";
 
 import updateLocale from "dayjs/plugin/updateLocale";
 import utc from "dayjs/plugin/utc";
