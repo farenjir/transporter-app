@@ -10,6 +10,7 @@ import { setToStorage } from "utils/storage";
 import { initDayjs } from "./configs/dayjs";
 
 const rtlLangs = ["fa", "ar"];
+
 const useLanguage = () => {
 	const [language, setLanguage] = useState();
 	// handles

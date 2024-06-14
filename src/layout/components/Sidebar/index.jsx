@@ -7,21 +7,13 @@ import { Icons } from "components";
 const { Paragraph } = Typography;
 
 const links = [
-	{ title: "home", to: "/user", icon: "HomeOutlined" },
-	// {
-	// 	title: "search",
-	// 	icon: "FileSearchOutlined",
-	// 	children: [
-	// 		{ to: "/user/search", title: "send", icon: "LogoutOutlined", state: { defaultType: "send" } },
-	// 		{ to: "/user/search", title: "get", icon: "LoginOutlined", state: { defaultType: "get" } },
-	// 	],
-	// },
+	{ title: "home", to: "/", icon: "HomeOutlined" },
 	{
 		title: "orders",
 		icon: "FileDoneOutlined",
 		children: [
-			{ to: "/user/history", title: "send", icon: "LogoutOutlined", state: { defaultType: "send" } },
-			{ to: "/user/history", title: "get", icon: "LoginOutlined", state: { defaultType: "get" } },
+			{ to: "/history", title: "send", icon: "LogoutOutlined", state: { defaultType: "send" } },
+			{ to: "/history", title: "get", icon: "LoginOutlined", state: { defaultType: "get" } },
 		],
 	},
 ];

@@ -10,7 +10,7 @@ const FloatLabel = () => {
 		<section className="hidden md:inline-block">
 			<FloatButton
 				type="primary"
-				tooltip={"فیلتر پیشرفته"}
+				tooltip={t("commons.search")}
 				style={{
 					direction: "ltr",
 					right: 50,
@@ -38,7 +38,7 @@ const FloatLabel = () => {
 			/>
 			<FloatButton
 				type="primary"
-				tooltip={<span>درباره ما</span>}
+				// tooltip={<span>درباره ما</span>}
 				style={{
 					direction: "ltr",
 					right: 50,
@@ -51,7 +51,7 @@ const FloatLabel = () => {
 				}
 			/>
 			<FloatButton.BackTop
-				tooltip={"بازگشت به بالا"}
+				// tooltip={"بازگشت به بالا"}
 				style={{
 					direction: "ltr",
 					right: 50,
