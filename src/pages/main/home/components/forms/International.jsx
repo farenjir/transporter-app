@@ -9,7 +9,7 @@ const International = () => {
 	const [priceType, setPriceType] = useState(true);
 	// hooks
 	const { t } = useTranslation();
-	const { onLoadData, loading, treeData, enums, priceTypes } = useContext(RequestContext);
+	const { onLoadData, loading, jalali, treeData, enums, priceTypes } = useContext(RequestContext);
 	// handles
 	const onChangePriceType = (value) => {
 		setPriceType(value);
@@ -53,7 +53,7 @@ const International = () => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<CalenderDateRange label={"تاریخ"} required={true} />
+					<CalenderDateRange label={"تاریخ"} required={true} jalali={jalali} />
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>

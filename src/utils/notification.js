@@ -1,13 +1,11 @@
 import { notification } from "antd";
-import { getFromStorage } from "./storage";
-
-const isPersian = getFromStorage("language") !== "en";
+import i18next from "i18next";
 
 export const notificationMaker = (message, type = "error", description, duration = 4, closeIcon = true) => {
 	notification.config({
 		placement: "top",
 		duration,
-		rtl: isPersian,
+		rtl: i18next.language === "fa",
 		closeIcon,
 	});
 	return notification[type]({

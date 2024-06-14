@@ -36,7 +36,7 @@ export default function AuthForm() {
 		setLoading(true);
 		const response = await userRegister(callApi, values);
 		if (response?.result) {
-			navigate("/", { replace: true });
+			navigate("/auth", { replace: true });
 			notificationMaker(t("commons.success"), "success", t("auth.successRegister"));
 		} else {
 			notificationMaker(t("commons.error"), "error", t("notification.error"));
@@ -52,7 +52,7 @@ export default function AuthForm() {
 				<Paragraph className="text-xs mt-4">
 					{t("اگر حساب کاربری دارید ")}
 					<strong className="text-blue-500 cursor-pointer text-base">
-						<Link to={"/"} style={{ color: token?.colorPrimary }}>
+						<Link to={"/auth"} style={{ color: token?.colorPrimary }}>
 							{t("وارد سامانه شود.")}
 						</Link>
 					</strong>

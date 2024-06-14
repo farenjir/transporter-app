@@ -9,6 +9,7 @@ import { notificationMaker } from "utils/notification";
 import { useAppContext } from "hooks";
 import { getAllLocationByCountry } from "service/main";
 import { postCarrierAnnonce, postRequestForCarrier } from "service/user";
+import { dateToApi } from "utils/globals";
 
 export const RequestContext = createContext({});
 
@@ -18,7 +19,7 @@ function RequestContextApi({ children }) {
 	// hooks
 	const { t } = useTranslation();
 	const [form] = Form.useForm();
-	const { callApi } = useAppContext();
+	const { callApi, jalali } = useAppContext();
 	const { countries, enums } = useSelector(baseSelector);
 	// options
 	const priceTypes = [
@@ -39,7 +40,7 @@ function RequestContextApi({ children }) {
 		const updatedState = treeData.concat(locations);
 		setTreeData(updatedState);
 	};
-	const onSubmit = async (formValues) => {
+	const onSubmit = useCallback(async (formValues) => {
 		setLoading(false);
 		const { requestType, dateRange, ...value } = formValues;
 		let response = {};
@@ -53,8 +54,8 @@ function RequestContextApi({ children }) {
 					imageId: 0,
 					fromCountryId: locationIdDetector(value.fromLocationId),
 					toCountryId: locationIdDetector(value.toLocationId),
-					from: dateRange[0].toISOString(),
-					to: dateRange[1].toISOString(),
+					from: dateToApi(dateRange[0]),
+					to: dateToApi(dateRange[1]),
 					...value,
 				});
 				break;
@@ -67,8 +68,8 @@ function RequestContextApi({ children }) {
 					imageId: 0,
 					fromCountryId: locationIdDetector(value.fromLocationId),
 					toCountryId: locationIdDetector(value.toLocationId),
-					from: dateRange[0].toISOString(),
-					to: dateRange[1].toISOString(),
+					from: dateToApi(dateRange[0]),
+					to: dateToApi(dateRange[1]),
 					...value,
 				});
 				break;
@@ -76,18 +77,19 @@ function RequestContextApi({ children }) {
 				break;
 		}
 		if (response?.result) {
-			notificationMaker(t("commons.success"), "success", t("---"));
+			form.resetFields()
+			notificationMaker(t("commons.success"), "success", t("messages.requestSuccess"));
 		} else {
-			notificationMaker(t("commons.error"), "error", t("---"));
+			notificationMaker(t("commons.error"), "error", t("messages.requestFailed"));
 		}
 		setLoading(false);
-	};
+	}, []);
 	// init
 	useEffect(() => {
 		setTreeData(countries);
 	}, [countries]);
 	return (
-		<RequestContext.Provider value={{ onLoadData, treeData, enums, priceTypes, loading }}>
+		<RequestContext.Provider value={{ onLoadData, treeData, enums, priceTypes, loading, jalali }}>
 			<Form
 				form={form}
 				name="request-form"

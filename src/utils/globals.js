@@ -1,11 +1,12 @@
-import i18n from "i18next";
+import i18next from "i18next";
 import dayjs from "dayjs";
+import { localeList, timeZones } from "langs/configs";
 
 // *** export handles
-export { dateToGeo, dateToLocale, dateToInitializeOnForm, uIdMaker, transformerAppData };
+export { dateToGeo, dateToApi, dateTransformer, dateToLocale, dateToInitializeOnForm, uIdMaker, transformerAppData };
 
 // ***
-const dateToGeo = (year, month, day, language = i18n.language || "fa") => {
+const dateToGeo = (year, month, day, language = i18next.language) => {
 	let converted = "";
 	let selected = `${year}-${month}-${day}`;
 	try {
@@ -20,7 +21,7 @@ const dateToGeo = (year, month, day, language = i18n.language || "fa") => {
 // ***
 const dateToLocale = (
 	date,
-	language = "fa-IR-u-nu-latn",
+	locale = i18next.language,
 	options = {
 		year: "numeric",
 		month: "2-digit",
@@ -28,17 +29,32 @@ const dateToLocale = (
 	},
 ) => {
 	if (date) {
-		return new Date(date).toLocaleString(language, {
-			timeZone: "Asia/Tehran",
+		return new Date(date).toLocaleString(localeList[locale], {
+			timeZone: timeZones[locale],
 			...options,
-		});
+		})
+	} else {
+		return null;
+	}
+};
+
+const dateTransformer = (date, jalali = true, locale = i18next.language, format = "YYYY/MM/DD") => {
+	if (date) {
+		return dayjs(date, { jalali }).locale(locale).format(format)
+	} else {
+		return null;
+	}
+};
+const dateToApi = (date, jalali = true, locale = i18next.language) => {
+	if (date) {
+		return dayjs(dayjs(date).locale(locale).format(), { jalali }).toISOString();
 	} else {
 		return null;
 	}
 };
 
 // ***
-const dateToInitializeOnForm = (date, format = "YYYY-MM-DD", language = i18n.language || "fa") => {
+const dateToInitializeOnForm = (date, format = "YYYY-MM-DD", language = i18next.language) => {
 	if (date) {
 		return dayjs(date, "YYYY-MM-DD").locale(language).format(format);
 	} else {

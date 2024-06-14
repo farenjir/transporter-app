@@ -15,8 +15,8 @@ import UserLayout from "layout/UserLayout";
 // pages
 import Authentication from "pages/main/auth";
 
-const mainRoutes = {
-	path: "/",
+const authRoutes = {
+	path: "/auth",
 	element: <MainLayout />,
 	children: [
 		{
@@ -32,31 +32,33 @@ const mainRoutes = {
 	],
 };
 
-const userRoutes = {
-	path: "/user",
+const mainRoutes = {
+	path: "/",
 	element: <UserLayout />,
 	children: [
 		{
 			index: true,
 			id: "user",
-			lazy: async () => ({ Component: (await import("../pages/user/home")).default }),
+			lazy: async () => ({ Component: (await import("../pages/main/home")).default }),
 		},
 		{
 			path: "search",
 			id: "search",
-			lazy: async () => ({ Component: (await import("../pages/user/search")).default }),
+			lazy: async () => ({ Component: (await import("../pages/main/search")).default }),
 		},
 		{
 			path: "history",
 			id: "history",
-			lazy: async () => ({ Component: (await import("../pages/user/history")).default }),
+			lazy: async () => ({ Component: (await import("../pages/main/history")).default }),
 		},
 	],
 };
 
+const userRoutes = {};
+
 const adminRoutes = {};
 
-const router = createBrowserRouter([mainRoutes, userRoutes, adminRoutes]);
+const router = createBrowserRouter([mainRoutes,authRoutes, userRoutes, adminRoutes]);
 
 const persistor = persistStore(store);
 

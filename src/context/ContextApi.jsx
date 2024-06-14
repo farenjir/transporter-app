@@ -15,7 +15,7 @@ function ContextApi({ children }) {
 	// hooks
 	const dispatch = useDispatch();
 	// language
-	const { language, changeLanguage, direction, locale, placement } = useLanguage();
+	const { language, changeLanguage, direction, locale, jalali, placement } = useLanguage();
 	// theme
 	const { themeAntMode, fontAntMode, fontMode, selectedToken, tokens, ...handles } = useTheme(theme);
 	// user
@@ -37,6 +37,7 @@ function ContextApi({ children }) {
 				language,
 				placement,
 				direction,
+				jalali,
 				// themeHandlers
 				...handles,
 				changeLanguage,

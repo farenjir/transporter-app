@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { getFromStorage } from "utils/storage";
 
 // languages
 import english from "./resources/english.json";
@@ -10,8 +11,8 @@ i18n.use(initReactI18next).init({
 		fa: { translation: persian },
 		en: { translation: english },
 	},
-	lng: "fa",
-	fallbackLng: "fa",
+	lng: getFromStorage("language") || "fa",
+	fallbackLng: getFromStorage("language") || "fa",
 	interpolation: {
 		escapeValue: false, // react already safes from xss
 	},

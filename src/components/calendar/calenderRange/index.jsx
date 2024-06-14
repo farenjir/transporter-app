@@ -1,28 +1,11 @@
+import dayjs from "dayjs";
+import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
 import { DatePicker, Form } from "antd";
 import "./style.css";
 
-import dayjs from "dayjs";
-import "dayjs/locale/en";
-import "dayjs/locale/fa";
-
-import updateLocale from "dayjs/plugin/updateLocale";
-import utc from "dayjs/plugin/utc";
-
-import { defaultValues, langConfigs } from "./utils";
-import { getFromStorage } from "utils/storage";
-import { LOCALE } from "utils/constance";
-
-const lang = getFromStorage(LOCALE);
-
-dayjs.extend(updateLocale);
-dayjs.extend(utc);
-dayjs.updateLocale(lang, langConfigs[lang] || {});
-
 const { RangePicker } = DatePicker;
-
-const defaultValue = dayjs(defaultValues[lang], "YYYY/MM/DD").locale(lang);
 
 const CalenderDateRange = ({
 	extraClasses = "",
@@ -30,10 +13,12 @@ const CalenderDateRange = ({
 	placement = "",
 	name = "dateRange",
 	size = "large",
-	initialValue = defaultValue,
+	initialValue,
 	required = false,
 	allowClear = false,
 	format = "YYYY/MM/DD",
+	locale = i18next.language,
+	jalali = true,
 }) => {
 	const { t } = useTranslation();
 	const rules = [
@@ -42,6 +27,7 @@ const CalenderDateRange = ({
 			message: t("schemas.required"),
 		},
 	];
+	const defaultValue = dayjs(dayjs().locale(locale).format(), { jalali });
 	return (
 		<Form.Item
 			labelCol={{ xs: 24 }}
@@ -50,12 +36,12 @@ const CalenderDateRange = ({
 			label={label}
 			name={name}
 			rules={rules}
-			initialValue={initialValue}
+			initialValue={initialValue || defaultValue}
 		>
 			<RangePicker
 				className="w-full"
 				maxTagCount="responsive"
-				defaultValue={initialValue}
+				defaultValue={initialValue || defaultValue}
 				{...{ placement, size, allowClear, format }}
 			/>
 		</Form.Item>

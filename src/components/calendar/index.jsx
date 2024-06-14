@@ -1,22 +1,14 @@
 import dayjs from "dayjs";
-
-import { DatePicker, Form } from "antd";
+import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
-import { getFromStorage } from "utils/storage";
-import { LOCALE } from "utils/constance";
-
-import { defaultValues } from "./calenderRange/utils";
-
-const lang = getFromStorage(LOCALE);
-
-const defaultValue = dayjs(defaultValues[lang] || new Date(), "YYYY-MM-DD");
+import { DatePicker, Form } from "antd";
 
 const Calendars = ({
 	name = "datePicker",
 	label = "",
 	extraClasses = "",
-	initialValue = defaultValue,
+	initialValue,
 	placement = "",
 	size = "large",
 	format = "YYYY/MM/DD - hh:mm",
@@ -27,15 +19,17 @@ const Calendars = ({
 	showTime = true,
 	showNow = false,
 	allowClear = false,
+	locale = i18next.language,
+	jalali = true,
 }) => {
 	const { t } = useTranslation();
 	const rules = [
 		{
-			type: "object",
 			required: required,
 			message: t("schemas.required"),
 		},
 	];
+	const defaultValue = dayjs(dayjs().locale(locale).format(), { jalali });
 	// return
 	return (
 		<Form.Item
@@ -44,13 +38,13 @@ const Calendars = ({
 			className={`${extraClasses}`}
 			label={label}
 			name={name}
-			initialValue={initialValue}
+			initialValue={initialValue || defaultValue}
 			rules={rules}
 		>
 			<DatePicker
 				className="w-full"
 				maxTagCount="responsive"
-				defaultValue={initialValue}
+				defaultValue={initialValue || defaultValue}
 				{...{ format, disabled, size, placement }}
 				{...{ allowClear, showNow, showTime, showHour, showMinute }}
 			/>
