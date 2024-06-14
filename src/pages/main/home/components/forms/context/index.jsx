@@ -8,7 +8,7 @@ import { baseSelector } from "store/selector";
 import { notificationMaker } from "utils/notification";
 import { useAppContext } from "hooks";
 import { getAllLocationByCountry } from "service/main";
-import { postCarrierAnnonce, postRequestForCarrier } from "service/user";
+import { postCarrierAnnonce, postRequestForCarrier } from "service/main";
 import { dateToApi } from "utils/globals";
 
 export const RequestContext = createContext({});

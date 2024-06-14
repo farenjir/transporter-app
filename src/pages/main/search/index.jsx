@@ -11,7 +11,7 @@ import { RadioGroup, ListModule, AppTabs } from "components";
 import { FlightIcon, FlightIntIcon } from "components/icon/custom";
 
 import { useAppContext } from "hooks";
-import { getCarrierAnnonce, getRequestForCarrier } from "service/user";
+import { getCarrierAnnonce, getRequestForCarrier } from "service/main";
 
 import SearchContextApi from "./components/forms/context";
 import InternationalSearch from "./components/forms/InternationalSearch";

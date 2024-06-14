@@ -44,7 +44,7 @@ const MainLayout = () => {
 				style={{ background: token?.colorPrimaryLight }}
 			>
 				<MenuOutlined className={`text-[${token?.colorPrimary}] text-xl pt-1`} onClick={() => onOpen("menu")} />
-				<Link to={"/user"}>
+				<Link to={"/"}>
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
 				<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl pt-1`} onClick={() => onOpen()} />

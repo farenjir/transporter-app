@@ -12,7 +12,7 @@ const AuthLayout = () => {
 	const { token } = theme.useToken();
 	// let navigate = useNavigate();
 	// init
-	// if (checkToken) return navigate("/user", { replace: true });
+	// if (checkToken) return navigate("/", { replace: true });
 	// return
 	return (
 		<Layout dir={direction} className="h-screen" style={{ background: token.colorBgBase }}>

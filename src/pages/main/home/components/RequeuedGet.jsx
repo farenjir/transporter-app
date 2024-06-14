@@ -9,7 +9,7 @@ import { baseSelector } from "store/selector";
 import { useAppContext } from "hooks";
 import { dateToLocale } from "utils/globals";
 
-import { getCarrierAnnonce } from "service/user";
+import { getCarrierAnnonce } from "service/main";
 
 import { Buttons, CarouselModule } from "components";
 import { AppCard } from "components/App";
@@ -48,7 +48,7 @@ export default function RequeuedGet() {
 			</div>
 			<Buttons
 				content={
-					<Link to={"/user/search"} state={"get"} className="text-white">
+					<Link to={"/search"} state={"get"} className="text-white">
 						<div className="flex gap-2 align-middle items-center">
 							<span className="p-1"> {t("commons.viewAll")}</span>
 							<DoubleLeftOutlined />

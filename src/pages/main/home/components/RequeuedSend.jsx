@@ -9,7 +9,7 @@ import { baseSelector } from "store/selector";
 import { useAppContext } from "hooks";
 import { dateToLocale } from "utils/globals";
 
-import { getRequestForCarrier } from "service/user";
+import { getRequestForCarrier } from "service/main";
 
 import { Buttons, CarouselModule } from "components";
 import { AppCard } from "components/App";
@@ -48,7 +48,7 @@ export default function RequeuedSend() {
 			</div>
 			<Buttons
 				content={
-					<Link to={"/user/search"} state={"send"} className="text-white">
+					<Link to={"/search"} state={"send"} className="text-white">
 						<div className="flex gap-2 align-middle items-center">
 							<span className="p-1"> {t("commons.viewAll")}</span>
 							<DoubleLeftOutlined />
