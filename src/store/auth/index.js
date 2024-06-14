@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { getCurrentUser } from "./action";
+import { removeFromCookie } from "utils/storage";
+import { TOKEN_NAME } from "utils/constance";
 
 const initialState = {
 	user: null,
@@ -10,7 +12,12 @@ const initialState = {
 const authSlice = createSlice({
 	name: "auth",
 	initialState,
-	reducers: {},
+	reducers: {
+		clearUser: (state) => {
+			removeFromCookie(TOKEN_NAME)
+			state.user = null
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			// getCurrentUser
@@ -22,10 +29,11 @@ const authSlice = createSlice({
 				state.loading = false;
 			})
 			.addCase(getCurrentUser.fulfilled, (state, action) => {
-				state.user = action.payload.user;
+				const { firstName, lastName, ...info } = action.payload || {}
+				state.user = action.payload ? { fullName: `${firstName} ${lastName}`, lastName, firstName, ...info } : null
 				state.loading = false;
 			})
 	},
 });
 
-export const { reducer: authReducer, actions: authActions } = authSlice;
+export const { reducer: authReducer, actions: { clearUser } } = authSlice;

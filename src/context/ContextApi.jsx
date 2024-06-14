@@ -10,6 +10,7 @@ import { getCountries, getEnums } from "store/base/action";
 
 import callApi from "service";
 import AppContext from "./index";
+import { clearUser } from "store/auth";
 
 function ContextApi({ children }) {
 	// hooks
@@ -18,7 +19,11 @@ function ContextApi({ children }) {
 	const { language, changeLanguage, direction, locale, jalali, placement } = useLanguage();
 	// theme
 	const { themeAntMode, fontAntMode, fontMode, selectedToken, tokens, ...handles } = useTheme(theme);
-	// user
+	// global handles
+	const logout = () => {
+		dispatch(clearUser());
+	};
+	// init app
 	useEffect(() => {
 		const auth = dispatch(getCurrentUser({ callApi }));
 		const countries = dispatch(getCountries({ callApi }));
@@ -46,6 +51,7 @@ function ContextApi({ children }) {
 				selectedToken,
 				// callApi
 				callApi,
+				logout,
 			}}
 		>
 			<ConfigProvider

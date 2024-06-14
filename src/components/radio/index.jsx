@@ -13,6 +13,7 @@ const RadioGroup = ({
 	name = "",
 	required = false,
 	outForm = false,
+	disabled = false,
 	size = "middle",
 	buttonStyle = "solid", // outline
 	optionType = "default", // button
@@ -32,6 +33,7 @@ const RadioGroup = ({
 	// component
 	const InnerJSX = () => (
 		<Group
+			disabled={disabled}
 			size={size}
 			name={name}
 			optionType={optionType}

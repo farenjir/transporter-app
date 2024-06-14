@@ -1,15 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { TOKEN_NAME } from "utils/constance";
-import { setToCookie, getFromCookie } from "utils/storage";
+import { getFromCookie } from "utils/storage";
 
-export const getCurrentUser = createAsyncThunk("auth/currentUser", async ({ callApi }) => {
-	const token = getFromCookie(TOKEN_NAME)
-	return { user: null }
-	// return await callApi({ url: `artist/${"id"}` })
-	// 	.then(({ token, ...response }) => {
-	// 		setToCookie(TOKEN_NAME, token);
-	// 		return { user: response };
-	// 	})
-	// 	.catch(() => ({ user: null }));
+export const getCurrentUser = createAsyncThunk("auth/currentUser", async ({ callApi }, { getState }) => {
+	// check token
+	const token = getFromCookie(TOKEN_NAME);
+	if (!token) return null;
+	// reload cache user data
+	const {
+		auth: { user },
+	} = getState();
+	if (user) return user
+	// get user
+	return await callApi({ url: "UserProflie/GetMyProfile" })
+		.then((response) => response)
+		.catch(() => null);
 });

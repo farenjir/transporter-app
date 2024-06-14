@@ -2,24 +2,29 @@ import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { Typography } from "antd";
+import { useSelector } from "react-redux";
+import { authSelector } from "store/selector";
+
 import { Icons } from "components";
 
 const { Paragraph } = Typography;
 
-const links = [
-	{ title: "home", to: "/", icon: "HomeOutlined" },
-	{
-		title: "orders",
-		icon: "FileDoneOutlined",
-		children: [
-			{ to: "/history", title: "send", icon: "LogoutOutlined", state: { defaultType: "send" } },
-			{ to: "/history", title: "get", icon: "LoginOutlined", state: { defaultType: "get" } },
-		],
-	},
-];
-
 const Sidebar = ({ token = {} }) => {
 	const { t } = useTranslation();
+	const { user } = useSelector(authSelector);
+	// options
+	const links = [
+		{ title: "home", to: "/", icon: "HomeOutlined" },
+		user && {
+			title: "orders",
+			icon: "FileDoneOutlined",
+			children: [
+				{ to: "/user/history", title: "send", icon: "LogoutOutlined", state: { type: "send" } },
+				{ to: "/user/history", title: "get", icon: "LoginOutlined", state: { type: "get" } },
+			],
+		},
+	].filter(Boolean);
+	// return
 	return (
 		<div className={`flex flex-col`}>
 			{links.map(({ title, to, icon, children }) => {
@@ -36,7 +41,9 @@ const Sidebar = ({ token = {} }) => {
 										return (
 											<li key={`li-${child.title}`}>
 												<NavLink to={child.to} state={child.state}>
-													<Paragraph className={`hover:text-[${token?.colorPrimary}]`}>
+													<Paragraph
+														className={`hover:text-[${token?.colorPrimary}]`}
+													>
 														<Icons type={child.icon} />
 														<span className="mx-2 text-sm">
 															{t(`layouts.sidebar.${child.title}`)}

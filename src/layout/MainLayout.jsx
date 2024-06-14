@@ -1,9 +1,18 @@
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { SettingOutlined, MenuOutlined } from "@ant-design/icons";
-import { Layout, theme, Typography } from "antd";
+import { useSelector } from "react-redux";
+import { authSelector } from "store/selector";
+
+import {
+	SettingOutlined,
+	MenuOutlined,
+	RocketOutlined,
+	UserOutlined,
+	LogoutOutlined,
+} from "@ant-design/icons";
+import { Layout, Skeleton, theme, Tooltip, Typography } from "antd";
 import { useAppContext } from "hooks";
 
 import { Drawers } from "components";
@@ -20,10 +29,11 @@ const MainLayout = () => {
 	const [open, setOpen] = useState(false);
 	const [openMenu, setOpenMenu] = useState(false);
 	// hooks
+	let navigate = useNavigate();
 	const { t } = useTranslation();
 	const { token } = theme.useToken();
-	// theme
-	const { direction, placement, ...otherParams } = useAppContext();
+	const { user, loading } = useSelector(authSelector);
+	const { direction, placement, logout, ...otherParams } = useAppContext();
 	// handles
 	const onClose = () => {
 		setOpen(false);
@@ -36,18 +46,59 @@ const MainLayout = () => {
 			setOpen(true);
 		}
 	};
+	const handleLogout = () => {
+		logout();
+		navigate("/", { replace: true });
+	};
 	// return
 	return (
 		<Layout dir={direction} className="min-h-screen">
 			<Header
-				className="relative flex h-12 items-center justify-between"
+				className="flex h-12 items-center justify-between sticky top-0"
 				style={{ background: token?.colorPrimaryLight }}
 			>
-				<MenuOutlined className={`text-[${token?.colorPrimary}] text-xl pt-1`} onClick={() => onOpen("menu")} />
+				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
+					<MenuOutlined
+						className={`text-[${token?.colorPrimary}] text-xl`}
+						onClick={() => onOpen("menu")}
+					/>
+					{loading ? (
+						<Skeleton active paragraph={{ rows: 1, width: 100 }} title={false} className="mx-1" />
+					) : user ? (
+						<Link to={"/user"} className="pt-2">
+							<span className="text-sm uppercase mx-1">{user?.fullName}</span>
+						</Link>
+					) : (
+						<div className="mx-10"></div>
+					)}
+				</div>
 				<Link to={"/"}>
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
-				<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl pt-1`} onClick={() => onOpen()} />
+				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
+					{loading ? (
+						<Skeleton active paragraph={{ rows: 1, width: 100 }} title={false} className="mx-1" />
+					) : user ? (
+						<Tooltip title={t("layouts.exit")}>
+							<LogoutOutlined className="cursor-pointer" onClick={handleLogout} />
+						</Tooltip>
+					) : (
+						<Link to={"/auth"} className="flex gap-1 items-center">
+							<span className="text-sm mx-1 pt-1"> {t("layouts.authToo")}</span>
+							<UserOutlined />
+						</Link>
+					)}
+					<SettingOutlined
+						className={`text-[${token?.colorPrimary}] text-xl`}
+						onClick={() => onOpen()}
+					/>
+				</div>
+			</Header>
+			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">
+				<FloatLabel />
+				{/* children */}
+				<Outlet key={"user-layout"} />
+				{/* children */}
 				<Drawers
 					title={t("layouts.sidebar.menu")}
 					open={openMenu}
@@ -62,12 +113,6 @@ const MainLayout = () => {
 					placement={placement}
 					content={<SettingDrawer {...otherParams} />}
 				/>
-			</Header>
-			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">
-				<FloatLabel />
-				{/* children */}
-				<Outlet key={"user-layout"} />
-				{/* children */}
 			</Content>
 			<Footer style={{ background: token?.colorPrimaryLighter }}>
 				<div

@@ -6,6 +6,8 @@ import { Form, Typography, theme } from "antd";
 
 import { TOKEN_NAME } from "utils/constance";
 import { setToCookie } from "utils/storage";
+import { useDispatch } from "react-redux";
+import { getCurrentUser } from "store/auth/action";
 
 import { useAppContext } from "hooks";
 import { userAuthentication } from "service/main";
@@ -19,6 +21,7 @@ export default function AuthForm() {
 	const [loading, setLoading] = useState(false);
 	// hooks
 	let navigate = useNavigate();
+	const dispatch = useDispatch();
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
 	const [form] = Form.useForm();
@@ -31,6 +34,7 @@ export default function AuthForm() {
 			setToCookie(TOKEN_NAME, response.result);
 			navigate("/", { replace: true });
 			notificationMaker(t("commons.success"), "success", t("auth.successLogin"));
+			dispatch(getCurrentUser({ callApi }));
 		} else {
 			setLoading(false);
 			notificationMaker(t("commons.error"), "error", t("auth.failed"));

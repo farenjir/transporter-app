@@ -17,7 +17,7 @@ const { Paragraph, Title } = Typography;
 export default function AuthForm() {
 	const [loading, setLoading] = useState(false);
 	// options
-	const { countries = [] } = useSelector(baseSelector);
+	const { countries = [], enums = [] } = useSelector(baseSelector);
 	const telecomPrefix = countries.map(({ telecomPrefix: value, nameAndTelPrefix: label }) => ({
 		value,
 		label,
@@ -105,9 +105,14 @@ export default function AuthForm() {
 					</Row>
 				</Col>
 				<Col xs={24} md={8}>
-					<Selects name="genderTypeId" label={t("auth.gender")} required={true} />
+					<Selects
+						name="genderTypeId"
+						label={t("auth.gender")}
+						required={true}
+						options={enums["101"] || []}
+					/>
 				</Col>
-				<Col xs={{ span: 24 }} md={8} lg={80}>
+				<Col xs={24} md={8}>
 					<Buttons
 						htmlType="submit"
 						block={true}

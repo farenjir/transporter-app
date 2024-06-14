@@ -38,7 +38,7 @@ const FloatLabel = () => {
 			/>
 			<FloatButton
 				type="primary"
-				// tooltip={<span>درباره ما</span>}
+				tooltip={t("layouts.sidebar.about")}
 				style={{
 					direction: "ltr",
 					right: 50,
@@ -51,7 +51,7 @@ const FloatLabel = () => {
 				}
 			/>
 			<FloatButton.BackTop
-				// tooltip={"بازگشت به بالا"}
+				tooltip={t("layouts.sidebar.top")}
 				style={{
 					direction: "ltr",
 					right: 50,
