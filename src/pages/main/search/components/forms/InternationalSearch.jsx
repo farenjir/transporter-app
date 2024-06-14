@@ -17,12 +17,12 @@ const International = () => {
 					<Selects
 						placement="topRight"
 						name="fromCountry"
-						label={"مبدا"}
 						options={countries}
+						label={t("commonPages.source")}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مبدا ( کشور , شهر , فرودگاه )</span>
+								<span>{t("commonPages.sourceLabel")}</span>
 							</div>
 						}
 					/>
@@ -31,28 +31,28 @@ const International = () => {
 					<Selects
 						placement="topRight"
 						name="toCountry"
-						label={"مقصد"}
 						options={countries}
+						label={t("commonPages.destination")}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مقصد ( کشور , شهر , فرودگاه )</span>
+								<span>{t("commonPages.destinationLabel")}</span>
 							</div>
 						}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={6}>
-					<CalenderDateRange label={"تاریخ"} />
+					<CalenderDateRange label={t("commons.date")} />
 				</Col>
 				<Col xs={24} md={12} lg={6} className="flex gap-2">
 					<Buttons
-						content={t("جستجو")}
+						content={t("commons.search")}
 						htmlType="submit"
 						classes="float-end mt-8 px-10"
 						disabled={loading}
 					/>
 					<Buttons
-						content={t("بازنشانی")}
+						content={t("commons.reset")}
 						htmlType="reset"
 						type="default"
 						classes="float-end mt-8 px-10"

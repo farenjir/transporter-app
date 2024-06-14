@@ -43,16 +43,14 @@ export default function RequeuedGet() {
 	return (
 		<section className="producer-sections mx-auto p-5 mt-8 md:mx-12">
 			<div className="producer-title md:text-center">
-				<Title level={2}>درخواست های دریافت</Title>
-				<p className="my-1 text-slate-400 text-xs md:text-base">
-					شما دراین بخش می توانید درخواست خود را پیدا کنید
-				</p>
+				<Title level={2}>{t("home.getAll")}</Title>
+				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
 			</div>
 			<Buttons
 				content={
 					<Link to={"/user/search"} state={"get"} className="text-white">
 						<div className="flex gap-2 align-middle items-center">
-							<span className="p-1"> مشاهده همه </span>
+							<span className="p-1"> {t("commons.viewAll")}</span>
 							<DoubleLeftOutlined />
 						</div>
 					</Link>

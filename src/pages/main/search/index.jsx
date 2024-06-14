@@ -132,9 +132,7 @@ const SearchPage = () => {
 		<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
 			<div className="producer-title text-center mt-5">
 				<h2 className="text-xl md:text-3xl">{t("search.search")}</h2>
-				<p className="my-1 text-slate-400 text-xs p-2 md:text-base">
-					شما دراین بخش می توانید درخواست خود را پیدا کنید
-				</p>
+				<p className="my-1 text-slate-400 text-xs p-2 md:text-base">{t("search.topTitle")}</p>
 			</div>
 			<section
 				className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}

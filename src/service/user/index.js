@@ -24,7 +24,7 @@ export const getCarrierAnnonce = (callApi, queries) => {
 		.catch((_e) => []);
 };
 export const postCarrierAnnonce = (callApi, requestData) => {
-	const data = transformer.requestCarrierTransformData(requestData);
+	const data = transformer.requestAnnonceTransformData(requestData);
 	return callApi({ url: "CarrierAnnonce/AddCarrierAnnonce", method: "POST", data })
 		.then((response) => response)
 		.catch((_e) => ({ content: [] }));

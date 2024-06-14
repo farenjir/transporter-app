@@ -21,16 +21,16 @@ const InternationalGet = () => {
 				<Col xs={24} md={12} lg={8}>
 					<TreeSelects
 						name="fromLocationId"
-						label={"مبدا"}
 						treeLine
 						required
 						dropdownStyle={{ direction: "ltr" }}
 						treeData={treeData}
 						onLoadData={onLoadData}
+						label={t("commonPages.source")}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مبدا ( کشور , شهر , فرودگاه )</span>
+								<span>{t("commonPages.sourceLabel")}</span>
 							</div>
 						}
 					/>
@@ -38,50 +38,29 @@ const InternationalGet = () => {
 				<Col xs={24} md={12} lg={8}>
 					<TreeSelects
 						name="toLocationId"
-						label={"مقصد"}
 						treeLine
 						required
 						dropdownStyle={{ direction: "ltr" }}
 						treeData={treeData}
 						onLoadData={onLoadData}
+						label={t("commonPages.destination")}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
-								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مقصد ( کشور , شهر , فرودگاه )</span>
+								<span>{t("commonPages.destinationLabel")}</span>
 							</div>
 						}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<Calendars label={"تاریخ"} required={true} jalali={jalali} />
-				</Col>
-			</Row>
-			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={8}>
-					<InputType
-						name="fromLocationDesc"
-						placeholder={t("توضیحات مبدا")}
-						label={t("توضیحات مبدا")}
-						required={true}
-						type={"textarea"}
-					/>
-				</Col>
-				<Col xs={24} md={12} lg={8}>
-					<InputType
-						name="toLocationDesc"
-						placeholder={t("توضیحات مقصد")}
-						label={t("توضیحات مقصد")}
-						required={true}
-						type={"textarea"}
-					/>
+					<Calendars label={t("commonPages.date")} required={true} jalali={jalali} />
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={12} lg={2}>
 					<Selects
 						name="cargoWeightUnitIssueId"
-						placeholder={"مقیاس"}
-						label={"مقیاس"}
+						placeholder={t("home.unitIssue")}
+						label={t("home.unitIssue")}
 						options={enums["104"] || []}
 						initialValue={enums["104"]?.[1]?.id}
 					/>
@@ -89,27 +68,18 @@ const InternationalGet = () => {
 				<Col xs={24} md={12} lg={6}>
 					<InputType
 						type={"number"}
-						name="cargoWeight"
-						placeholder={t("وزن بسته")}
-						label="وزن"
+						name="cargoMaxWeightCapacity"
+						placeholder={t("home.cargoMax")}
+						label={t("home.cargoMax")}
 						required={true}
-					/>
-				</Col>
-				<Col xs={24} md={12} lg={8}>
-					<InputType
-						type={"number"}
-						name="cargoItemNo"
-						placeholder={t("تعداد")}
-						label="تعداد"
 						initialValue={1}
-						required={true}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
 					<Selects
-						name="cargoSize"
-						label={t("سایز بسته")}
-						placeholder={t("سایز بسته")}
+						name="cargoMaxSizeCapacity"
+						placeholder={t("home.cargoMaxSize")}
+						label={t("home.cargoMaxSize")}
 						options={enums["107"] || []}
 						initialValue={enums["107"]?.[2]?.id}
 					/>
@@ -119,7 +89,7 @@ const InternationalGet = () => {
 				<Col xs={24} md={12} lg={8}>
 					<Selects
 						name="priceIsNegotiable"
-						label={"قیمت"}
+						label={t("home.priceIs")}
 						onChange={onChangePriceType}
 						options={priceTypes}
 						initialValue={true}
@@ -130,8 +100,8 @@ const InternationalGet = () => {
 						<Col xs={24} md={12} lg={8}>
 							<Selects
 								name="priceCurrencyTypeId"
-								placeholder={"واحد"}
-								label={"واحد"}
+								placeholder={t("home.currencyType")}
+								label={t("home.currencyType")}
 								options={enums["105"] || []}
 								initialValue={enums["105"]?.[2]?.id}
 							/>
@@ -140,8 +110,8 @@ const InternationalGet = () => {
 							<InputType
 								type={"number"}
 								name="proposedPrice"
-								placeholder={t("قیمت پیشنهادی")}
-								label={t("قیمت پیشنهادی")}
+								placeholder={t("home.proposedPrice")}
+								label={t("home.proposedPrice")}
 								required={true}
 							/>
 						</Col>
@@ -149,28 +119,20 @@ const InternationalGet = () => {
 				)}
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={8}>
+				<Col xs={24} md={12} lg={16}>
 					<InputType
-						name="cargoDesc"
-						placeholder={t("توضیحات بسته")}
-						label="توضیحات بسته"
+						name="carrierDesc"
+						placeholder={t("home.cargoDesc")}
+						label={t("home.cargoDesc")}
 						required={true}
 						type={"textarea"}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<InputType
-						name="description"
-						type={"textarea"}
-						placeholder={t("توضیحات")}
-						label="توضیحات ( اختیاری )"
-					/>
-				</Col>
-				<Col xs={24} md={12} lg={8}>
 					<Buttons
-						content={t("ثبت درخواست دریافت")}
+						content={t("home.getRequest")}
 						htmlType="submit"
-						classes="float-end mt-8"
+						classes="float-end mt-5"
 						loading={loading}
 					/>
 				</Col>

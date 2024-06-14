@@ -12,7 +12,14 @@
 		"active": "فعال",
 		"deActive": "غیر فعال",
 		"accept": "معتبر",
-		"notAccept": "غیر معتبر"
+		"notAccept": "غیر معتبر",
+		"success": "موفق",
+		"error": "خطا",
+		"search": "جستجو",
+		"reset": "بازنشانی",
+		"date": "تاریخ",
+		"contentView": "مشاهده اطلاعات",
+		"viewAll": "مشاهده همه "
 	},
 	"messages": {
 		"noAccess": " ... درحال بررسی سطح دسترسی",
@@ -20,15 +27,14 @@
 		"delete": "آیا از حذف ( {{name}} ) اطمینان دارید ؟",
 		"deleteDes": "این {{name}} برای همیشه از سامانه حذف می شود .",
 		"pageNotFound": "صفحه مورد نظر یافت نشد !",
-		"goBack": "بازگشت به صفحه نخست"
+		"goBack": "بازگشت به صفحه نخست",
+		"requestSuccess": "درخواست شما با موفقیت انجام شد",
+		"requestFailed": "درخواست شما با موفقیت انجام نشد"
 	},
 	"notification": {
 		"success": "عملیات با موفقیت انجام شد",
-		"error": "عملیات با به درستی انجام نشد"
-	},
-	"upload": {
-		"nationalCard": "بارگزاری کارت ملی و شناسنامه",
-		"uploadHint": "فقط فایل با پسوند jpg یا png و حداکثر 5mb بارگزاری شود ."
+		"error": "عملیات با به درستی انجام نشد",
+		"password": "کلمه عبور با تکرار آن یکسان نیست"
 	},
 	"header": {
 		"auth": "ورود / ثبت نام",
@@ -46,32 +52,112 @@
 		"fontSmall": "کوچک",
 		"version": "نسخه سایت :",
 		"versionNumber": "0.9.1",
+		"sidebar": {
+			"menu": "منو",
+			"home": "صفحه نخست",
+			"orders": "سوابق درخواست",
+			"send": "ارسال",
+			"get": "دریافت",
+			"search": "جستجو"
+		},
 		"footer": {
-			"copyWrite": "تمام حقوق این سایت متعلق به ? می باشد"
+			"copyWrite": "تمام حقوق این سایت متعلق به مجموعه می باشد"
 		}
 	},
-	"register": {
-		"accountInfo": "ثبت اطلاعات کاربری",
-		"register": "تکمیل اطلاعات",
-		"registered": "ثبت نام",
-		"registerForm": "فرم ثبت نام",
-		"username": "نام کاربری",
-		"mobile": "شماره همراه",
-		"signUp": "ثبت نام در سامانه",
-		"emailDes": "لینک تایید حساب ایمیل برای شما ارسال شد",
-		"email": "ایمیل خود را بررسی نمایید"
+	"upload": {
+		"nationalCard": "بارگزاری کارت ملی و شناسنامه",
+		"uploadHint": "فقط فایل با پسوند jpg یا png و حداکثر 5mb بارگزاری شود ."
 	},
-	"login": {
+	"commonPages": {
+		"source": "مبدا",
+		"sourceLabel": "مبدا ( کشور , شهر , فرودگاه )",
+		"destination": "مقصد",
+		"destinationLabel": "مقصد ( کشور , شهر , فرودگاه )",
+		"priceNegotiable": "توافقی",
+		"priceNotNegotiable": "مقطوع"
+	},
+	"auth": {
 		"login": "ورود",
-		"loginForm": "ورود",
+		"ifLogin": "وارد سامانه شود.",
+		"ifRegistered": "اگر حساب کاربری دارید ",
+		"registered": "ثبت نام",
+		"firstName": "نام",
+		"lastName": "نام خانوادگی",
+		"uPassword": "کلمه عبور",
+		"uPass": "تکرار کلمه عبور",
+		"region": "منطقه ( region )",
+		"email": "ایمیل",
+		"gender": "جنسیت",
+		"phoneNumber": "شماره همراه",
+		"phonePrefix": "پیش شماره",
 		"title": "ورود به سامانه",
-		"description": "نکات امنیتی",
+		"register": "حساب کاربری ایجاد کنید.",
 		"needSignUp": "حساب کاربری نیاز دارم",
 		"remember": "یادآوری ورود",
 		"signUp": "ایجاد حساب کاربری",
-		"email": "ایمیل",
-		"password": "کلمه عبور",
-		"emailNumber": "شماره همراه",
-		"mobile": "شماره همراه"
+		"accountInfo": "ثبت اطلاعات کاربری",
+		"registerForm": "فرم ثبت نام",
+		"username": "نام کاربری ( ایمیل یا شماره همراه )",
+		"emailDes": "لینک تایید حساب ایمیل برای شما ارسال شد",
+		"checkEmail": "ایمیل خود را بررسی نمایید",
+		"cpId": "پیش شماره",
+		"pNumber": "شماره همراه",
+		"failed": "شماره همراه در سامانه موجود نیست",
+		"successRegister": "ثبت نام به درستی انجام شد",
+		"successLogin": "ورود به حساب کاربری",
+		"description": "برای ورود به سامانه ایمیل یا شماره همراه خود را همراه با کللمه عبور وارد نمایید و درصورت نیاز می توانید "
+	},
+	"home": {
+		"get": "درخواست دریافت",
+		"getAll": "درخواست های دریافت",
+		"send": "درخواست ارسال",
+		"sendAll": "درخواست های ارسال",
+		"International": "پرواز بین المللی",
+		"Domestic": "پرواز داخلی",
+		"fromLocationDesc": "توضیحات مبدا",
+		"toLocationDesc": "توضیحات مقصد",
+		"unitIssue": "مقیاس",
+		"cargoWeight": "وزن بسته",
+		"ItemNo": "تعداد",
+		"cargoSize": "سایز بسته",
+		"priceIs": "قیمت",
+		"currencyType": "واحد",
+		"proposedPrice": "قیمت پیشنهادی",
+		"cargoDesc": "توضیحات بسته",
+		"description": "توضیحات",
+		"uDescription": "توضیحات ( اختیاری )",
+		"sendRequest": "ثبت درخواست ارسال",
+		"getRequest": "ثبت درخواست دریافت",
+		"cargoMax": "حداکثر وزن بسته",
+		"cargoMaxSize": "حداکثر سایز بسته",
+		"cards": {
+			"sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) به {{toCountryName}} ( {{toLocationName}} )",
+			"priceIsNegotiable": "توافقی",
+			"price": "قیمت : {{price}} {{label}}",
+			"weight": "مشخصات بسته :",
+			"weightDes": "وزن : {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - تعداد : {{cargoItemNo}} - سایز : {{cargoSize}}",
+			"dateFrom": "تاریخ مبدا ( دریافت ) : {{from}}",
+			"dateTo": "تاریخ مقصد ( تحویل ) : {{to}}"
+		},
+		"support": {
+			"auth": "احراز هویت",
+			"garanty": "بیمه بسته ارسالی",
+			"safe": "ارسال ایمن",
+			"fast": "ارسال سریع بسته"
+		}
+	},
+	"search": {
+		"search": "جستجو پیشرفته درخواست ها",
+		"get": "درخواست های دریافت",
+		"send": "درخواست های ارسال",
+		"International": "پرواز بین المللی",
+		"topTitle": "شما دراین بخش می توانید درخواست خود را پیدا کنید",
+		"Domestic": "پرواز داخلی",
+		"support": {
+			"auth": "احراز هویت کاربران",
+			"garanty": "بیمه بسته ارسالی",
+			"safe": "ارسال ایمن",
+			"fast": "ارسال سریع بسته"
+		}
 	}
 }

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Typography, Form, theme } from "antd";
-import { RadioGroup, Tables } from "components";
+import { theme } from "antd";
+import { RadioGroup } from "components";
 import AppTable from "./components/Table";
 
 const SearchPage = () => {
-	const {  defaultType = "send" } = history?.state?.usr || {};
+	const { defaultType = "send" } = history?.state?.usr || {};
 	// state
 	const [activeType, setActiveType] = useState(defaultType);
 	// hooks

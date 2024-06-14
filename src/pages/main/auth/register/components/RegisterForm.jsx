@@ -47,32 +47,32 @@ export default function AuthForm() {
 		<Form onFinish={onSubmit} dir={direction} layout="vertical" form={form}>
 			<div className="mb-7">
 				<Title level={3} className="text-2xl font-extrabold" style={{ color: token?.colorPrimary }}>
-					{t("ثبت نام")}
+					{t("auth.registered")}
 				</Title>
 				<Paragraph className="text-xs mt-4">
-					{t("اگر حساب کاربری دارید ")}
+					{t("auth.ifRegistered")}
 					<strong className="text-blue-500 cursor-pointer text-base">
 						<Link to={"/auth"} style={{ color: token?.colorPrimary }}>
-							{t("وارد سامانه شود.")}
+							{t("auth.ifLogin")}
 						</Link>
 					</strong>
 				</Paragraph>
 			</div>
 			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={8}>
-					<Inputs name="firstName" type="text" label={t("نام")} required={true} />
+					<Inputs name="firstName" type="text" label={t("auth.firstName")} required={true} />
 				</Col>
 				<Col xs={24} md={8}>
-					<Inputs name="lastName" type="text" label={t("نام خانوادگی")} required={true} />
+					<Inputs name="lastName" type="text" label={t("auth.lastName")} required={true} />
 				</Col>
 				<Col xs={24} md={8}>
 					<Inputs name="email" type="email" label={t("auth.email")} required={true} />
 				</Col>
 				<Col xs={24} md={8}>
-					<Inputs name="uPassword" type="password" label={t("کلمه عبور")} required={true} />
+					<Inputs name="uPassword" type="password" label={t("auth.uPassword")} required={true} />
 				</Col>
 				<Col xs={24} md={8}>
-					<Inputs name="uPass" type="password" label={t("تکرار کلمه عبور")} required={true} />
+					<Inputs name="uPass" type="password" label={t("auth.uPass")} required={true} />
 				</Col>
 				<Col xs={24} md={24}>
 					<Row gutter={[8, 8]} align={"middle"}>
@@ -81,18 +81,23 @@ export default function AuthForm() {
 								showSearch
 								name="originCountryId"
 								options={countries}
-								label={"منطقه ( region )"}
+								label={t("auth.region")}
 								required={true}
 							/>
 						</Col>
 						<Col xs={24} md={8}>
-							<Inputs name="phoneNumber" type="text" label={t("شماره همراه")} required={true} />
+							<Inputs
+								name="phoneNumber"
+								type="text"
+								label={t("auth.phoneNumber")}
+								required={true}
+							/>
 						</Col>
 						<Col xs={24} md={8}>
 							<Selects
 								showSearch
 								name="phoneCoutryPrefixId"
-								label={"پیش شماره"}
+								label={t("auth.phonePrefix")}
 								options={telecomPrefix}
 								required={true}
 							/>
@@ -100,13 +105,13 @@ export default function AuthForm() {
 					</Row>
 				</Col>
 				<Col xs={24} md={8}>
-					<Selects name="genderTypeId" label={"جنسیت"} required={true} />
+					<Selects name="genderTypeId" label={t("auth.gender")} required={true} />
 				</Col>
 				<Col xs={{ span: 24 }} md={8} lg={80}>
 					<Buttons
 						htmlType="submit"
 						block={true}
-						content={t("ثبت نام")}
+						content={t("auth.registered")}
 						classes="mt-8"
 						loading={loading}
 					/>

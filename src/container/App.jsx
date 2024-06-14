@@ -10,36 +10,36 @@ import i18n from "../langs/i18n";
 import ContextApi from "context/ContextApi";
 // layout
 import { Loadings } from "components";
+import AuthLayout from "layout/AuthLayout";
 import MainLayout from "layout/MainLayout";
-import UserLayout from "layout/UserLayout";
 // pages
-import Authentication from "pages/main/auth";
+import HomePage from "pages/main/home";
 
 const authRoutes = {
 	path: "/auth",
-	element: <MainLayout />,
+	element: <AuthLayout />,
 	children: [
 		{
 			index: true,
 			id: "auth",
-			element: <Authentication />,
+			lazy: async () => ({ Component: (await import("../pages/main/auth/login")).default }),
 		},
 		{
 			path: "register",
 			id: "register",
-			lazy: async () => ({ Component: (await import("../pages/main/register")).default }),
+			lazy: async () => ({ Component: (await import("../pages/main/auth/register")).default }),
 		},
 	],
 };
 
 const mainRoutes = {
 	path: "/",
-	element: <UserLayout />,
+	element: <MainLayout />,
 	children: [
 		{
 			index: true,
-			id: "user",
-			lazy: async () => ({ Component: (await import("../pages/main/home")).default }),
+			id: "home",
+			element: <HomePage />,
 		},
 		{
 			path: "search",
@@ -58,7 +58,7 @@ const userRoutes = {};
 
 const adminRoutes = {};
 
-const router = createBrowserRouter([mainRoutes,authRoutes, userRoutes, adminRoutes]);
+const router = createBrowserRouter([mainRoutes, authRoutes, userRoutes, adminRoutes]);
 
 const persistor = persistStore(store);
 

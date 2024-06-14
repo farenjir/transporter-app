@@ -11,7 +11,7 @@ const CalenderDateRange = ({
 	extraClasses = "",
 	label = "",
 	placement = "",
-	name = "dateRange",
+	name = "datePicker",
 	size = "large",
 	initialValue,
 	required = false,

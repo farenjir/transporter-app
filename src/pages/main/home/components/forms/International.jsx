@@ -21,16 +21,16 @@ const International = () => {
 				<Col xs={24} md={12} lg={8}>
 					<TreeSelects
 						name="fromLocationId"
-						label={"مبدا"}
 						treeLine
 						required
 						dropdownStyle={{ direction: "ltr" }}
 						treeData={treeData}
 						onLoadData={onLoadData}
+						label={t("commonPages.source")}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مبدا ( کشور , شهر , فرودگاه )</span>
+								<span>{t("commonPages.sourceLabel")}</span>
 							</div>
 						}
 					/>
@@ -38,30 +38,29 @@ const International = () => {
 				<Col xs={24} md={12} lg={8}>
 					<TreeSelects
 						name="toLocationId"
-						label={"مقصد"}
 						treeLine
 						required
 						dropdownStyle={{ direction: "ltr" }}
 						treeData={treeData}
 						onLoadData={onLoadData}
+						label={t("commonPages.destination")}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
-								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span> مقصد ( کشور , شهر , فرودگاه )</span>
+								<span>{t("commonPages.destinationLabel")}</span>
 							</div>
 						}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<CalenderDateRange label={"تاریخ"} required={true} jalali={jalali} />
+					<CalenderDateRange label={t("commons.date")} required={true} jalali={jalali} />
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={12} lg={8}>
 					<InputType
 						name="fromLocationDesc"
-						placeholder={t("توضیحات مبدا")}
-						label={t("توضیحات مبدا")}
+						placeholder={t("home.fromLocationDesc")}
+						label={t("home.fromLocationDesc")}
 						required={true}
 						type={"textarea"}
 					/>
@@ -69,8 +68,8 @@ const International = () => {
 				<Col xs={24} md={12} lg={8}>
 					<InputType
 						name="toLocationDesc"
-						placeholder={t("توضیحات مقصد")}
-						label={t("توضیحات مقصد")}
+						placeholder={t("home.toLocationDesc")}
+						label={t("home.toLocationDesc")}
 						required={true}
 						type={"textarea"}
 					/>
@@ -80,8 +79,8 @@ const International = () => {
 				<Col xs={24} md={12} lg={2}>
 					<Selects
 						name="cargoWeightUnitIssueId"
-						placeholder={"مقیاس"}
-						label={"مقیاس"}
+						placeholder={t("home.unitIssue")}
+						label={t("home.unitIssue")}
 						options={enums["104"] || []}
 						initialValue={enums["104"]?.[1]?.id}
 					/>
@@ -90,17 +89,18 @@ const International = () => {
 					<InputType
 						type={"number"}
 						name="cargoWeight"
-						placeholder={t("وزن بسته")}
-						label="وزن"
+						placeholder={t("home.cargoWeight")}
+						label={t("home.cargoWeight")}
 						required={true}
+						initialValue={1}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
 					<InputType
 						type={"number"}
 						name="cargoItemNo"
-						placeholder={t("تعداد")}
-						label="تعداد"
+						placeholder={t("home.ItemNo")}
+						label={t("home.ItemNo")}
 						initialValue={1}
 						required={true}
 					/>
@@ -108,8 +108,8 @@ const International = () => {
 				<Col xs={24} md={12} lg={8}>
 					<Selects
 						name="cargoSize"
-						label={t("سایز بسته")}
-						placeholder={t("سایز بسته")}
+						placeholder={t("home.cargoSize")}
+						label={t("home.cargoSize")}
 						options={enums["107"] || []}
 						initialValue={enums["107"]?.[2]?.id}
 					/>
@@ -119,7 +119,7 @@ const International = () => {
 				<Col xs={24} md={12} lg={8}>
 					<Selects
 						name="priceIsNegotiable"
-						label={"قیمت"}
+						label={t("home.priceIs")}
 						onChange={onChangePriceType}
 						options={priceTypes}
 						initialValue={true}
@@ -130,8 +130,8 @@ const International = () => {
 						<Col xs={24} md={12} lg={8}>
 							<Selects
 								name="priceCurrencyTypeId"
-								placeholder={"واحد"}
-								label={"واحد"}
+								placeholder={t("home.currencyType")}
+								label={t("home.currencyType")}
 								options={enums["105"] || []}
 								initialValue={enums["105"]?.[2]?.id}
 							/>
@@ -140,8 +140,8 @@ const International = () => {
 							<InputType
 								type={"number"}
 								name="proposedPrice"
-								placeholder={t("قیمت پیشنهادی")}
-								label={t("قیمت پیشنهادی")}
+								placeholder={t("home.proposedPrice")}
+								label={t("home.proposedPrice")}
 								required={true}
 							/>
 						</Col>
@@ -152,8 +152,8 @@ const International = () => {
 				<Col xs={24} md={12} lg={8}>
 					<InputType
 						name="cargoDesc"
-						placeholder={t("توضیحات بسته")}
-						label="توضیحات بسته"
+						placeholder={t("home.cargoDesc")}
+						label={t("home.cargoDesc")}
 						required={true}
 						type={"textarea"}
 					/>
@@ -162,13 +162,13 @@ const International = () => {
 					<InputType
 						name="description"
 						type={"textarea"}
-						placeholder={t("توضیحات")}
-						label="توضیحات ( اختیاری )"
+						placeholder={t("home.description")}
+						label={t("home.uDescription")}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
 					<Buttons
-						content={t("ثبت درخواست ارسال")}
+						content={t("home.sendRequest")}
 						htmlType="submit"
 						classes="float-end mt-8"
 						loading={loading}

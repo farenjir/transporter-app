@@ -23,8 +23,8 @@ function RequestContextApi({ children }) {
 	const { countries, enums } = useSelector(baseSelector);
 	// options
 	const priceTypes = [
-		{ label: "توافقی", value: true },
-		{ label: "مقطوع", value: false },
+		{ label: t("commonPages.priceNegotiable"), value: true },
+		{ label: t("commonPages.priceNotNegotiable"), value: false },
 	];
 	// handles
 	const locationIdDetector = useCallback(
@@ -41,11 +41,12 @@ function RequestContextApi({ children }) {
 		setTreeData(updatedState);
 	};
 	const onSubmit = useCallback(async (formValues) => {
+		console.log(formValues);
 		setLoading(false);
-		const { requestType, dateRange, ...value } = formValues;
+		const { datePicker, ...value } = formValues;
 		let response = {};
-		switch (requestType) {
-			case "send":
+		switch (Array.isArray(datePicker)) {
+			case true:
 				response = await postRequestForCarrier(callApi, {
 					langType: 10,
 					requesterUserId: 0,
@@ -54,22 +55,21 @@ function RequestContextApi({ children }) {
 					imageId: 0,
 					fromCountryId: locationIdDetector(value.fromLocationId),
 					toCountryId: locationIdDetector(value.toLocationId),
-					from: dateToApi(dateRange[0]),
-					to: dateToApi(dateRange[1]),
+					from: dateToApi(datePicker[0]),
+					to: dateToApi(datePicker[1]),
 					...value,
 				});
 				break;
-			case "get":
+			case false:
 				response = await postCarrierAnnonce(callApi, {
 					langType: 10,
-					requesterUserId: 0,
+					carrierUserId: 0,
 					id: 0,
 					timeZoneId: 0,
-					imageId: 0,
+					matchStatusId: 0,
 					fromCountryId: locationIdDetector(value.fromLocationId),
 					toCountryId: locationIdDetector(value.toLocationId),
-					from: dateToApi(dateRange[0]),
-					to: dateToApi(dateRange[1]),
+					dateOfDeliver: dateToApi(datePicker),
 					...value,
 				});
 				break;
@@ -77,7 +77,7 @@ function RequestContextApi({ children }) {
 				break;
 		}
 		if (response?.result) {
-			form.resetFields()
+			form.resetFields();
 			notificationMaker(t("commons.success"), "success", t("messages.requestSuccess"));
 		} else {
 			notificationMaker(t("commons.error"), "error", t("messages.requestFailed"));

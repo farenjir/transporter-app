@@ -24,7 +24,7 @@ const useLanguage = () => {
 	let direction = language !== "fa" ? "ltr" : "rtl";
 	let placement = language !== "fa" ? "right" : "left";
 	let locale = language !== "fa" ? localeEn : localeFa;
-	let jalali = language !== "fa" ? false : true;
+	let jalali = language !== "fa" ? true : false;
 	// return
 	return { language, direction, locale, jalali, placement, changeLanguage };
 };
