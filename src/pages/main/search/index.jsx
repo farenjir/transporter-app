@@ -33,7 +33,8 @@ const SearchPage = () => {
 	const { enums } = useSelector(baseSelector);
 	// handles
 	const getPriceType = (priceCurrencyTypeId) => {
-		return enums?.["105"]?.find(({ id }) => id === priceCurrencyTypeId)?.label ?? "";
+		const priceTypes = enums?.["105"] || [];
+		return priceTypes?.find(({ id }) => id === priceCurrencyTypeId)?.label || "";
 	};
 	const onFinish = useCallback(
 		async (formValues) => {
