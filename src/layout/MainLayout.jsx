@@ -5,13 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { authSelector } from "store/selector";
 
-import {
-	SettingOutlined,
-	MenuOutlined,
-	RocketOutlined,
-	UserOutlined,
-	LogoutOutlined,
-} from "@ant-design/icons";
+import { SettingOutlined, MenuOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Skeleton, theme, Tooltip, Typography } from "antd";
 import { useAppContext } from "hooks";
 

@@ -1,9 +1,7 @@
 import { Icons, Tables } from "components";
 import { dateToLocale } from "utils/globals";
 
-// const dataIndexes = ["source", "destination", "date", "weight", "count", "description", "actions"];
-
-const AppTable = ({
+const HistoryList = ({
 	queries: { pgs = 5, pgn = 1 },
 	onChangeQueries,
 	content,
@@ -93,6 +91,7 @@ const AppTable = ({
 			columns={columns}
 			dataSource={content}
 			bordered
+			size="small"
 			onChange={onChangeTable}
 			loading={loading}
 			pagination={{
@@ -104,4 +103,5 @@ const AppTable = ({
 		/>
 	);
 };
-export default AppTable;
+
+export default HistoryList;

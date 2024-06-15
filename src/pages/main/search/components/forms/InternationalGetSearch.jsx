@@ -8,7 +8,7 @@ import { Buttons, CalenderDateRange, Icons, Selects } from "components";
 const InternationalGet = () => {
 	// hooks
 	const { t } = useTranslation();
-	const { loading, countries } = useContext(SearchContext);
+	const { loading, countries, jalali } = useContext(SearchContext);
 	// return
 	return (
 		<Spin spinning={loading}>
@@ -42,7 +42,7 @@ const InternationalGet = () => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={6}>
-					<CalenderDateRange label={t("commons.date")} />
+					<CalenderDateRange label={t("commons.date")} required={true} jalali={jalali} />
 				</Col>
 				<Col xs={24} md={12} lg={6} className="flex gap-2">
 					<Buttons
