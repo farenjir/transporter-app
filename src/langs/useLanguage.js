@@ -32,6 +32,7 @@ const useLanguage = () => {
 		changeLanguage();
 	}, []);
 	// configs
+	// configs
 	let configs = rtlLangs.includes(language)
 		? {
 			direction: "rtl",
@@ -56,7 +57,7 @@ const useLanguage = () => {
 		it: dateIt,
 	};
 	const buddhistLocale = {
-		...datePicker[language].lang,
+		...(datePicker[language]?.lang || {}),
 		// fieldDateFormat: 'BBBB-MM-DD',
 		// fieldDateTimeFormat: 'BBBB-MM-DD HH:mm:ss',
 		// yearFormat: 'BBBB',

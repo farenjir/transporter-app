@@ -42,7 +42,7 @@ const InternationalGet = () => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={6}>
-					<CalenderDateRange label={t("commons.date")} required={true} jalali={jalali} />
+					<CalenderDateRange label={t("commons.date")} jalali={jalali} />
 				</Col>
 				<Col xs={24} md={12} lg={6} className="flex gap-2">
 					<Buttons
