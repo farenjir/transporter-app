@@ -75,7 +75,7 @@ const MainLayout = () => {
 				<Link to={"/"}>
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
-				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
+				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-lg`}>
 					{loading ? (
 						<Skeleton active paragraph={{ rows: 1, width: 100 }} title={false} className="mx-1" />
 					) : user ? (
@@ -84,7 +84,7 @@ const MainLayout = () => {
 						</Tooltip>
 					) : (
 						<Link to={"/auth"} className="flex gap-1 items-center">
-							<span className="text-sm mx-1 pt-1"> {t("layouts.authToo")}</span>
+							<span className="!text-sm mx-1 pt-1"> {t("layouts.authToo")}</span>
 							<UserOutlined />
 						</Link>
 					)}

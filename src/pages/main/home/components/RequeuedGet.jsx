@@ -61,11 +61,12 @@ export default function RequeuedGet() {
 				classes="text-sm float-left mt-3"
 			/>
 			<CarouselModule
-				name="get-requested"
+				name="get-request"
+				className="pb-10 pt-5"
 				loading={loading}
 				swiperSliders={requested.map((cardGroups = [], idx) => (
-					<div className="pb-10 pt-5" key={`cardGroups-${idx}`}>
-						<section className="producer-sections flex flex-col md:flex-row justify-between align-middle items-center gap-8">
+					<div key={`cardGroups-${idx}`}>
+						<section className="get-sections flex flex-col md:flex-row justify-between align-middle items-center gap-4 lg:gap:8">
 							{cardGroups.map(
 								({
 									id,
