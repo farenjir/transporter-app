@@ -4,7 +4,7 @@ const Buttons = ({
 	loading = false,
 	disabled = false,
 	content,
-	type = "primary",
+	type = "primary", // dashed, default, link, text
 	htmlType = "button",
 	classes = "",
 	formClasses = "",

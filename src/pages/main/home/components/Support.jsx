@@ -17,7 +17,9 @@ const SupportSection = ({ background }) => {
 									height="46"
 								/>
 							</div>
-							<span className="text-body-md md:mr-2 text-grays-500">{t("home.support.auth")}</span>
+							<span className="text-body-md md:mr-2 text-grays-500">
+								{t("home.support.auth")}
+							</span>
 						</div>
 					</div>
 				</span>
@@ -33,7 +35,9 @@ const SupportSection = ({ background }) => {
 									height="46"
 								/>
 							</div>
-							<span className="text-body-md md:mr-2 text-grays-500">{t("home.support.garanty")}</span>
+							<span className="text-body-md md:mr-2 text-grays-500">
+								{t("home.support.garanty")}
+							</span>
 						</div>
 					</div>
 				</span>
@@ -49,7 +53,9 @@ const SupportSection = ({ background }) => {
 									height="46"
 								/>
 							</div>
-							<span className="text-body-md md:mr-2 text-grays-500">{t("home.support.safe")}</span>
+							<span className="text-body-md md:mr-2 text-grays-500">
+								{t("home.support.safe")}
+							</span>
 						</div>
 					</div>
 				</span>
@@ -65,7 +71,9 @@ const SupportSection = ({ background }) => {
 									height="46"
 								/>
 							</div>
-							<span className="text-body-md md:mr-2 text-grays-500">{t("home.support.fast")}</span>
+							<span className="text-body-md md:mr-2 text-grays-500">
+								{t("home.support.fast")}
+							</span>
 						</div>
 					</div>
 				</span>

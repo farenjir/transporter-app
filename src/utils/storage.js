@@ -52,7 +52,7 @@ export const getFromCookie = (key = "") => {
 	try {
 		const value = cookie.get(key);
 		if (value) {
-			return value
+			return value;
 		}
 	} catch {
 		return null;

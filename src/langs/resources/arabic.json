@@ -1,163 +1,163 @@
 {
-  "schemas": {
-    "required": "هذه الخانة مطلوبه",
-    "mobile": "أدخل رقم الجوال بشكل صحيح"
-  },
-  "commons": {
-    "status": "حالة",
-    "save": "محل",
-    "edit": "يحرر",
-    "delete": "يمسح",
-    "info": "معلومة",
-    "active": "نشيط",
-    "deActive": "غير نشط",
-    "accept": "صالحة",
-    "notAccept": "غير صالح",
-    "success": "ناجح",
-    "error": "خطأ",
-    "search": "يبحث",
-    "reset": "إعادة ضبط",
-    "date": "تاريخ",
-    "contentView": "عرض المعلومات",
-    "viewAll": "عرض الكل "
-  },
-  "messages": {
-    "noAccess": " ... التحقق من مستوى الوصول",
-    "loading": "انتظر من فضلك",
-    "delete": "هل تحذف ( {{name}} هل أنت متأكد؟",
-    "deleteDes": "هذا {{name}} سيتم إزالته من النظام إلى الأبد.",
-    "pageNotFound": "الصفحة المطلوبة لا يمكن العثور عليه !",
-    "goBack": "العودة إلى الصفحة الرئيسية",
-    "requestSuccess": "لقد تم إكمال طلبك بنجاح",
-    "requestFailed": "لم تتم معالجة طلبك بنجاح"
-  },
-  "notification": {
-    "success": "تمت المهمة",
-    "error": "لم يتم تنفيذ العملية بشكل صحيح",
-    "password": "كلمة المرور ليست مثل تكرارها"
-  },
-  "header": {
-    "auth": "الدخول التسجيل فى الموقع",
-    "contactUs": "اتصل بنا"
-  },
-  "layouts": {
-    "drawerTitle": "إعدادات",
-    "theme": "غلاف الموقع:",
-    "mode": "حالة الموقع:",
-    "language": "لغة الموقع:",
-    "light": "ساطع",
-    "dark": "مظلم",
-    "fontSize": "نطاق الموقع:",
-    "fontDefault": "طبيعي",
-    "fontSmall": "قليل",
-    "version": "نسخة الموقع:",
-    "versionNumber": "0.9.1",
-    "sidebar": {
-      "menu": "قائمة طعام",
-      "home": "الصفحة الرئيسية",
-      "orders": "سجلات التطبيق",
-      "send": "يُقدِّم",
-      "get": "يستلم",
-      "search": "يبحث"
-    },
-    "footer": {
-      "copyWrite": "جميع حقوق هذا الموقع تنتمي إلى المجموعة"
-    }
-  },
-  "upload": {
-    "nationalCard": "تحميل البطاقة الوطنية وشهادة الميلاد",
-    "uploadHint": "يجب تحميل الملفات ذات امتداد jpg أو png وبحد أقصى 5 ميجابايت فقط."
-  },
-  "commonPages": {
-    "source": "أصل",
-    "sourceLabel": "الأصل (البلد، المدينة، المطار)",
-    "destination": "وجهة",
-    "destinationLabel": "الوجهة (البلد، المدينة، المطار)",
-    "priceNegotiable": "إتفاق",
-    "priceNotNegotiable": "قطع"
-  },
-  "auth": {
-    "login": "تسجيل الدخول",
-    "ifLogin": "أدخل النظام.",
-    "ifRegistered": "إذا كان لديك حساب ",
-    "registered": "يسجل",
-    "firstName": "اسم",
-    "lastName": "اسم العائلة",
-    "uPassword": "كلمة المرور",
-    "uPass": "اعد كلمة السر",
-    "region": "منطقة",
-    "email": "بريد إلكتروني",
-    "gender": "جنس",
-    "phoneNumber": "رقم الهاتف المحمول",
-    "phonePrefix": "رمز المنطقة",
-    "title": "تسجيل الدخول",
-    "register": "إنشاء حساب.",
-    "needSignUp": "انا بحاجة الى حساب",
-    "remember": "تذكير تسجيل الدخول",
-    "signUp": "إنشاء حساب",
-    "accountInfo": "تسجيل معلومات المستخدم",
-    "registerForm": "إستمارة تسجيل",
-    "username": "اسم المستخدم (البريد الإلكتروني أو رقم الهاتف المحمول)",
-    "emailDes": "تم إرسال رابط التحقق من حساب البريد الإلكتروني إليك",
-    "checkEmail": "تحقق من بريدك الالكتروني",
-    "cpId": "رمز المنطقة",
-    "pNumber": "رقم الهاتف المحمول",
-    "failed": "رقم الجوال غير متوفر في النظام",
-    "successRegister": "تم التسجيل بنجاح",
-    "successLogin": "تسجيل الدخول إلى الحساب",
-    "description": "للدخول إلى النظام، أدخل بريدك الإلكتروني أو رقم هاتفك المحمول مع كلمة المرور، وإذا لزم الأمر، يمكنك ذلك "
-  },
-  "home": {
-    "get": "تلقي الطلب",
-    "getAll": "تلقي الطلبات",
-    "send": "ارسل طلب",
-    "sendAll": "إرسال الطلبات",
-    "International": "رحلة دولية",
-    "Domestic": "رحلة داخلية",
-    "fromLocationDesc": "وصف المنشأ",
-    "toLocationDesc": "وصف الوجهة",
-    "unitIssue": "حجم",
-    "cargoWeight": "وزن الحقيبة، وزن الحمولة",
-    "ItemNo": "رقم",
-    "cargoSize": "حجم مغلق",
-    "priceIs": "سعر",
-    "currencyType": "الوحدة",
-    "proposedPrice": "السعر المقترح",
-    "cargoDesc": "وصف الحزمة",
-    "description": "وصف",
-    "uDescription": "وصف (اختياري)",
-    "sendRequest": "تقديم طلب",
-    "getRequest": "تسجيل طلب الاستلام",
-    "cargoMax": "الحد الأقصى لوزن الحزمة",
-    "cargoMaxSize": "الحد الأقصى لحجم الحزمة",
-    "cards": {
-      "sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) ل {{toCountryName}} ( {{toLocationName}} )",
-      "priceIsNegotiable": "إتفاق",
-      "price": "سعر : {{price}} {{label}}",
-      "weight": "مواصفات الحزمة:",
-      "weightDes": "وزن : {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - رقم : {{cargoItemNo}} - مقاس: {{cargoSize}}",
-      "dateFrom": "تاريخ المنشأ (الاستلام): {{from}}",
-      "dateTo": "تاريخ الوجهة (التسليم): {{to}}"
-    },
-    "support": {
-      "auth": "المصادقة",
-      "garanty": "تأمين حزمة الشحن",
-      "safe": "شحن آمن",
-      "fast": "تسليم سريع للحزمة"
-    }
-  },
-  "search": {
-    "search": "طلبات البحث المتقدم",
-    "get": "تلقي الطلبات",
-    "send": "إرسال الطلبات",
-    "International": "رحلة دولية",
-    "topTitle": "يمكنك العثور على طلبك في هذا القسم",
-    "Domestic": "رحلة داخلية",
-    "support": {
-      "auth": "مصادقة المستخدم",
-      "garanty": "تأمين حزمة الشحن",
-      "safe": "شحن آمن",
-      "fast": "تسليم سريع للحزمة"
-    }
-  }
+	"schemas": {
+		"required": "هذه الخانة مطلوبه",
+		"mobile": "أدخل رقم الجوال بشكل صحيح"
+	},
+	"commons": {
+		"status": "حالة",
+		"save": "محل",
+		"edit": "يحرر",
+		"delete": "يمسح",
+		"info": "معلومة",
+		"active": "نشيط",
+		"deActive": "غير نشط",
+		"accept": "صالحة",
+		"notAccept": "غير صالح",
+		"success": "ناجح",
+		"error": "خطأ",
+		"search": "يبحث",
+		"reset": "إعادة ضبط",
+		"date": "تاريخ",
+		"contentView": "عرض المعلومات",
+		"viewAll": "عرض الكل "
+	},
+	"messages": {
+		"noAccess": " ... التحقق من مستوى الوصول",
+		"loading": "انتظر من فضلك",
+		"delete": "هل تحذف ( {{name}} هل أنت متأكد؟",
+		"deleteDes": "هذا {{name}} سيتم إزالته من النظام إلى الأبد.",
+		"pageNotFound": "الصفحة المطلوبة لا يمكن العثور عليه !",
+		"goBack": "العودة إلى الصفحة الرئيسية",
+		"requestSuccess": "لقد تم إكمال طلبك بنجاح",
+		"requestFailed": "لم تتم معالجة طلبك بنجاح"
+	},
+	"notification": {
+		"success": "تمت المهمة",
+		"error": "لم يتم تنفيذ العملية بشكل صحيح",
+		"password": "كلمة المرور ليست مثل تكرارها"
+	},
+	"header": {
+		"auth": "الدخول التسجيل فى الموقع",
+		"contactUs": "اتصل بنا"
+	},
+	"layouts": {
+		"drawerTitle": "إعدادات",
+		"theme": "غلاف الموقع:",
+		"mode": "حالة الموقع:",
+		"language": "لغة الموقع:",
+		"light": "ساطع",
+		"dark": "مظلم",
+		"fontSize": "نطاق الموقع:",
+		"fontDefault": "طبيعي",
+		"fontSmall": "قليل",
+		"version": "نسخة الموقع:",
+		"versionNumber": "0.9.1",
+		"sidebar": {
+			"menu": "قائمة طعام",
+			"home": "الصفحة الرئيسية",
+			"orders": "سجلات التطبيق",
+			"send": "يُقدِّم",
+			"get": "يستلم",
+			"search": "يبحث"
+		},
+		"footer": {
+			"copyWrite": "جميع حقوق هذا الموقع تنتمي إلى المجموعة"
+		}
+	},
+	"upload": {
+		"nationalCard": "تحميل البطاقة الوطنية وشهادة الميلاد",
+		"uploadHint": "يجب تحميل الملفات ذات امتداد jpg أو png وبحد أقصى 5 ميجابايت فقط."
+	},
+	"commonPages": {
+		"source": "أصل",
+		"sourceLabel": "الأصل (البلد، المدينة، المطار)",
+		"destination": "وجهة",
+		"destinationLabel": "الوجهة (البلد، المدينة، المطار)",
+		"priceNegotiable": "إتفاق",
+		"priceNotNegotiable": "قطع"
+	},
+	"auth": {
+		"login": "تسجيل الدخول",
+		"ifLogin": "أدخل النظام.",
+		"ifRegistered": "إذا كان لديك حساب ",
+		"registered": "يسجل",
+		"firstName": "اسم",
+		"lastName": "اسم العائلة",
+		"uPassword": "كلمة المرور",
+		"uPass": "اعد كلمة السر",
+		"region": "منطقة",
+		"email": "بريد إلكتروني",
+		"gender": "جنس",
+		"phoneNumber": "رقم الهاتف المحمول",
+		"phonePrefix": "رمز المنطقة",
+		"title": "تسجيل الدخول",
+		"register": "إنشاء حساب.",
+		"needSignUp": "انا بحاجة الى حساب",
+		"remember": "تذكير تسجيل الدخول",
+		"signUp": "إنشاء حساب",
+		"accountInfo": "تسجيل معلومات المستخدم",
+		"registerForm": "إستمارة تسجيل",
+		"username": "اسم المستخدم (البريد الإلكتروني أو رقم الهاتف المحمول)",
+		"emailDes": "تم إرسال رابط التحقق من حساب البريد الإلكتروني إليك",
+		"checkEmail": "تحقق من بريدك الالكتروني",
+		"cpId": "رمز المنطقة",
+		"pNumber": "رقم الهاتف المحمول",
+		"failed": "رقم الجوال غير متوفر في النظام",
+		"successRegister": "تم التسجيل بنجاح",
+		"successLogin": "تسجيل الدخول إلى الحساب",
+		"description": "للدخول إلى النظام، أدخل بريدك الإلكتروني أو رقم هاتفك المحمول مع كلمة المرور، وإذا لزم الأمر، يمكنك ذلك "
+	},
+	"home": {
+		"get": "تلقي الطلب",
+		"getAll": "تلقي الطلبات",
+		"send": "ارسل طلب",
+		"sendAll": "إرسال الطلبات",
+		"International": "رحلة دولية",
+		"Domestic": "رحلة داخلية",
+		"fromLocationDesc": "وصف المنشأ",
+		"toLocationDesc": "وصف الوجهة",
+		"unitIssue": "حجم",
+		"cargoWeight": "وزن الحقيبة، وزن الحمولة",
+		"ItemNo": "رقم",
+		"cargoSize": "حجم مغلق",
+		"priceIs": "سعر",
+		"currencyType": "الوحدة",
+		"proposedPrice": "السعر المقترح",
+		"cargoDesc": "وصف الحزمة",
+		"description": "وصف",
+		"uDescription": "وصف (اختياري)",
+		"sendRequest": "تقديم طلب",
+		"getRequest": "تسجيل طلب الاستلام",
+		"cargoMax": "الحد الأقصى لوزن الحزمة",
+		"cargoMaxSize": "الحد الأقصى لحجم الحزمة",
+		"cards": {
+			"sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) ل {{toCountryName}} ( {{toLocationName}} )",
+			"priceIsNegotiable": "إتفاق",
+			"price": "سعر : {{price}} {{label}}",
+			"weight": "مواصفات الحزمة:",
+			"weightDes": "وزن : {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - رقم : {{cargoItemNo}} - مقاس: {{cargoSize}}",
+			"dateFrom": "تاريخ المنشأ (الاستلام): {{from}}",
+			"dateTo": "تاريخ الوجهة (التسليم): {{to}}"
+		},
+		"support": {
+			"auth": "المصادقة",
+			"garanty": "تأمين حزمة الشحن",
+			"safe": "شحن آمن",
+			"fast": "تسليم سريع للحزمة"
+		}
+	},
+	"search": {
+		"search": "طلبات البحث المتقدم",
+		"get": "تلقي الطلبات",
+		"send": "إرسال الطلبات",
+		"International": "رحلة دولية",
+		"topTitle": "يمكنك العثور على طلبك في هذا القسم",
+		"Domestic": "رحلة داخلية",
+		"support": {
+			"auth": "مصادقة المستخدم",
+			"garanty": "تأمين حزمة الشحن",
+			"safe": "شحن آمن",
+			"fast": "تسليم سريع للحزمة"
+		}
+	}
 }

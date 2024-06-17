@@ -9,7 +9,7 @@ import { authReducer } from "./auth";
 import { basesReducer } from "./base";
 
 // eslint-disable-next-line no-undef
-const isNotProduction = process.env.NODE_ENV !== "production"
+const isNotProduction = process.env.NODE_ENV !== "production";
 
 const additionalMiddleware = [];
 if (isNotProduction) {
@@ -35,5 +35,3 @@ export default configureStore({
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(additionalMiddleware),
 	devTools: isNotProduction,
 });
-
-

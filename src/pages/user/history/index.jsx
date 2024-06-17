@@ -38,7 +38,7 @@ const SearchPage = () => {
 		} else {
 			data = await getMyCarrierRequest(callApi, queries);
 		}
-		if (data?.content?.length) {
+		if (data?.content) {
 			setDataSource(data);
 		}
 		setLoading(false);
@@ -60,28 +60,22 @@ const SearchPage = () => {
 	}, [getDataSource]);
 	// return
 	return (
-		<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-			<div className="producer-title text-center mt-5">
-				<h2 className="text-xl md:text-3xl">{t("history.request")}</h2>
-				<p className="my-1 text-slate-400 text-xs p-2 md:text-base">{t("history.topTitle")}</p>
-			</div>
-			<section
-				className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
-				style={{ background: token?.colorBgBase }}
-			>
-				<RadioGroup
-					disabled={loading}
-					plainOptions={requestType}
-					name="requestType"
-					initialValue={activeType}
-					required={true}
-					onChange={onChangeType}
-				/>
-				<HistoryList
-					{...{ content, totalElements, totalPages, activeType, onChangeQueries, queries, loading }}
-				/>
-			</section>
-		</div>
+		<section
+			className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
+			style={{ background: token?.colorBgBase }}
+		>
+			<RadioGroup
+				disabled={loading}
+				plainOptions={requestType}
+				name="requestType"
+				initialValue={activeType}
+				required={true}
+				onChange={onChangeType}
+			/>
+			<HistoryList
+				{...{ content, totalElements, totalPages, activeType, onChangeQueries, queries, loading }}
+			/>
+		</section>
 	);
 };
 

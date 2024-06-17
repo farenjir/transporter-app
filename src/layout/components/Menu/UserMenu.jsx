@@ -1,29 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-	AppstoreOutlined,
-	CustomerServiceOutlined,
-	FileDoneOutlined,
-	IdcardOutlined,
-	InfoCircleOutlined,
-	SolutionOutlined,
-	UserOutlined,
-} from "@ant-design/icons";
-import { Menu, theme } from "antd";
+import { Menu } from "antd";
+
+import { FileDoneOutlined, IdcardOutlined } from "@ant-design/icons";
 import ProfileCard from "../Card/Profile";
 
-const UserMenu = () => {
-	const { token } = theme.useToken();
-	const items = [{ label: "سوابق درخواست ها", icon: UserOutlined, path: "/user/history" }];
+const UserMenu = ({ user = {} }) => {
+	const items = [
+		{ label: "مشخصات من", icon: IdcardOutlined, path: "/user" },
+		{ label: "سوابق درخواست ها", icon: FileDoneOutlined, path: "/user/history" },
+	];
 	// option
 	const [defaultSelectedKeys] = items;
 	// return
 	return (
 		<>
-			<ProfileCard />
+			<ProfileCard {...(user || {})} />
 			<Menu
-				// style={{ background: token?.colorPrimaryLighter }}
-				className="max-w-96 bg-transparent"
+				className="max-w-screen-sm bg-transparent"
 				defaultSelectedKeys={defaultSelectedKeys.label}
 				mode="inline"
 			>

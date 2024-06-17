@@ -34,7 +34,11 @@ const BlogCard = ({ id, imgUrl = "", title = "", description = "", flexRow = fal
 				</Col>
 			</Row>
 		) : (
-			<Card key={`blog-${id}`} hoverable cover={<img alt={`cover-${id}`} src={imgUrl} className="h-40" />}>
+			<Card
+				key={`blog-${id}`}
+				hoverable
+				cover={<img alt={`cover-${id}`} src={imgUrl} className="h-40" />}
+			>
 				<Card.Meta title={title} description={description} />
 				<Buttons
 					content={

@@ -18,7 +18,7 @@ const CalenderDateRange = ({
 	allowClear = false,
 	format = "YYYY/MM/DD",
 	locale = i18next.language,
-	jalali = true,
+	jalali,
 }) => {
 	const { t } = useTranslation();
 	const rules = [

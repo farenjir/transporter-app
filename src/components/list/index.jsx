@@ -31,7 +31,9 @@ const ListModule = ({
 			align,
 		}}
 		rowKey={({ key }, idx) => `list-item${key || idx}`}
-		renderItem={({ content, key }, idx) => <List.Item key={`list-item${key || idx}`}>{content}</List.Item>}
+		renderItem={({ content, key }, idx) => (
+			<List.Item key={`list-item${key || idx}`}>{content}</List.Item>
+		)}
 	/>
 );
 export default ListModule;

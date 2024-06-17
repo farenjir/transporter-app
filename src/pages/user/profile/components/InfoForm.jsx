@@ -1,62 +1,79 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form, Typography, Row, Col, theme } from "antd";
 
-import { useSelector } from "react-redux";
-import { baseSelector } from "store/selector";
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector, baseSelector } from "store/selector";
 
 import { useAppContext } from "hooks";
 import { notificationMaker } from "utils/notification";
 
-import { userRegister } from "service/main";
+import { userUpdate } from "service/main";
 import { Buttons, Inputs, Selects } from "components";
+import { getCurrentUser } from "store/auth/action";
 
-const { Paragraph, Title } = Typography;
+const { Title } = Typography;
 
-export default function AuthForm() {
+export default function InfoForm() {
 	const [loading, setLoading] = useState(false);
+	const [activePass, setActivePass] = useState(false);
+	const [activeBtn, setActiveBtn] = useState(false);
 	// options
+	const { user } = useSelector(authSelector);
 	const { countries = [], enums = [] } = useSelector(baseSelector);
 	const telecomPrefix = countries.map(({ telecomPrefix: value, nameAndTelPrefix: label }) => ({
 		value,
 		label,
 	}));
 	// hooks
-	let navigate = useNavigate();
+	const dispatch = useDispatch();
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
 	const [form] = Form.useForm();
 	const { callApi, direction } = useAppContext();
 	// handles
-	const onSubmit = async ({ uPass, ...values }) => {
+	const onSubmit = async ({ uPass = null, ...values }, userId) => {
 		if (values.uPassword !== uPass) {
 			return notificationMaker(t("commons.error"), "error", t("notification.password"));
 		}
 		setLoading(true);
-		const response = await userRegister(callApi, values);
+		const response = await userUpdate(callApi, { ...values, id: userId });
 		if (response?.result) {
-			navigate("/auth", { replace: true });
-			notificationMaker(t("commons.success"), "success", t("auth.successRegister"));
+			notificationMaker(t("commons.success"), "success", t("user.successRegister"));
+			dispatch(getCurrentUser({ callApi, updateUser: true }));
 		} else {
 			notificationMaker(t("commons.error"), "error", t("notification.error"));
 			setLoading(false);
 		}
 	};
+	const onChangeOldPass = (event) => {
+		if (event.target.value?.length >= 8) {
+			setActivePass(true);
+		} else {
+			setActivePass(false);
+		}
+	};
+	const onValuesChange = () => {
+		setActiveBtn(true);
+	};
+	const onReset = () => {
+		setActiveBtn(false);
+		setActivePass(false);
+	};
 	return (
-		<Form onFinish={onSubmit} dir={direction} layout="vertical" form={form}>
+		<Form
+			onFinish={(V) => onSubmit(V, user?.id)}
+			dir={direction}
+			layout="vertical"
+			form={form}
+			initialValues={user}
+			onValuesChange={onValuesChange}
+			onReset={onReset}
+		>
 			<div className="mb-7">
 				<Title level={3} className="text-2xl font-extrabold" style={{ color: token?.colorPrimary }}>
-					{t("auth.registered")}
+					{t("user.profile")}
 				</Title>
-				<Paragraph className="text-xs mt-4">
-					{t("auth.ifRegistered")}
-					<strong className="text-blue-500 cursor-pointer text-base">
-						<Link to={"/auth"} style={{ color: token?.colorPrimary }}>
-							{t("auth.ifLogin")}
-						</Link>
-					</strong>
-				</Paragraph>
 			</div>
 			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={8}>
@@ -69,10 +86,30 @@ export default function AuthForm() {
 					<Inputs name="email" type="email" label={t("auth.email")} required={true} />
 				</Col>
 				<Col xs={24} md={8}>
-					<Inputs name="uPassword" type="password" label={t("auth.uPassword")} required={true} />
+					<Inputs
+						name="oldPass"
+						type="password"
+						label={t("user.oldPass")}
+						onChange={onChangeOldPass}
+					/>
 				</Col>
 				<Col xs={24} md={8}>
-					<Inputs name="uPass" type="password" label={t("auth.uPass")} required={true} />
+					<Inputs
+						name="uPassword"
+						type="password"
+						label={t("user.newPass")}
+						required={activePass}
+						disabled={!activePass}
+					/>
+				</Col>
+				<Col xs={24} md={8}>
+					<Inputs
+						name="uPass"
+						type="password"
+						label={t("auth.uPass")}
+						required={activePass}
+						disabled={!activePass}
+					/>
 				</Col>
 				<Col xs={24} md={24}>
 					<Row gutter={[8, 8]} align={"middle"}>
@@ -114,11 +151,22 @@ export default function AuthForm() {
 				</Col>
 				<Col xs={24} md={8}>
 					<Buttons
-						htmlType="submit"
+						type="dashed"
+						htmlType="reset"
 						block={true}
-						content={t("auth.registered")}
+						content={t("commons.reset")}
 						classes="mt-8"
 						loading={loading}
+					/>
+				</Col>
+				<Col xs={24} md={8}>
+					<Buttons
+						htmlType="submit"
+						block={true}
+						content={t("commons.update")}
+						classes="mt-8"
+						loading={loading}
+						disabled={!activeBtn}
 					/>
 				</Col>
 			</Row>

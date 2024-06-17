@@ -9,7 +9,7 @@ import utc from "dayjs/plugin/utc";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import buddhistEra from "dayjs/plugin/buddhistEra";
 
-import jalali from 'jalali-dayjs'
+import jalali from "jalali-dayjs";
 
 import { langConfigs } from "langs/configs";
 

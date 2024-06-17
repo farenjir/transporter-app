@@ -1,18 +1,9 @@
-import { useTranslation } from "react-i18next";
+import InfoForm from "./components/InfoForm";
 
-import { theme } from "antd";
+const RegisterPage = () => (
+	<div className="w-2/3">
+		<InfoForm />
+	</div>
+);
 
-const SearchPage = () => {
-	// hooks
-	const { t } = useTranslation();
-	const { token } = theme.useToken();
-	// handles
-	// return
-	return (
-		<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-			<center></center>
-		</div>
-	);
-};
-
-export default SearchPage;
+export default RegisterPage;

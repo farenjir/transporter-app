@@ -32,10 +32,12 @@ export const getEnums = createAsyncThunk("app/enums", async ({ callApi, lngTypeI
 		bases: { enums },
 	} = getState();
 	if (Object.keys(enums)?.length === enumTypes?.length) return enums;
-	const enumsArray = await Promise.all(enumTypes.map(async (type) => await getBasicEnums(callApi, type, lngTypeId)));
-	const enumsWithType = {}
+	const enumsArray = await Promise.all(
+		enumTypes.map(async (type) => await getBasicEnums(callApi, type, lngTypeId)),
+	);
+	const enumsWithType = {};
 	enumTypes.forEach((typeId, idx) => {
-		enumsWithType[typeId] = enumsArray[idx]
-	})
+		enumsWithType[typeId] = enumsArray[idx];
+	});
 	return enumsWithType;
 });

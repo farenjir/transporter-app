@@ -27,6 +27,23 @@ export const enumsTransformData = (arrayData) => {
 	return data;
 };
 
+export const userDataTransformData = (userData = {}) => {
+	return {
+		id: userData?.id || 0,
+		isVerified: true,
+		registerDate: null,
+		roleTypeId: 0,
+		firstName: userData.firstName,
+		lastName: userData.lastName,
+		uPassword: userData.uPassword,
+		email: userData.email,
+		phoneNumber: userData.phoneNumber,
+		originCountryId: userData.originCountryId,
+		genderTypeId: userData.genderTypeId,
+		phoneCoutryPrefixId: userData.phoneCoutryPrefixId ?? 98,
+	};
+};
+
 export const requestCarrierTransformData = (formValues = {}) => {
 	return {
 		id: formValues.id,

@@ -3,7 +3,15 @@ import dayjs from "dayjs";
 import { localeList, timeZones } from "langs/configs";
 
 // *** export handles
-export { dateToGeo, dateToApi, dateTransformer, dateToLocale, dateToInitializeOnForm, uIdMaker, transformerAppData };
+export {
+	dateToGeo,
+	dateToApi,
+	dateTransformer,
+	dateToLocale,
+	dateToInitializeOnForm,
+	uIdMaker,
+	transformerAppData,
+};
 
 // ***
 const dateToGeo = (year, month, day, language = i18next.language) => {
@@ -32,7 +40,7 @@ const dateToLocale = (
 		return new Date(date).toLocaleString(localeList[locale], {
 			timeZone: timeZones[locale],
 			...options,
-		})
+		});
 	} else {
 		return null;
 	}
@@ -40,7 +48,7 @@ const dateToLocale = (
 
 const dateTransformer = (date, jalali = true, locale = i18next.language, format = "YYYY/MM/DD") => {
 	if (date) {
-		return dayjs(date, { jalali }).locale(locale).format(format)
+		return dayjs(date, { jalali }).locale(locale).format(format);
 	} else {
 		return null;
 	}

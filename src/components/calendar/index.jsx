@@ -20,7 +20,7 @@ const Calendars = ({
 	showNow = false,
 	allowClear = false,
 	locale = i18next.language,
-	jalali = true,
+	jalali,
 }) => {
 	const { t } = useTranslation();
 	const rules = [

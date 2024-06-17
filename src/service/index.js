@@ -2,8 +2,7 @@ import axios from "axios";
 
 import { getFromCookie } from "../utils/storage";
 
-// eslint-disable-next-line no-undef
-const baseURL = import.meta.env.VITE_BACKEND_SERVER
+const baseURL = import.meta.env.VITE_BACKEND_SERVER;
 // create axiosInstance
 const axiosInstance = axios.create({
 	baseURL,

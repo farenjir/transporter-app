@@ -8,7 +8,11 @@ const Icons = ({ title = "", type, classes = "", onClick, ...props }) => {
 	return (
 		<span className="app-icon">
 			<Tooltip title={title} color="grey">
-				<Icon className={`${classes} ${onClick ? "cursor-pointer" : ""}`} onClick={onClick} {...props} />
+				<Icon
+					className={`${classes} ${onClick ? "cursor-pointer" : ""}`}
+					onClick={onClick}
+					{...props}
+				/>
 			</Tooltip>
 		</span>
 	);

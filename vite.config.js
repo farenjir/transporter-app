@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
 import react from "@vitejs/plugin-react-swc";
-import basicSsl from '@vitejs/plugin-basic-ssl'
+import basicSsl from "@vitejs/plugin-basic-ssl";
 import jsconfigPaths from "vite-jsconfig-paths";
 
 import { VitePWA } from "vite-plugin-pwa";
@@ -17,9 +17,9 @@ export default defineConfig({
 		// https://www.npmjs.com/package/@vitejs/plugin-basic-ssl
 		basicSsl({
 			/** name of certification */
-			name: 'dev',
+			name: "dev",
 			/** custom trust domains */
-			domains: ['*'],
+			domains: ["*"],
 			/** custom certification directory */
 			// certDir: '/Users/.../.devServer/cert'
 		}),

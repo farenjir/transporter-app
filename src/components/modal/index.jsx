@@ -15,7 +15,7 @@ const Modals = ({
 	footer = null,
 	reference,
 	content = null,
-	closeIcon = <CloseCircleOutlined className="text-2xl"/>,
+	closeIcon = <CloseCircleOutlined className="text-2xl" />,
 }) => {
 	const [open, setOpen] = useState(false);
 	// hooks

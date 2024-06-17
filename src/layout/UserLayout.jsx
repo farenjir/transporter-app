@@ -74,17 +74,19 @@ const UserLayout = () => {
 					/>
 				</div>
 			</Header>
-			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">
+			<Content style={{ background: token?.colorPrimaryLighter }}>
 				{/* children */}
 				{loading ? (
 					<Spin spinning fullscreen tip={t("messages.noAccess")} size="large" />
 				) : user ? (
-					<Row gutter={[8, 8]}>
+					<Row gutter={[8, 8]} className="pt-5 px-3 md:px-5">
 						<Col xs={24} md={6} lg={4}>
-							<UserMenu />
+							<UserMenu user={user} />
 						</Col>
 						<Col xs={24} md={18} lg={20}>
-							<Outlet key={"user-layout"} />
+							<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+								<Outlet key={"user-layout"} />
+							</div>
 						</Col>
 					</Row>
 				) : (

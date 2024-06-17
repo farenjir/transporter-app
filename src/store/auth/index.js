@@ -14,8 +14,8 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		clearUser: (state) => {
-			removeFromCookie(TOKEN_NAME)
-			state.user = null
+			removeFromCookie(TOKEN_NAME);
+			state.user = null;
 		},
 	},
 	extraReducers: (builder) => {
@@ -29,11 +29,16 @@ const authSlice = createSlice({
 				state.loading = false;
 			})
 			.addCase(getCurrentUser.fulfilled, (state, action) => {
-				const { firstName, lastName, ...info } = action.payload || {}
-				state.user = action.payload ? { fullName: `${firstName} ${lastName}`, lastName, firstName, ...info } : null
+				const { firstName, lastName, ...info } = action.payload || {};
+				state.user = action.payload
+					? { fullName: `${firstName} ${lastName}`, lastName, firstName, ...info }
+					: null;
 				state.loading = false;
-			})
+			});
 	},
 });
 
-export const { reducer: authReducer, actions: { clearUser } } = authSlice;
+export const {
+	reducer: authReducer,
+	actions: { clearUser },
+} = authSlice;

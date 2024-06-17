@@ -55,6 +55,7 @@ function ContextApi({ children }) {
 			}}
 		>
 			<ConfigProvider
+				// locale={{ ...locale, DatePicker: dateConfigs }}
 				locale={locale}
 				direction={direction}
 				theme={{
