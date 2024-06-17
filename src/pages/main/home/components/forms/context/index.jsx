@@ -40,8 +40,7 @@ function RequestContextApi({ children }) {
 		const updatedState = treeData.concat(locations);
 		setTreeData(updatedState);
 	};
-	const onSubmit = useCallback(async (formValues) => {
-		console.log(formValues);
+	const onSubmit = async (formValues) => {
 		setLoading(false);
 		const { datePicker, ...value } = formValues;
 		let response = {};
@@ -83,7 +82,7 @@ function RequestContextApi({ children }) {
 			notificationMaker(t("commons.error"), "error", t("messages.requestFailed"));
 		}
 		setLoading(false);
-	}, []);
+	};
 	// init
 	useEffect(() => {
 		setTreeData(countries);

@@ -5,18 +5,17 @@ import { Col, Row } from "antd";
 import { RequestContext } from "./context";
 import { Buttons, CalenderDateRange, Icons, InputType, Selects, TreeSelects } from "components";
 
-const RequestInfo = ({ edit }) => {
-	const [priceType, setPriceType] = useState(true);
-	// hooks
+const InternationalRequest = ({ edit, info }) => {
 	const { t } = useTranslation();
 	const { onLoadData, loading, jalali, treeData, enums, priceTypes, record } = useContext(RequestContext);
 	// handles
+	const [priceType, setPriceType] = useState(record.priceIsNegotiable);
 	const onChangePriceType = (value) => {
 		setPriceType(value);
 	};
 	// return
 	return (
-		<>
+		<div className={info ? "pointer-events-none" : ""}>
 			<Row gutter={[8, 8]} align={"middle"} className="international-form">
 				<Col xs={24} md={12} lg={8}>
 					<TreeSelects
@@ -177,8 +176,8 @@ const RequestInfo = ({ edit }) => {
 					</Col>
 				)}
 			</Row>
-		</>
+		</div>
 	);
 };
 
-export default RequestInfo;
+export default InternationalRequest;

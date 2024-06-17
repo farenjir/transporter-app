@@ -50,7 +50,7 @@ export const postRequestForCarrier = (callApi, requestData) => {
 };
 export const putRequestForCarrier = (callApi, updateData) => {
 	const data = transformer.requestCarrierTransformData(updateData);
-	return callApi({ url: "RequestForCarrier//EditRequest", method: "PUT", data })
+	return callApi({ url: "RequestForCarrier/EditRequest", method: "PUT", data })
 		.then((response) => response)
 		.catch((_e) => []);
 };
@@ -65,4 +65,10 @@ export const postCarrierAnnonce = (callApi, requestData) => {
 	return callApi({ url: "CarrierAnnonce/AddCarrierAnnonce", method: "POST", data })
 		.then((response) => response)
 		.catch((_e) => ({ content: [] }));
+};
+export const putRequestForAnnonce = (callApi, updateData) => {
+	const data = transformer.requestAnnonceTransformData(updateData);
+	return callApi({ url: "CarrierAnnonce/EditCarrierAnnonce", method: "PUT", data })
+		.then((response) => response)
+		.catch((_e) => []);
 };

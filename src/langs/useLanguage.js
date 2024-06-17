@@ -32,7 +32,6 @@ const useLanguage = () => {
 		changeLanguage();
 	}, []);
 	// configs
-	// configs
 	let configs = rtlLangs.includes(language)
 		? {
 				direction: "rtl",

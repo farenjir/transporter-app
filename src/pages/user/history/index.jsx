@@ -12,10 +12,13 @@ import {
 
 import { Modals, RadioGroup, confirmModal } from "components";
 
-import RequestContextApi from "./components/context";
+import RequestContextApi from "./components/forms/context";
 import HistoryList from "./components/HistoryList";
-import RequestInfo from "./components/RequestInfo";
+import InternationalRequest from "./components/forms/International";
+import InternationalGetRequest from "./components/forms/InternationalGet";
+import { notificationMaker } from "utils/notification";
 
+const defaultQueries = { pgs: 5, pgn: 1 };
 const SearchPage = () => {
 	const { type = "send" } = history?.state?.usr || {};
 	// state
@@ -26,7 +29,7 @@ const SearchPage = () => {
 		totalPages: 0,
 	});
 	const [loading, setLoading] = useState(false);
-	const [queries, setQueries] = useState({ pgs: 5, pgn: 1 });
+	const [queries, setQueries] = useState(defaultQueries);
 	const [selectedRecord, setSelectedRecord] = useState({});
 	// hooks
 	const { t } = useTranslation();
@@ -59,8 +62,10 @@ const SearchPage = () => {
 				data = await deleteMyCarrierRequest(callApi, id);
 			}
 			if (data?.succeeded) {
-				// add notificaton
+				notificationMaker(t("commons.success", "success", t("messages.requestSuccess")));
 				getDataSource();
+			} else {
+				notificationMaker(t("commons.error", "error", t("messages.requestFailed")));
 			}
 			setLoading(false);
 		},
@@ -68,6 +73,8 @@ const SearchPage = () => {
 	);
 	// handles
 	const onChangeType = (type) => {
+		setQueries(defaultQueries);
+		setSelectedRecord({});
 		setActiveType(type);
 	};
 	const onChangeQueries = (queries = {}) => {
@@ -98,6 +105,11 @@ const SearchPage = () => {
 				break;
 		}
 	};
+	const handleCloseModals = () => {
+		setSelectedRecord({});
+		modalInfo.current.close();
+		modalEdit.current.close();
+	};
 	// options
 	const requestType = [
 		{
@@ -109,6 +121,11 @@ const SearchPage = () => {
 			value: "get",
 		},
 	];
+	const contextProvider = {
+		record: selectedRecord,
+		handleModals,
+		handleCloseModals,
+	};
 	// init
 	useEffect(() => {
 		getDataSource();
@@ -119,34 +136,62 @@ const SearchPage = () => {
 			className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
 			style={{ background: token?.colorBgBase }}
 		>
-			<RequestContextApi record={selectedRecord}>
-				<RadioGroup
-					disabled={loading}
-					plainOptions={requestType}
-					name="requestType"
-					initialValue={activeType}
-					required={true}
-					onChange={onChangeType}
-				/>
-				<HistoryList
-					{...{
-						onChangeQueries,
-						content,
-						totalElements,
-						totalPages,
-						activeType,
-						loading,
-						handleModals,
-						queries,
-					}}
-				/>
-				<Modals reference={modalInfo} title={t("user.infoRequest")} width="80%">
-					<RequestInfo info />
-				</Modals>
-				<Modals reference={modalEdit} title={t("user.editRequest")} width="80%">
-					<RequestInfo edit />
-				</Modals>
-			</RequestContextApi>
+			<RadioGroup
+				disabled={loading}
+				plainOptions={requestType}
+				name="requestType"
+				initialValue={activeType}
+				required={true}
+				onChange={onChangeType}
+			/>
+			<HistoryList
+				{...{
+					onChangeQueries,
+					content,
+					totalElements,
+					totalPages,
+					activeType,
+					loading,
+					handleModals,
+					queries,
+				}}
+			/>
+			<Modals
+				reference={activeType === "send" ? modalInfo : null}
+				title={t("user.infoRequest")}
+				width="70%"
+			>
+				<RequestContextApi {...contextProvider}>
+					<InternationalRequest info />
+				</RequestContextApi>
+			</Modals>
+			<Modals
+				reference={activeType === "send" ? modalEdit : null}
+				title={t("user.editRequest")}
+				width="70%"
+			>
+				<RequestContextApi {...contextProvider}>
+					<InternationalRequest edit />
+				</RequestContextApi>
+			</Modals>
+			<Modals
+				reference={activeType === "get" ? modalInfo : null}
+				title={t("user.infoRequest")}
+				width="70%"
+			>
+				<RequestContextApi {...contextProvider}>
+					<InternationalGetRequest info />
+				</RequestContextApi>
+			</Modals>
+			<Modals
+				reference={activeType === "get" ? modalEdit : null}
+				title={t("user.editRequest")}
+				width="70%"
+			>
+				<RequestContextApi {...contextProvider}>
+					<InternationalGetRequest edit />
+				</RequestContextApi>
+			</Modals>
 		</section>
 	);
 };

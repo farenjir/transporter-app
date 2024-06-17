@@ -84,6 +84,15 @@
 		"priceNegotiable": "توافقی",
 		"priceNotNegotiable": "مقطوع"
 	},
+	"tables": {
+		"source": "مبدا",
+		"destination": "مقصد",
+		"createDate": "تاریخ ایجاد",
+		"weight": "وزن بسته",
+		"items": "تعداد",
+		"description": "توضیحات",
+		"actions": "عملیات"
+	},
 	"auth": {
 		"login": "ورود",
 		"ifLogin": "وارد سامانه شود.",
@@ -179,6 +188,7 @@
 		"oldPass": "کلمه عبور فعلی",
 		"newPass": "کلمه عبور جدید",
 		"editRequest": "ویرایش درخواست",
+		"infoRequest": "مشخصات درخواست",
 		"deleteRequest": "حذف درخواست",
 		"successRegister": "مشخصات شما بروزرسانی شد"
 	}

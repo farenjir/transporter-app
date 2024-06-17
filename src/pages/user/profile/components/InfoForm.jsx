@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Form, Typography, Row, Col, theme } from "antd";
+import { Form, Row, Col } from "antd";
 
 import { useDispatch, useSelector } from "react-redux";
 import { authSelector, baseSelector } from "store/selector";
@@ -11,8 +11,6 @@ import { notificationMaker } from "utils/notification";
 import { userUpdate } from "service/main";
 import { Buttons, Inputs, Selects } from "components";
 import { getCurrentUser } from "store/auth/action";
-
-const { Title } = Typography;
 
 export default function InfoForm() {
 	const [loading, setLoading] = useState(false);
@@ -27,7 +25,6 @@ export default function InfoForm() {
 	}));
 	// hooks
 	const dispatch = useDispatch();
-	const { token } = theme.useToken();
 	const { t } = useTranslation();
 	const [form] = Form.useForm();
 	const { callApi, direction } = useAppContext();
@@ -70,11 +67,6 @@ export default function InfoForm() {
 			onValuesChange={onValuesChange}
 			onReset={onReset}
 		>
-			<div className="mb-7">
-				<Title level={3} className="text-2xl font-extrabold" style={{ color: token?.colorPrimary }}>
-					{t("user.profile")}
-				</Title>
-			</div>
 			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={8}>
 					<Inputs name="firstName" type="text" label={t("auth.firstName")} required={true} />
@@ -155,7 +147,7 @@ export default function InfoForm() {
 						htmlType="reset"
 						block={true}
 						content={t("commons.reset")}
-						classes="mt-8"
+						classes="md:mt-8"
 						loading={loading}
 					/>
 				</Col>
@@ -164,7 +156,7 @@ export default function InfoForm() {
 						htmlType="submit"
 						block={true}
 						content={t("commons.update")}
-						classes="mt-8"
+						classes="md:mt-8"
 						loading={loading}
 						disabled={!activeBtn}
 					/>
