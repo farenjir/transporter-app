@@ -39,7 +39,7 @@ export const userRegister = (callApi, userData = {}) => {
         genderTypeId: userData.genderTypeId,
         phoneCoutryPrefixId: userData.phoneCoutryPrefixId ?? 98,
     };
-    return callApi({ url: "UserProflie/Register", method: "POST", data })
+    return callApi({ url: "UserProflie/login", method: "POST", data })
         .then((response = {}) => response)
         .catch((_e) => { });
 };

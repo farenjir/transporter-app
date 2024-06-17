@@ -5,14 +5,20 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { authSelector } from "store/selector";
 
-import { SettingOutlined, MenuOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import {
+	SettingOutlined,
+	MenuOutlined,
+	RocketOutlined,
+	UserOutlined,
+	LogoutOutlined,
+} from "@ant-design/icons";
 import { Layout, Skeleton, theme, Tooltip, Typography } from "antd";
 import { useAppContext } from "hooks";
 
 import { Drawers } from "components";
 import { SettingDrawer } from "components/App";
 
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Menu/MainMenu";
 import FloatLabel from "./components/Float";
 
 const { Text } = Typography;

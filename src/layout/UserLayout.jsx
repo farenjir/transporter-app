@@ -6,14 +6,15 @@ import { useSelector } from "react-redux";
 import { authSelector } from "store/selector";
 
 import { SettingOutlined, MenuOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Layout, Spin, theme, Tooltip, Typography } from "antd";
+import { Col, Layout, Row, Spin, theme, Tooltip, Typography } from "antd";
 import { useAppContext } from "hooks";
 
 import { Drawers } from "components";
 import { SettingDrawer } from "components/App";
 
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Menu/MainMenu";
 import FloatLabel from "./components/Float";
+import UserMenu from "./components/Menu/UserMenu";
 
 const { Text } = Typography;
 // layoutModules
@@ -74,12 +75,18 @@ const UserLayout = () => {
 				</div>
 			</Header>
 			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">
-				<FloatLabel />
 				{/* children */}
 				{loading ? (
 					<Spin spinning fullscreen tip={t("messages.noAccess")} size="large" />
 				) : user ? (
-					<Outlet key={"user-layout"} />
+					<Row gutter={[8, 8]}>
+						<Col xs={24} md={6} lg={4}>
+							<UserMenu />
+						</Col>
+						<Col xs={24} md={18} lg={20}>
+							<Outlet key={"user-layout"} />
+						</Col>
+					</Row>
 				) : (
 					<Navigate to={{ pathname: "/auth", state: { referrer: "/user" } }} />
 				)}

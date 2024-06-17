@@ -38,7 +38,7 @@ const SearchPage = () => {
 		} else {
 			data = await getMyCarrierRequest(callApi, queries);
 		}
-		if (data?.content) {
+		if (data?.content?.length) {
 			setDataSource(data);
 		}
 		setLoading(false);
@@ -78,8 +78,7 @@ const SearchPage = () => {
 					onChange={onChangeType}
 				/>
 				<HistoryList
-					onChangeQueries={onChangeQueries}
-					{...{ content, totalElements, totalPages, activeType, queries, loading }}
+					{...{ content, totalElements, totalPages, activeType, onChangeQueries, queries, loading }}
 				/>
 			</section>
 		</div>

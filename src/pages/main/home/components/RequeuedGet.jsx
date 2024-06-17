@@ -25,8 +25,7 @@ export default function RequeuedGet() {
 	const { enums } = useSelector(baseSelector);
 	// handles
 	const getPriceType = (priceCurrencyTypeId) => {
-		const priceTypes = enums?.["105"] || [];
-		return priceTypes?.find(({ id }) => id === priceCurrencyTypeId)?.label ?? "";
+		return enums?.["105"]?.find(({ id }) => id === priceCurrencyTypeId)?.label ?? "";
 	};
 	// init
 	useEffect(() => {
