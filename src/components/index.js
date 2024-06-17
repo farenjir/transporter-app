@@ -13,7 +13,7 @@ export { default as Tables } from "./table";
 export { default as Icons } from "./icon";
 export { default as AppTabs } from "./tab";
 export { default as Modals } from "./modal";
-export { default as confirm } from "./submit";
+export { default as confirmModal } from "./submit";
 export { default as Drawers } from "./drawer";
 export { default as CarouselModule } from "./carousel";
 export { default as ListModule } from "./list";

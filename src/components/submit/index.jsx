@@ -1,7 +1,7 @@
 import { Modal } from "antd";
 const { confirm } = Modal;
 
-const submitModals = (customOptions = {}, onOk = () => {}, onCancel = () => {}) => {
+const submitModals = ({customOptions = {}, onOk = () => {}, onCancel = () => {}}) => {
 	const options = Object.assign(
 		{},
 		{

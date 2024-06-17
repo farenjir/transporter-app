@@ -109,7 +109,7 @@ export default function AuthForm() {
 						name="genderTypeId"
 						label={t("auth.gender")}
 						required={true}
-						options={enums["101"] || []}
+						options={enums?.["101"] || []}
 					/>
 				</Col>
 				<Col xs={24} md={8}>

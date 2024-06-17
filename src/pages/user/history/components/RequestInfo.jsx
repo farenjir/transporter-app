@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next";
 import { Col, Row } from "antd";
 
 import { RequestContext } from "./context";
-import { Buttons, Calendars, Icons, InputType, Selects, TreeSelects } from "components";
+import { Buttons, CalenderDateRange, Icons, InputType, Selects, TreeSelects } from "components";
 
-const InternationalGet = () => {
+const RequestInfo = ({ edit }) => {
 	const [priceType, setPriceType] = useState(true);
 	// hooks
 	const { t } = useTranslation();
-	const { onLoadData, loading, jalali, treeData, enums, priceTypes } = useContext(RequestContext);
+	const { onLoadData, loading, jalali, treeData, enums, priceTypes, record } = useContext(RequestContext);
 	// handles
 	const onChangePriceType = (value) => {
 		setPriceType(value);
@@ -52,7 +52,27 @@ const InternationalGet = () => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<Calendars label={t("commonPages.date")} required={true} jalali={jalali} />
+					<CalenderDateRange label={t("commons.date")} required={true} jalali={jalali} />
+				</Col>
+			</Row>
+			<Row gutter={[8, 8]} align={"middle"}>
+				<Col xs={24} md={12} lg={8}>
+					<InputType
+						name="fromLocationDesc"
+						placeholder={t("home.fromLocationDesc")}
+						label={t("home.fromLocationDesc")}
+						required={true}
+						type={"textarea"}
+					/>
+				</Col>
+				<Col xs={24} md={12} lg={8}>
+					<InputType
+						name="toLocationDesc"
+						placeholder={t("home.toLocationDesc")}
+						label={t("home.toLocationDesc")}
+						required={true}
+						type={"textarea"}
+					/>
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
@@ -68,18 +88,28 @@ const InternationalGet = () => {
 				<Col xs={24} md={12} lg={6}>
 					<InputType
 						type={"number"}
-						name="cargoMaxWeightCapacity"
-						placeholder={t("home.cargoMax")}
-						label={t("home.cargoMax")}
+						name="cargoWeight"
+						placeholder={t("home.cargoWeight")}
+						label={t("home.cargoWeight")}
 						required={true}
 						initialValue={1}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
+					<InputType
+						type={"number"}
+						name="cargoItemNo"
+						placeholder={t("home.ItemNo")}
+						label={t("home.ItemNo")}
+						initialValue={1}
+						required={true}
+					/>
+				</Col>
+				<Col xs={24} md={12} lg={8}>
 					<Selects
-						name="cargoMaxSizeCapacity"
-						placeholder={t("home.cargoMaxSize")}
-						label={t("home.cargoMaxSize")}
+						name="cargoSize"
+						placeholder={t("home.cargoSize")}
+						label={t("home.cargoSize")}
 						options={enums?.["107"] || []}
 						initialValue={enums?.["107"]?.[2]?.id}
 					/>
@@ -119,9 +149,9 @@ const InternationalGet = () => {
 				)}
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={16}>
+				<Col xs={24} md={12} lg={8}>
 					<InputType
-						name="carrierDesc"
+						name="cargoDesc"
 						placeholder={t("home.cargoDesc")}
 						label={t("home.cargoDesc")}
 						required={true}
@@ -129,16 +159,26 @@ const InternationalGet = () => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<Buttons
-						content={t("home.getRequest")}
-						htmlType="submit"
-						classes="float-end mt-5"
-						loading={loading}
+					<InputType
+						name="description"
+						type={"textarea"}
+						placeholder={t("home.description")}
+						label={t("home.uDescription")}
 					/>
 				</Col>
+				{edit && (
+					<Col xs={24} md={12} lg={8}>
+						<Buttons
+							content={t("user.editRequest")}
+							htmlType="submit"
+							classes="float-end mt-8"
+							loading={loading}
+						/>
+					</Col>
+				)}
 			</Row>
 		</>
 	);
 };
 
-export default InternationalGet;
+export default RequestInfo;

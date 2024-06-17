@@ -6,7 +6,7 @@ const ProfileCard = ({ id, imgUrl = "", fullName = "", email = "" }) => (
 		cover={
 			<img
 				alt={`cover-profile-${id}`}
-				src={"/assets/images/international-banner.webp"}
+				src={"/assets/images/tour-banner.webp"}
 				className="h-20 object-cover"
 			/>
 		}

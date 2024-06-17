@@ -1,16 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "antd";
+import { useTranslation } from "react-i18next";
 
+import { Menu } from "antd";
 import { FileDoneOutlined, IdcardOutlined } from "@ant-design/icons";
 import ProfileCard from "../Card/Profile";
 
 const UserMenu = ({ user = {} }) => {
-	const items = [
-		{ label: "مشخصات من", icon: IdcardOutlined, path: "/user" },
-		{ label: "سوابق درخواست ها", icon: FileDoneOutlined, path: "/user/history" },
-	];
+	// hooks
+	const { t } = useTranslation();
 	// option
+	const items = [
+		{ label: t("user.myInfo"), icon: IdcardOutlined, path: "/user" },
+		{ label: t("user.myHistory"), icon: FileDoneOutlined, path: "/user/history" },
+	];
 	const [defaultSelectedKeys] = items;
 	// return
 	return (

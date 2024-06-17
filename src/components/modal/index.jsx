@@ -4,6 +4,7 @@ import { Modal } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
 
 const Modals = ({
+	children = null,
 	title = "",
 	width = "60%",
 	className = "",
@@ -14,16 +15,15 @@ const Modals = ({
 	centered = true,
 	footer = null,
 	reference,
-	content = null,
 	closeIcon = <CloseCircleOutlined className="text-2xl" />,
 }) => {
 	const [open, setOpen] = useState(false);
 	// hooks
 	useImperativeHandle(reference, () => ({
-		showModal: () => {
+		open: () => {
 			setOpen(true);
 		},
-		hideModal: () => {
+		close: () => {
 			setOpen(false);
 		},
 	}));
@@ -43,7 +43,7 @@ const Modals = ({
 			closeIcon={closeIcon}
 			open={open}
 		>
-			{content}
+			{children}
 		</Modal>
 	);
 };

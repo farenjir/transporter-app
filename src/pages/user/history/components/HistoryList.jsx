@@ -1,17 +1,21 @@
-import { Icons, Tables } from "components";
+import { useTranslation } from "react-i18next";
+
 import { dateToLocale } from "utils/globals";
 
-// const dataIndexes = ["source", "destination", "date", "weight", "count", "description", "actions"];
+import { Icons, Tables } from "components";
 
-const AppTable = ({
+const HistoryTable = ({
 	queries: { pgs = 5, pgn = 1 },
 	onChangeQueries,
 	content,
 	totalElements,
+	loading,
+	handleModals,
 	totalPages,
 	activeType,
-	loading,
 }) => {
+	// hooks
+	const { t } = useTranslation();
 	// handles
 	const onChangeTable = ({ current, pageSize }) => {
 		onChangeQueries({ pgn: current, pgs: pageSize });
@@ -68,40 +72,47 @@ const AppTable = ({
 			dataIndex: "actions",
 			key: "actions",
 			width: 150,
-			render: () => (
+			render: (_, record) => (
 				<div className="flex justify-center align-middle items-center">
 					<Icons
 						type="InfoCircleOutlined"
 						classes="text-blue-500"
 						title="اطلاعات"
-						onClick={() => {}}
+						onClick={() => handleModals("info", record)}
 					/>
 					<Icons
 						type="EditOutlined"
 						classes="text-orange-500 mx-4 md:mx-6"
 						title="ویرایش"
-						onClick={() => {}}
+						onClick={() => handleModals("edit", record)}
 					/>
-					<Icons type="DeleteOutlined" classes="text-red-500" title="حذف" onClick={() => {}} />
+					<Icons
+						type="DeleteOutlined"
+						classes="text-red-500"
+						title="حذف"
+						onClick={() => handleModals("delete", record)}
+					/>
 				</div>
 			),
 		},
 	];
 	return (
-		<Tables
-			scroll={{ x: "100%" }}
-			columns={columns}
-			dataSource={content}
-			bordered
-			onChange={onChangeTable}
-			loading={loading}
-			pagination={{
-				showSizeChanger: false,
-				total: totalElements,
-				pageSize: pgs,
-				current: pgn,
-			}}
-		/>
+		<>
+			<Tables
+				scroll={{ x: "100%" }}
+				columns={columns}
+				dataSource={content}
+				bordered
+				onChange={onChangeTable}
+				loading={loading}
+				pagination={{
+					showSizeChanger: false,
+					total: totalElements,
+					pageSize: pgs,
+					current: pgn,
+				}}
+			/>
+		</>
 	);
 };
-export default AppTable;
+export default HistoryTable;

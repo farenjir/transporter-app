@@ -81,8 +81,8 @@ const International = () => {
 						name="cargoWeightUnitIssueId"
 						placeholder={t("home.unitIssue")}
 						label={t("home.unitIssue")}
-						options={enums["104"] || []}
-						initialValue={enums["104"]?.[1]?.id}
+						options={enums?.["104"] || []}
+						initialValue={enums?.["104"]?.[1]?.id}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={6}>
@@ -110,8 +110,8 @@ const International = () => {
 						name="cargoSize"
 						placeholder={t("home.cargoSize")}
 						label={t("home.cargoSize")}
-						options={enums["107"] || []}
-						initialValue={enums["107"]?.[2]?.id}
+						options={enums?.["107"] || []}
+						initialValue={enums?.["107"]?.[2]?.id}
 					/>
 				</Col>
 			</Row>
@@ -132,8 +132,8 @@ const International = () => {
 								name="priceCurrencyTypeId"
 								placeholder={t("home.currencyType")}
 								label={t("home.currencyType")}
-								options={enums["105"] || []}
-								initialValue={enums["105"]?.[2]?.id}
+								options={enums?.["105"] || []}
+								initialValue={enums?.["105"]?.[2]?.id}
 							/>
 						</Col>
 						<Col xs={24} md={12} lg={8}>
