@@ -86,8 +86,10 @@
 		"priceNegotiable": "توافقی",
 		"priceNotNegotiable": "مقطوع"
 	},
-	"tables": {
+	"titles": {
 		"source": "مبدا",
+		"sourceCountry":"کشور مبدا",
+		"sourceLocation":"موقعیت مکانی",
 		"destination": "مقصد",
 		"createDate": "تاریخ ایجاد",
 		"weight": "وزن بسته",

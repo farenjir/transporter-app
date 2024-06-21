@@ -147,6 +147,42 @@ export default function RequeuedGet() {
 												</div>
 											),
 										}}
+										link={{
+											to: `/request/${id}`,
+											state: {
+												mode: "get",
+												id,
+												fromCountryName,
+												toCountryName,
+												toLocationName,
+												fromLocationName,
+												priceCurrencyTypeId,
+												priceIsNegotiable,
+												proposedPrice,
+												cargoWeightUnitIssueTitle,
+												cargoSize,
+												cargoWeight,
+												cargoItemNo,
+												cargoDesc,
+												fromDateValidOfDeliver,
+												toDateValidOfDeliver,
+												requestLangaheTypeID,
+												requesterUserId,
+												requestType,
+												registerDate,
+												cargoWeightUnitIssueId,
+												fromCountryId,
+												toCountryId,
+												fromLocationId,
+												toLocationId,
+												fromLocationDesc,
+												toLocationDesc,
+												imageId,
+												timeZoneId,
+												matchStatusId,
+												chats,
+											},
+										}}
 									/>
 								),
 							)}
