@@ -12,38 +12,19 @@ const imagesList = {
 	send: "international-banner.webp",
 };
 
-const HistoryTable = ({
-	queries: { pgs = 5, pgn = 1 },
-	onChangeQueries,
-	content,
-	totalElements,
-	loading,
-	handleModals,
-	totalPages,
-	activeType,
-}) => {
+const HistoryTable = ({ content, activeType, loading, handleModals }) => {
 	// hooks
 	const { t } = useTranslation();
 	const { enums } = useSelector(baseSelector);
 	// handles
-	const onChangeList = (pageNumber, pageSize = 5) => {
-		onChangeQueries({ pgn: pageNumber, pgs: pageSize });
-	};
 	const getPriceType = (priceCurrencyTypeId) => {
 		return enums?.["105"]?.find(({ id }) => id === priceCurrencyTypeId)?.label ?? "";
 	};
 	return (
-		<section className="my-request-sections">
+		<section className="my-request-sections min-h-screen">
 			<ListModule
 				loading={loading}
 				column={2}
-				pagination={{
-					showSizeChanger: false,
-					total: totalElements,
-					pageSize: pgs,
-					current: pgn,
-					onChange: onChangeList,
-				}}
 				gutter={[16, 16]}
 				dataSource={content.map((item) => {
 					const {

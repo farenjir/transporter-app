@@ -6,6 +6,7 @@ export { default as Inputs } from "./input";
 export { default as InputType } from "./inputType";
 export { default as Selects } from "./select";
 export { default as TreeSelects } from "./treeSelect";
+export { default as AutocompletePublic } from "./autocomplete";
 export { default as RadioGroup } from "./radio";
 export { default as Tables } from "./table";
 

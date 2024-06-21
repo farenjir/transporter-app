@@ -22,7 +22,7 @@ const International = () => {
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span>{t("commonPages.sourceLabel")}</span>
+								<span>{t("commonPages.sourceLabelSelect")}</span>
 							</div>
 						}
 					/>
@@ -36,7 +36,7 @@ const International = () => {
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
-								<span>{t("commonPages.destinationLabel")}</span>
+								<span>{t("commonPages.destinationLabelSelect")}</span>
 							</div>
 						}
 					/>

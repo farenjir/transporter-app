@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Form } from "antd";
 
@@ -6,21 +6,22 @@ import { useSelector } from "react-redux";
 import { baseSelector } from "store/selector";
 
 import { notificationMaker } from "utils/notification";
-import { useAppContext } from "hooks";
-import { getAllLocationByCountry } from "service/main";
-import { postCarrierAnnonce, postRequestForCarrier } from "service/main";
 import { dateToApi } from "utils/globals";
+
+import { useAppContext } from "hooks";
+import { postCarrierAnnonce, postRequestForCarrier, getLocationWithText } from "service/main";
 
 export const RequestContext = createContext({});
 
 function RequestContextApi({ children }) {
-	const [treeData, setTreeData] = useState([]);
+	const [autoData, setAutoData] = useState([]);
+	const [backUpLocations, setBackUpLocations] = useState([]);
 	const [loading, setLoading] = useState(false);
 	// hooks
 	const { t } = useTranslation();
 	const [form] = Form.useForm();
 	const { callApi, jalali } = useAppContext();
-	const { countries, enums } = useSelector(baseSelector);
+	const { enums } = useSelector(baseSelector);
 	// options
 	const priceTypes = [
 		{ label: t("commonPages.priceNegotiable"), value: true },
@@ -28,21 +29,25 @@ function RequestContextApi({ children }) {
 	];
 	// handles
 	const locationIdDetector = useCallback(
-		(locationId) => {
-			const { countryId } = treeData.find(({ id }) => id === locationId) || {};
-			return countryId ?? locationId;
+		(locationText, type) => {
+			const { countryId, locationTypeId } =
+				backUpLocations.find(({ fullGeoLocationTitle }) =>
+					locationText.includes(fullGeoLocationTitle),
+				) || {};
+			return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: locationTypeId };
 		},
-		[treeData],
+		[backUpLocations],
 	);
 	// onSubmit
-	const onLoadData = async ({ id }) => {
-		const locations = await getAllLocationByCountry(callApi, 10, id);
-		const updatedState = treeData.concat(locations);
-		setTreeData(updatedState);
+	const onChange = async (locationTitle = "", _selected) => {
+		if (locationTitle?.length <= 2) return;
+		const locations = await getLocationWithText(callApi, { locationTitle, pgn: 1, pgs: 10 });
+		setAutoData(locations);
+		setBackUpLocations((perArray) => perArray.concat(locations));
 	};
 	const onSubmit = async (formValues) => {
 		setLoading(false);
-		const { datePicker, ...value } = formValues;
+		const { datePicker, fromLocationId, toLocationId, ...value } = formValues;
 		let response = {};
 		switch (Array.isArray(datePicker)) {
 			case true:
@@ -52,10 +57,10 @@ function RequestContextApi({ children }) {
 					id: 0,
 					timeZoneId: 0,
 					imageId: 0,
-					fromCountryId: locationIdDetector(value.fromLocationId),
-					toCountryId: locationIdDetector(value.toLocationId),
 					from: dateToApi(datePicker[0]),
 					to: dateToApi(datePicker[1]),
+					...locationIdDetector(fromLocationId, "from"),
+					...locationIdDetector(toLocationId, "to"),
 					...value,
 				});
 				break;
@@ -66,9 +71,9 @@ function RequestContextApi({ children }) {
 					id: 0,
 					timeZoneId: 0,
 					matchStatusId: 0,
-					fromCountryId: locationIdDetector(value.fromLocationId),
-					toCountryId: locationIdDetector(value.toLocationId),
 					dateOfDeliver: dateToApi(datePicker),
+					...locationIdDetector(fromLocationId, "from"),
+					...locationIdDetector(toLocationId, "to"),
 					...value,
 				});
 				break;
@@ -83,12 +88,8 @@ function RequestContextApi({ children }) {
 		}
 		setLoading(false);
 	};
-	// init
-	useEffect(() => {
-		setTreeData(countries);
-	}, [countries]);
 	return (
-		<RequestContext.Provider value={{ onLoadData, treeData, enums, priceTypes, loading, jalali }}>
+		<RequestContext.Provider value={{ onChange, autoData, enums, priceTypes, loading, jalali }}>
 			<Form
 				form={form}
 				name="request-form"

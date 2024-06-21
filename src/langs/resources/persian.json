@@ -78,9 +78,11 @@
 	},
 	"commonPages": {
 		"source": "مبدا",
-		"sourceLabel": "مبدا ( کشور , شهر , فرودگاه )",
+		"sourceLabel": "مبدا ( شهر , فرودگاه )",
+		"sourceLabelSelect": "مبدا ( کشور , شهر , فرودگاه )",
 		"destination": "مقصد",
-		"destinationLabel": "مقصد ( کشور , شهر , فرودگاه )",
+		"destinationLabel": "مقصد ( شهر , فرودگاه )",
+		"destinationLabelSelect": "مقصد ( کشور , شهر , فرودگاه )",
 		"priceNegotiable": "توافقی",
 		"priceNotNegotiable": "مقطوع"
 	},

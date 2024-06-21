@@ -3,13 +3,14 @@ import { useTranslation } from "react-i18next";
 import { Col, Row } from "antd";
 
 import { RequestContext } from "./context";
-import { Buttons, CalenderDateRange, Icons, InputType, Selects, TreeSelects } from "components";
+import { Buttons, Icons, InputType, Selects } from "components";
+import { AutocompletePublic, CalenderDateRange } from "components";
 
 const International = () => {
 	const [priceType, setPriceType] = useState(true);
 	// hooks
 	const { t } = useTranslation();
-	const { onLoadData, loading, jalali, treeData, enums, priceTypes } = useContext(RequestContext);
+	const { onChange, autoData, loading, jalali, enums, priceTypes } = useContext(RequestContext);
 	// handles
 	const onChangePriceType = (value) => {
 		setPriceType(value);
@@ -19,14 +20,12 @@ const International = () => {
 		<>
 			<Row gutter={[8, 8]} align={"middle"} className="international-form">
 				<Col xs={24} md={12} lg={8}>
-					<TreeSelects
+					<AutocompletePublic
 						name="fromLocationId"
-						treeLine
-						required
-						dropdownStyle={{ direction: "ltr" }}
-						treeData={treeData}
-						onLoadData={onLoadData}
 						label={t("commonPages.source")}
+						required={true}
+						options={autoData}
+						onChange={onChange}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
@@ -36,17 +35,16 @@ const International = () => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<TreeSelects
+					<AutocompletePublic
 						name="toLocationId"
-						treeLine
-						required
-						dropdownStyle={{ direction: "ltr" }}
-						treeData={treeData}
-						onLoadData={onLoadData}
 						label={t("commonPages.destination")}
+						required={true}
+						options={autoData}
+						onChange={onChange}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
-								<span>{t("commonPages.destinationLabel")}</span>
+								<Icons type="EnvironmentOutlined" classes="pb-1" />
+								<span>{t("commonPages.sourceLabel")}</span>
 							</div>
 						}
 					/>

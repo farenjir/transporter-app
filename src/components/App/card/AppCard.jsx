@@ -8,7 +8,7 @@ const { Meta } = Card;
 const AppCard = ({ id, imgUrl, title = "", description = "" }) => {
 	const { t } = useTranslation();
 	return (
-		<Card hoverable cover={<img alt={`cover-${id || "card"}`} src={imgUrl} className="object-cover" />}>
+		<Card hoverable cover={<img alt={`cover-${id || "card"}`} src={imgUrl} className="object-cover max-h-[100px]" />}>
 			<Meta
 				// avatar={<Avatar src={img} className="-mt-14 h-24 w-24 shadow-xl" />}
 				title={title}

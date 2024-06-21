@@ -2,34 +2,24 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { theme } from "antd";
+import { notificationMaker } from "utils/notification";
 import { useAppContext } from "hooks";
-import {
-	deleteMyAnnonceRequest,
-	deleteMyCarrierRequest,
-	getMyAnnonceRequest,
-	getMyCarrierRequest,
-} from "service/user";
 
+import { getMyAnnonceRequest, getMyCarrierRequest } from "service/user";
+import { deleteMyAnnonceRequest, deleteMyCarrierRequest } from "service/user";
 import { Modals, RadioGroup, confirmModal } from "components";
 
 import RequestContextApi from "./components/forms/context";
 import HistoryList from "./components/HistoryList";
 import InternationalRequest from "./components/forms/International";
 import InternationalGetRequest from "./components/forms/InternationalGet";
-import { notificationMaker } from "utils/notification";
 
-const defaultQueries = { pgs: 4, pgn: 1 };
-const SearchPage = () => {
+const HistoryPage = () => {
 	const { type = "send" } = history?.state?.usr || {};
 	// state
 	const [activeType, setActiveType] = useState(type);
-	const [{ content, totalElements, totalPages }, setDataSource] = useState({
-		content: [],
-		totalElements: 0,
-		totalPages: 0,
-	});
+	const [{ content }, setDataSource] = useState({ content: [] });
 	const [loading, setLoading] = useState(false);
-	const [queries, setQueries] = useState(defaultQueries);
 	const [selectedRecord, setSelectedRecord] = useState({});
 	// hooks
 	const { t } = useTranslation();
@@ -42,15 +32,15 @@ const SearchPage = () => {
 		setLoading(true);
 		let data = {};
 		if (activeType === "get") {
-			data = await getMyAnnonceRequest(callApi, queries);
+			data = await getMyAnnonceRequest(callApi);
 		} else {
-			data = await getMyCarrierRequest(callApi, queries);
+			data = await getMyCarrierRequest(callApi);
 		}
 		if (data?.content) {
 			setDataSource(data);
 		}
 		setLoading(false);
-	}, [activeType, callApi, queries]);
+	}, [activeType, callApi]);
 	// submit actions
 	const handleDelete = useCallback(
 		async ({ id }) => {
@@ -73,15 +63,10 @@ const SearchPage = () => {
 	);
 	// handles
 	const onChangeType = (type) => {
-		setQueries(defaultQueries);
 		setSelectedRecord({});
 		setActiveType(type);
 	};
-	const onChangeQueries = (queries = {}) => {
-		setQueries(queries);
-	};
 	const handleModals = (mode, record) => {
-		console.log(record);
 		setSelectedRecord(record);
 		switch (mode) {
 			case "info":
@@ -148,14 +133,10 @@ const SearchPage = () => {
 			/>
 			<HistoryList
 				{...{
-					onChangeQueries,
 					content,
-					totalElements,
-					totalPages,
 					activeType,
 					loading,
 					handleModals,
-					queries,
 				}}
 			/>
 			<Modals reference={activeType === "send" ? modalInfo : null} title={t("user.infoRequest")}>
@@ -182,4 +163,4 @@ const SearchPage = () => {
 	);
 };
 
-export default SearchPage;
+export default HistoryPage;

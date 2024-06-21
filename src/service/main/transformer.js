@@ -18,6 +18,21 @@ export const locationsTransformData = (arrayData, pId) => {
 	return data;
 };
 
+export const locationsTextTransformData = (arrayData) => {
+	const data = [];
+	Array.isArray(arrayData) &&
+		arrayData.forEach(({ fullGeoLocationTitle, geoLocationTitle, ...item }) =>
+			data.push(
+				transformerAppData(item, [], {
+					fullGeoLocationTitle,
+					geoLocationTitle,
+					value: `${geoLocationTitle} ( ${fullGeoLocationTitle} )`,
+				}),
+			),
+		);
+	return data;
+};
+
 export const enumsTransformData = (arrayData) => {
 	const data = [];
 	Array.isArray(arrayData) &&

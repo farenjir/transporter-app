@@ -51,7 +51,7 @@ const InternationalGetRequest = ({ edit, info }) => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<Calendars label={t("commonPages.date")} required={true} jalali={jalali} />
+					<Calendars label={t("commons.date")} required={true} jalali={jalali} />
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>

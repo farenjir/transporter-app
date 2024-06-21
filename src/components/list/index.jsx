@@ -7,8 +7,8 @@ const ListModule = ({
 	classes = "",
 	gutter = [16, 8],
 	column = 3,
-	pagination = {},
-	loading
+	pagination = false,
+	loading,
 }) => {
 	const paginationOptions = Object.assign(
 		{},
@@ -18,8 +18,9 @@ const ListModule = ({
 			position: "bottom",
 			align: "center",
 			current: 1,
+			hideOnSinglePage: true,
 		},
-		pagination,
+		pagination || {},
 	);
 	return (
 		<List
@@ -27,7 +28,7 @@ const ListModule = ({
 			size={size}
 			dataSource={dataSource}
 			className={classes}
-			loading={loading}
+			loading={{ spinning: loading, size: "large" }}
 			grid={{
 				gutter,
 				column,
@@ -35,7 +36,7 @@ const ListModule = ({
 			}}
 			// footer
 			// header
-			pagination={paginationOptions}
+			pagination={pagination && paginationOptions}
 			rowKey={({ key }, idx) => `list-item${key || idx}`}
 			renderItem={({ content, key }, idx) => (
 				<List.Item key={`list-item${key || idx}`}>{content}</List.Item>
