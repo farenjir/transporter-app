@@ -7,7 +7,6 @@ import { persistStore } from "redux-persist";
 
 import store from "../store/store";
 import ContextApi from "context/ContextApi";
-
 // layout
 import AuthLayout from "layout/AuthLayout";
 import MainLayout from "layout/MainLayout";
@@ -42,9 +41,14 @@ const mainRoutes = {
 			element: <HomePage />,
 		},
 		{
-			path: "search",
-			id: "search",
-			lazy: async () => ({ Component: (await import("../pages/main/search")).default }),
+			path: "request",
+			id: "request",
+			lazy: async () => ({ Component: (await import("../pages/main/request")).default }),
+		},
+		{
+			path: "request/:Id",
+			id: "request/:Id",
+			lazy: async () => ({ Component: (await import("../pages/main/request/_preview")).default }),
 		},
 	],
 };

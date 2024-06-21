@@ -8,7 +8,7 @@ const ListModule = ({
 	gutter = [16, 8],
 	column = 3,
 	pagination = false,
-	loading,
+	loading = false,
 }) => {
 	const paginationOptions = Object.assign(
 		{},

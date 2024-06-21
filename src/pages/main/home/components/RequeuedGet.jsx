@@ -48,7 +48,7 @@ export default function RequeuedGet() {
 			</div>
 			<Buttons
 				content={
-					<Link to={"/search"} state={"get"} className="text-white">
+					<Link to={"/request"} state={"get"} className="text-white">
 						<div className="flex gap-2 align-middle items-center">
 							<span className="p-1"> {t("commons.viewAll")}</span>
 							<DoubleLeftOutlined />

@@ -18,6 +18,7 @@ export { default as confirmModal } from "./submit";
 export { default as Drawers } from "./drawer";
 export { default as CarouselModule } from "./carousel";
 export { default as ListModule } from "./list";
+export { default as Details } from "./details";
 
 // calender
 export { default as CalenderDateRange } from "./calendar/calenderRange";

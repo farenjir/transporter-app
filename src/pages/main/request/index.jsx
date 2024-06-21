@@ -117,6 +117,7 @@ const SearchPage = () => {
 			{/* SearchItems */}
 			<section className="producer-sections mx-auto p-5 mt-8">
 				<ListModule
+					loading={loading}
 					pagination={{
 						showSizeChanger: false,
 						// total: totalElements,
