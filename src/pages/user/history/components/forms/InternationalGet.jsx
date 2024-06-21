@@ -123,7 +123,6 @@ const InternationalGetRequest = ({ edit, info }) => {
 						name="carrierDesc"
 						placeholder={t("home.cargoDesc")}
 						label={t("home.cargoDesc")}
-						required={true}
 						type={"textarea"}
 					/>
 				</Col>

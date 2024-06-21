@@ -55,26 +55,6 @@ const InternationalRequest = ({ edit, info }) => {
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={8}>
-					<InputType
-						name="fromLocationDesc"
-						placeholder={t("home.fromLocationDesc")}
-						label={t("home.fromLocationDesc")}
-						required={true}
-						type={"textarea"}
-					/>
-				</Col>
-				<Col xs={24} md={12} lg={8}>
-					<InputType
-						name="toLocationDesc"
-						placeholder={t("home.toLocationDesc")}
-						label={t("home.toLocationDesc")}
-						required={true}
-						type={"textarea"}
-					/>
-				</Col>
-			</Row>
-			<Row gutter={[8, 8]} align={"middle"}>
 				<Col xs={24} md={12} lg={2}>
 					<Selects
 						name="cargoWeightUnitIssueId"
@@ -148,21 +128,12 @@ const InternationalRequest = ({ edit, info }) => {
 				)}
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={8}>
+				<Col xs={24} md={12} lg={16}>
 					<InputType
 						name="cargoDesc"
 						placeholder={t("home.cargoDesc")}
 						label={t("home.cargoDesc")}
-						required={true}
 						type={"textarea"}
-					/>
-				</Col>
-				<Col xs={24} md={12} lg={8}>
-					<InputType
-						name="description"
-						type={"textarea"}
-						placeholder={t("home.description")}
-						label={t("home.uDescription")}
 					/>
 				</Col>
 				{edit && (

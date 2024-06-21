@@ -13,7 +13,7 @@ import { getAllLocationByCountry, putRequestForAnnonce, putRequestForCarrier } f
 
 export const RequestContext = createContext({});
 
-function RequestContextApi({ children, record, handleCloseModals }) {
+function RequestContextApi({ children, record, handleCloseModals ,getDataSource}) {
 	const [treeData, setTreeData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	// hooks
@@ -77,15 +77,16 @@ function RequestContextApi({ children, record, handleCloseModals }) {
 					break;
 			}
 			if (response?.result) {
-				form.resetFields();
+				// form.resetFields();
 				handleCloseModals();
+				getDataSource()
 				notificationMaker(t("commons.success"), "success", t("messages.requestSuccess"));
 			} else {
 				notificationMaker(t("commons.error"), "error", t("messages.requestFailed"));
 			}
 			setLoading(false);
 		},
-		[form, record.id],
+		[record.id],
 	);
 	// init
 	useEffect(() => {

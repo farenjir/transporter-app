@@ -63,7 +63,7 @@ export default function RequeuedSend() {
 			<CarouselModule
 				name="send-request"
 				loading={loading}
-				className="pb-10 pt-5 px-0"
+				className="pb-10 pt-5 px-0 min-h-[350px]"
 				swiperSliders={producers.map((cardGroups = [], idx) => (
 					<div key={`cardGroups-${idx}`}>
 						<section className="send-sections flex flex-col md:flex-row justify-between align-middle items-center gap-4 lg:gap:8">

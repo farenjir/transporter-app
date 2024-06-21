@@ -9,7 +9,7 @@ const RegisterPage = () => {
 	const { t } = useTranslation();
 	const { token } = theme.useToken();
 	return (
-		<div className="lg:w-3/4">
+		<>
 			<Card
 				title={
 					<Title level={4} className="pt-3" style={{ color: token?.colorPrimary }}>
@@ -19,7 +19,7 @@ const RegisterPage = () => {
 			>
 				<InfoForm />
 			</Card>
-		</div>
+		</>
 	);
 };
 export default RegisterPage;

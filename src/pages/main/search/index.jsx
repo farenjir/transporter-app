@@ -7,17 +7,14 @@ import { baseSelector } from "store/selector";
 import { dateToLocale } from "utils/globals";
 
 import { AppCard } from "components/App";
-import { RadioGroup, ListModule, AppTabs } from "components";
-import { FlightIcon, FlightIntIcon } from "components/icon/custom";
+import { RadioGroup, ListModule } from "components";
 
 import { useAppContext } from "hooks";
 import { getCarrierAnnonce, getRequestForCarrier } from "service/main";
 
 import SearchContextApi from "./components/forms/context";
 import InternationalSearch from "./components/forms/InternationalSearch";
-import DomesticSearch from "./components/forms/DomesticSearch";
 import InternationalGetSearch from "./components/forms/InternationalGetSearch";
-import DomesticGetSearch from "./components/forms/DomesticGetSearch";
 
 const SearchPage = () => {
 	const defaultType = history?.state?.usr || "send";
@@ -88,40 +85,8 @@ const SearchPage = () => {
 	];
 	// options
 	const tabItems = {
-		send: [
-			{
-				key: "International",
-				label: t("search.International"),
-				children: <InternationalSearch />,
-				icon: <FlightIntIcon />,
-				className: "mt-5",
-			},
-			{
-				key: "Domestic",
-				label: t("search.Domestic"),
-				children: <DomesticSearch />,
-				icon: <FlightIcon />,
-				className: "mt-5",
-				disabled: true,
-			},
-		],
-		get: [
-			{
-				key: "International",
-				label: t("search.International"),
-				children: <InternationalGetSearch />,
-				icon: <FlightIntIcon />,
-				className: "mt-5",
-			},
-			{
-				key: "Domestic",
-				label: t("search.Domestic"),
-				children: <DomesticGetSearch />,
-				icon: <FlightIcon />,
-				className: "mt-5",
-				disabled: true,
-			},
-		],
+		send: <InternationalSearch />,
+		get: <InternationalGetSearch />,
 	};
 	// init
 	useEffect(() => {
@@ -146,14 +111,20 @@ const SearchPage = () => {
 						required={true}
 						onChange={onChangeType}
 					/>
-					<AppTabs items={tabItems[activeType]} centered />
+					{tabItems[activeType]}
 				</SearchContextApi>
 			</section>
 			{/* SearchItems */}
 			<section className="producer-sections mx-auto p-5 mt-8">
 				<ListModule
+					pagination={{
+						showSizeChanger: false,
+						// total: totalElements,
+						pageSize: 9,
+						current: pgn,
+						onChange: onChangeList,
+					}}
 					gutter={[16, 16]}
-					onChange={onChangeList}
 					dataSource={requested.map(
 						({
 							id,

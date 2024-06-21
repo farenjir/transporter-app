@@ -18,7 +18,7 @@ import InternationalRequest from "./components/forms/International";
 import InternationalGetRequest from "./components/forms/InternationalGet";
 import { notificationMaker } from "utils/notification";
 
-const defaultQueries = { pgs: 5, pgn: 1 };
+const defaultQueries = { pgs: 4, pgn: 1 };
 const SearchPage = () => {
 	const { type = "send" } = history?.state?.usr || {};
 	// state
@@ -61,11 +61,11 @@ const SearchPage = () => {
 			} else {
 				data = await deleteMyCarrierRequest(callApi, id);
 			}
-			if (data?.succeeded) {
+			if (data?.result || data?.succeded) {
 				notificationMaker(t("commons.success", "success", t("messages.requestSuccess")));
 				getDataSource();
 			} else {
-				notificationMaker(t("commons.error", "error", t("messages.requestFailed")));
+				notificationMaker(t("commons.error"), "error", t("messages.requestFailed"));
 			}
 			setLoading(false);
 		},
@@ -81,6 +81,7 @@ const SearchPage = () => {
 		setQueries(queries);
 	};
 	const handleModals = (mode, record) => {
+		console.log(record);
 		setSelectedRecord(record);
 		switch (mode) {
 			case "info":
@@ -125,6 +126,7 @@ const SearchPage = () => {
 		record: selectedRecord,
 		handleModals,
 		handleCloseModals,
+		getDataSource,
 	};
 	// init
 	useEffect(() => {
@@ -156,38 +158,22 @@ const SearchPage = () => {
 					queries,
 				}}
 			/>
-			<Modals
-				reference={activeType === "send" ? modalInfo : null}
-				title={t("user.infoRequest")}
-				width="70%"
-			>
+			<Modals reference={activeType === "send" ? modalInfo : null} title={t("user.infoRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalRequest info />
 				</RequestContextApi>
 			</Modals>
-			<Modals
-				reference={activeType === "send" ? modalEdit : null}
-				title={t("user.editRequest")}
-				width="70%"
-			>
+			<Modals reference={activeType === "send" ? modalEdit : null} title={t("user.editRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalRequest edit />
 				</RequestContextApi>
 			</Modals>
-			<Modals
-				reference={activeType === "get" ? modalInfo : null}
-				title={t("user.infoRequest")}
-				width="70%"
-			>
+			<Modals reference={activeType === "get" ? modalInfo : null} title={t("user.infoRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalGetRequest info />
 				</RequestContextApi>
 			</Modals>
-			<Modals
-				reference={activeType === "get" ? modalEdit : null}
-				title={t("user.editRequest")}
-				width="70%"
-			>
+			<Modals reference={activeType === "get" ? modalEdit : null} title={t("user.editRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalGetRequest edit />
 				</RequestContextApi>

@@ -2,14 +2,11 @@ import { Suspense, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { theme, Spin } from "antd";
-import { AppTabs, RadioGroup } from "components";
-import { FlightIcon, FlightIntIcon } from "components/icon/custom";
+import { RadioGroup } from "components";
 
 import RequestContextApi from "./components/forms/context";
 import International from "./components/forms/International";
-import Domestic from "./components/forms/Domestic";
 import InternationalGet from "./components/forms/InternationalGet";
-import DomesticGet from "./components/forms/DomesticGet";
 
 import SupportSection from "./components/Support";
 import RequeuedSend from "./components/RequeuedSend";
@@ -48,40 +45,8 @@ const HomePage = () => {
 	];
 	// tabs
 	const tabItems = {
-		send: [
-			{
-				key: "International",
-				label: t("home.International"),
-				children: <International />,
-				icon: <FlightIntIcon />,
-				className: "mt-5",
-			},
-			{
-				key: "Domestic",
-				label: t("home.Domestic"),
-				children: <Domestic />,
-				icon: <FlightIcon />,
-				className: "mt-5",
-				disabled: true,
-			},
-		],
-		get: [
-			{
-				key: "International",
-				label: t("home.International"),
-				children: <InternationalGet />,
-				icon: <FlightIntIcon />,
-				className: "mt-5",
-			},
-			{
-				key: "Domestic",
-				label: t("home.Domestic"),
-				children: <DomesticGet />,
-				icon: <FlightIcon />,
-				className: "mt-5",
-				disabled: true,
-			},
-		],
+		send: <International />,
+		get: <InternationalGet />,
 	};
 	return (
 		<>
@@ -104,7 +69,7 @@ const HomePage = () => {
 						required={true}
 						onChange={onChangeType}
 					/>
-					<AppTabs items={tabItems[activeType]} centered />
+					{tabItems[activeType]}
 				</RequestContextApi>
 			</section>
 			<SupportSection background={token?.colorBgBase} />

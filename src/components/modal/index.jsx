@@ -3,10 +3,11 @@ import { useState, useImperativeHandle } from "react";
 import { Modal } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
 
+import { useWindowDimensions } from "hooks";
+
 const Modals = ({
 	children = null,
 	title = "",
-	width = "60%",
 	className = "",
 	removeCloseButton = false,
 	maskClosable = true,
@@ -19,6 +20,7 @@ const Modals = ({
 }) => {
 	const [open, setOpen] = useState(false);
 	// hooks
+	const { width } = useWindowDimensions();
 	useImperativeHandle(reference, () => ({
 		open: () => {
 			setOpen(true);
@@ -31,7 +33,7 @@ const Modals = ({
 	return (
 		<Modal
 			title={<p className="text-lg pb-3">{title}</p>}
-			width={width}
+			style={{ width: (80 * width) / 100, minWidth: (70 * width) / 100 }}
 			className={className}
 			keyboard={keyboard}
 			destroyOnClose={destroyOnClose}

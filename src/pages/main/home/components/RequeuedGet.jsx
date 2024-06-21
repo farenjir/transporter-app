@@ -62,7 +62,7 @@ export default function RequeuedGet() {
 			/>
 			<CarouselModule
 				name="get-request"
-				className="pb-10 pt-5"
+				className="pb-10 pt-5 min-h-[350px]"
 				loading={loading}
 				swiperSliders={requested.map((cardGroups = [], idx) => (
 					<div key={`cardGroups-${idx}`}>
