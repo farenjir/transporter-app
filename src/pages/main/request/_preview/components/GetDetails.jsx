@@ -1,4 +1,6 @@
-import { Details } from "components";
+import { LeftOutlined } from "@ant-design/icons";
+import { theme } from "antd";
+import { Buttons, Details } from "components";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { baseSelector } from "store/selector";
@@ -7,38 +9,36 @@ import { dateToLocale } from "utils/globals";
 const GetDetails = ({ title = "", params = {} }) => {
 	// hooks
 	const { t } = useTranslation();
+	const { token } = theme.useToken();
 	const { enums } = useSelector(baseSelector);
-	// handles
-	const getPriceType = (priceCurrencyTypeId) => {
-		return enums?.["105"]?.find(({ id }) => id === priceCurrencyTypeId)?.label ?? "";
-	};
+	// items
 	const items = [
-		{ value: "fromLocationName", label: "موقعیت مبدا", type: "text", span: 2 },
-		{ value: "fromCountryName", label: "کشور مبدا", type: "text", span: 1 },
-		{ value: "toLocationName", label: "موقعیت مقصد", type: "text", span: 2 },
-		{ value: "toCountryName", label: "کشور مقصد", type: "text", span: 1 },
+		{ valueParam: "fromLocationName", label: "موقعیت مبدا", type: "text", span: 2 },
+		{ valueParam: "fromCountryName", label: "کشور مبدا", type: "text", span: 1 },
+		{ valueParam: "toLocationName", label: "موقعیت مقصد", type: "text", span: 2 },
+		{ valueParam: "toCountryName", label: "کشور مقصد", type: "text", span: 1 },
 
-		{ value: "fromDateValidOfDeliver", label: "تاریخ مبدا", type: "date", span: 3 },
-		{ value: "toDateValidOfDeliver", label: "تاریخ مقصد", type: "date", span: 3 },
+		{ valueParam: "fromDateValidOfDeliver", label: "تاریخ مبدا", type: "date", span: 3 },
+		{ valueParam: "toDateValidOfDeliver", label: "تاریخ مقصد", type: "date", span: 3 },
 
-		{ value: "cargoItemNo", label: "تعداد بسته", type: "text", span: 3 },
-		{ value: "cargoWeight", label: "وزن بسته", type: "text", span: 1 },
-		{ value: "cargoWeightUnitIssueTitle", label: "مقیاس بار", type: "enum", span: 1 },
-		{ value: "cargoSize", label: "سایز بسته", type: "enum", span: 1 },
-		// { value: "cargoWeightUnitIssueId", label: "Issue بسته", type: "enum" },
+		{ valueParam: "cargoItemNo", label: "تعداد بسته", type: "text", span: 3 },
+		{ valueParam: "cargoWeight", label: "وزن بسته", type: "text", span: 1 },
+		{ valueParam: "cargoWeightUnitIssueTitle", label: "مقیاس بار", type: "text", span: 1 },
+		{ valueParam: "cargoSize", label: "سایز بسته", type: "enum", enumType: "107", span: 1 },
+		// { valueParam: "cargoWeightUnitIssueId", label: "Issue بسته", type: "enum" },
 
-		{ value: "proposedPrice", label: "قیمت", type: "money", span: 1 },
-		{ value: "priceCurrencyTypeId", label: "واحد", type: "enum", span: 1 },
 		{
 			span: 1,
-			value: "priceIsNegotiable",
-			label: "واحد",
+			valueParam: "priceIsNegotiable",
+			label: "قیمت",
 			type: "boolean",
-			result: (condition, value) =>
-				condition ? t("home.cards.priceIsNegotiable") : value.toLocaleString(),
+			result: (condition) =>
+				condition ? t("commonPages.priceNegotiable") : t("commonPages.priceNotNegotiable"),
 		},
+		{ valueParam: "priceCurrencyTypeId", label: "واحد", type: "enum", enumType: "105", span: 1 },
+		{ valueParam: "proposedPrice", label: "قیمت پیشنهادی", type: "money", span: 1 },
 
-		{ value: "cargoDesc", label: "توضیحات بسته", type: "text", span: 3 },
+		{ valueParam: "cargoDesc", label: "توضیحات بسته", type: "text", span: 3 },
 		// priceCurrencyTypeId: t("commonPages.source"),
 		// priceIsNegotiable: t("commonPages.source"),
 		// cargoWeightUnitIssueTitle: t("commonPages.source"),
@@ -62,16 +62,47 @@ const GetDetails = ({ title = "", params = {} }) => {
 		// matchStatusId: t("commonPages.source"),
 		// chats: t("commonPages.source"),
 	];
+	// handles
+	const getEnumLabel = (valueAsId, type) => {
+		return enums?.[type]?.find(({ id }) => id === valueAsId)?.label ?? "";
+	};
+	const generateValue = (value, type, enumType, result) => {
+		switch (type) {
+			case "enum":
+				return getEnumLabel(value, enumType);
+			case "date":
+				return dateToLocale(value);
+			case "money":
+				return value ? value.toLocaleString() : "-";
+			case "boolean":
+				return result(value);
+			default:
+				return value;
+		}
+	};
 	return (
 		<>
 			<Details
-				title={title}
+				title={
+					<div className="flex justify-between align-middle items-center">
+						<p className="text-base lg:text-xl" style={{ color: token?.colorPrimary }}>
+							{title}
+						</p>
+						<Buttons
+							content={<span>درخواست رزرو</span>}
+							htmlType="button"
+							size="default"
+							classes="text-sm float-end mt-5"
+						/>
+					</div>
+				}
 				layout="vertical"
-				items={items.map(({ value, label, span, type, result }) => ({
+				size="small"
+				items={items.map(({ valueParam, label, span, type, enumType, result }) => ({
 					label,
 					span,
-					key: value,
-					children: params[value],
+					key: valueParam,
+					children: generateValue(params[valueParam], type, enumType, result),
 				}))}
 			/>
 		</>

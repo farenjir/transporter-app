@@ -13,7 +13,7 @@ import { getAllLocationByCountry, putRequestForAnnonce, putRequestForCarrier } f
 
 export const RequestContext = createContext({});
 
-function RequestContextApi({ children, record, handleCloseModals ,getDataSource}) {
+function RequestContextApi({ children, record, handleCloseModals, getDataSource }) {
 	const [treeData, setTreeData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	// hooks
@@ -79,7 +79,7 @@ function RequestContextApi({ children, record, handleCloseModals ,getDataSource}
 			if (response?.result) {
 				// form.resetFields();
 				handleCloseModals();
-				getDataSource()
+				getDataSource();
 				notificationMaker(t("commons.success"), "success", t("messages.requestSuccess"));
 			} else {
 				notificationMaker(t("commons.error"), "error", t("messages.requestFailed"));

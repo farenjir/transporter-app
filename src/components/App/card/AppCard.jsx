@@ -13,10 +13,7 @@ const AppCard = ({ id, imgUrl, title = "", description = "", link = { to: "", st
 			hoverable
 			cover={<img alt={`cover-${id || "card"}`} src={imgUrl} className="object-cover max-h-[100px]" />}
 		>
-			<Meta
-				title={title}
-				description={description}
-			/>
+			<Meta title={title} description={description} />
 			<Buttons
 				content={<Link {...link}>{t("commons.contentView")}</Link>}
 				type="dashed"

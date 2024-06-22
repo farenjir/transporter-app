@@ -15,7 +15,11 @@ export const getMyAnnonceRequest = (callApi, queries = { pgs: 1000, pgn: 1 }) =>
 		.catch((_e) => []);
 };
 export const deleteMyAnnonceRequest = (callApi, carrierAnnonceId) => {
-	return callApi({ url: "CarrierAnnonce/DeleteCarrierAnnonce", params: { carrierAnnonceId }, method: "DELETE" })
+	return callApi({
+		url: "CarrierAnnonce/DeleteCarrierAnnonce",
+		params: { carrierAnnonceId },
+		method: "DELETE",
+	})
 		.then((response) => response)
 		.catch((_e) => []);
 };

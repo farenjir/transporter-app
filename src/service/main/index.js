@@ -10,8 +10,14 @@ export const getAllLocationByCountry = (callApi, lngTypeId = 10, countryId = 1) 
 		.then((response) => transformer.locationsTransformData(response, countryId))
 		.catch((_e) => []);
 };
-export const getLocationWithText = (callApi, { lngTypeId = 10, locationTitle, pgn, pgs, countryId, cityId, stateId }) => {
-	return callApi({ url: "GeoLocation/GetPagedResultByText", params: { lngTypeId, locationTitle, pgn, pgs, countryId, cityId, stateId } })
+export const getLocationWithText = (
+	callApi,
+	{ lngTypeId = 10, locationTitle, pgn, pgs, countryId, cityId, stateId },
+) => {
+	return callApi({
+		url: "GeoLocation/GetPagedResultByText",
+		params: { lngTypeId, locationTitle, pgn, pgs, countryId, cityId, stateId },
+	})
 		.then((response) => transformer.locationsTextTransformData(response?.content))
 		.catch((_e) => []);
 };
@@ -25,20 +31,20 @@ export const getBasicEnums = (callApi, TypeId = 0, lngTypeId = 10) => {
 export const userAuthentication = (callApi, cpid, pNumber) => {
 	return callApi({ url: "UserProflie/login", method: "POST", params: { cpid, pNumber } })
 		.then((response = {}) => response)
-		.catch((_e) => { });
+		.catch((_e) => {});
 };
 
 export const userRegister = (callApi, userData = {}) => {
 	const data = transformer.userDataTransformData(userData);
 	return callApi({ url: "UserProflie/Register", method: "POST", data })
 		.then((response = {}) => response)
-		.catch((_e) => { });
+		.catch((_e) => {});
 };
 export const userUpdate = (callApi, userData = {}) => {
 	const data = transformer.userDataTransformData(userData);
 	return callApi({ url: "UserProflie/UpdatePrifless", method: "PUT", data })
 		.then((response = {}) => response)
-		.catch((_e) => { });
+		.catch((_e) => {});
 };
 
 export const getRequestForCarrier = (callApi, queries) => {

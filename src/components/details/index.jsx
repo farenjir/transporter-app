@@ -1,6 +1,6 @@
 import { Descriptions } from "antd";
 // items [] of { key, label, children, span }
-const Details = ({ title = "", classes = "", bordered = true, items = [], layout }) => {
+const Details = ({ title = "", classes = "", bordered = true, items = [], layout, size = "default" }) => {
 	return (
 		<>
 			<Descriptions
@@ -9,6 +9,7 @@ const Details = ({ title = "", classes = "", bordered = true, items = [], layout
 				items={items}
 				className={classes}
 				layout={layout}
+				size={size}
 			/>
 		</>
 	);
