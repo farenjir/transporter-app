@@ -1,4 +1,3 @@
-import { LeftOutlined } from "@ant-design/icons";
 import { theme } from "antd";
 import { Buttons, Details } from "components";
 import { useTranslation } from "react-i18next";
@@ -13,32 +12,31 @@ const GetDetails = ({ title = "", params = {} }) => {
 	const { enums } = useSelector(baseSelector);
 	// items
 	const items = [
-		{ valueParam: "fromLocationName", label: "موقعیت مبدا", type: "text", span: 2 },
-		{ valueParam: "fromCountryName", label: "کشور مبدا", type: "text", span: 1 },
-		{ valueParam: "toLocationName", label: "موقعیت مقصد", type: "text", span: 2 },
-		{ valueParam: "toCountryName", label: "کشور مقصد", type: "text", span: 1 },
+		{ valueParam: "fromLocationName", label: "موقعیت مبدا", type: "text", span: 3 },
+		{ valueParam: "fromCountryName", label: "کشور مبدا", type: "text", span: 2 },
+		{ valueParam: "toLocationName", label: "موقعیت مقصد", type: "text", span: 3 },
+		{ valueParam: "toCountryName", label: "کشور مقصد", type: "text", span: 2 },
 
-		{ valueParam: "fromDateValidOfDeliver", label: "تاریخ مبدا", type: "date", span: 3 },
-		{ valueParam: "toDateValidOfDeliver", label: "تاریخ مقصد", type: "date", span: 3 },
+		{ valueParam: "fromDateValidOfDeliver", label: "تاریخ مبدا", type: "date", span: 5 },
+		{ valueParam: "toDateValidOfDeliver", label: "تاریخ مقصد", type: "date", span: 5 },
 
-		{ valueParam: "cargoItemNo", label: "تعداد بسته", type: "text", span: 3 },
+		{ valueParam: "cargoItemNo", label: "تعداد بسته", type: "text", span: 1 },
 		{ valueParam: "cargoWeight", label: "وزن بسته", type: "text", span: 1 },
 		{ valueParam: "cargoWeightUnitIssueTitle", label: "مقیاس بار", type: "text", span: 1 },
-		{ valueParam: "cargoSize", label: "سایز بسته", type: "enum", enumType: "107", span: 1 },
-		// { valueParam: "cargoWeightUnitIssueId", label: "Issue بسته", type: "enum" },
+		{ valueParam: "cargoSize", label: "سایز بسته", type: "enum", enumType: "107", span: 2 },
 
 		{
-			span: 1,
+			span: 2,
 			valueParam: "priceIsNegotiable",
 			label: "قیمت",
 			type: "boolean",
 			result: (condition) =>
 				condition ? t("commonPages.priceNegotiable") : t("commonPages.priceNotNegotiable"),
 		},
+		{ valueParam: "proposedPrice", label: "قیمت پیشنهادی", type: "money", span: 2 },
 		{ valueParam: "priceCurrencyTypeId", label: "واحد", type: "enum", enumType: "105", span: 1 },
-		{ valueParam: "proposedPrice", label: "قیمت پیشنهادی", type: "money", span: 1 },
 
-		{ valueParam: "cargoDesc", label: "توضیحات بسته", type: "text", span: 3 },
+		{ valueParam: "cargoDesc", label: "توضیحات بسته", type: "text", span: 5 },
 		// priceCurrencyTypeId: t("commonPages.source"),
 		// priceIsNegotiable: t("commonPages.source"),
 		// cargoWeightUnitIssueTitle: t("commonPages.source"),
@@ -98,6 +96,8 @@ const GetDetails = ({ title = "", params = {} }) => {
 				}
 				layout="vertical"
 				size="small"
+				classes="text-xl"
+				column={5}
 				items={items.map(({ valueParam, label, span, type, enumType, result }) => ({
 					label,
 					span,
