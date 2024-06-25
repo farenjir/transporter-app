@@ -49,7 +49,7 @@ export default function RequeuedGet() {
 		const getAllProducers = async () => {
 			setLoading(true);
 			const { content } = await getCarrierAnnonce(callApi, { pgs: 9, pgn: 1 });
-			const cardGroups = [content.slice(0, 3), content.slice(4, 6), content.slice(7, 9)].filter(
+			const cardGroups = [content.slice(0, 3), content.slice(3, 6), content.slice(6, 9)].filter(
 				(item) => item?.length,
 			);
 			setRequests(cardGroups);

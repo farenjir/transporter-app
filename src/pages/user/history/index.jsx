@@ -13,7 +13,12 @@ import RequestContextApi from "./components/forms/context";
 import HistoryList from "./components/HistoryList";
 import InternationalRequest from "./components/forms/International";
 import InternationalGetRequest from "./components/forms/InternationalGet";
+import CommentForm from "./components/Comment";
 
+const requestCommentType = {
+	send: 1,
+	get: 2,
+};
 const HistoryPage = () => {
 	const { type = "send" } = history?.state?.usr || {};
 	// state
@@ -27,6 +32,7 @@ const HistoryPage = () => {
 	const { callApi, direction } = useAppContext();
 	const modalInfo = useRef();
 	const modalEdit = useRef();
+	const modalComment = useRef();
 	// data actions
 	const getDataSource = useCallback(async () => {
 		setLoading(true);
@@ -52,7 +58,7 @@ const HistoryPage = () => {
 				data = await deleteMyCarrierRequest(callApi, id);
 			}
 			if (data?.result || data?.succeded) {
-				notificationMaker(t("commons.success", "success", t("messages.requestSuccess")));
+				notificationMaker(t("commons.success"), "success", t("messages.requestSuccess"));
 				getDataSource();
 			} else {
 				notificationMaker(t("commons.error"), "error", t("messages.requestFailed"));
@@ -75,6 +81,9 @@ const HistoryPage = () => {
 			case "edit":
 				modalEdit.current.open();
 				break;
+			case "comment":
+				modalComment.current.open();
+				break;
 			case "delete":
 				confirmModal({
 					customOptions: {
@@ -95,6 +104,7 @@ const HistoryPage = () => {
 		setSelectedRecord({});
 		modalInfo.current.close();
 		modalEdit.current.close();
+		modalComment.current.close();
 	};
 	// options
 	const requestType = [
@@ -158,6 +168,9 @@ const HistoryPage = () => {
 				<RequestContextApi {...contextProvider}>
 					<InternationalGetRequest edit />
 				</RequestContextApi>
+			</Modals>
+			<Modals reference={modalComment} title={t("commons.comment")}>
+				<CommentForm requestType={requestCommentType[activeType]} record={selectedRecord} />
 			</Modals>
 		</section>
 	);

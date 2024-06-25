@@ -23,3 +23,15 @@ export const deleteMyAnnonceRequest = (callApi, carrierAnnonceId) => {
 		.then((response) => response)
 		.catch((_e) => []);
 };
+
+
+export const getChatRequest = (callApi, { RecordId, requestType, pgs, pgn }) => {
+	return callApi({ url: "RequestChat/GetPagedResultChat",  params: { RecordId, requestType, pgs, pgn } })
+		.then((response = {}) => response)
+		.catch((_e) => { });
+};
+export const chatRequest = (callApi, bodyData) => {
+	return callApi({ url: "RequestChat/SendMessage", method: "POST", data: bodyData })
+		.then((response = {}) => response)
+		.catch((_e) => { });
+};

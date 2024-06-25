@@ -32,7 +32,7 @@ const Modals = ({
 	//   return
 	return (
 		<Modal
-			title={<p className="text-lg pb-3">{title}</p>}
+			title={<p className="text-lg border-b rounded-b-md px-4 pb-2">{title}</p>}
 			style={{ width: (80 * width) / 100, minWidth: (70 * width) / 100 }}
 			className={className}
 			keyboard={keyboard}

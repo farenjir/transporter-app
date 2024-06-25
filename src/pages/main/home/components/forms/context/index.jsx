@@ -17,6 +17,7 @@ function RequestContextApi({ children }) {
 	const [autoData, setAutoData] = useState([]);
 	const [backUpLocations, setBackUpLocations] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [autocompleteLoading, setAutocompleteLoading] = useState(false);
 	// hooks
 	const { t } = useTranslation();
 	const [form] = Form.useForm();
@@ -39,11 +40,13 @@ function RequestContextApi({ children }) {
 		[backUpLocations],
 	);
 	// onSubmit
-	const onChange = async (locationTitle = "", _selected) => {
-		if (locationTitle?.length <= 2) return;
+	const onChangeAutocomplete = async (locationTitle = "", _selected) => {
+		if (locationTitle?.length <= 1) return;
+		setAutocompleteLoading(true);
 		const locations = await getLocationWithText(callApi, { locationTitle, pgn: 1, pgs: 10 });
 		setAutoData(locations);
 		setBackUpLocations((perArray) => perArray.concat(locations));
+		setAutocompleteLoading(false);
 	};
 	const onSubmit = async (formValues) => {
 		setLoading(false);
@@ -89,7 +92,17 @@ function RequestContextApi({ children }) {
 		setLoading(false);
 	};
 	return (
-		<RequestContext.Provider value={{ onChange, autoData, enums, priceTypes, loading, jalali }}>
+		<RequestContext.Provider
+			value={{
+				onChangeAutocomplete,
+				autoData,
+				enums,
+				priceTypes,
+				jalali,
+				loading,
+				autocompleteLoading,
+			}}
+		>
 			<Form
 				form={form}
 				name="request-form"

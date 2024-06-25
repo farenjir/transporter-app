@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 
 import { RequestContext } from "./context";
 import { AutocompletePublic, Buttons, Calendars, Icons, InputType, Selects } from "components";
@@ -9,7 +9,8 @@ const InternationalGet = () => {
 	const [priceType, setPriceType] = useState(true);
 	// hooks
 	const { t } = useTranslation();
-	const { autoData, loading, jalali, onChange, enums, priceTypes } = useContext(RequestContext);
+	const { autoData, loading, autocompleteLoading, jalali, onChangeAutocomplete, enums, priceTypes } =
+		useContext(RequestContext);
 	// handles
 	const onChangePriceType = (value) => {
 		setPriceType(value);
@@ -21,10 +22,15 @@ const InternationalGet = () => {
 				<Col xs={24} md={12} lg={8}>
 					<AutocompletePublic
 						name="fromLocationId"
-						label={t("commonPages.source")}
+						label={
+							<div className="flex gap-2">
+								<span>{t("commonPages.source")}</span>
+								<Spin spinning={autocompleteLoading} size="small" className="pt-1" />
+							</div>
+						}
 						required={true}
 						options={autoData}
-						onChange={onChange}
+						onChange={onChangeAutocomplete}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
@@ -36,10 +42,15 @@ const InternationalGet = () => {
 				<Col xs={24} md={12} lg={8}>
 					<AutocompletePublic
 						name="toLocationId"
-						label={t("commonPages.destination")}
+						label={
+							<div className="flex gap-2">
+								<span>{t("commonPages.destination")}</span>
+								<Spin spinning={autocompleteLoading} size="small" className="pt-1" />
+							</div>
+						}
 						required={true}
 						options={autoData}
-						onChange={onChange}
+						onChange={onChangeAutocomplete}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />

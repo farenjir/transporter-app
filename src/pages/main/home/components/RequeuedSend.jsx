@@ -41,7 +41,6 @@ export default function RequeuedSend() {
 		},
 		[requests],
 	);
-	console.log({ selectRequest });
 	// handles
 	const getPriceType = (priceCurrencyTypeId) => {
 		return enums?.["105"]?.find(({ id }) => id === priceCurrencyTypeId)?.label ?? "";
@@ -51,7 +50,7 @@ export default function RequeuedSend() {
 		const getAllProducers = async () => {
 			setLoading(true);
 			const { content } = await getRequestForCarrier(callApi, { pgs: 9, pgn: 1 });
-			const cardGroups = [content.slice(0, 3), content.slice(4, 6), content.slice(7, 9)].filter(
+			const cardGroups = [content.slice(0, 3), content.slice(3, 6), content.slice(6, 9)].filter(
 				(item) => item?.length,
 			);
 			setRequests(content);

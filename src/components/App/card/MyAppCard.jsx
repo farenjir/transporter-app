@@ -17,7 +17,13 @@ const MyAppCard = ({ id, imgUrl, title = "", hoverable = true, description = "",
 			style={{ background: token?.colorPrimaryLighter }}
 		>
 			<Meta title={title} description={description} />
-			<div className="flex justify-end align-middle items-center pt-5 text-lg">
+			<div className="flex justify-end align-middle items-center pt-5 text-xl">
+				<Icons
+					type="CommentOutlined"
+					classes="text-green-500 mx-5"
+					title={t("commons.comment")}
+					onClick={() => onClick("comment")}
+				/>
 				<Icons
 					type="InfoCircleOutlined"
 					classes="text-blue-500"

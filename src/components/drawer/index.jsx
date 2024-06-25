@@ -1,6 +1,7 @@
+import { CloseCircleOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 
-const PublicDrawer = ({
+const Drawers = ({
 	title = "",
 	placement = "left",
 	width = 300,
@@ -18,7 +19,12 @@ const PublicDrawer = ({
 		<Drawer
 			id={title}
 			key={title}
-			title={title}
+			title={
+				<div className="flex justify-between align-middle items-center">
+					<p className="text-base lg:text-lg">{title}</p>
+					<CloseCircleOutlined onClick={onClose} className="text-lg"/>
+				</div>
+			}
 			width={size ? undefined : width}
 			placement={placement}
 			maskClosable={maskClosable}
@@ -34,4 +40,4 @@ const PublicDrawer = ({
 		</Drawer>
 	);
 };
-export default PublicDrawer;
+export default Drawers;

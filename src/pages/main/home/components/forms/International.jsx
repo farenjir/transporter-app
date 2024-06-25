@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 
 import { RequestContext } from "./context";
 import { Buttons, Icons, InputType, Selects } from "components";
@@ -10,7 +10,8 @@ const International = () => {
 	const [priceType, setPriceType] = useState(true);
 	// hooks
 	const { t } = useTranslation();
-	const { onChange, autoData, loading, jalali, enums, priceTypes } = useContext(RequestContext);
+	const { onChangeAutocomplete, autocompleteLoading, autoData, loading, jalali, enums, priceTypes } =
+		useContext(RequestContext);
 	// handles
 	const onChangePriceType = (value) => {
 		setPriceType(value);
@@ -22,10 +23,15 @@ const International = () => {
 				<Col xs={24} md={12} lg={8}>
 					<AutocompletePublic
 						name="fromLocationId"
-						label={t("commonPages.source")}
+						label={
+							<div className="flex gap-2">
+								<span>{t("commonPages.source")}</span>
+								<Spin spinning={autocompleteLoading} size="small" className="pt-1" />
+							</div>
+						}
 						required={true}
 						options={autoData}
-						onChange={onChange}
+						onChange={onChangeAutocomplete}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
@@ -37,10 +43,15 @@ const International = () => {
 				<Col xs={24} md={12} lg={8}>
 					<AutocompletePublic
 						name="toLocationId"
-						label={t("commonPages.destination")}
+						label={
+							<div className="flex gap-2">
+								<span>{t("commonPages.destination")}</span>
+								<Spin spinning={autocompleteLoading} size="small" className="pt-1" />
+							</div>
+						}
 						required={true}
 						options={autoData}
-						onChange={onChange}
+						onChange={onChangeAutocomplete}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
