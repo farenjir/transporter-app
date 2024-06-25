@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
-import { List } from "antd";
+import { List, Skeleton } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { UserOutlined } from "@ant-design/icons";
 
@@ -17,6 +17,7 @@ import CommentSection from "./CommentSection";
 const CommentForm = ({ requestType, record }) => {
 	const [comments, setComments] = useState([]);
 	const [submitting, setSubmitting] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const [value, setValue] = useState("");
 	// hooks
 	const { t } = useTranslation();
@@ -48,7 +49,7 @@ const CommentForm = ({ requestType, record }) => {
 			...perComments,
 			{
 				author: <span className="uppercase">{user.fullName}</span>,
-				avatar: user.avatarUrl || <UserOutlined />,
+				avatar: user.avatarUrl || <UserOutlined className=" border rounded-full shadow-lg" />,
 				content: <p>{value}</p>,
 				datetime: dayjs().fromNow(),
 				date: dayjs().format(),
@@ -59,6 +60,7 @@ const CommentForm = ({ requestType, record }) => {
 	// init
 	useEffect(() => {
 		const getComments = async () => {
+			setLoading(true);
 			const { content = [] } = await getChatRequest(callApi, {
 				pgs: 100,
 				pgn: 1,
@@ -68,7 +70,7 @@ const CommentForm = ({ requestType, record }) => {
 			const transformComments = content.map(
 				({ firstName, lastName, registerDate, userComment, userId, avatarUrl }) => ({
 					author: <span className="uppercase">{`${firstName} ${lastName}`}</span>,
-					avatar: avatarUrl || <UserOutlined />,
+					avatar: avatarUrl || <UserOutlined className=" border rounded-full shadow-lg p-2" />,
 					content: <p>{userComment}</p>,
 					datetime: dayjs(registerDate).fromNow(),
 					date: registerDate,
@@ -76,6 +78,7 @@ const CommentForm = ({ requestType, record }) => {
 				}),
 			);
 			setComments(transformComments);
+			setLoading(false);
 		};
 		if (record.id) {
 			getComments();
@@ -87,13 +90,16 @@ const CommentForm = ({ requestType, record }) => {
 	// returnJSX
 	return (
 		<>
-			<List
-				className="px-[5%]"
-				locale={{ emptyText: "..." }}
-				dataSource={comments}
-				itemLayout="horizontal"
-				renderItem={(props) => <Comment {...props} />}
-			/>
+			{loading ? (
+				<Skeleton active avatar paragraph={{ rows: 5 }} className="px-[5%]" />
+			) : (
+				<List
+					className="px-[5%]"
+					dataSource={comments}
+					itemLayout="horizontal"
+					renderItem={(props) => <Comment {...props} />}
+				/>
+			)}
 			<CommentSection {...{ handleSubmit, user, submitting, handleChange, value }} />
 		</>
 	);

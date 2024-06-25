@@ -42,7 +42,7 @@ const UserLayout = () => {
 	};
 	const handleLogout = () => {
 		logout();
-		navigate("/", { replace: true });
+		navigate("/main", { replace: true });
 	};
 	// return
 	return (
@@ -60,7 +60,7 @@ const UserLayout = () => {
 						<span className="text-sm uppercase mx-1">{user?.fullName}</span>
 					</Link>
 				</div>
-				<Link to={"/"}>
+				<Link to={"/main"}>
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
 				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
@@ -89,7 +89,7 @@ const UserLayout = () => {
 						</Col>
 					</Row>
 				) : (
-					<Navigate to={{ pathname: "/auth", state: { referrer: "/user" } }} />
+					<Navigate to={{ pathname: "/login", state: { referrer: "/main" } }} />
 				)}
 				{/* children */}
 				<Drawers

@@ -14,7 +14,7 @@ const Sidebar = ({ token = {} }) => {
 	const { user } = useSelector(authSelector);
 	// options
 	const links = [
-		{ title: "home", to: "/", icon: "HomeOutlined" },
+		{ title: "home", to: "/main", icon: "HomeOutlined" },
 		user && {
 			title: "orders",
 			icon: "FileDoneOutlined",

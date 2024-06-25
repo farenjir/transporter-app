@@ -32,7 +32,7 @@ export default function AuthForm() {
 		const response = await userAuthentication(callApi, cpid, pNumber);
 		if (response?.result) {
 			setToCookie(TOKEN_NAME, response.result);
-			navigate("/", { replace: true });
+			navigate("/main", { replace: true });
 			notificationMaker(t("commons.success"), "success", t("auth.successLogin"));
 			dispatch(getCurrentUser({ callApi }));
 		} else {
@@ -49,7 +49,7 @@ export default function AuthForm() {
 				<Paragraph className="text-xs mt-4">
 					{t("auth.description")}
 					<strong className="text-blue-500 cursor-pointer text-base">
-						<Link to={"/auth/register"} style={{ color: token?.colorPrimary }}>
+						<Link to={"/register"} style={{ color: token?.colorPrimary }}>
 							{t("auth.register")}
 						</Link>
 					</strong>

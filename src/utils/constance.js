@@ -1,4 +1,8 @@
+export const INIT_APP = "appInitialize";
 export const TOKEN_NAME = "access_token";
+
+export const LANG_NAME = "language";
+export const DEFAULT_LANG = "fa";
 
 export const enumTypes = [
 	101, // Gender

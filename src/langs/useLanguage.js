@@ -12,10 +12,11 @@ import dateAr from "antd/es/date-picker/locale/ar_EG";
 import dateIt from "antd/es/date-picker/locale/it_IT";
 
 import { setToStorage } from "utils/storage";
-import { initDayjs } from "./configs/dayjs";
+import { LANG_NAME } from "utils/constance";
 
-const rtlLangs = ["fa", "ar"];
-// const ltrLangs = ["it", "en"];
+import { initDayjs } from "./configs/dayjs";
+import { rtlLangs } from "./configs";
+
 
 const useLanguage = () => {
 	const [language, setLanguage] = useState();
@@ -24,7 +25,7 @@ const useLanguage = () => {
 		i18next.changeLanguage(lang);
 		initDayjs(lang);
 		// setToStorage
-		setToStorage("language", lang);
+		setToStorage(LANG_NAME, lang);
 		setLanguage(lang);
 	};
 	// init langs
@@ -34,17 +35,17 @@ const useLanguage = () => {
 	// configs
 	let configs = rtlLangs.includes(language)
 		? {
-				direction: "rtl",
-				placement: "left",
-				dePlacement: "right",
-				jalali: true,
-			}
+			direction: "rtl",
+			placement: "left",
+			dePlacement: "right",
+			jalali: true,
+		}
 		: {
-				direction: "ltr",
-				placement: "right",
-				dePlacement: "left",
-				jalali: false,
-			};
+			direction: "ltr",
+			placement: "right",
+			dePlacement: "left",
+			jalali: false,
+		};
 	let locals = {
 		fa: localeFa,
 		en: localeEn,

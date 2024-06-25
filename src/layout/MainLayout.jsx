@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { useSelector } from "react-redux";
 import { authSelector } from "store/selector";
 
 import { SettingOutlined, MenuOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Layout, Skeleton, theme, Tooltip, Typography } from "antd";
+import { Layout, Skeleton, Spin, theme, Tooltip, Typography } from "antd";
 import { useAppContext } from "hooks";
 
 import { Drawers } from "components";
@@ -42,7 +42,7 @@ const MainLayout = () => {
 	};
 	const handleLogout = () => {
 		logout();
-		navigate("/", { replace: true });
+		navigate("/main", { replace: true });
 	};
 	// return
 	return (
@@ -66,7 +66,7 @@ const MainLayout = () => {
 						<div className="mx-10"></div>
 					)}
 				</div>
-				<Link to={"/"}>
+				<Link to={"/main"}>
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
 				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-lg`}>
@@ -91,7 +91,13 @@ const MainLayout = () => {
 			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">
 				<FloatLabel />
 				{/* children */}
-				<Outlet key={"user-layout"} />
+				{loading ? (
+					<Spin spinning fullscreen tip={t("messages.noAccess")} size="large" />
+				) : user ? (
+					<Outlet key={"user-layout"} />
+				) : (
+					<Navigate to={{ pathname: "/login" }} />
+				)}
 				{/* children */}
 				<Drawers
 					title={t("layouts.sidebar.menu")}

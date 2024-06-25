@@ -144,6 +144,7 @@ const International = () => {
 						placeholder={t("home.cargoDesc")}
 						label={t("home.cargoDesc")}
 						type={"textarea"}
+						required={true}
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>

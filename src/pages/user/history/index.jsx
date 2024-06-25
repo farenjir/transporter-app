@@ -13,7 +13,7 @@ import RequestContextApi from "./components/forms/context";
 import HistoryList from "./components/HistoryList";
 import InternationalRequest from "./components/forms/International";
 import InternationalGetRequest from "./components/forms/InternationalGet";
-import CommentForm from "./components/Comment";
+import CommentForm from "./components/comments";
 
 const requestCommentType = {
 	send: 1,

@@ -13,6 +13,14 @@ export const faMonths = [
 	"اسفند",
 ];
 
+export const langList = {
+	English: "en",
+	Persian: "fa",
+	Deutsch: "deu",
+	Italian: "it",
+	Turkish: "tu",
+	Arabic: "ar"
+};
 export const langConfigs = {
 	fa: {
 		monthsShort: faMonths,
@@ -29,3 +37,6 @@ export const timeZones = {
 	fa: "Asia/Tehran",
 	en: undefined,
 };
+
+export const rtlLangs = ["fa", "ar"];
+export const ltrLangs = ["it", "en", "deu", "tu"];

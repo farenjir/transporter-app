@@ -17,7 +17,7 @@ const FloatLabel = () => {
 					bottom: 150,
 				}}
 				icon={
-					<Link to={"/request"} className="text-white">
+					<Link to={"/main/request"} className="text-white">
 						<SearchOutlined />
 					</Link>
 				}
@@ -31,7 +31,7 @@ const FloatLabel = () => {
 					bottom: 100,
 				}}
 				icon={
-					<Link to={"/request"} className="text-white">
+					<Link to={"/main/request"} className="text-white">
 						<PhoneOutlined />
 					</Link>
 				}
@@ -45,7 +45,7 @@ const FloatLabel = () => {
 					bottom: 50,
 				}}
 				icon={
-					<Link to={"/request"} className="text-white">
+					<Link to={"/main/request"} className="text-white">
 						<InfoCircleOutlined />
 					</Link>
 				}

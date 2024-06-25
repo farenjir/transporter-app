@@ -52,7 +52,7 @@ export default function AuthForm() {
 				<Paragraph className="text-xs mt-4">
 					{t("auth.ifRegistered")}
 					<strong className="text-blue-500 cursor-pointer text-base">
-						<Link to={"/auth"} style={{ color: token?.colorPrimary }}>
+						<Link to={"/login"} style={{ color: token?.colorPrimary }}>
 							{t("auth.ifLogin")}
 						</Link>
 					</strong>

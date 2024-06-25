@@ -15,12 +15,17 @@ import UserLayout from "layout/UserLayout";
 import HomePage from "pages/main/home";
 
 const authRoutes = {
-	path: "/auth",
+	path: "/",
 	element: <AuthLayout />,
 	children: [
 		{
 			index: true,
-			id: "auth",
+			id: "lang",
+			lazy: async () => ({ Component: (await import("../pages/main/lang")).default }),
+		},
+		{
+			path: "login",
+			id: "login",
 			lazy: async () => ({ Component: (await import("../pages/main/auth/login")).default }),
 		},
 		{
@@ -32,7 +37,7 @@ const authRoutes = {
 };
 
 const mainRoutes = {
-	path: "/",
+	path: "/main",
 	element: <MainLayout />,
 	children: [
 		{

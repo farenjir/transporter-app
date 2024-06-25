@@ -7,18 +7,18 @@ import useTheme from "theme/useTheme";
 
 import { getCurrentUser } from "store/auth/action";
 import { getCountries, getEnums } from "store/base/action";
+import { clearUser } from "store/auth";
 
 import callApi from "service";
 import AppContext from "./index";
-import { clearUser } from "store/auth";
 
 function ContextApi({ children }) {
 	// hooks
 	const dispatch = useDispatch();
 	// language
-	const { language, changeLanguage, direction, locale, jalali, placement, dePlacement } = useLanguage();
+	const { language, direction, locale, placement, ...langConfigs } = useLanguage();
 	// theme
-	const { themeAntMode, fontAntMode, fontMode, selectedToken, tokens, ...handles } = useTheme(theme);
+	const { themeAntMode, fontAntMode, fontMode, selectedToken, tokens, ...themeConfigs } = useTheme(theme);
 	// global handles
 	const logout = () => {
 		dispatch(clearUser());
@@ -40,17 +40,14 @@ function ContextApi({ children }) {
 		<AppContext.Provider
 			value={{
 				language,
-				placement,
-				dePlacement,
 				direction,
-				jalali,
-				// themeHandlers
-				...handles,
-				changeLanguage,
+				locale,
+				placement,
+				...langConfigs,
 				fontMode,
 				tokens,
 				selectedToken,
-				// callApi
+				...themeConfigs,
 				callApi,
 				logout,
 			}}

@@ -84,7 +84,7 @@ const SendDetails = ({ params = {} }) => {
 		<>
 			<Details
 				title={
-					<div className="flex justify-between align-middle items-center">
+					<div className="flex flex-col md:flex-row justify-between align-middle items-center">
 						<p className="text-base lg:text-xl pb-4" style={{ color: token?.colorPrimary }}>
 							{title}
 						</p>
