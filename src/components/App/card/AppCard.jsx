@@ -2,11 +2,10 @@ import { useTranslation } from "react-i18next";
 import { Card } from "antd";
 
 import { Buttons } from "components";
-import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-const AppCard = ({ id, imgUrl, title = "", description = "", link = { to: "", state: {} } }) => {
+const AppCard = ({ id, imgUrl, title = "", description = "", onClickBtn = () => {} }) => {
 	const { t } = useTranslation();
 	return (
 		<Card
@@ -15,7 +14,8 @@ const AppCard = ({ id, imgUrl, title = "", description = "", link = { to: "", st
 		>
 			<Meta title={title} description={description} />
 			<Buttons
-				content={<Link {...link}>{t("commons.contentView")}</Link>}
+				onClick={onClickBtn}
+				content={t("commons.contentView")}
 				type="dashed"
 				htmlType="button"
 				block={true}

@@ -13,7 +13,6 @@ import { Drawers } from "components";
 import { SettingDrawer } from "components/App";
 
 import Sidebar from "./components/Menu/MainMenu";
-import FloatLabel from "./components/Float";
 import UserMenu from "./components/Menu/UserMenu";
 
 const { Text } = Typography;

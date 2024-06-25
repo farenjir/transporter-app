@@ -45,11 +45,6 @@ const mainRoutes = {
 			id: "request",
 			lazy: async () => ({ Component: (await import("../pages/main/request")).default }),
 		},
-		{
-			path: "request/:Id",
-			id: "request/:Id",
-			lazy: async () => ({ Component: (await import("../pages/main/request/_preview")).default }),
-		},
 	],
 };
 

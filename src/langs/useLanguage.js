@@ -36,11 +36,13 @@ const useLanguage = () => {
 		? {
 				direction: "rtl",
 				placement: "left",
+				dePlacement: "right",
 				jalali: true,
 			}
 		: {
 				direction: "ltr",
 				placement: "right",
+				dePlacement: "left",
 				jalali: false,
 			};
 	let locals = {

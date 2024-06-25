@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Typography } from "antd";
@@ -11,18 +11,37 @@ import { dateToLocale } from "utils/globals";
 
 import { getRequestForCarrier } from "service/main";
 
-import { Buttons, CarouselModule } from "components";
-import { AppCard } from "components/App";
+import { Buttons, CarouselModule, Drawers } from "components";
+import { AppCard, RequestDetails } from "components/App";
 
 const { Title } = Typography;
 
 export default function RequeuedSend() {
-	const [producers, setProducers] = useState([]);
+	const [requests, setRequests] = useState([]);
+	const [requestGroups, setRequestGroups] = useState([]);
+	const [selectRequest, setSelectRequest] = useState({});
 	const [loading, setLoading] = useState(true);
+	const [open, setOpen] = useState(false);
 	// hooks
 	const { t } = useTranslation();
-	const { callApi } = useAppContext();
+	const { callApi, dePlacement } = useAppContext();
 	const { enums } = useSelector(baseSelector);
+	// modal handles
+	const onClose = () => {
+		setOpen(false);
+	};
+	const onOpen = () => {
+		setOpen(true);
+	};
+	const onSelectRecord = useCallback(
+		(selectedId) => {
+			const record = requests.find(({ id }) => id === selectedId) || {};
+			setSelectRequest(record);
+			onOpen();
+		},
+		[requests],
+	);
+	console.log({ selectRequest });
 	// handles
 	const getPriceType = (priceCurrencyTypeId) => {
 		return enums?.["105"]?.find(({ id }) => id === priceCurrencyTypeId)?.label ?? "";
@@ -32,14 +51,15 @@ export default function RequeuedSend() {
 		const getAllProducers = async () => {
 			setLoading(true);
 			const { content } = await getRequestForCarrier(callApi, { pgs: 9, pgn: 1 });
-			const cardGroups = [content.slice(0, 3), content.slice(3, 6), content.slice(6, 9)].filter(
+			const cardGroups = [content.slice(0, 3), content.slice(4, 6), content.slice(7, 9)].filter(
 				(item) => item?.length,
 			);
-			setProducers(cardGroups);
+			setRequests(content);
+			setRequestGroups(cardGroups);
 			setLoading(false);
 		};
 		getAllProducers();
-	}, []);
+	}, [callApi]);
 	return (
 		<section className="producer-sections mx-auto p-5 mt-8 md:mx-12">
 			<div className="producer-title md:text-center">
@@ -60,13 +80,21 @@ export default function RequeuedSend() {
 				size="default"
 				classes="text-sm float-left mt-3"
 			/>
+			<Drawers
+				title={t("home.send")}
+				open={open}
+				onClose={onClose}
+				placement={dePlacement}
+				content={<RequestDetails selectRequest={selectRequest} mode={"send"} />}
+				size="large"
+			/>
 			<CarouselModule
 				name="send-request"
 				loading={loading}
 				className="pb-10 pt-5 px-0 min-h-[350px]"
-				swiperSliders={producers.map((cardGroups = [], idx) => (
+				swiperSliders={requestGroups.map((cardGroups = [], idx) => (
 					<div key={`cardGroups-${idx}`}>
-						<section className="send-sections flex flex-col md:flex-row justify-between align-middle items-center gap-4 lg:gap:8">
+						<section className="send-sections flex flex-col md:flex-row justify-around gap-4 lg:gap:8">
 							{cardGroups.map(
 								({
 									id,
@@ -101,7 +129,8 @@ export default function RequeuedSend() {
 									chats,
 								}) => (
 									<AppCard
-										key={id.toString()}
+										key={`${id}`}
+										onClickBtn={() => onSelectRecord(id)}
 										imgUrl={"/assets/images/international-banner.webp"}
 										{...{
 											title: (
@@ -146,42 +175,6 @@ export default function RequeuedSend() {
 													</span>
 												</div>
 											),
-										}}
-										link={{
-											to: `/request/${id}`,
-											state: {
-												mode: "send",
-												id,
-												fromCountryName,
-												toCountryName,
-												toLocationName,
-												fromLocationName,
-												priceCurrencyTypeId,
-												priceIsNegotiable,
-												proposedPrice,
-												cargoWeightUnitIssueTitle,
-												cargoSize,
-												cargoWeight,
-												cargoItemNo,
-												cargoDesc,
-												fromDateValidOfDeliver,
-												toDateValidOfDeliver,
-												requestLangaheTypeID,
-												requesterUserId,
-												requestType,
-												registerDate,
-												cargoWeightUnitIssueId,
-												fromCountryId,
-												toCountryId,
-												fromLocationId,
-												toLocationId,
-												fromLocationDesc,
-												toLocationDesc,
-												imageId,
-												timeZoneId,
-												matchStatusId,
-												chats,
-											},
 										}}
 									/>
 								),

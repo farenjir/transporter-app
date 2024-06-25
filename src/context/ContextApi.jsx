@@ -16,7 +16,7 @@ function ContextApi({ children }) {
 	// hooks
 	const dispatch = useDispatch();
 	// language
-	const { language, changeLanguage, direction, locale, jalali, placement } = useLanguage();
+	const { language, changeLanguage, direction, locale, jalali, placement, dePlacement } = useLanguage();
 	// theme
 	const { themeAntMode, fontAntMode, fontMode, selectedToken, tokens, ...handles } = useTheme(theme);
 	// global handles
@@ -41,6 +41,7 @@ function ContextApi({ children }) {
 			value={{
 				language,
 				placement,
+				dePlacement,
 				direction,
 				jalali,
 				// themeHandlers
