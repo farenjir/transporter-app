@@ -60,7 +60,7 @@ const UserLayout = () => {
 						<span className="text-sm uppercase mx-1">{user?.fullName}</span>
 					</Link>
 				</div>
-				<Link to={"/main"}>
+				<Link to={"/main"} className="hidden md:block">
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
 				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
