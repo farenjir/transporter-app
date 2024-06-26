@@ -8,6 +8,8 @@ import english from "./resources/english.json";
 import persian from "./resources/persian.json";
 import italian from "./resources/italian.json";
 import arabic from "./resources/arabic.json";
+import deutsch from "./resources/deutsch.json";
+import turkish from "./resources/turkish.json";
 
 i18n.use(initReactI18next).init({
 	resources: {
@@ -15,6 +17,8 @@ i18n.use(initReactI18next).init({
 		en: { translation: english },
 		it: { translation: italian },
 		ar: { translation: arabic },
+		tr: { translation: turkish },
+		de: { translation: deutsch },
 	},
 	lng: getFromStorage(LANG_NAME) || DEFAULT_LANG,
 	fallbackLng: getFromStorage(LANG_NAME) || DEFAULT_LANG,

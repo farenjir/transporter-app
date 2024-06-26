@@ -16,9 +16,9 @@ export const faMonths = [
 export const langList = {
 	English: "en",
 	Persian: "fa",
-	Deutsch: "deu",
+	Deutsch: "de",
 	Italian: "it",
-	Turkish: "tu",
+	Turkish: "tr",
 	Arabic: "ar"
 };
 export const langConfigs = {
@@ -39,4 +39,4 @@ export const timeZones = {
 };
 
 export const rtlLangs = ["fa", "ar"];
-export const ltrLangs = ["it", "en", "deu", "tu"];
+export const ltrLangs = ["it", "en", "de", "tu"];

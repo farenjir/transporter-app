@@ -21,7 +21,7 @@ const CommentForm = ({ requestType, record }) => {
 	const [value, setValue] = useState("");
 	// hooks
 	const { t } = useTranslation();
-	const { callApi, jalali } = useAppContext();
+	const { callApi } = useAppContext();
 	const { user } = useSelector(authSelector);
 	// handles
 	const handleChange = (e) => {
@@ -43,20 +43,20 @@ const CommentForm = ({ requestType, record }) => {
 		const perComments = comments.map(({ date, ...other }) => ({
 			...other,
 			date,
-			datetime: dayjs(date, { jalali }).fromNow(),
+			datetime: dayjs(date).fromNow(),
 		}));
 		setComments([
-			...perComments,
 			{
 				author: <span className="uppercase">{user.fullName}</span>,
-				avatar: user.avatarUrl || <UserOutlined className=" border rounded-full shadow-lg" />,
+				avatar: user.avatarUrl || <UserOutlined className="border rounded-full shadow-lg p-2" />,
 				content: <p>{value}</p>,
 				datetime: dayjs().fromNow(),
 				date: dayjs().format(),
 			},
+			...perComments,
 		]);
 		setSubmitting(false);
-	}, [callApi, record.id, requestType, comments, value, user.fullName, user.avatarUrl, t, jalali]);
+	}, [callApi, record.id, requestType, comments, value, user.fullName, user.avatarUrl, t]);
 	// init
 	useEffect(() => {
 		const getComments = async () => {
@@ -67,16 +67,16 @@ const CommentForm = ({ requestType, record }) => {
 				RecordId: record.id,
 				requestType,
 			});
-			const transformComments = content.map(
-				({ firstName, lastName, registerDate, userComment, userId, avatarUrl }) => ({
+			const transformComments = content
+				.map(({ firstName, lastName, registerDate, userComment, userId, avatarUrl }) => ({
 					author: <span className="uppercase">{`${firstName} ${lastName}`}</span>,
-					avatar: avatarUrl || <UserOutlined className=" border rounded-full shadow-lg p-2" />,
+					avatar: avatarUrl || <UserOutlined className="border rounded-full shadow-lg p-2" />,
 					content: <p>{userComment}</p>,
 					datetime: dayjs(registerDate).fromNow(),
 					date: registerDate,
 					userId,
-				}),
-			);
+				}))
+				.reverse();
 			setComments(transformComments);
 			setLoading(false);
 		};
@@ -90,16 +90,18 @@ const CommentForm = ({ requestType, record }) => {
 	// returnJSX
 	return (
 		<>
-			{loading ? (
-				<Skeleton active avatar paragraph={{ rows: 5 }} className="px-[5%]" />
-			) : (
-				<List
-					className="px-[5%]"
-					dataSource={comments}
-					itemLayout="horizontal"
-					renderItem={(props) => <Comment {...props} />}
-				/>
-			)}
+			<div className="h-[300px] overflow-y-scroll border-r-2 rounded-3xl shadow-md">
+				{loading ? (
+					<Skeleton active avatar paragraph={{ rows: 8 }} className="px-[5%]" />
+				) : (
+					<List
+						className="px-[5%]"
+						dataSource={comments}
+						itemLayout="horizontal"
+						renderItem={(props) => <Comment {...props} />}
+					/>
+				)}
+			</div>
 			<CommentSection {...{ handleSubmit, user, submitting, handleChange, value }} />
 		</>
 	);

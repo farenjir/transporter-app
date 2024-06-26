@@ -1,4 +1,4 @@
-export { default as SettingDrawer } from "./settingDrawer";
+export { default as SettingDrawer } from "./setting";
 // cards
 export { default as AppCard } from "./card/AppCard";
 export { default as MyAppCard } from "./card/MyAppCard";

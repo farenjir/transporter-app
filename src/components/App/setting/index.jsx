@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Col, Radio, Row, Typography } from "antd";
+import { APP_VERSION } from "utils/constance";
 
 const { Title } = Typography;
 
@@ -78,18 +79,14 @@ const DrawerContent = ({
 			<Title level={5}>{t("layouts.language")}</Title>
 			<Col span={24}>
 				<Radio.Group
-					buttonStyle="solid"
 					defaultValue={language}
 					onChange={(e) => changeLanguage(e.target.value)}
 					optionType="button"
+					buttonStyle="solid"
 					options={[
 						{
 							label: "English",
 							value: "en",
-						},
-						{
-							label: "Italy",
-							value: "it",
 						},
 						{
 							label: "فارسی",
@@ -98,6 +95,18 @@ const DrawerContent = ({
 						{
 							label: "عربی",
 							value: "ar",
+						},
+						{
+							label: "Deutsch",
+							value: "de",
+						},
+						{
+							label: "Italy",
+							value: "it",
+						},
+						{
+							label: "Turkish",
+							value: "tr",
 						},
 					]}
 				/>
@@ -110,7 +119,7 @@ const DrawerContent = ({
 					optionType="button"
 					options={[
 						{
-							label: t("layouts.versionNumber"),
+							label: APP_VERSION,
 							value: "version",
 						},
 					]}

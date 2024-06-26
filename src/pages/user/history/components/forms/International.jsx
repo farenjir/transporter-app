@@ -134,6 +134,7 @@ const InternationalRequest = ({ edit, info }) => {
 						placeholder={t("home.cargoDesc")}
 						label={t("home.cargoDesc")}
 						type={"textarea"}
+						required={true}
 					/>
 				</Col>
 				{edit && (

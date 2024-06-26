@@ -5,11 +5,15 @@ import localeFa from "antd/es/locale/fa_IR";
 import localeEn from "antd/es/locale/en_US";
 import localeAr from "antd/es/locale/ar_EG";
 import localeIt from "antd/es/locale/it_IT";
+import localeTr from "antd/es/locale/tr_TR";
+import localeDe from "antd/es/locale/de_DE";
 
 import dateFa from "antd/es/date-picker/locale/fa_IR";
 import dateEn from "antd/es/date-picker/locale/en_US";
 import dateAr from "antd/es/date-picker/locale/ar_EG";
 import dateIt from "antd/es/date-picker/locale/it_IT";
+import dateTr from "antd/es/date-picker/locale/tr_TR";
+import dateDe from "antd/es/date-picker/locale/de_DE";
 
 import { setToStorage } from "utils/storage";
 import { LANG_NAME } from "utils/constance";
@@ -51,12 +55,16 @@ const useLanguage = () => {
 		en: localeEn,
 		ar: localeAr,
 		it: localeIt,
+		tr: localeTr,
+		de: localeDe,
 	};
 	let datePicker = {
 		fa: dateFa,
 		en: dateEn,
 		ar: dateAr,
 		it: dateIt,
+		tr: dateTr,
+		de: dateDe,
 	};
 	const buddhistLocale = {
 		...(datePicker[language]?.lang || {}),
