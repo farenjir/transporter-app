@@ -23,7 +23,7 @@ export const getCountryLocations = createAsyncThunk(
 	async ({ callApi, lngTypeId = 10, countryId = 1 }) => {
 		return await callApi({ url: "GeoLocation/GetAllLocationByCountry", params: { lngTypeId, countryId } })
 			.then((data) => transformer.locationsTransformData(data))
-			.catch((_e) => []);
+			.catch(() => []);
 	},
 );
 

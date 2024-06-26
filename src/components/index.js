@@ -1,5 +1,3 @@
-export { default as Loadings } from "./loading";
-
 // common
 export { default as Buttons } from "./button";
 export { default as Inputs } from "./input";
