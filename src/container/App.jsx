@@ -11,8 +11,6 @@ import ContextApi from "context/ContextApi";
 import AuthLayout from "layout/AuthLayout";
 import MainLayout from "layout/MainLayout";
 import UserLayout from "layout/UserLayout";
-// pages
-import HomePage from "pages/main/home";
 
 const authRoutes = {
 	path: "/",
@@ -43,12 +41,7 @@ const mainRoutes = {
 		{
 			index: true,
 			id: "home",
-			element: <HomePage />,
-		},
-		{
-			path: "request",
-			id: "request",
-			lazy: async () => ({ Component: (await import("../pages/main/request")).default }),
+			lazy: async () => ({ Component: (await import("../pages/user/home")).default }),
 		},
 	],
 };

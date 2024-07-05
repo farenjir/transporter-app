@@ -89,7 +89,7 @@ const MainLayout = () => {
 				</div>
 			</Header>
 			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">
-				<FloatLabel />
+				{/* <FloatLabel /> */}
 				{/* children */}
 				{loading ? (
 					<Spin spinning fullscreen tip={t("messages.noAccess")} size="large" />

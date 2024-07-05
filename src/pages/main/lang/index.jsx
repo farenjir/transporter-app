@@ -25,9 +25,18 @@ const SelectLang = () => {
 			status="info"
 			title={t("lang.title")}
 			subTitle={t("lang.subTitle")}
-			extra={Object.entries(langList).map(([key, value]) => (
-				<Buttons key={key} content={key} onClick={() => onClickLang(value)} block={true} />
-			))}
+			extra={
+				<div className="flex flex-col align-middle justify-center items-center">
+					{Object.entries(langList).map(([key, value]) => (
+						<Buttons
+							key={key}
+							content={key}
+							onClick={() => onClickLang(value)}
+							classes="w-[200px]"
+						/>
+					))}
+				</div>
+			}
 		/>
 	);
 };

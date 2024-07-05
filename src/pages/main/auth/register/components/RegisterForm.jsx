@@ -59,50 +59,41 @@ export default function AuthForm() {
 				</Paragraph>
 			</div>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={8}>
-					<Inputs name="firstName" type="text" label={t("auth.firstName")} required={true} />
+				<Col xs={24} md={12}>
+					<Inputs name="firstName" type="text" label={t("auth.firstName")} />
 				</Col>
-				<Col xs={24} md={8}>
-					<Inputs name="lastName" type="text" label={t("auth.lastName")} required={true} />
+				<Col xs={24} md={12}>
+					<Inputs name="lastName" type="text" label={t("auth.lastName")} />
 				</Col>
-				<Col xs={24} md={8}>
+				<Col xs={24} md={12}>
 					<Inputs name="email" type="email" label={t("auth.email")} required={true} />
 				</Col>
+				<Col xs={24} md={4}>
+					<Selects
+						showSearch
+						name="phoneCoutryPrefixId"
+						label={t("auth.phonePrefix")}
+						options={telecomPrefix}
+					/>
+				</Col>
 				<Col xs={24} md={8}>
+					<Inputs name="phoneNumber" type="text" label={t("auth.phoneNumber")} />
+				</Col>
+
+				<Col xs={24} md={12}>
 					<Inputs name="uPassword" type="password" label={t("auth.uPassword")} required={true} />
 				</Col>
-				<Col xs={24} md={8}>
+				<Col xs={24} md={12}>
 					<Inputs name="uPass" type="password" label={t("auth.uPass")} required={true} />
 				</Col>
-				<Col xs={24} md={24}>
-					<Row gutter={[8, 8]} align={"middle"}>
-						<Col xs={24} md={8}>
-							<Selects
-								showSearch
-								name="originCountryId"
-								options={countries}
-								label={t("auth.region")}
-								required={true}
-							/>
-						</Col>
-						<Col xs={24} md={8}>
-							<Inputs
-								name="phoneNumber"
-								type="text"
-								label={t("auth.phoneNumber")}
-								required={true}
-							/>
-						</Col>
-						<Col xs={24} md={8}>
-							<Selects
-								showSearch
-								name="phoneCoutryPrefixId"
-								label={t("auth.phonePrefix")}
-								options={telecomPrefix}
-								required={true}
-							/>
-						</Col>
-					</Row>
+				{/* <Col xs={24} md={8}>
+					<Selects
+						showSearch
+						name="originCountryId"
+						options={countries}
+						label={t("auth.region")}
+						required={true}
+					/>
 				</Col>
 				<Col xs={24} md={8}>
 					<Selects
@@ -111,13 +102,13 @@ export default function AuthForm() {
 						required={true}
 						options={enums?.["101"] || []}
 					/>
-				</Col>
-				<Col xs={24} md={8}>
+				</Col> */}
+				<Col xs={24} md={{ offset: 12, span: 12 }}>
 					<Buttons
 						htmlType="submit"
 						block={true}
 						content={t("auth.registered")}
-						classes="mt-8"
+						classes="mt-3"
 						loading={loading}
 					/>
 				</Col>

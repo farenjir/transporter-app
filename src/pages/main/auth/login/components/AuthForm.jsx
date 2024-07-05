@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { GoogleOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Form, Typography, theme } from "antd";
 
 import { TOKEN_NAME } from "utils/constance";
 import { setToCookie } from "utils/storage";
+import { notificationMaker } from "utils/notification";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "store/auth/action";
 
 import { useAppContext } from "hooks";
 import { userAuthentication } from "service/main";
 
+import "../style.css";
 import { Buttons, Inputs } from "components";
-import { notificationMaker } from "utils/notification";
 
 const { Paragraph, Title } = Typography;
 
@@ -41,7 +42,7 @@ export default function AuthForm() {
 		}
 	};
 	return (
-		<Form onFinish={onSubmit} dir={direction} layout="vertical" form={form} initialValues={{ cpid: "1" }}>
+		<Form onFinish={onSubmit} dir={direction} layout="vertical" form={form}>
 			<div className="mb-7">
 				<Title level={3} className="text-2xl font-extrabold" style={{ color: token?.colorPrimary }}>
 					{t("auth.title")}
@@ -58,15 +59,14 @@ export default function AuthForm() {
 			<Inputs
 				name="cpid"
 				type="text"
-				label={t("auth.cpId")}
+				label={t("auth.email")}
 				required={true}
-				addonAfter={<UserOutlined />}
+				addonAfter={<MailOutlined />}
 			/>
 			<Inputs
 				name="pNumber"
 				type="password"
-				label={t("auth.pNumber")}
-				autoComplete={"true"}
+				label={t("auth.uPassword")}
 				required={true}
 				addonAfter={<LockOutlined />}
 			/>
@@ -77,6 +77,41 @@ export default function AuthForm() {
 				classes="mt-3"
 				loading={loading}
 			/>
+			<div className="relative flex mb-2 items-center">
+				<div className="flex-grow border-t border-gray-400"></div>
+				<span className="flex-shrink mx-4 text-gray-400">{t("auth.otherLogin")}</span>
+				<div className="flex-grow border-t border-gray-400"></div>
+			</div>
+			<div className="flex gap-2 justify-between align-middle items-center">
+				<Buttons
+					type="dashed"
+					htmlType="button"
+					block={true}
+					disabled
+					content={
+						<span
+							className={`pt-2 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-200 text-transparent bg-clip-text animate-gradient`}
+						>
+							{t("FACEBOOK")}
+						</span>
+					}
+					formClasses="basis-1/2"
+				/>
+				<Buttons
+					type="dashed"
+					htmlType="button"
+					block={true}
+					disabled
+					content={
+						<span
+							className={`pt-2 bg-gradient-to-r from-orange-700 via-yellow-500 to-green-400 text-transparent bg-clip-text animate-gradient`}
+						>
+							{t("GOOGLE")}
+						</span>
+					}
+					formClasses="basis-1/2"
+				/>
+			</div>
 		</Form>
 	);
 }
