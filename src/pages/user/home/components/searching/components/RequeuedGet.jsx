@@ -54,7 +54,7 @@ export default function RequeuedGet({ list = [] }) {
 	}, [list]);
 	return (
 		<section className="producer-sections mx-auto p-5 mt-8 md:mx-12">
-			<div className="producer-title md:text-center">
+			<div className="producer-title md:text-center mb-5">
 				<Title level={2}>{t("home.getAll")}</Title>
 				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
 			</div>

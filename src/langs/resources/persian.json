@@ -166,8 +166,8 @@
 			"price": "قیمت : {{price}} {{label}}",
 			"weight": "مشخصات بسته :",
 			"weightDes": "وزن : {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - تعداد : {{cargoItemNo}} - سایز : {{cargoSize}}",
-			"dateFrom": "تاریخ مبدا ( دریافت ) : {{from}}",
-			"dateTo": "تاریخ مقصد ( تحویل ) : {{to}}"
+			"dateFrom": "از تاریخ : {{from}}",
+			"dateTo": " تا تاریخ : {{to}}"
 		},
 		"support": {
 			"auth": "احراز هویت",

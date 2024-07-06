@@ -10,7 +10,7 @@
 @layer base {
 	* {
 		font-family: YekanBakh-Regular !important;
-		font-weight: 700 !important;
+		font-weight: 700;
 	}
 	.ltr {
 		direction: ltr !important;
