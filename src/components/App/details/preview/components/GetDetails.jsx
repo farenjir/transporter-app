@@ -82,12 +82,12 @@ const GetDetails = ({ title = "", params = {} }) => {
 						<p className="text-base lg:text-xl" style={{ color: token?.colorPrimary }}>
 							{title}
 						</p>
-						<Buttons
+						{/* <Buttons
 							content={<span>درخواست رزرو</span>}
 							htmlType="button"
 							size="default"
 							classes="text-sm float-end mt-5"
-						/>
+						/> */}
 					</div>
 				}
 				layout="vertical"

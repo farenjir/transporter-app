@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { theme } from "antd";
 import { notificationMaker } from "utils/notification";
+import { requestCommentType } from "utils/constance";
 import { useAppContext } from "hooks";
 
 import { getMyAnnonceRequest, getMyCarrierRequest } from "service/user";
@@ -15,10 +16,6 @@ import InternationalRequest from "./components/forms/International";
 import InternationalGetRequest from "./components/forms/InternationalGet";
 import CommentForm from "./components/comments";
 
-const requestCommentType = {
-	send: 1,
-	get: 2,
-};
 const HistoryPage = () => {
 	const { type = "send" } = history?.state?.usr || {};
 	// state

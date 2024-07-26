@@ -64,7 +64,7 @@ export default function RequeuedGet({ list = [] }) {
 				onClose={onClose}
 				placement={placement}
 				content={<RequestDetails {...{ ...selectRequest, mode: "get" }} />}
-				size="large"
+				width={"100%"}
 			/>
 			<CarouselModule
 				name="get-request"

@@ -23,7 +23,8 @@
 		"viewAll": "مشاهده همه ",
 		"loading": "لطفا صبر نمایید",
 		"comment": "پیام ها",
-		"send": "ارسال"
+		"send": "ارسال",
+		"details": "جزییات"
 	},
 	"messages": {
 		"noAccess": "درحال بررسی سطح دسترسی ...",
@@ -204,5 +205,9 @@
 		"infoRequest": "مشخصات درخواست",
 		"deleteRequest": "حذف درخواست",
 		"successRegister": "مشخصات شما بروزرسانی شد"
+	},
+	"request": {
+		"details": "جزییات درخواست",
+		"sendMessage": "ارسال پیام"
 	}
 }

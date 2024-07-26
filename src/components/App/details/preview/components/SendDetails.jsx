@@ -3,13 +3,11 @@ import { useSelector } from "react-redux";
 import { baseSelector } from "store/selector";
 
 import { dateToLocale } from "utils/globals";
-import { theme } from "antd";
-import { Buttons, Details } from "components";
+import { Details } from "components";
 
 const SendDetails = ({ params = {} }) => {
 	// hooks
 	const { t } = useTranslation();
-	const { token } = theme.useToken();
 	const { enums } = useSelector(baseSelector);
 	// items
 	const items = [
@@ -74,28 +72,9 @@ const SendDetails = ({ params = {} }) => {
 				return value;
 		}
 	};
-	const title = t("home.cards.sendTo", {
-		fromCountryName: params.fromCountryName,
-		toCountryName: params.toCountryName,
-		fromLocationName: params.fromLocationName,
-		toLocationName: params.toLocationName,
-	});
 	return (
 		<>
 			<Details
-				title={
-					<div className="flex flex-col md:flex-row justify-between align-middle items-center">
-						<p className="text-base lg:text-xl pb-4" style={{ color: token?.colorPrimary }}>
-							{title}
-						</p>
-						<Buttons
-							content={<span>درخواست رزرو</span>}
-							htmlType="button"
-							size="default"
-							classes="text-sm float-end"
-						/>
-					</div>
-				}
 				layout="vertical"
 				size="small"
 				classes="text-xl"

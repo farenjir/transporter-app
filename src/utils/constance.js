@@ -11,3 +11,8 @@ export const enumTypes = [
 	105, // CurrencyType
 	107, // CargoSize
 ];
+
+export const requestCommentType = {
+	send: 1,
+	get: 2,
+};

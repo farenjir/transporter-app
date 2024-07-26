@@ -6,7 +6,9 @@ const AppTabs = ({
 	classes = "",
 	onChange = () => {},
 	type = "line",
+	tabPosition = "top",
 	centered = false,
+	tabBarExtraContent,
 }) => {
 	return (
 		<Tabs
@@ -16,6 +18,8 @@ const AppTabs = ({
 			type={type}
 			onChange={onChange}
 			centered={centered}
+			tabPosition={tabPosition}
+			tabBarExtraContent={tabBarExtraContent}
 		/>
 	);
 };
