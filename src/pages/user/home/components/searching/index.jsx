@@ -14,6 +14,7 @@ import RequeuedGet from "./components/RequeuedGet";
 import SearchContextApi from "./components/forms/context";
 import InternationalSearch from "./components/forms/InternationalSearch";
 import InternationalGetSearch from "./components/forms/InternationalGetSearch";
+import { ImportOutlined, SelectOutlined } from "@ant-design/icons";
 
 const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 	const [activeType, setActiveType] = useState("send");
@@ -26,24 +27,23 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 	const { token } = theme.useToken();
 	// onFinish
 	const onFinish = useCallback(
-		async (formValues) => {
+		async (paramsTransform = {}) => {
 			setLoading(true);
-			const { requestType, dateRange, ...value } = formValues;
-			const queries = {
-				fromDate: dateRange?.[0]?.toISOString(),
-				toDate: dateRange?.[1]?.toISOString(),
+			const { requestType, ...values } = paramsTransform;
+			console.log(values);
+			const queriesParams = {
 				pgn: pgn,
 				pgs: 9,
-				...value,
+				...values,
 			};
 			switch (requestType) {
 				case "send": {
-					let { content: carrierList } = await getRequestForCarrier(callApi, queries);
+					let { content: carrierList } = await getRequestForCarrier(callApi, queriesParams);
 					setList(carrierList || []);
 					break;
 				}
 				case "get": {
-					let { content: annonceList } = await getCarrierAnnonce(callApi, queries);
+					let { content: annonceList } = await getCarrierAnnonce(callApi, queriesParams);
 					setList(annonceList || []);
 					break;
 				}
@@ -66,15 +66,24 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 	// options
 	const requestType = [
 		{
-			label: t("search.send"),
+			label: (
+				<span className="flex gap-3 items-center align-middle">
+					<span> {t("search.send")}</span>
+					<SelectOutlined className="pb-1"/>
+				</span>
+			),
 			value: "send",
 		},
 		{
-			label: t("search.get"),
+			label: (
+				<span className="flex gap-3 items-center align-middle">
+					<span> {t("search.get")}</span>
+					<ImportOutlined className="pb-1"/>
+				</span>
+			),
 			value: "get",
 		},
 	];
-	// options
 	const tabItems = {
 		send: <InternationalSearch />,
 		get: <InternationalGetSearch />,
@@ -95,17 +104,22 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 				style={{ background: token?.colorBgBase }}
 			>
 				<SearchContextApi loading={loading} onFinish={onFinish} onReset={onReset}>
-					<RadioGroup
-						plainOptions={requestType}
-						name="requestType"
-						initialValue={activeType}
-						required={true}
-						onChange={onChangeType}
-					/>
+					<center>
+						<RadioGroup
+							name="requestType"
+							plainOptions={requestType}
+							initialValue={activeType}
+							required={true}
+							onChange={onChangeType}
+							buttonStyle="outline"
+							optionType="button"
+							size="large"
+						/>
+					</center>
 					{tabItems[activeType]}
 				</SearchContextApi>
 			</section>
-			<SupportSection background={token?.colorBgBase} />
+			{/* <SupportSection background={token?.colorBgBase} /> */}
 			{optionList[activeType]}
 		</>
 	);

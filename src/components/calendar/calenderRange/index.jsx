@@ -36,12 +36,12 @@ const CalenderDateRange = ({
 			label={label}
 			name={name}
 			rules={rules}
-			initialValue={initialValue || defaultValue}
+			initialValue={initialValue ?? defaultValue}
 		>
 			<RangePicker
 				className="w-full"
 				maxTagCount="responsive"
-				defaultValue={initialValue || defaultValue}
+				defaultValue={initialValue ?? defaultValue}
 				{...{ placement, size, allowClear, format }}
 			/>
 		</Form.Item>

@@ -14,10 +14,10 @@ import { postCarrierAnnonce, postRequestForCarrier, getLocationWithText } from "
 export const RequestContext = createContext({});
 
 function RequestContextApi({ children }) {
-	const [autoData, setAutoData] = useState([]);
 	const [backUpLocations, setBackUpLocations] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [autoData, setAutoData] = useState([]);
 	const [autocompleteLoading, setAutocompleteLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 	// hooks
 	const { t } = useTranslation();
 	const [form] = Form.useForm();
@@ -32,9 +32,7 @@ function RequestContextApi({ children }) {
 	const locationIdDetector = useCallback(
 		(locationText, type) => {
 			const { countryId, locationTypeId } =
-				backUpLocations.find(({ fullGeoLocationTitle }) =>
-					locationText.includes(fullGeoLocationTitle),
-				) || {};
+				backUpLocations.find(({ fullGeoLocationTitle }) => locationText.includes(fullGeoLocationTitle)) || {};
 			return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: locationTypeId };
 		},
 		[backUpLocations],
@@ -103,13 +101,7 @@ function RequestContextApi({ children }) {
 				autocompleteLoading,
 			}}
 		>
-			<Form
-				form={form}
-				name="request-form"
-				className="request-form"
-				layout="vertical"
-				onFinish={onSubmit}
-			>
+			<Form form={form} name="request-form" className="request-form" layout="vertical" onFinish={onSubmit}>
 				{children}
 			</Form>
 		</RequestContext.Provider>

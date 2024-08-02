@@ -207,7 +207,7 @@
 		"successRegister": "مشخصات شما بروزرسانی شد"
 	},
 	"request": {
-		"details": "جزییات درخواست",
+		"details": "جزییات",
 		"sendMessage": "ارسال پیام"
 	}
 }

@@ -6,6 +6,7 @@ import { RadioGroup } from "components";
 import RequestContextApi from "./components/forms/context";
 import International from "./components/forms/International";
 import InternationalGet from "./components/forms/InternationalGet";
+import { ImportOutlined, SelectOutlined } from "@ant-design/icons";
 
 const RequestSection = ({ onChangeType: onChangeActiveType }) => {
 	const [activeType, setActiveType] = useState("send");
@@ -18,13 +19,24 @@ const RequestSection = ({ onChangeType: onChangeActiveType }) => {
 		onChangeActiveType(type);
 	};
 	// options
+	// options
 	const requestType = [
 		{
-			label: t("home.send"),
+			label: (
+				<span className="flex gap-3 items-center align-middle">
+					<span> {t("search.send")}</span>
+					<SelectOutlined className="pb-1" />
+				</span>
+			),
 			value: "send",
 		},
 		{
-			label: t("home.get"),
+			label: (
+				<span className="flex gap-3 items-center align-middle">
+					<span> {t("search.get")}</span>
+					<ImportOutlined className="pb-1" />
+				</span>
+			),
 			value: "get",
 		},
 	];
@@ -40,13 +52,18 @@ const RequestSection = ({ onChangeType: onChangeActiveType }) => {
 			style={{ background: token?.colorBgBase }}
 		>
 			<RequestContextApi>
-				<RadioGroup
-					plainOptions={requestType}
-					name="requestType"
-					initialValue={activeType}
-					required={true}
-					onChange={onChangeType}
-				/>
+				<center>
+					<RadioGroup
+						name="requestType"
+						plainOptions={requestType}
+						initialValue={activeType}
+						required={true}
+						onChange={onChangeType}
+						buttonStyle="outline"
+						optionType="button"
+						size="large"
+					/>
+				</center>
 				{requestOptions[activeType]}
 			</RequestContextApi>
 		</section>
