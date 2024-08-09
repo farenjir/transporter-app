@@ -53,7 +53,7 @@ const HomePage = () => {
 				height={320}
 				className="-mt-16 lg:min-h-[320px]"
 			/>
-			<AppTabs items={appTabOptions} centered  classes="md:-mt-40 backdrop-blur-sm"/>
+			<AppTabs items={appTabOptions} centered  classes="md:-mt-40 backdrop-blur-md"/>
 		</>
 	);
 };

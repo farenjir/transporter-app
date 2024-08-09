@@ -4,7 +4,8 @@ import { baseSelector } from "store/selector";
 
 import { dateToLocale } from "utils/globals";
 import { theme } from "antd";
-import { Buttons, Details } from "components";
+
+import { Details } from "components";
 
 const GetDetails = ({ title = "", params = {} }) => {
 	// hooks

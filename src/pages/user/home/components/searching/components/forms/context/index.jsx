@@ -28,9 +28,9 @@ function SearchContextApi({ children, loading, onFinish = () => {}, onReset = ()
 	};
 	const locationIdDetector = useCallback(
 		(locationText, type) => {
-			const { locationTypeId } = backUpLocations.find(({ fullGeoLocationTitle }) => locationText.includes(fullGeoLocationTitle)) || {};
+			const { id } = backUpLocations.find(({ fullGeoLocationTitle }) => locationText.includes(fullGeoLocationTitle)) || {};
 			// return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: locationTypeId };
-			return locationTypeId;
+			return id;
 		},
 		[backUpLocations],
 	);

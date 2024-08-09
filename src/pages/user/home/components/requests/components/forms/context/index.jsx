@@ -31,9 +31,9 @@ function RequestContextApi({ children }) {
 	// handles
 	const locationIdDetector = useCallback(
 		(locationText, type) => {
-			const { countryId, locationTypeId } =
+			const { countryId, id } =
 				backUpLocations.find(({ fullGeoLocationTitle }) => locationText.includes(fullGeoLocationTitle)) || {};
-			return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: locationTypeId };
+			return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: id };
 		},
 		[backUpLocations],
 	);

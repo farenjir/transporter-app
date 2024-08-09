@@ -9,8 +9,10 @@ import { AppTabs } from "components";
 import CommentForm from "components/App/comment";
 import GetDetails from "./components/GetDetails";
 import SendDetails from "./components/SendDetails";
+import { useEffect, useState } from "react";
 
 const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details" }) => {
+	const [activeKey, setActiveKey] = useState();
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
 	const { width } = useWindowDimensions();
@@ -37,6 +39,10 @@ const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details" }) =>
 			children: <CommentForm record={selectRequest} requestType={requestCommentType[mode]} />,
 		},
 	];
+	// init
+	useEffect(() => {
+		setActiveKey(drawerMode);
+	}, [drawerMode]);
 	// returnJSX
 	const title = t("home.cards.sendTo", {
 		fromCountryName: selectRequest.fromCountryName,
@@ -52,7 +58,8 @@ const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details" }) =>
 				</p>
 			</div>
 			<AppTabs
-				defaultActiveKey={drawerMode}
+				onChange={(key) => setActiveKey(key)}
+				activeKey={activeKey}
 				items={appTabOptions}
 				centered={width < 750}
 				tabBarExtraContent={

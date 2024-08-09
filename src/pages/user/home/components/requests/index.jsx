@@ -52,18 +52,14 @@ const RequestSection = ({ onChangeType: onChangeActiveType }) => {
 			style={{ background: token?.colorBgBase }}
 		>
 			<RequestContextApi>
-				<center>
+				<div className="md:-mt-[90px] md:mb-14">
 					<RadioGroup
 						name="requestType"
 						plainOptions={requestType}
 						initialValue={activeType}
-						required={true}
 						onChange={onChangeType}
-						buttonStyle="outline"
-						optionType="button"
-						size="large"
 					/>
-				</center>
+				</div>
 				{requestOptions[activeType]}
 			</RequestContextApi>
 		</section>

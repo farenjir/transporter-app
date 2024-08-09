@@ -7,7 +7,6 @@ import { RadioGroup } from "components";
 import { useAppContext } from "hooks";
 import { getCarrierAnnonce, getRequestForCarrier } from "service/main";
 
-import SupportSection from "../Support";
 import RequeuedSend from "./components/RequeuedSend";
 import RequeuedGet from "./components/RequeuedGet";
 
@@ -68,7 +67,7 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 			label: (
 				<span className="flex gap-3 items-center align-middle">
 					<span> {t("search.send")}</span>
-					<SelectOutlined className="pb-1"/>
+					<SelectOutlined className="pb-1" />
 				</span>
 			),
 			value: "send",
@@ -77,7 +76,7 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 			label: (
 				<span className="flex gap-3 items-center align-middle">
 					<span> {t("search.get")}</span>
-					<ImportOutlined className="pb-1"/>
+					<ImportOutlined className="pb-1" />
 				</span>
 			),
 			value: "get",
@@ -103,18 +102,14 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 				style={{ background: token?.colorBgBase }}
 			>
 				<SearchContextApi loading={loading} onFinish={onFinish} onReset={onReset}>
-					<center>
+					<div className="md:-mt-[90px] md:mb-14">
 						<RadioGroup
 							name="requestType"
 							plainOptions={requestType}
 							initialValue={activeType}
-							required={true}
 							onChange={onChangeType}
-							buttonStyle="outline"
-							optionType="button"
-							size="large"
 						/>
-					</center>
+					</div>
 					{tabItems[activeType]}
 				</SearchContextApi>
 			</section>

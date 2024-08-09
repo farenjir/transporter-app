@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { baseSelector } from "store/selector";
 
 import { dateToLocale } from "utils/globals";
+
 import { Details } from "components";
 
 const SendDetails = ({ params = {} }) => {
