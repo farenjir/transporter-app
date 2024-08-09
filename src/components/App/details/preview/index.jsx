@@ -10,7 +10,7 @@ import CommentForm from "components/App/comment";
 import GetDetails from "./components/GetDetails";
 import SendDetails from "./components/SendDetails";
 
-const RequestDetails = ({ mode, selectRequest = {} }) => {
+const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details" }) => {
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
 	const { width } = useWindowDimensions();
@@ -24,15 +24,7 @@ const RequestDetails = ({ mode, selectRequest = {} }) => {
 					<span>{t("request.details")}</span>
 				</div>
 			),
-			children: (
-				<>
-					{mode === "send" ? (
-						<SendDetails params={selectRequest} />
-					) : (
-						<GetDetails params={selectRequest} />
-					)}
-				</>
-			),
+			children: <>{mode === "send" ? <SendDetails params={selectRequest} /> : <GetDetails params={selectRequest} />}</>,
 		},
 		{
 			key: "comment",
@@ -60,25 +52,15 @@ const RequestDetails = ({ mode, selectRequest = {} }) => {
 				</p>
 			</div>
 			<AppTabs
+				defaultActiveKey={drawerMode}
 				items={appTabOptions}
 				centered={width < 750}
 				tabBarExtraContent={
-					<p
-						className="text-base lg:text-xl hidden md:block"
-						style={{ color: token?.colorPrimary }}
-					>
+					<p className="text-base lg:text-xl hidden md:block" style={{ color: token?.colorPrimary }}>
 						{title}
 					</p>
 				}
 			/>
-			{/* <div className="flex flex-col-reverse md:flex-row justify-around gap-2 align-middle items-center px-1">
-				<div className="w-screen md:w-1/2">
-				
-				</div>
-				<div className="w-screen md:w-1/2">
-					
-				</div>
-			</div> */}
 		</>
 	);
 };

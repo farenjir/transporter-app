@@ -16,6 +16,7 @@ const { Title } = Typography;
 export default function RequeuedSend({ list = [], pgn = 1, onChangeList = () => {}, loading = false }) {
 	const [selectRequest, setSelectRequest] = useState({});
 	const [open, setOpen] = useState(false);
+	const [drawerMode, setDrawerMode] = useState("details");
 	// hooks
 	const { t } = useTranslation();
 	const { dePlacement } = useAppContext();
@@ -28,8 +29,9 @@ export default function RequeuedSend({ list = [], pgn = 1, onChangeList = () => 
 		setOpen(true);
 	};
 	const onSelectRecord = useCallback(
-		(selectedId) => {
+		(selectedId, mode) => {
 			const record = list.find(({ id }) => id === selectedId) || {};
+			setDrawerMode(mode);
 			setSelectRequest(record);
 			onOpen();
 		},
@@ -50,104 +52,104 @@ export default function RequeuedSend({ list = [], pgn = 1, onChangeList = () => 
 				open={open}
 				onClose={onClose}
 				placement={dePlacement}
-				content={<RequestDetails selectRequest={selectRequest} mode={"send"} />}
 				size="large"
+				content={<RequestDetails selectRequest={selectRequest} mode={"send"} drawerMode={drawerMode} />}
 			/>
 			{/* SearchItems */}
-				<ListModule
-					loading={loading}
-					pagination={{
-						showSizeChanger: false,
-						pageSize: 9,
-						current: pgn,
-						onChange: onChangeList,
-					}}
-					gutter={[16, 16]}
-					dataSource={list.map(
-						({
-							id,
-							fromCountryName,
-							toCountryName,
-							toLocationName,
-							fromLocationName,
-							priceCurrencyTypeId,
-							priceIsNegotiable,
-							proposedPrice,
-							cargoWeightUnitIssueTitle,
-							cargoSize,
-							cargoWeight,
-							cargoItemNo,
-							cargoDesc,
-							fromDateValidOfDeliver,
-							toDateValidOfDeliver,
-							requestLangaheTypeID,
-							requesterUserId,
-							requestType,
-							registerDate,
-							cargoWeightUnitIssueId,
-							fromCountryId,
-							toCountryId,
-							fromLocationId,
-							toLocationId,
-							fromLocationDesc,
-							toLocationDesc,
-							imageId,
-							timeZoneId,
-							matchStatusId,
-							chats,
-						}) => ({
-							key: id.toString(),
-							content: (
-								<AppCard
-									key={id.toString()}
-									id={id.toString()}
-									onClickBtn={() => onSelectRecord(id)}
-									imgUrl={"/assets/images/international-banner.webp"}
-									title={
-										<div className="flex flex-col gap-2">
-											<span className="text-xl">
-												{t("home.cards.sendTo", {
-													fromCountryName,
-													toCountryName,
-													fromLocationName,
-													toLocationName,
-												})}
-											</span>
-											<span className="text-base">
-												{t("home.cards.price", {
-													price: priceIsNegotiable
-														? t("home.cards.priceIsNegotiable")
-														: proposedPrice.toLocaleString(),
-													label: getPriceType(priceCurrencyTypeId),
-												})}
-											</span>
-											<span className="text-sm">
-												{t("home.cards.dateFrom", {
-													from: dateToLocale(fromDateValidOfDeliver),
-												})}
-											</span>
-											<span className="text-sm">
-												{t("home.cards.dateTo", {
-													to: dateToLocale(toDateValidOfDeliver),
-												})}
-											</span>
-											<span className="text-base">{t("home.cards.weight")}</span>
-											<span className="text-sm">
-												{t("home.cards.weightDes", {
-													cargoWeight,
-													cargoSize,
-													cargoWeightUnitIssueTitle,
-													cargoItemNo,
-													cargoDesc,
-												})}
-											</span>
-										</div>
-									}
-								/>
-							),
-						}),
-					)}
-				/>
+			<ListModule
+				loading={loading}
+				pagination={{
+					showSizeChanger: false,
+					pageSize: 9,
+					current: pgn,
+					onChange: onChangeList,
+				}}
+				gutter={[16, 16]}
+				dataSource={list.map(
+					({
+						id,
+						fromCountryName,
+						toCountryName,
+						toLocationName,
+						fromLocationName,
+						priceCurrencyTypeId,
+						priceIsNegotiable,
+						proposedPrice,
+						cargoWeightUnitIssueTitle,
+						cargoSize,
+						cargoWeight,
+						cargoItemNo,
+						cargoDesc,
+						fromDateValidOfDeliver,
+						toDateValidOfDeliver,
+						requestLangaheTypeID,
+						requesterUserId,
+						requestType,
+						registerDate,
+						cargoWeightUnitIssueId,
+						fromCountryId,
+						toCountryId,
+						fromLocationId,
+						toLocationId,
+						fromLocationDesc,
+						toLocationDesc,
+						imageId,
+						timeZoneId,
+						matchStatusId,
+						chats,
+					}) => ({
+						key: id.toString(),
+						content: (
+							<AppCard
+								key={id.toString()}
+								id={id.toString()}
+								onClickBtn={(mode) => onSelectRecord(id, mode)}
+								imgUrl={"/assets/images/international-banner.webp"}
+								title={
+									<div className="flex flex-col gap-2">
+										<span className="text-xl">
+											{t("home.cards.sendTo", {
+												fromCountryName,
+												toCountryName,
+												fromLocationName,
+												toLocationName,
+											})}
+										</span>
+										<span className="text-base">
+											{t("home.cards.price", {
+												price: priceIsNegotiable
+													? t("home.cards.priceIsNegotiable")
+													: proposedPrice.toLocaleString(),
+												label: getPriceType(priceCurrencyTypeId),
+											})}
+										</span>
+										<span className="text-sm">
+											{t("home.cards.dateFrom", {
+												from: dateToLocale(fromDateValidOfDeliver),
+											})}
+										</span>
+										<span className="text-sm">
+											{t("home.cards.dateTo", {
+												to: dateToLocale(toDateValidOfDeliver),
+											})}
+										</span>
+										<span className="text-base">{t("home.cards.weight")}</span>
+										<span className="text-sm">
+											{t("home.cards.weightDes", {
+												cargoWeight,
+												cargoSize,
+												cargoWeightUnitIssueTitle,
+												cargoItemNo,
+												cargoDesc,
+											})}
+										</span>
+									</div>
+								}
+							/>
+						),
+					}),
+				)}
+			/>
 		</section>
 	);
 }

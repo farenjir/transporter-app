@@ -17,6 +17,7 @@ export default function RequeuedGet({ list = [] }) {
 	const [selectRequest, setSelectRequest] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [open, setOpen] = useState(false);
+	const [drawerMode, setDrawerMode] = useState("details");
 	// hooks
 	const { t } = useTranslation();
 	const { placement } = useAppContext();
@@ -29,8 +30,9 @@ export default function RequeuedGet({ list = [] }) {
 		setOpen(true);
 	};
 	const onSelectRecord = useCallback(
-		(selectedId) => {
+		(selectedId, mode) => {
 			const record = list.find(({ id }) => id === selectedId) || {};
+			setDrawerMode(mode);
 			setSelectRequest(record);
 			onOpen();
 		},
@@ -44,9 +46,7 @@ export default function RequeuedGet({ list = [] }) {
 	useEffect(() => {
 		const getAllProducers = async () => {
 			setLoading(true);
-			const cardGroups = [list.slice(0, 3), list.slice(3, 6), list.slice(6, 9)].filter(
-				(item) => item?.length,
-			);
+			const cardGroups = [list.slice(0, 3), list.slice(3, 6), list.slice(6, 9)].filter((item) => item?.length);
 			setRequestGroups(cardGroups);
 			setLoading(false);
 		};
@@ -63,7 +63,7 @@ export default function RequeuedGet({ list = [] }) {
 				open={open}
 				onClose={onClose}
 				placement={placement}
-				content={<RequestDetails {...{ ...selectRequest, mode: "get" }} />}
+				content={<RequestDetails {...{ ...selectRequest, mode: "get", drawerMode }} />}
 				width={"100%"}
 			/>
 			<CarouselModule
@@ -107,8 +107,9 @@ export default function RequeuedGet({ list = [] }) {
 									chats,
 								}) => (
 									<AppCard
-										onClickBtn={() => onSelectRecord(id)}
 										key={id.toString()}
+										id={id.toString()}
+										onClickBtn={(mode) => onSelectRecord(id, mode)}
 										imgUrl={"/assets/images/international-banner.webp"}
 										{...{
 											title: (
@@ -139,9 +140,7 @@ export default function RequeuedGet({ list = [] }) {
 															to: dateToLocale(toDateValidOfDeliver),
 														})}
 													</span>
-													<span className="text-base">
-														{t("home.cards.weight")}
-													</span>
+													<span className="text-base">{t("home.cards.weight")}</span>
 													<span className="text-sm">
 														{t("home.cards.weightDes", {
 															cargoWeight,

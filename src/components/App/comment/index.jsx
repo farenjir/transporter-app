@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
-import { List, Skeleton } from "antd";
+import { List, Skeleton, theme } from "antd";
 import { Comment } from "@ant-design/compatible";
 import { UserOutlined } from "@ant-design/icons";
 
@@ -20,6 +20,7 @@ const CommentForm = ({ requestType, record }) => {
 	const [loading, setLoading] = useState(false);
 	const [value, setValue] = useState("");
 	// hooks
+	const { token } = theme.useToken();
 	const { t } = useTranslation();
 	const { callApi } = useAppContext();
 	const { user } = useSelector(authSelector);
@@ -63,19 +64,20 @@ const CommentForm = ({ requestType, record }) => {
 		const getComments = async () => {
 			setLoading(true);
 			const { content = [] } = await getChatRequest(callApi, {
-				pgs: 100,
+				pgs: 1000,
 				pgn: 1,
 				RecordId: record.id,
 				requestType,
 			});
 			const transformComments = content
-				.map(({ firstName, lastName, registerDate, userComment, userId, avatarUrl }) => ({
+				.map(({ firstName, lastName, registerDate, userComment, userId, avatarUrl, requestOwnerUserId }) => ({
 					author: <span className="uppercase">{`${firstName} ${lastName}`}</span>,
 					avatar: avatarUrl || <UserOutlined className="border rounded-full shadow-lg p-2" />,
 					content: <p>{userComment}</p>,
 					datetime: dayjs(registerDate).fromNow(),
 					date: registerDate,
 					userId,
+					className: `px-[5%] ${requestOwnerUserId === userId ? "rtl" : "ltr"}`,
 				}))
 				.reverse();
 			setComments(transformComments);
@@ -96,10 +98,9 @@ const CommentForm = ({ requestType, record }) => {
 					<Skeleton active avatar paragraph={{ rows: 8 }} className="px-[5%]" />
 				) : (
 					<List
-						className="px-[5%]"
 						dataSource={comments}
 						itemLayout="horizontal"
-						renderItem={(props) => <Comment {...props} />}
+						renderItem={(props) => <Comment {...props} style={{ background: token?.colorPrimaryLighter }} />}
 					/>
 				)}
 			</div>

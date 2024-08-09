@@ -9,6 +9,7 @@ const AppTabs = ({
 	tabPosition = "top",
 	centered = false,
 	tabBarExtraContent,
+	...props
 }) => {
 	return (
 		<Tabs
@@ -20,6 +21,7 @@ const AppTabs = ({
 			centered={centered}
 			tabPosition={tabPosition}
 			tabBarExtraContent={tabBarExtraContent}
+			{...props}
 		/>
 	);
 };
