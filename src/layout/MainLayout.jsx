@@ -5,14 +5,13 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { authSelector } from "store/selector";
 
-import { SettingOutlined, MenuOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import { SettingOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Skeleton, Spin, theme, Tooltip, Typography } from "antd";
 import { useAppContext } from "hooks";
 
 import { Drawers } from "components";
 import { SettingDrawer } from "components/App";
 
-import FloatLabel from "./components/Float";
 import Sidebar from "./components/Menu/MainMenu";
 
 const { Text } = Typography;
@@ -52,14 +51,11 @@ const MainLayout = () => {
 				style={{ background: token?.colorPrimaryLight }}
 			>
 				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
-					<MenuOutlined
-						className={`text-[${token?.colorPrimary}] text-xl`}
-						onClick={() => onOpen("menu")}
-					/>
 					{loading ? (
 						<Skeleton active paragraph={{ rows: 1, width: 100 }} title={false} className="mx-1" />
 					) : user ? (
 						<Link to={"/user"} className="pt-2">
+							<UserOutlined className={`text-[${token?.colorPrimary}] text-xl`} onClick={() => onOpen("menu")} />
 							<span className="text-sm uppercase mx-1">{user?.fullName}</span>
 						</Link>
 					) : (
@@ -82,10 +78,7 @@ const MainLayout = () => {
 							<UserOutlined />
 						</Link>
 					)}
-					<SettingOutlined
-						className={`text-[${token?.colorPrimary}] text-xl`}
-						onClick={() => onOpen()}
-					/>
+					<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl`} onClick={() => onOpen()} />
 				</div>
 			</Header>
 			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">

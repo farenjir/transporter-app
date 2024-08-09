@@ -20,7 +20,7 @@ export default function RequeuedGet({ list = [] }) {
 	const [drawerMode, setDrawerMode] = useState("details");
 	// hooks
 	const { t } = useTranslation();
-	const { placement } = useAppContext();
+	const { dePlacement } = useAppContext();
 	const { enums } = useSelector(baseSelector);
 	// modal handles
 	const onClose = () => {
@@ -62,9 +62,9 @@ export default function RequeuedGet({ list = [] }) {
 				title={t("home.get")}
 				open={open}
 				onClose={onClose}
-				placement={placement}
-				content={<RequestDetails {...{ ...selectRequest, mode: "get", drawerMode }} />}
-				width={"100%"}
+				placement={dePlacement}
+				size="large"
+				content={<RequestDetails selectRequest={selectRequest} mode={"get"} drawerMode={drawerMode} />}
 			/>
 			<CarouselModule
 				name="get-request"
@@ -122,14 +122,6 @@ export default function RequeuedGet({ list = [] }) {
 															toLocationName,
 														})}
 													</span>
-													<span className="text-base">
-														{t("home.cards.price", {
-															price: priceIsNegotiable
-																? t("home.cards.priceIsNegotiable")
-																: proposedPrice.toLocaleString(),
-															label: getPriceType(priceCurrencyTypeId),
-														})}
-													</span>
 													<span className="text-sm">
 														{t("home.cards.dateFrom", {
 															from: dateToLocale(fromDateValidOfDeliver),
@@ -148,6 +140,14 @@ export default function RequeuedGet({ list = [] }) {
 															cargoWeightUnitIssueTitle,
 															cargoItemNo,
 															cargoDesc,
+														})}
+													</span>
+													<span className="text-base">
+														{t("home.cards.price", {
+															price: priceIsNegotiable
+																? t("home.cards.priceIsNegotiable")
+																: proposedPrice.toLocaleString(),
+															label: getPriceType(priceCurrencyTypeId),
 														})}
 													</span>
 												</div>

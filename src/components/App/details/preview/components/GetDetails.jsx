@@ -41,8 +41,7 @@ const GetDetails = ({ title = "", params = {} }) => {
 			valueParam: "priceIsNegotiable",
 			label: "قیمت",
 			type: "boolean",
-			condition: (condition) =>
-				condition ? t("commonPages.priceNegotiable") : t("commonPages.priceNotNegotiable"),
+			condition: (condition) => (condition ? t("commonPages.priceNegotiable") : t("commonPages.priceNotNegotiable")),
 			span: { xs: 5, md: 2 },
 		},
 		{ valueParam: "proposedPrice", label: "قیمت پیشنهادی", type: "money", span: { xs: 5, md: 2 } },
@@ -82,12 +81,6 @@ const GetDetails = ({ title = "", params = {} }) => {
 						<p className="text-base lg:text-xl" style={{ color: token?.colorPrimary }}>
 							{title}
 						</p>
-						{/* <Buttons
-							content={<span>درخواست رزرو</span>}
-							htmlType="button"
-							size="default"
-							classes="text-sm float-end mt-5"
-						/> */}
 					</div>
 				}
 				layout="vertical"
@@ -98,11 +91,7 @@ const GetDetails = ({ title = "", params = {} }) => {
 					label,
 					span,
 					key: valueParam,
-					children: (
-						<span className="text-lg">
-							{generateValue(params[valueParam], type, enumType, condition)}
-						</span>
-					),
+					children: <span className="text-lg">{generateValue(params[valueParam], type, enumType, condition)}</span>,
 				}))}
 			/>
 		</>

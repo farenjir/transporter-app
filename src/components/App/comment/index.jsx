@@ -54,6 +54,7 @@ const CommentForm = ({ requestType, record }) => {
 				content: <p>{value}</p>,
 				datetime: dayjs().fromNow(),
 				date: dayjs().format(),
+				className: "px-[5%]",
 			},
 			...perComments,
 		]);

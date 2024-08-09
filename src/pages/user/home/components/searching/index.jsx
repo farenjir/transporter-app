@@ -30,7 +30,6 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 		async (paramsTransform = {}) => {
 			setLoading(true);
 			const { requestType, ...values } = paramsTransform;
-			console.log(values);
 			const queriesParams = {
 				pgn: pgn,
 				pgs: 9,

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { authSelector } from "store/selector";
 
-import { SettingOutlined, MenuOutlined, LogoutOutlined } from "@ant-design/icons";
+import { SettingOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Col, Layout, Row, Spin, theme, Tooltip, Typography } from "antd";
 import { useAppContext } from "hooks";
 
@@ -47,19 +47,13 @@ const UserLayout = () => {
 	// return
 	return (
 		<Layout dir={direction} className="min-h-screen">
-			<Header
-				className="relative flex h-12 items-center justify-between"
-				style={{ background: token?.colorPrimaryLight }}
-			>
-				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
-					<MenuOutlined
-						className={`text-[${token?.colorPrimary}] text-xl`}
-						onClick={() => onOpen("menu")}
-					/>
+			<Header className="relative flex h-12 items-center justify-between" style={{ background: token?.colorPrimaryLight }}>
+				{/* <div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
 					<Link to={"/user"} className="pt-2">
-						<span className="text-sm uppercase mx-1">{user?.fullName}</span>
+						<UserOutlined className={`text-[${token?.colorPrimary}] text-xl`} onClick={() => onOpen("menu")} />
+						<span className="text-sm uppercase mx-3">{user?.fullName}</span>
 					</Link>
-				</div>
+				</div> */}
 				<Link to={"/main"} className="hidden md:block">
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
@@ -67,10 +61,7 @@ const UserLayout = () => {
 					<Tooltip title={t("layouts.exit")}>
 						<LogoutOutlined className="cursor-pointer" onClick={handleLogout} />
 					</Tooltip>
-					<SettingOutlined
-						className={`text-[${token?.colorPrimary}] text-xl`}
-						onClick={() => onOpen()}
-					/>
+					<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl`} onClick={() => onOpen()} />
 				</div>
 			</Header>
 			<Content style={{ background: token?.colorPrimaryLighter }}>

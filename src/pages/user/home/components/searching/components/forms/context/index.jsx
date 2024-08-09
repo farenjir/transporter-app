@@ -35,7 +35,6 @@ function SearchContextApi({ children, loading, onFinish = () => {}, onReset = ()
 		[backUpLocations],
 	);
 	const handleOnFinishForm = (formValues) => {
-		console.log({formValues});
 		const { requestType, datePicker, fromCountry, toCountry } = formValues;
 		const queries = {
 			fromDate: datePicker?.[0]?.toISOString() || datePicker?.toISOString?.(),

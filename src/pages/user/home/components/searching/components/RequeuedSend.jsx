@@ -115,14 +115,6 @@ export default function RequeuedSend({ list = [], pgn = 1, onChangeList = () => 
 												toLocationName,
 											})}
 										</span>
-										<span className="text-base">
-											{t("home.cards.price", {
-												price: priceIsNegotiable
-													? t("home.cards.priceIsNegotiable")
-													: proposedPrice.toLocaleString(),
-												label: getPriceType(priceCurrencyTypeId),
-											})}
-										</span>
 										<span className="text-sm">
 											{t("home.cards.dateFrom", {
 												from: dateToLocale(fromDateValidOfDeliver),
@@ -141,6 +133,14 @@ export default function RequeuedSend({ list = [], pgn = 1, onChangeList = () => 
 												cargoWeightUnitIssueTitle,
 												cargoItemNo,
 												cargoDesc,
+											})}
+										</span>
+										<span className="text-base">
+											{t("home.cards.price", {
+												price: priceIsNegotiable
+													? t("home.cards.priceIsNegotiable")
+													: proposedPrice.toLocaleString(),
+												label: getPriceType(priceCurrencyTypeId),
 											})}
 										</span>
 									</div>
