@@ -12,21 +12,20 @@ const UserMenu = ({ user = {} }) => {
 	// option
 	const items = [
 		{ label: t("user.myInfo"), icon: IdcardOutlined, path: "/user" },
-		{ label: t("user.myHistory"), icon: FileDoneOutlined, path: "/user/history" },
+		{ label: t("user.myHistorySend"), icon: FileDoneOutlined, path: "/user/history/send", type: "send" },
+		{ label: t("user.myHistoryGet"), icon: FileDoneOutlined, path: "/user/history/get", type: "get" },
 	];
 	const [defaultSelectedKeys] = items;
 	// return
 	return (
 		<>
 			<ProfileCard {...(user || {})} />
-			<Menu
-				className="max-w-screen-sm bg-transparent"
-				defaultSelectedKeys={defaultSelectedKeys.label}
-				mode="inline"
-			>
-				{items.map(({ label, icon, path }) => (
+			<Menu className="max-w-screen-sm bg-transparent" defaultSelectedKeys={defaultSelectedKeys.label} mode="inline">
+				{items.map(({ label, icon, path, type }) => (
 					<Menu.Item key={label} icon={React.createElement(icon, { style: { fontSize: "20px" } })}>
-						<Link to={path}>{label}</Link>
+						<Link to={path} state={{ type }}>
+							{label}
+						</Link>
 					</Menu.Item>
 				))}
 			</Menu>

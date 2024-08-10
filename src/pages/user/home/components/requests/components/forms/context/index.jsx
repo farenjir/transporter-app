@@ -31,13 +31,12 @@ function RequestContextApi({ children }) {
 	// handles
 	const locationIdDetector = useCallback(
 		(locationText, type) => {
-			const { countryId, id } =
-				backUpLocations.find(({ fullGeoLocationTitle }) => locationText.includes(fullGeoLocationTitle)) || {};
+			console.log(backUpLocations, locationText);
+			const { countryId, id } =	backUpLocations.find(({ fullGeoLocationTitle: location }) => locationText.includes(location)) || {};
 			return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: id };
 		},
 		[backUpLocations],
 	);
-	// onSubmit
 	const onChangeAutocomplete = async (locationTitle = "", _selected) => {
 		if (locationTitle?.length <= 1) return;
 		setAutocompleteLoading(true);
@@ -46,6 +45,7 @@ function RequestContextApi({ children }) {
 		setBackUpLocations((perArray) => perArray.concat(locations));
 		setAutocompleteLoading(false);
 	};
+	// onSubmit
 	const onSubmit = async (formValues) => {
 		setLoading(false);
 		const { datePicker, fromLocationId, toLocationId, ...value } = formValues;

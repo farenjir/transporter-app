@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 
 import { RequestContext } from "./context";
-import { Buttons, Calendars, Icons, InputType, Selects, TreeSelects } from "components";
+import { AutocompletePublic, Buttons, Calendars, Icons, InputType, Selects } from "components";
 
 const InternationalGetRequest = ({ edit, info }) => {
 	const { t } = useTranslation();
-	const { onLoadData, loading, jalali, treeData, enums, priceTypes, record } = useContext(RequestContext);
+	const { onChangeAutocomplete, autocompleteLoading, loading, jalali, autoData, enums, priceTypes, record } =
+		useContext(RequestContext);
 	// handles
 	const [priceType, setPriceType] = useState(record.priceIsNegotiable);
 	const onChangePriceType = (value) => {
@@ -18,14 +19,17 @@ const InternationalGetRequest = ({ edit, info }) => {
 		<div className={info ? "pointer-events-none" : ""}>
 			<Row gutter={[8, 8]} align={"middle"} className="international-form">
 				<Col xs={24} md={12} lg={8}>
-					<TreeSelects
+					<AutocompletePublic
 						name="fromLocationId"
-						treeLine
-						required
-						dropdownStyle={{ direction: "ltr" }}
-						treeData={treeData}
-						onLoadData={onLoadData}
-						label={t("commonPages.source")}
+						label={
+							<div className="flex gap-2">
+								<span>{t("commonPages.source")}</span>
+								<Spin spinning={autocompleteLoading} size="small" className="pt-1" />
+							</div>
+						}
+						required={true}
+						options={autoData}
+						onChange={onChangeAutocomplete}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
 								<Icons type="EnvironmentOutlined" classes="pb-1" />
@@ -35,17 +39,21 @@ const InternationalGetRequest = ({ edit, info }) => {
 					/>
 				</Col>
 				<Col xs={24} md={12} lg={8}>
-					<TreeSelects
+					<AutocompletePublic
 						name="toLocationId"
-						treeLine
-						required
-						dropdownStyle={{ direction: "ltr" }}
-						treeData={treeData}
-						onLoadData={onLoadData}
-						label={t("commonPages.destination")}
+						label={
+							<div className="flex gap-2">
+								<span>{t("commonPages.destination")}</span>
+								<Spin spinning={autocompleteLoading} size="small" className="pt-1" />
+							</div>
+						}
+						required={true}
+						options={autoData}
+						onChange={onChangeAutocomplete}
 						placeholder={
 							<div className="flex gap-2 align-middle items-center">
-								<span>{t("commonPages.destinationLabel")}</span>
+								<Icons type="EnvironmentOutlined" classes="pb-1" />
+								<span>{t("commonPages.sourceLabel")}</span>
 							</div>
 						}
 					/>
@@ -124,17 +132,11 @@ const InternationalGetRequest = ({ edit, info }) => {
 						placeholder={t("home.cargoDesc")}
 						label={t("home.cargoDesc")}
 						type={"textarea"}
-						required={true}
 					/>
 				</Col>
 				{edit && (
 					<Col xs={24} md={12} lg={8}>
-						<Buttons
-							content={t("user.editRequest")}
-							htmlType="submit"
-							classes="float-end mt-8"
-							loading={loading}
-						/>
+						<Buttons content={t("user.editRequest")} htmlType="submit" classes="float-end mt-8" loading={loading} />
 					</Col>
 				)}
 			</Row>

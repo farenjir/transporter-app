@@ -19,12 +19,7 @@ const LoadingSkelton = () => (
 		{Array(4)
 			.fill(null)
 			.map((_, idx) => (
-				<Skeleton
-					key={`skelton-${idx}`}
-					active
-					className="col-span-1"
-					paragraph={{ rows: 7 }}
-				></Skeleton>
+				<Skeleton key={`skelton-${idx}`} active className="col-span-1" paragraph={{ rows: 7 }}></Skeleton>
 			))}
 	</div>
 );
@@ -77,6 +72,7 @@ const HistoryTable = ({ content, activeType, loading, handleModals }) => {
 							timeZoneId,
 							matchStatusId,
 							chats,
+							...params
 						} = item;
 						return {
 							key: id.toString(),
@@ -87,6 +83,7 @@ const HistoryTable = ({ content, activeType, loading, handleModals }) => {
 									hoverable={false}
 									onClick={(type) =>
 										handleModals(type, {
+											...params,
 											id,
 											fromCountryName,
 											toCountryName,
@@ -122,14 +119,6 @@ const HistoryTable = ({ content, activeType, loading, handleModals }) => {
 									imgUrl={`/assets/images/${imagesList[activeType]}`}
 									title={
 										<div className="flex flex-col gap-2">
-											<span className="text-xl">
-												{t("home.cards.sendTo", {
-													fromCountryName,
-													toCountryName,
-													fromLocationName,
-													toLocationName,
-												})}
-											</span>
 											<span className="text-base">
 												{t("home.cards.price", {
 													price: priceIsNegotiable
@@ -156,6 +145,14 @@ const HistoryTable = ({ content, activeType, loading, handleModals }) => {
 													cargoWeightUnitIssueTitle,
 													cargoItemNo,
 													cargoDesc,
+												})}
+											</span>
+											<span className="text-xl">
+												{t("home.cards.sendTo", {
+													fromCountryName,
+													toCountryName,
+													fromLocationName,
+													toLocationName,
 												})}
 											</span>
 										</div>

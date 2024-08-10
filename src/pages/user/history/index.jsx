@@ -8,7 +8,7 @@ import { useAppContext } from "hooks";
 
 import { getMyAnnonceRequest, getMyCarrierRequest } from "service/user";
 import { deleteMyAnnonceRequest, deleteMyCarrierRequest } from "service/user";
-import { Modals, RadioGroup, confirmModal } from "components";
+import { Modals, confirmModal } from "components";
 
 import RequestContextApi from "./components/forms/context";
 import HistoryList from "./components/HistoryList";
@@ -17,9 +17,9 @@ import InternationalGetRequest from "./components/forms/InternationalGet";
 import CommentForm from "./components/comments";
 
 const HistoryPage = () => {
+	console.log(history);
 	const { type = "send" } = history?.state?.usr || {};
 	// state
-	const [activeType, setActiveType] = useState(type);
 	const [{ content }, setDataSource] = useState({ content: [] });
 	const [loading, setLoading] = useState(false);
 	const [selectedRecord, setSelectedRecord] = useState({});
@@ -34,7 +34,7 @@ const HistoryPage = () => {
 	const getDataSource = useCallback(async () => {
 		setLoading(true);
 		let data = {};
-		if (activeType === "get") {
+		if (type === "get") {
 			data = await getMyAnnonceRequest(callApi);
 		} else {
 			data = await getMyCarrierRequest(callApi);
@@ -43,13 +43,13 @@ const HistoryPage = () => {
 			setDataSource(data);
 		}
 		setLoading(false);
-	}, [activeType, callApi]);
+	}, [type, callApi]);
 	// submit actions
 	const handleDelete = useCallback(
 		async ({ id }) => {
 			setLoading(true);
 			let data = {};
-			if (activeType === "get") {
+			if (type === "get") {
 				data = await deleteMyAnnonceRequest(callApi, id);
 			} else {
 				data = await deleteMyCarrierRequest(callApi, id);
@@ -62,13 +62,13 @@ const HistoryPage = () => {
 			}
 			setLoading(false);
 		},
-		[activeType],
+		[type],
 	);
 	// handles
-	const onChangeType = (type) => {
-		setSelectedRecord({});
-		setActiveType(type);
-	};
+	// const onChangeType = (type) => {
+	// 	setSelectedRecord({});
+	// 	setActiveType(type);
+	// };
 	const handleModals = (mode, record) => {
 		setSelectedRecord(record);
 		switch (mode) {
@@ -104,16 +104,16 @@ const HistoryPage = () => {
 		modalComment.current.close();
 	};
 	// options
-	const requestType = [
-		{
-			label: t("search.send"),
-			value: "send",
-		},
-		{
-			label: t("search.get"),
-			value: "get",
-		},
-	];
+	// const requestType = [
+	// 	{
+	// 		label: t("search.send"),
+	// 		value: "send",
+	// 	},
+	// 	{
+	// 		label: t("search.get"),
+	// 		value: "get",
+	// 	},
+	// ];
 	const contextProvider = {
 		record: selectedRecord,
 		handleModals,
@@ -130,44 +130,44 @@ const HistoryPage = () => {
 			className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
 			style={{ background: token?.colorBgBase }}
 		>
-			<RadioGroup
+			{/* <RadioGroup
 				disabled={loading}
 				plainOptions={requestType}
 				name="requestType"
 				initialValue={activeType}
 				required={true}
 				onChange={onChangeType}
-			/>
+			/> */}
 			<HistoryList
 				{...{
 					content,
-					activeType,
+					activeType: type,
 					loading,
 					handleModals,
 				}}
 			/>
-			<Modals reference={activeType === "send" ? modalInfo : null} title={t("user.infoRequest")}>
+			<Modals reference={type === "send" ? modalInfo : null} title={t("user.infoRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalRequest info />
 				</RequestContextApi>
 			</Modals>
-			<Modals reference={activeType === "send" ? modalEdit : null} title={t("user.editRequest")}>
+			<Modals reference={type === "send" ? modalEdit : null} title={t("user.editRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalRequest edit />
 				</RequestContextApi>
 			</Modals>
-			<Modals reference={activeType === "get" ? modalInfo : null} title={t("user.infoRequest")}>
+			<Modals reference={type === "get" ? modalInfo : null} title={t("user.infoRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalGetRequest info />
 				</RequestContextApi>
 			</Modals>
-			<Modals reference={activeType === "get" ? modalEdit : null} title={t("user.editRequest")}>
+			<Modals reference={type === "get" ? modalEdit : null} title={t("user.editRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalGetRequest edit />
 				</RequestContextApi>
 			</Modals>
 			<Modals reference={modalComment} title={t("commons.comment")}>
-				<CommentForm requestType={requestCommentType[activeType]} record={selectedRecord} />
+				<CommentForm requestType={requestCommentType[type]} record={selectedRecord} />
 			</Modals>
 		</section>
 	);

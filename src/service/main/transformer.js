@@ -3,18 +3,14 @@ import { transformerAppData } from "utils/globals";
 export const countriesTransformData = (arrayData) => {
 	const data = [];
 	Array.isArray(arrayData) &&
-		arrayData.forEach((item) =>
-			data.push(transformerAppData(item, ["id", "countryBaseName"], { pId: 0, isLeaf: false })),
-		);
+		arrayData.forEach((item) => data.push(transformerAppData(item, ["id", "countryBaseName"], { pId: 0, isLeaf: false })));
 	return data;
 };
 
 export const locationsTransformData = (arrayData, pId) => {
 	const data = [];
 	Array.isArray(arrayData) &&
-		arrayData.forEach((item) =>
-			data.push(transformerAppData(item, ["id", "geoLocationTitle"], { pId, isLeaf: true })),
-		);
+		arrayData.forEach((item) => data.push(transformerAppData(item, ["id", "geoLocationTitle"], { pId, isLeaf: true })));
 	return data;
 };
 
@@ -23,7 +19,7 @@ export const locationsTextTransformData = (arrayData) => {
 	Array.isArray(arrayData) &&
 		arrayData.forEach(({ fullGeoLocationTitle, geoLocationTitle, ...item }) =>
 			data.push(
-				transformerAppData(item, [], {
+				transformerAppData(item, ["id"], {
 					fullGeoLocationTitle,
 					geoLocationTitle,
 					value: `${geoLocationTitle} ( ${fullGeoLocationTitle} )`,
@@ -36,9 +32,7 @@ export const locationsTextTransformData = (arrayData) => {
 export const enumsTransformData = (arrayData) => {
 	const data = [];
 	Array.isArray(arrayData) &&
-		arrayData.forEach((item) =>
-			data.push(transformerAppData(item, ["id", "valueInLanguage"], { typeName: item.title })),
-		);
+		arrayData.forEach((item) => data.push(transformerAppData(item, ["id", "valueInLanguage"], { typeName: item.title })));
 	return data;
 };
 

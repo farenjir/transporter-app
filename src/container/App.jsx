@@ -56,8 +56,13 @@ const userRoutes = {
 			lazy: async () => ({ Component: (await import("../pages/user/profile")).default }),
 		},
 		{
-			path: "history",
-			id: "history",
+			path: "history/get",
+			id: "history/get",
+			lazy: async () => ({ Component: (await import("../pages/user/history")).default }),
+		},
+		{
+			path: "history/send",
+			id: "history/send",
 			lazy: async () => ({ Component: (await import("../pages/user/history")).default }),
 		},
 	],
