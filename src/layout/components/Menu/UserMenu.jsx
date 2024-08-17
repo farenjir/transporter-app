@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { Menu } from "antd";
-import { FileDoneOutlined, IdcardOutlined } from "@ant-design/icons";
+import { FileDoneOutlined, IdcardOutlined, CommentOutlined } from "@ant-design/icons";
 import ProfileCard from "../Card/Profile";
 
 const UserMenu = ({ user = {} }) => {
@@ -14,6 +14,8 @@ const UserMenu = ({ user = {} }) => {
 		{ label: t("user.myInfo"), icon: IdcardOutlined, path: "/user" },
 		{ label: t("user.myHistorySend"), icon: FileDoneOutlined, path: "/user/history/send", type: "send" },
 		{ label: t("user.myHistoryGet"), icon: FileDoneOutlined, path: "/user/history/get", type: "get" },
+		{ label: t("user.myHistorySendComment"), icon: CommentOutlined, path: "/user/history/send/comment", type: "send" },
+		{ label: t("user.myHistoryGetComment"), icon: CommentOutlined, path: "/user/history/get/comment", type: "get" },
 	];
 	const [defaultSelectedKeys] = items;
 	// return

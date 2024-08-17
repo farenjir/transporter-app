@@ -1,163 +1,219 @@
 {
-	"schemas": {
-		"required": "This field is required",
-		"mobile": "Enter the mobile number correctly"
-	},
-	"commons": {
-		"status": "Condition",
-		"save": "Store",
-		"edit": "Edit",
-		"delete": "Delete",
-		"info": "Information",
-		"active": "active",
-		"deActive": "Inactive",
-		"accept": "a valid",
-		"notAccept": "Invalid",
-		"success": "successful",
-		"error": "error",
-		"search": "Search",
-		"reset": "reset",
-		"date": "Date",
-		"contentView": "View information",
-		"viewAll": "view all "
-	},
-	"messages": {
-		"noAccess": " ... Checking the access level",
-		"loading": "please wait",
-		"delete": "Do you delete ( {{name}} Are you sure?",
-		"deleteDes": "this {{name}} It will be removed from the system forever.",
-		"pageNotFound": "The requested page could not be found !",
-		"goBack": "Return to the home page",
-		"requestSuccess": "Your request has been successfully completed",
-		"requestFailed": "Your request was not processed successfully"
-	},
-	"notification": {
-		"success": "mission accomplished",
-		"error": "The operation was not performed correctly",
-		"password": "The password is not the same as repeating it"
-	},
-	"header": {
-		"auth": "log in sign up",
-		"contactUs": "contact us"
-	},
-	"layouts": {
-		"drawerTitle": "Settings",
-		"theme": "Site shell:",
-		"mode": "Site status:",
-		"language": "Site language:",
-		"light": "Bright",
-		"dark": "dark",
-		"fontSize": "Site scale:",
-		"fontDefault": "normal",
-		"fontSmall": "Little",
-		"version": "Site version:",
-		"versionNumber": "0.9.1",
-		"sidebar": {
-			"menu": "Menu",
-			"home": "Home Page",
-			"orders": "Application records",
-			"send": "submit",
-			"get": "receive",
-			"search": "Search"
-		},
-		"footer": {
-			"copyWrite": "All rights of this site belong to the collection"
-		}
-	},
-	"upload": {
-		"nationalCard": "Uploading national card and birth certificate",
-		"uploadHint": "Only files with jpg or png extension and maximum 5mb should be uploaded."
-	},
-	"commonPages": {
-		"source": "origin",
-		"sourceLabel": "origin (country, city, airport)",
-		"destination": "destination",
-		"destinationLabel": "Destination (country, city, airport)",
-		"priceNegotiable": "an agreement",
-		"priceNotNegotiable": "cut off"
-	},
-	"auth": {
-		"login": "log in",
-		"ifLogin": "Enter the system.",
-		"ifRegistered": "If you have an account ",
-		"registered": "Register",
-		"firstName": "name",
-		"lastName": "last name",
-		"uPassword": "Password",
-		"uPass": "Repeat password",
-		"region": "region",
-		"email": "email",
-		"gender": "gender",
-		"phoneNumber": "mobile number",
-		"phonePrefix": "area code",
-		"title": "Log in",
-		"register": "Create an account.",
-		"needSignUp": "I need an account",
-		"remember": "Login reminder",
-		"signUp": "Create an account",
-		"accountInfo": "Registration of user information",
-		"registerForm": "Registration Form",
-		"username": "Username (email or mobile number)",
-		"emailDes": "The email account verification link has been sent to you",
-		"checkEmail": "Check your email",
-		"cpId": "area code",
-		"pNumber": "mobile number",
-		"failed": "The mobile number is not available in the system",
-		"successRegister": "Registration was successful",
-		"successLogin": "Login to account",
-		"description": "To enter the system, enter your e-mail or mobile number along with the password, and if needed, you can "
-	},
-	"home": {
-		"get": "Receive request",
-		"getAll": "Receive requests",
-		"send": "Send request",
-		"sendAll": "Submit requests",
-		"International": "International flight",
-		"Domestic": "Domestic flight",
-		"fromLocationDesc": "Description of origin",
-		"toLocationDesc": "Description of the destination",
-		"unitIssue": "Scale",
-		"cargoWeight": "Package weight",
-		"ItemNo": "Number",
-		"cargoSize": "closed size",
-		"priceIs": "Price",
-		"currencyType": "the unit",
-		"proposedPrice": "Proposed price",
-		"cargoDesc": "Description of the package",
-		"description": "Description",
-		"uDescription": "Description (optional)",
-		"sendRequest": "Submit a request",
-		"getRequest": "Registration of receipt request",
-		"cargoMax": "Maximum package weight",
-		"cargoMaxSize": "Maximum package size",
-		"cards": {
-			"sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) To {{toCountryName}} ( {{toLocationName}} )",
-			"priceIsNegotiable": "an agreement",
-			"price": "Price : {{price}} {{label}}",
-			"weight": "Package specifications:",
-			"weightDes": "Weight : {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - Number : {{cargoItemNo}} - Size: {{cargoSize}}",
-			"dateFrom": "Date of origin (receipt): {{from}}",
-			"dateTo": "Destination date (delivery): {{to}}"
-		},
-		"support": {
-			"auth": "Authentication",
-			"garanty": "Shipping package insurance",
-			"safe": "Safe shipping",
-			"fast": "Fast delivery of the package"
-		}
-	},
-	"search": {
-		"search": "Advanced search requests",
-		"get": "Receive requests",
-		"send": "Submit requests",
-		"International": "International flight",
-		"topTitle": "You can find your request in this section",
-		"Domestic": "Domestic flight",
-		"support": {
-			"auth": "User authentication",
-			"garanty": "Shipping package insurance",
-			"safe": "Safe shipping",
-			"fast": "Fast delivery of the package"
-		}
-	}
+  "schemas": {
+    "required": "Bu alan zorunludur",
+    "mobile": "Cep telefonu numarasını doğru girin"
+  },
+  "commons": {
+    "status": "durum",
+    "save": "kaydetmek",
+    "edit": "Düzenlemek",
+    "delete": "kaldırmak",
+    "info": "Bilgi",
+    "active": "aktif",
+    "deActive": "aktif değil",
+    "accept": "otantik",
+    "notAccept": "geçerli değil",
+    "success": "başarılı",
+    "error": "hata",
+    "search": "aramak",
+    "reset": "sıfırlama",
+    "date": "tarih",
+    "update": "Güncelleme",
+    "contentView": "Bilgileri görüntüle",
+    "chatView": "Konuşma bölümü",
+    "viewAll": "tümünü görüntüle ",
+    "loading": "Lütfen bekleyin",
+    "comment": "Mesajlar",
+    "send": "Göndermek",
+    "details": "Detaylar"
+  },
+  "messages": {
+    "noAccess": "Erişim düzeyi kontrol ediliyor...",
+    "loading": "Lütfen bekleyin",
+    "delete": "siler misin ( {{name}} Emin misin?",
+    "sure": "Operasyondan emin misin?",
+    "deleteDes": "Bu {{name}} Sistemden sonsuza kadar kaldırılacaktır.",
+    "pageNotFound": "İstenilen sayfa bulunamadı!",
+    "goBack": "Ana sayfaya dön",
+    "requestSuccess": "İsteğiniz başarıyla tamamlandı",
+    "requestFailed": "İsteğiniz başarıyla işlenemedi"
+  },
+  "notification": {
+    "success": "Operasyon başarılı oldu",
+    "error": "İşlem doğru şekilde gerçekleştirilmedi",
+    "password": "Şifre tekrarlamakla aynı şey değil"
+  },
+  "header": {
+    "auth": "Giriş yap / Kayıt ol",
+    "contactUs": "bize Ulaşın"
+  },
+  "layouts": {
+    "exit": "kalkış",
+    "authToo": "Giriş yap / Kayıt ol",
+    "request": "Kayıt iste",
+    "drawerTitle": "Ayarlar",
+    "theme": "Site kabuğu:",
+    "mode": "Site durumu:",
+    "language": "Site dili:",
+    "light": "parlak",
+    "dark": "karanlık",
+    "fontSize": "Site ölçeği:",
+    "fontDefault": "normal",
+    "fontSmall": "küçük",
+    "version": "Site sürümü:",
+    "versionNumber": "0.9.1",
+    "sidebar": {
+      "menu": "menü",
+      "home": "Ana sayfa",
+      "orders": "Uygulama kayıtları",
+      "send": "Göndermek",
+      "get": "almak",
+      "search": "aramak",
+      "about": "Hakkımızda",
+      "top": "Başa dön"
+    },
+    "footer": {
+      "copyWrite": "Bu sitenin tüm hakları koleksiyona aittir."
+    }
+  },
+  "upload": {
+    "nationalCard": "Ulusal kart ve doğum belgesinin yüklenmesi",
+    "uploadHint": "Yalnızca jpg veya png uzantılı ve maksimum 5mb boyutunda dosyalar yüklenmelidir."
+  },
+  "commonPages": {
+    "source": "köken",
+    "sourceLabel": "menşei (şehir, havaalanı)",
+    "sourceLabelSelect": "menşei (ülke, şehir, havaalanı)",
+    "destination": "varış noktası",
+    "destinationLabel": "Hedef (şehir, havaalanı)",
+    "destinationLabelSelect": "Hedef (ülke, şehir, havaalanı)",
+    "priceNegotiable": "bir anlaşma",
+    "priceNotNegotiable": "ayırmak"
+  },
+  "titles": {
+    "source": "köken",
+    "sourceCountry": "menşei ülke",
+    "sourceLocation": "konum",
+    "destination": "varış noktası",
+    "createDate": "Oluşturulma tarihi",
+    "weight": "Paket ağırlığı",
+    "items": "sayı",
+    "description": "Tanım",
+    "actions": "Operasyon"
+  },
+  "lang": {
+    "title": "Dil seçimi",
+    "subTitle": "Aşağıdaki listeden istediğiniz dili seçin"
+  },
+  "auth": {
+    "login": "giriş yapmak",
+    "ifLogin": "Sisteme girin.",
+    "ifRegistered": "Bir hesabınız varsa ",
+    "registered": "Kayıt",
+    "firstName": "isim",
+    "lastName": "soy isim",
+    "uPassword": "Şifre",
+    "uPass": "Şifreyi tekrar girin",
+    "region": "bölge",
+    "email": "E-posta",
+    "gender": "cinsiyet",
+    "phoneNumber": "cep numarası",
+    "phonePrefix": "önek",
+    "title": "Sisteme giriş yapın",
+    "register": "Bir hesap oluşturun.",
+    "needSignUp": "Bir hesaba ihtiyacım var",
+    "remember": "Giriş hatırlatıcısı",
+    "signUp": "Bir hesap oluşturun",
+    "accountInfo": "Kullanıcı bilgilerinin kaydedilmesi",
+    "registerForm": "Kayıt formu",
+    "username": "Kullanıcı adı (e-posta veya cep telefonu numarası)",
+    "emailDes": "E-posta hesabı doğrulama bağlantısı size gönderildi",
+    "checkEmail": "E-postanızı kontrol edin",
+    "cpId": "önek",
+    "pNumber": "cep numarası",
+    "failed": "Cep telefonu numarası sistemde mevcut değil",
+    "successRegister": "Kayıt başarılı oldu",
+    "successLogin": "Kullanıcı hesabına giriş yapın",
+    "otherLogin": "Başka bir yöntemle oturum açın",
+    "description": "Sisteme giriş yapmak için şifrenizle birlikte e-posta adresinizi de giriniz, gerekirse giriş yapabilirsiniz. "
+  },
+  "home": {
+    "searching": "Arama isteği",
+    "request": "Kayıt iste",
+    "get": "Seyahat paylaşımı",
+    "getAll": "Gezileri paylaşma",
+    "send": "paket gönder",
+    "sendAll": "Paket gönderileri",
+    "International": "Uluslararası uçuş",
+    "Domestic": "Yurt içi uçuş",
+    "fromLocationDesc": "Menşe açıklaması",
+    "toLocationDesc": "Hedefin açıklaması",
+    "unitIssue": "Ölçek",
+    "cargoWeight": "Paket ağırlığı",
+    "ItemNo": "sayı",
+    "cargoSize": "kapalı boyut",
+    "priceIs": "fiyat",
+    "currencyType": "birim",
+    "proposedPrice": "Önerilen fiyat",
+    "cargoDesc": "Paketin açıklaması",
+    "description": "Tanım",
+    "uDescription": "Açıklama (isteğe bağlı)",
+    "sendRequest": "Paket gönderiminin kaydı",
+    "getRequest": "Seyahat paylaşımı kaydı",
+    "cargoMax": "Maksimum paket ağırlığı",
+    "cargoMaxSize": "Maksimum paket boyutu",
+    "cards": {
+      "sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) ile {{toCountryName}} ( {{toLocationName}} )",
+      "priceIsNegotiable": "bir anlaşma",
+      "price": "Fiyat: {{price}} {{label}}",
+      "weight": "Paket özellikleri:",
+      "weightDes": "Ağırlık: {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - Sayı: {{cargoItemNo}} - Boyut: {{cargoSize}}",
+      "dateFrom": "itibaren: {{from}}",
+      "dateTo": "değin: {{to}}"
+    },
+    "support": {
+      "auth": "Kimlik doğrulama",
+      "garanty": "Nakliye paketi sigortası",
+      "safe": "Güvenli nakliye",
+      "fast": "Paketin hızlı teslimatı"
+    }
+  },
+  "search": {
+    "search": "Gelişmiş arama istekleri",
+    "get": "Gezileri paylaşma",
+    "send": "Paket gönderileri",
+    "International": "Uluslararası uçuş",
+    "topTitle": "Talebinizi bu bölümde bulabilirsiniz",
+    "Domestic": "Yurt içi uçuş",
+    "support": {
+      "auth": "Kullanıcı kimlik doğrulaması",
+      "garanty": "Nakliye paketi sigortası",
+      "safe": "Güvenli nakliye",
+      "fast": "Paketin hızlı teslimatı"
+    }
+  },
+  "history": {
+    "request": "İstek kayıtları",
+    "topTitle": "Talebinizi bu bölümde değiştirebilirsiniz"
+  },
+  "user": {
+    "myInfo": "profilim",
+    "myHistory": "İstek kayıtları",
+    "myHistorySend": "Paket gönderilerinin kayıtları",
+    "myHistoryGet": "Gezi paylaşım kayıtları",
+    "myHistorySendComment": "Paket teslimat mesajları",
+    "myHistoryGetComment": "Seyahat paylaşım mesajları",
+    "profile": "Kullanıcı profili",
+    "oldPass": "Mevcut Şifre",
+    "newPass": "Yeni Şifre",
+    "editRequest": "İsteği düzenle",
+    "infoRequest": "Başvuru ayrıntıları",
+    "deleteRequest": "İsteği sil",
+    "successRegister": "Profiliniz güncellendi",
+    "showComment": "Mesajları görüntüle"
+  },
+  "request": {
+    "details": "Detaylar",
+    "sendMessage": "mesaj gönder"
+  }
 }

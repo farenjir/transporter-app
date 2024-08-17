@@ -201,13 +201,16 @@
 		"myHistory": "سوابق درخواست ها",
 		"myHistorySend": "سوابق ارسال های بسته",
 		"myHistoryGet": "سوابق اشتراک گذاری سفرها",
+		"myHistorySendComment": "پیام های ارسال های بسته",
+		"myHistoryGetComment": "پیام های اشتراک گذاری سفرها",
 		"profile": "مشخصات کاربری",
 		"oldPass": "کلمه عبور فعلی",
 		"newPass": "کلمه عبور جدید",
 		"editRequest": "ویرایش درخواست",
 		"infoRequest": "مشخصات درخواست",
 		"deleteRequest": "حذف درخواست",
-		"successRegister": "مشخصات شما بروزرسانی شد"
+		"successRegister": "مشخصات شما بروزرسانی شد",
+		"showComment": "نمایش پیام ها"
 	},
 	"request": {
 		"details": "جزییات",

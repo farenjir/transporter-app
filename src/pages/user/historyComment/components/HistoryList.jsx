@@ -7,7 +7,7 @@ import { Skeleton } from "antd";
 import { dateToLocale } from "utils/globals";
 
 import { ListModule } from "components";
-import { MyAppCard } from "components/App";
+import { AppCardComment } from "components/App";
 
 const imagesList = {
 	get: "domestic-banner.webp",
@@ -77,7 +77,7 @@ const HistoryTable = ({ content, activeType, loading, handleModals }) => {
 						return {
 							key: id.toString(),
 							content: (
-								<MyAppCard
+								<AppCardComment
 									key={id.toString()}
 									id={id.toString()}
 									hoverable={false}

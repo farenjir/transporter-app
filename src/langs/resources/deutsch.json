@@ -1,163 +1,219 @@
 {
-	"schemas": {
-		"required": "This field is required",
-		"mobile": "Enter the mobile number correctly"
-	},
-	"commons": {
-		"status": "Condition",
-		"save": "Store",
-		"edit": "Edit",
-		"delete": "Delete",
-		"info": "Information",
-		"active": "active",
-		"deActive": "Inactive",
-		"accept": "a valid",
-		"notAccept": "Invalid",
-		"success": "successful",
-		"error": "error",
-		"search": "Search",
-		"reset": "reset",
-		"date": "Date",
-		"contentView": "View information",
-		"viewAll": "view all "
-	},
-	"messages": {
-		"noAccess": " ... Checking the access level",
-		"loading": "please wait",
-		"delete": "Do you delete ( {{name}} Are you sure?",
-		"deleteDes": "this {{name}} It will be removed from the system forever.",
-		"pageNotFound": "The requested page could not be found !",
-		"goBack": "Return to the home page",
-		"requestSuccess": "Your request has been successfully completed",
-		"requestFailed": "Your request was not processed successfully"
-	},
-	"notification": {
-		"success": "mission accomplished",
-		"error": "The operation was not performed correctly",
-		"password": "The password is not the same as repeating it"
-	},
-	"header": {
-		"auth": "log in sign up",
-		"contactUs": "contact us"
-	},
-	"layouts": {
-		"drawerTitle": "Settings",
-		"theme": "Site shell:",
-		"mode": "Site status:",
-		"language": "Site language:",
-		"light": "Bright",
-		"dark": "dark",
-		"fontSize": "Site scale:",
-		"fontDefault": "normal",
-		"fontSmall": "Little",
-		"version": "Site version:",
-		"versionNumber": "0.9.1",
-		"sidebar": {
-			"menu": "Menu",
-			"home": "Home Page",
-			"orders": "Application records",
-			"send": "submit",
-			"get": "receive",
-			"search": "Search"
-		},
-		"footer": {
-			"copyWrite": "All rights of this site belong to the collection"
-		}
-	},
-	"upload": {
-		"nationalCard": "Uploading national card and birth certificate",
-		"uploadHint": "Only files with jpg or png extension and maximum 5mb should be uploaded."
-	},
-	"commonPages": {
-		"source": "origin",
-		"sourceLabel": "origin (country, city, airport)",
-		"destination": "destination",
-		"destinationLabel": "Destination (country, city, airport)",
-		"priceNegotiable": "an agreement",
-		"priceNotNegotiable": "cut off"
-	},
-	"auth": {
-		"login": "log in",
-		"ifLogin": "Enter the system.",
-		"ifRegistered": "If you have an account ",
-		"registered": "Register",
-		"firstName": "name",
-		"lastName": "last name",
-		"uPassword": "Password",
-		"uPass": "Repeat password",
-		"region": "region",
-		"email": "email",
-		"gender": "gender",
-		"phoneNumber": "mobile number",
-		"phonePrefix": "area code",
-		"title": "Log in",
-		"register": "Create an account.",
-		"needSignUp": "I need an account",
-		"remember": "Login reminder",
-		"signUp": "Create an account",
-		"accountInfo": "Registration of user information",
-		"registerForm": "Registration Form",
-		"username": "Username (email or mobile number)",
-		"emailDes": "The email account verification link has been sent to you",
-		"checkEmail": "Check your email",
-		"cpId": "area code",
-		"pNumber": "mobile number",
-		"failed": "The mobile number is not available in the system",
-		"successRegister": "Registration was successful",
-		"successLogin": "Login to account",
-		"description": "To enter the system, enter your e-mail or mobile number along with the password, and if needed, you can "
-	},
-	"home": {
-		"get": "Receive request",
-		"getAll": "Receive requests",
-		"send": "Send request",
-		"sendAll": "Submit requests",
-		"International": "International flight",
-		"Domestic": "Domestic flight",
-		"fromLocationDesc": "Description of origin",
-		"toLocationDesc": "Description of the destination",
-		"unitIssue": "Scale",
-		"cargoWeight": "Package weight",
-		"ItemNo": "Number",
-		"cargoSize": "closed size",
-		"priceIs": "Price",
-		"currencyType": "the unit",
-		"proposedPrice": "Proposed price",
-		"cargoDesc": "Description of the package",
-		"description": "Description",
-		"uDescription": "Description (optional)",
-		"sendRequest": "Submit a request",
-		"getRequest": "Registration of receipt request",
-		"cargoMax": "Maximum package weight",
-		"cargoMaxSize": "Maximum package size",
-		"cards": {
-			"sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) To {{toCountryName}} ( {{toLocationName}} )",
-			"priceIsNegotiable": "an agreement",
-			"price": "Price : {{price}} {{label}}",
-			"weight": "Package specifications:",
-			"weightDes": "Weight : {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - Number : {{cargoItemNo}} - Size: {{cargoSize}}",
-			"dateFrom": "Date of origin (receipt): {{from}}",
-			"dateTo": "Destination date (delivery): {{to}}"
-		},
-		"support": {
-			"auth": "Authentication",
-			"garanty": "Shipping package insurance",
-			"safe": "Safe shipping",
-			"fast": "Fast delivery of the package"
-		}
-	},
-	"search": {
-		"search": "Advanced search requests",
-		"get": "Receive requests",
-		"send": "Submit requests",
-		"International": "International flight",
-		"topTitle": "You can find your request in this section",
-		"Domestic": "Domestic flight",
-		"support": {
-			"auth": "User authentication",
-			"garanty": "Shipping package insurance",
-			"safe": "Safe shipping",
-			"fast": "Fast delivery of the package"
-		}
-	}
+  "schemas": {
+    "required": "Dieses Feld ist erforderlich",
+    "mobile": "Geben Sie die Handynummer korrekt ein"
+  },
+  "commons": {
+    "status": "Status",
+    "save": "speichern",
+    "edit": "Bearbeiten",
+    "delete": "entfernen",
+    "info": "Information",
+    "active": "aktiv",
+    "deActive": "inaktiv",
+    "accept": "authentisch",
+    "notAccept": "nicht gültig",
+    "success": "erfolgreich",
+    "error": "Fehler",
+    "search": "suchen",
+    "reset": "zurücksetzen",
+    "date": "Datum",
+    "update": "Aktualisieren",
+    "contentView": "Informationen anzeigen",
+    "chatView": "Konversationsabschnitt",
+    "viewAll": "Alle anzeigen ",
+    "loading": "Bitte warten",
+    "comment": "Nachrichten",
+    "send": "schicken",
+    "details": "Details"
+  },
+  "messages": {
+    "noAccess": "Zugriffsebene wird überprüft...",
+    "loading": "Bitte warten",
+    "delete": "Löschen Sie ( {{name}} Bist du sicher?",
+    "sure": "Sind Sie sich der Operation sicher?",
+    "deleteDes": "Das {{name}} Es wird für immer aus dem System entfernt.",
+    "pageNotFound": "Die gewünschte Seite wurde nicht gefunden!",
+    "goBack": "Zurück zur Startseite",
+    "requestSuccess": "Ihre Anfrage wurde erfolgreich abgeschlossen",
+    "requestFailed": "Ihre Anfrage wurde nicht erfolgreich bearbeitet"
+  },
+  "notification": {
+    "success": "Die Operation war erfolgreich",
+    "error": "Der Vorgang wurde nicht korrekt ausgeführt",
+    "password": "Das Passwort ist nicht dasselbe wie es zu wiederholen"
+  },
+  "header": {
+    "auth": "Anmelden / Registrieren",
+    "contactUs": "Kontaktieren Sie uns"
+  },
+  "layouts": {
+    "exit": "Abfahrt",
+    "authToo": "Anmelden / Registrieren",
+    "request": "Anmeldung anfordern",
+    "drawerTitle": "Einstellungen",
+    "theme": "Site-Shell:",
+    "mode": "Site-Status:",
+    "language": "Sprache der Website:",
+    "light": "hell",
+    "dark": "dunkel",
+    "fontSize": "Site-Maßstab:",
+    "fontDefault": "Normal",
+    "fontSmall": "klein",
+    "version": "Site-Version:",
+    "versionNumber": "0.9.1",
+    "sidebar": {
+      "menu": "das Menü",
+      "home": "Startseite",
+      "orders": "Bewerbungsunterlagen",
+      "send": "schicken",
+      "get": "erhalten",
+      "search": "suchen",
+      "about": "über uns",
+      "top": "Zurück nach oben"
+    },
+    "footer": {
+      "copyWrite": "Alle Rechte dieser Website liegen bei der Sammlung"
+    }
+  },
+  "upload": {
+    "nationalCard": "Hochladen der Personalkarte und der Geburtsurkunde",
+    "uploadHint": "Es sollten nur Dateien mit der Erweiterung jpg oder png und maximal 5 MB hochgeladen werden."
+  },
+  "commonPages": {
+    "source": "Herkunft",
+    "sourceLabel": "Herkunft (Stadt, Flughafen)",
+    "sourceLabelSelect": "Herkunft (Land, Stadt, Flughafen)",
+    "destination": "Ziel",
+    "destinationLabel": "Zielort (Stadt, Flughafen)",
+    "destinationLabelSelect": "Ziel (Land, Stadt, Flughafen)",
+    "priceNegotiable": "eine Vereinbarung",
+    "priceNotNegotiable": "abgeschnitten"
+  },
+  "titles": {
+    "source": "Herkunft",
+    "sourceCountry": "Ursprungsland",
+    "sourceLocation": "Standort",
+    "destination": "Ziel",
+    "createDate": "Erstellungsdatum",
+    "weight": "Paketgewicht",
+    "items": "Nummer",
+    "description": "Beschreibung",
+    "actions": "Betrieb"
+  },
+  "lang": {
+    "title": "Sprachauswahl",
+    "subTitle": "Wählen Sie Ihre gewünschte Sprache aus der Liste unten"
+  },
+  "auth": {
+    "login": "Login",
+    "ifLogin": "Betreten Sie das System.",
+    "ifRegistered": "Wenn Sie ein Konto haben ",
+    "registered": "Anmeldung",
+    "firstName": "Name",
+    "lastName": "Nachname",
+    "uPassword": "Passwort",
+    "uPass": "Passwort wiederholen",
+    "region": "Region",
+    "email": "E-Mail",
+    "gender": "Geschlecht",
+    "phoneNumber": "Handynummer",
+    "phonePrefix": "Präfix",
+    "title": "Melden Sie sich beim System an",
+    "register": "Ein Konto erstellen.",
+    "needSignUp": "Ich brauche ein Konto",
+    "remember": "Login-Erinnerung",
+    "signUp": "Ein Konto erstellen",
+    "accountInfo": "Registrierung von Benutzerinformationen",
+    "registerForm": "Anmeldeformular",
+    "username": "Benutzername (E-Mail oder Handynummer)",
+    "emailDes": "Der Link zur Bestätigung des E-Mail-Kontos wurde an Sie gesendet",
+    "checkEmail": "Überprüfen Sie Ihre E-Mails",
+    "cpId": "Präfix",
+    "pNumber": "Handynummer",
+    "failed": "Die Mobilfunknummer ist im System nicht verfügbar",
+    "successRegister": "Die Registrierung war erfolgreich",
+    "successLogin": "Melden Sie sich beim Benutzerkonto an",
+    "otherLogin": "Melden Sie sich mit einer anderen Methode an",
+    "description": "Um auf das System zuzugreifen, geben Sie Ihre E-Mail-Adresse zusammen mit dem Passwort ein und können dies bei Bedarf tun "
+  },
+  "home": {
+    "searching": "Suchauftrag",
+    "request": "Anmeldung anfordern",
+    "get": "Reise-Sharing",
+    "getAll": "Ausflüge teilen",
+    "send": "Paket verschicken",
+    "sendAll": "Paketsendungen",
+    "International": "Internationaler Flug",
+    "Domestic": "Inlandsflug",
+    "fromLocationDesc": "Herkunftsbeschreibung",
+    "toLocationDesc": "Beschreibung des Ziels",
+    "unitIssue": "Skala",
+    "cargoWeight": "Paketgewicht",
+    "ItemNo": "Nummer",
+    "cargoSize": "geschlossene Größe",
+    "priceIs": "Preis",
+    "currencyType": "Einheit",
+    "proposedPrice": "Empfohlener Preis",
+    "cargoDesc": "Beschreibung des Pakets",
+    "description": "Beschreibung",
+    "uDescription": "Beschreibung (optional)",
+    "sendRequest": "Registrierung des Paketversands",
+    "getRequest": "Anmeldung zum Teilen von Reisen",
+    "cargoMax": "Maximales Paketgewicht",
+    "cargoMaxSize": "Maximale Paketgröße",
+    "cards": {
+      "sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) Zu {{toCountryName}} ( {{toLocationName}} )",
+      "priceIsNegotiable": "eine Vereinbarung",
+      "price": "Preis: {{price}} {{label}}",
+      "weight": "Paketspezifikationen:",
+      "weightDes": "Gewicht: {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - Nummer: {{cargoItemNo}} - Größe: {{cargoSize}}",
+      "dateFrom": "aus: {{from}}",
+      "dateTo": "bis: {{to}}"
+    },
+    "support": {
+      "auth": "Authentifizierung",
+      "garanty": "Versandpaketversicherung",
+      "safe": "Sicherer Versand",
+      "fast": "Schnelle Lieferung des Pakets"
+    }
+  },
+  "search": {
+    "search": "Erweiterte Suchanfragen",
+    "get": "Ausflüge teilen",
+    "send": "Paketsendungen",
+    "International": "Internationaler Flug",
+    "topTitle": "In diesem Bereich finden Sie Ihr Anliegen",
+    "Domestic": "Inlandsflug",
+    "support": {
+      "auth": "Benutzerauthentifizierung",
+      "garanty": "Versandpaketversicherung",
+      "safe": "Sicherer Versand",
+      "fast": "Schnelle Lieferung des Pakets"
+    }
+  },
+  "history": {
+    "request": "Aufzeichnungen über Anfragen",
+    "topTitle": "In diesem Abschnitt können Sie Ihre Anfrage ändern"
+  },
+  "user": {
+    "myInfo": "mein Profil",
+    "myHistory": "Aufzeichnungen über Anfragen",
+    "myHistorySend": "Aufzeichnungen über Paketsendungen",
+    "myHistoryGet": "Aufzeichnungen zum Teilen von Reisen",
+    "myHistorySendComment": "Paketzustellungsnachrichten",
+    "myHistoryGetComment": "Reise-Sharing-Nachrichten",
+    "profile": "Benutzerprofil",
+    "oldPass": "Aktuelles Passwort",
+    "newPass": "Neues Passwort",
+    "editRequest": "Anfrage bearbeiten",
+    "infoRequest": "Bewerbungsdetails",
+    "deleteRequest": "Anfrage löschen",
+    "successRegister": "Ihr Profil wurde aktualisiert",
+    "showComment": "Nachrichten anzeigen"
+  },
+  "request": {
+    "details": "Details",
+    "sendMessage": "Nachricht senden"
+  }
 }
