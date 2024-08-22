@@ -37,10 +37,8 @@ const ListModule = ({
 			// footer
 			// header
 			pagination={pagination && paginationOptions}
-			rowKey={({ key }, idx) => `list-item${key || idx}`}
-			renderItem={({ content, key }, idx) => (
-				<List.Item key={`list-item${key || idx}`}>{content}</List.Item>
-			)}
+			rowKey={(_, idx) => `list-${idx}`}
+			renderItem={({ content }, idx) => <List.Item key={`list-item-${idx}`}>{content}</List.Item>}
 		/>
 	);
 };

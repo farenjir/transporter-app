@@ -27,18 +27,17 @@ function SearchContextApi({ children, loading, onFinish = () => {}, onReset = ()
 		setAutocompleteLoading(false);
 	};
 	const locationIdDetector = useCallback(
-		(locationText, type) => {
-			const { id } = backUpLocations.find(({ fullGeoLocationTitle }) => locationText.includes(fullGeoLocationTitle)) || {};
-			// return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: locationTypeId };
+		(locationText = "", _type) => {
+			const { id } = backUpLocations.find(({ fullGeoLocationTitle }) => locationText?.includes?.(fullGeoLocationTitle)) || {};
 			return id;
 		},
 		[backUpLocations],
 	);
 	const handleOnFinishForm = (formValues) => {
-		const { requestType, datePicker, fromCountry, toCountry } = formValues;
+		const { requestType, from, to, fromCountry, toCountry } = formValues;
 		const queries = {
-			fromDate: datePicker?.[0]?.toISOString() || datePicker?.toISOString?.(),
-			toDate: datePicker?.[1]?.toISOString(),
+			fromDate: from?.toISOString?.(),
+			toDate: to?.toISOString?.(),
 			fromCountry: locationIdDetector(fromCountry, "from"),
 			toCountry: locationIdDetector(toCountry, "to"),
 			requestType,
@@ -50,7 +49,7 @@ function SearchContextApi({ children, loading, onFinish = () => {}, onReset = ()
 		<SearchContext.Provider value={{ loading, countries, jalali, autoData, autocompleteLoading, onChangeAutocomplete }}>
 			<Form
 				form={form}
-				name="request-form"
+				name="request-form-send"
 				className="request-form"
 				layout="vertical"
 				onFinish={handleOnFinishForm}

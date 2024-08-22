@@ -36,7 +36,7 @@ export default function AuthForm() {
 		setLoading(true);
 		const response = await userRegister(callApi, values);
 		if (response?.result) {
-			navigate("/auth", { replace: true });
+			navigate("/login", { replace: true });
 			notificationMaker(t("commons.success"), "success", t("auth.successRegister"));
 		} else {
 			notificationMaker(t("commons.error"), "error", t("notification.error"));

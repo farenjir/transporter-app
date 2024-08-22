@@ -8,7 +8,7 @@ import { useAppContext } from "hooks";
 import { dateToLocale } from "utils/globals";
 
 import { CarouselModule, Drawers } from "components";
-import { AppCard, RequestDetails } from "components/App";
+import { AppCardGet, RequestDetails } from "components/App";
 
 const { Title } = Typography;
 
@@ -44,7 +44,7 @@ export default function RequeuedGet({ list = [] }) {
 	};
 	// init
 	useEffect(() => {
-		const getAllProducers = async () => {
+		const getAllProducers = () => {
 			setLoading(true);
 			const cardGroups = [list.slice(0, 3), list.slice(3, 6), list.slice(6, 9)].filter((item) => item?.length);
 			setRequestGroups(cardGroups);
@@ -76,24 +76,22 @@ export default function RequeuedGet({ list = [] }) {
 							{cardGroups.map(
 								({
 									id,
+									priceIsNegotiable,
+									proposedPrice,
+									priceCurrencyTypeId,
 									fromCountryName,
 									toCountryName,
 									toLocationName,
 									fromLocationName,
-									priceCurrencyTypeId,
-									priceIsNegotiable,
-									proposedPrice,
 									cargoWeightUnitIssueTitle,
-									cargoSize,
-									cargoWeight,
-									cargoItemNo,
-									cargoDesc,
-									fromDateValidOfDeliver,
-									toDateValidOfDeliver,
+									dateOfDeliver,
 									requestLangaheTypeID,
-									requesterUserId,
+									carrierUserId,
 									requestType,
 									registerDate,
+									carrierDesc,
+									cargoMaxSizeCapacity,
+									cargoMaxWeightCapacity,
 									cargoWeightUnitIssueId,
 									fromCountryId,
 									toCountryId,
@@ -101,12 +99,18 @@ export default function RequeuedGet({ list = [] }) {
 									toLocationId,
 									fromLocationDesc,
 									toLocationDesc,
-									imageId,
 									timeZoneId,
 									matchStatusId,
 									chats,
+									isArchived,
+									fromFullGeoLocationTitle,
+									toFullGeoLocationTitle,
+									fromLocationTypeId,
+									toLocationTypeId,
+									fromCityName,
+									toCityNam,
 								}) => (
-									<AppCard
+									<AppCardGet
 										key={id.toString()}
 										id={id.toString()}
 										onClickBtn={(mode) => onSelectRecord(id, mode)}
@@ -123,23 +127,18 @@ export default function RequeuedGet({ list = [] }) {
 														})}
 													</span>
 													<span className="text-sm">
-														{t("home.cards.dateFrom", {
-															from: dateToLocale(fromDateValidOfDeliver),
-														})}
-													</span>
-													<span className="text-sm">
 														{t("home.cards.dateTo", {
-															to: dateToLocale(toDateValidOfDeliver),
+															to: dateToLocale(dateOfDeliver),
 														})}
 													</span>
 													<span className="text-base">{t("home.cards.weight")}</span>
 													<span className="text-sm">
 														{t("home.cards.weightDes", {
-															cargoWeight,
-															cargoSize,
+															cargoWeight: cargoMaxWeightCapacity,
+															cargoSize: cargoWeightUnitIssueId,
 															cargoWeightUnitIssueTitle,
-															cargoItemNo,
-															cargoDesc,
+															cargoItemNo: cargoMaxWeightCapacity,
+															cargoDesc: carrierDesc,
 														})}
 													</span>
 													<span className="text-base">

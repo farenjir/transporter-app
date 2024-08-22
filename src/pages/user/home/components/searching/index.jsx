@@ -23,13 +23,12 @@ const SearchRequest = ({ appMode }) => {
 	const onFinish = useCallback(
 		async (paramsTransform = {}) => {
 			setLoading(true);
-			const { requestType, ...values } = paramsTransform;
 			const queriesParams = {
 				pgn: pgn,
 				pgs: 9,
-				...values,
+				...paramsTransform,
 			};
-			switch (requestType) {
+			switch (appMode) {
 				case "send": {
 					let { content: carrierList } = await getRequestForCarrier(callApi, queriesParams);
 					setList(carrierList || []);
@@ -46,11 +45,11 @@ const SearchRequest = ({ appMode }) => {
 			}
 			setLoading(false);
 		},
-		[callApi, pgn],
+		[callApi, pgn, appMode],
 	);
-	const onReset = useCallback(() => {
-		onFinish({ requestType: appMode, pgn: 1 });
-	}, [appMode]);
+	const onReset = () => {
+		onFinish({ pgn: 1 });
+	};
 	// options
 	const tabItems = {
 		send: <InternationalSearch />,
@@ -62,7 +61,7 @@ const SearchRequest = ({ appMode }) => {
 	};
 	// init
 	useEffect(() => {
-		onFinish({ requestType: appMode });
+		onFinish({});
 	}, [appMode]);
 	// return
 	return (

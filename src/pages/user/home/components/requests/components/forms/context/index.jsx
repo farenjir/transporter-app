@@ -30,9 +30,9 @@ function RequestContextApi({ children }) {
 	];
 	// handles
 	const locationIdDetector = useCallback(
-		(locationText, type) => {
+		(locationText = "", type) => {
 			const { countryId, id } =
-				backUpLocations.find(({ fullGeoLocationTitle: location }) => locationText.includes(location)) || {};
+				backUpLocations.find(({ fullGeoLocationTitle: location }) => locationText?.includes?.(location)) || {};
 			return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: id };
 		},
 		[backUpLocations],
@@ -50,7 +50,7 @@ function RequestContextApi({ children }) {
 		setLoading(false);
 		const { datePicker, from, to, fromLocationId, toLocationId, ...value } = formValues;
 		let response = {};
-		switch (from && to) {
+		switch (!!(from && to)) {
 			case true:
 				response = await postRequestForCarrier(callApi, {
 					langType: 10,

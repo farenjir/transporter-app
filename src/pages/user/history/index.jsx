@@ -15,6 +15,7 @@ import HistoryList from "./components/HistoryList";
 import InternationalRequest from "./components/forms/International";
 import InternationalGetRequest from "./components/forms/InternationalGet";
 import CommentForm from "./components/comments";
+import HistoryListGet from "./components/HistoryListGet";
 
 const HistoryPage = () => {
 	const { type = "send" } = history?.state?.usr || {};
@@ -63,11 +64,6 @@ const HistoryPage = () => {
 		},
 		[type],
 	);
-	// handles
-	// const onChangeType = (type) => {
-	// 	setSelectedRecord({});
-	// 	setActiveType(type);
-	// };
 	const handleModals = (mode, record) => {
 		setSelectedRecord(record);
 		switch (mode) {
@@ -102,22 +98,33 @@ const HistoryPage = () => {
 		modalEdit.current.close();
 		modalComment.current.close();
 	};
-	// options
-	// const requestType = [
-	// 	{
-	// 		label: t("search.send"),
-	// 		value: "send",
-	// 	},
-	// 	{
-	// 		label: t("search.get"),
-	// 		value: "get",
-	// 	},
-	// ];
 	const contextProvider = {
 		record: selectedRecord,
 		handleModals,
 		handleCloseModals,
 		getDataSource,
+	};
+	const lists = {
+		send: (
+			<HistoryList
+				{...{
+					content,
+					activeType: type,
+					loading,
+					handleModals,
+				}}
+			/>
+		),
+		get: (
+			<HistoryListGet
+				{...{
+					content,
+					activeType: type,
+					loading,
+					handleModals,
+				}}
+			/>
+		),
 	};
 	// init
 	useEffect(() => {
@@ -129,22 +136,7 @@ const HistoryPage = () => {
 			className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
 			style={{ background: token?.colorBgBase }}
 		>
-			{/* <RadioGroup
-				disabled={loading}
-				plainOptions={requestType}
-				name="requestType"
-				initialValue={activeType}
-				required={true}
-				onChange={onChangeType}
-			/> */}
-			<HistoryList
-				{...{
-					content,
-					activeType: type,
-					loading,
-					handleModals,
-				}}
-			/>
+			{lists[type]}
 			<Modals reference={type === "send" ? modalInfo : null} title={t("user.infoRequest")}>
 				<RequestContextApi {...contextProvider}>
 					<InternationalRequest info />

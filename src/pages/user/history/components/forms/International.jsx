@@ -18,7 +18,7 @@ const InternationalRequest = ({ edit, info }) => {
 	return (
 		<div className={info ? "pointer-events-none" : ""}>
 			<Row gutter={[8, 8]} align={"middle"} className="international-form">
-				<Col xs={24} md={12} lg={8}>
+				<Col xs={24} md={12} lg={7}>
 					<AutocompletePublic
 						name="fromLocationId"
 						label={
@@ -38,7 +38,7 @@ const InternationalRequest = ({ edit, info }) => {
 						}
 					/>
 				</Col>
-				<Col xs={24} md={12} lg={8}>
+				<Col xs={24} md={12} lg={7}>
 					<AutocompletePublic
 						name="toLocationId"
 						label={
@@ -58,12 +58,12 @@ const InternationalRequest = ({ edit, info }) => {
 						}
 					/>
 				</Col>
-				<Col xs={24} md={12} lg={8}>
+				<Col xs={24} md={12} lg={10}>
 					<CalenderDateRange label={t("commons.date")} required={true} jalali={jalali} />
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={2}>
+				<Col xs={24} md={12} lg={3}>
 					<Selects
 						name="cargoWeightUnitIssueId"
 						placeholder={t("home.unitIssue")}
@@ -72,7 +72,7 @@ const InternationalRequest = ({ edit, info }) => {
 						initialValue={enums?.["104"]?.[1]?.id}
 					/>
 				</Col>
-				<Col xs={24} md={12} lg={6}>
+				<Col xs={24} md={12} lg={4}>
 					<InputType
 						type={"number"}
 						name="cargoWeight"
@@ -82,7 +82,7 @@ const InternationalRequest = ({ edit, info }) => {
 						initialValue={1}
 					/>
 				</Col>
-				<Col xs={24} md={12} lg={8}>
+				<Col xs={24} md={12} lg={7}>
 					<InputType
 						type={"number"}
 						name="cargoItemNo"
@@ -92,7 +92,7 @@ const InternationalRequest = ({ edit, info }) => {
 						required={true}
 					/>
 				</Col>
-				<Col xs={24} md={12} lg={8}>
+				<Col xs={24} md={12} lg={10}>
 					<Selects
 						name="cargoSize"
 						placeholder={t("home.cargoSize")}
@@ -103,7 +103,7 @@ const InternationalRequest = ({ edit, info }) => {
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={8}>
+				<Col xs={24} md={12} lg={7}>
 					<Selects
 						name="priceIsNegotiable"
 						label={t("home.priceIs")}
@@ -114,7 +114,7 @@ const InternationalRequest = ({ edit, info }) => {
 				</Col>
 				{!priceType && (
 					<>
-						<Col xs={24} md={12} lg={8}>
+						<Col xs={24} md={12} lg={7}>
 							<Selects
 								name="priceCurrencyTypeId"
 								placeholder={t("home.currencyType")}
@@ -123,7 +123,7 @@ const InternationalRequest = ({ edit, info }) => {
 								initialValue={enums?.["105"]?.[2]?.id}
 							/>
 						</Col>
-						<Col xs={24} md={12} lg={8}>
+						<Col xs={24} md={12} lg={10}>
 							<InputType
 								type={"number"}
 								name="proposedPrice"
@@ -136,7 +136,7 @@ const InternationalRequest = ({ edit, info }) => {
 				)}
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={16}>
+				<Col xs={24} md={12} lg={14}>
 					<InputType
 						name="cargoDesc"
 						placeholder={t("home.cargoDesc")}
@@ -145,7 +145,7 @@ const InternationalRequest = ({ edit, info }) => {
 					/>
 				</Col>
 				{edit && (
-					<Col xs={24} md={12} lg={8}>
+					<Col xs={24} md={12} lg={10}>
 						<Buttons content={t("user.editRequest")} htmlType="submit" classes="float-end mt-8" loading={loading} />
 					</Col>
 				)}

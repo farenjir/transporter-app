@@ -21,6 +21,7 @@ const Calendars = ({
 	allowClear = false,
 	locale = i18next.language,
 	jalali,
+	minDate = dayjs().locale(locale),
 }) => {
 	const { t } = useTranslation();
 	const rules = [
@@ -29,7 +30,8 @@ const Calendars = ({
 			message: t("schemas.required"),
 		},
 	];
-	const defaultValue = dayjs(dayjs().locale(locale).format(), { jalali });
+	const today = dayjs().locale(locale).format();
+	const defaultValue = dayjs(today, { jalali });
 	// return
 	return (
 		<Form.Item
@@ -46,7 +48,7 @@ const Calendars = ({
 				maxTagCount="responsive"
 				defaultValue={initialValue || defaultValue}
 				{...{ format, disabled, size, placement }}
-				{...{ allowClear, showNow, showTime, showHour, showMinute }}
+				{...{ allowClear, showNow, showTime, showHour, showMinute, minDate }}
 			/>
 		</Form.Item>
 	);

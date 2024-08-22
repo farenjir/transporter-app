@@ -12,6 +12,7 @@ import { Modals, confirmModal } from "components";
 
 import HistoryList from "./components/HistoryList";
 import CommentForm from "./components/comments";
+import HistoryListGet from "./components/HistoryListGet";
 
 const HistoryComment = () => {
 	const { type = "send" } = history?.state?.usr || {};
@@ -89,6 +90,28 @@ const HistoryComment = () => {
 				break;
 		}
 	};
+	const lists = {
+		send: (
+			<HistoryList
+				{...{
+					content,
+					activeType: type,
+					loading,
+					handleModals,
+				}}
+			/>
+		),
+		get: (
+			<HistoryListGet
+				{...{
+					content,
+					activeType: type,
+					loading,
+					handleModals,
+				}}
+			/>
+		),
+	};
 	// init
 	useEffect(() => {
 		getDataSource();
@@ -99,14 +122,7 @@ const HistoryComment = () => {
 			className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
 			style={{ background: token?.colorBgBase }}
 		>
-			<HistoryList
-				{...{
-					content,
-					activeType: type,
-					loading,
-					handleModals,
-				}}
-			/>
+			{lists[type]}
 			<Modals reference={modalComment} title={t("commons.comment")}>
 				<CommentForm requestType={requestCommentType[type]} record={selectedRecord} />
 			</Modals>

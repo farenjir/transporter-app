@@ -82,7 +82,14 @@ const HomePage = () => {
 				height={320}
 				className="-mt-12 lg:min-h-[320px]"
 			/>
-			<AppTabs items={appTabOptions} centered classes="md:-mt-40 backdrop-blur-md" onChange={onChangeType} size="small" />
+			<AppTabs
+				items={appTabOptions}
+				defaultActiveKey={`search-${appMode}`}
+				centered
+				classes="md:-mt-40 backdrop-blur-md"
+				onChange={onChangeType}
+				size="small"
+			/>
 		</>
 	);
 };

@@ -54,7 +54,7 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 			setLoading(false);
 			const { datePicker, from, to, fromLocationId, toLocationId, ...value } = formValues;
 			let response = {};
-			switch (from && to) {
+			switch (!!(from && to)) {
 				case true:
 					response = await putRequestForCarrier(callApi, {
 						langType: 10,
@@ -107,11 +107,11 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 			fromCityName,
 			...other
 		} = record;
-		// init date
-		const datePicker = dateOfDeliver ? dayjs(dateOfDeliver) : [dayjs(fromDateValidOfDeliver), dayjs(toDateValidOfDeliver)];
 		// setFieldsValue
 		form.setFieldsValue({
-			datePicker,
+			datePicker: dayjs(dateOfDeliver),
+			from: dayjs(fromDateValidOfDeliver),
+			to: dayjs(toDateValidOfDeliver),
 			...other,
 			fromLocationId: `${fromCountryName} ( ${fromCityName} )`,
 			toLocationId: `${toCountryName} ( ${toCityName} )`,
