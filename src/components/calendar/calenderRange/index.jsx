@@ -9,16 +9,15 @@ const CalenderDateRange = ({
 	initialValue,
 	placement = "",
 	size = "large",
-	format = "YYYY/MM/DD - hh:mm",
+	format = "YYYY/MM/DD",
 	required = false,
 	disabled = false,
-	showHour = true,
-	showMinute = true,
-	showTime = true,
+	showHour = false,
+	showMinute = false,
+	showTime = false,
 	showNow = false,
 	allowClear = false,
 	locale = i18next.language,
-	jalali,
 }) => {
 	const { t } = useTranslation();
 	const commons = {
@@ -35,10 +34,9 @@ const CalenderDateRange = ({
 		showNow,
 		allowClear,
 		locale,
-		jalali,
 	};
 	return (
-		<div className="flex gap-1">
+		<div className="flex flex-col md:flex-row gap-1">
 			<Calendars label={t("commons.from")} name="from" {...commons} />
 			<Calendars label={t("commons.to")} name="to" {...commons} />
 		</div>
