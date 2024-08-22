@@ -221,6 +221,20 @@
 	},
 	"request": {
 		"details": "جزییات",
-		"sendMessage": "ارسال پیام"
+		"sendMessage": "ارسال پیام",
+		"source": "موقعیت مبدا",
+		"destination": "موقعیت مقصد",
+		"cSource": "کشور مبدا",
+		"cDestination": "کشور مقصد",
+		"dateSource": "تاریخ مبدا",
+		"dateDes": "تاریخ مقصد",
+		"count": "تعداد بسته",
+		"weight": "وزن بسته",
+		"scale": "مقیاس بار",
+		"size": "سایز بسته",
+		"price": "قیمت",
+		"sugPrice": "قیمت پیشنهادی",
+		"unit": "واحد",
+		"description": "توضیحات بسته"
 	}
 }

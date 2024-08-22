@@ -14,25 +14,25 @@ const GetDetails = ({ title = "", params = {} }) => {
 	const { enums } = useSelector(baseSelector);
 	// items
 	const items = [
-		{ valueParam: "fromLocationName", label: "موقعیت مبدا", type: "text", span: { xs: 5, md: 3 } },
-		{ valueParam: "fromCountryName", label: "کشور مبدا", type: "text", span: { xs: 5, md: 2 } },
-		{ valueParam: "toLocationName", label: "موقعیت مقصد", type: "text", span: { xs: 5, md: 3 } },
-		{ valueParam: "toCountryName", label: "کشور مقصد", type: "text", span: { xs: 5, md: 2 } },
+		{ valueParam: "fromLocationName", label: t("request.source"), type: "text", span: { xs: 5, md: 3 } },
+		{ valueParam: "fromCountryName", label: t("request.cSource"), type: "text", span: { xs: 5, md: 2 } },
+		{ valueParam: "toLocationName", label: t("request.destination"), type: "text", span: { xs: 5, md: 3 } },
+		{ valueParam: "toCountryName", label: t("request.cDestination"), type: "text", span: { xs: 5, md: 2 } },
 		// date
-		{ valueParam: "fromDateValidOfDeliver", label: "تاریخ مبدا", type: "date", span: { xs: 5, md: 3 } },
-		{ valueParam: "toDateValidOfDeliver", label: "تاریخ مقصد", type: "date", span: { xs: 5, md: 3 } },
+		{ valueParam: "fromDateValidOfDeliver", label: t("request.dateSource"), type: "date", span: { xs: 5, md: 3 } },
+		{ valueParam: "toDateValidOfDeliver", label: t("request.dateDes"), type: "date", span: { xs: 5, md: 3 } },
 		// size
-		{ valueParam: "cargoItemNo", label: "تعداد بسته", type: "text", span: { xs: 5, md: 1 } },
-		{ valueParam: "cargoWeight", label: "وزن بسته", type: "text", span: { xs: 5, md: 1 } },
+		{ valueParam: "cargoItemNo", label: t("request.count"), type: "text", span: { xs: 5, md: 1 } },
+		{ valueParam: "cargoWeight", label: t("request.weight"), type: "text", span: { xs: 5, md: 1 } },
 		{
 			valueParam: "cargoWeightUnitIssueTitle",
-			label: "مقیاس بار",
+			label: t("request.scale"),
 			type: "text",
 			span: { xs: 5, md: 1 },
 		},
 		{
 			valueParam: "cargoSize",
-			label: "سایز بسته",
+			label: t("request.size"),
 			type: "enum",
 			enumType: "107",
 			span: { xs: 5, md: 2 },
@@ -40,21 +40,21 @@ const GetDetails = ({ title = "", params = {} }) => {
 		// price
 		{
 			valueParam: "priceIsNegotiable",
-			label: "قیمت",
+			label: t("request.price"),
 			type: "boolean",
 			condition: (condition) => (condition ? t("commonPages.priceNegotiable") : t("commonPages.priceNotNegotiable")),
 			span: { xs: 5, md: 2 },
 		},
-		{ valueParam: "proposedPrice", label: "قیمت پیشنهادی", type: "money", span: { xs: 5, md: 2 } },
+		{ valueParam: "proposedPrice", label: t("request.sugPrice"), type: "money", span: { xs: 5, md: 2 } },
 		{
 			valueParam: "priceCurrencyTypeId",
-			label: "واحد",
+			label: t("request.unit"),
 			type: "enum",
 			enumType: "105",
 			span: { xs: 5, md: 1 },
 		},
 		// description
-		{ valueParam: "cargoDesc", label: "توضیحات بسته", type: "text", span: { xs: 5, md: 5 } },
+		{ valueParam: "cargoDesc", label: t("request.description"), type: "text", span: { xs: 5, md: 5 } },
 	];
 	// handles
 	const getEnumLabel = (valueAsId, type) => {

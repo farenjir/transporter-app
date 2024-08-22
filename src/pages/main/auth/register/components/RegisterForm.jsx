@@ -79,30 +79,12 @@ export default function AuthForm() {
 				<Col xs={24} md={8}>
 					<Inputs name="phoneNumber" type="text" label={t("auth.phoneNumber")} />
 				</Col>
-
 				<Col xs={24} md={12}>
 					<Inputs name="uPassword" type="password" label={t("auth.uPassword")} required={true} />
 				</Col>
 				<Col xs={24} md={12}>
 					<Inputs name="uPass" type="password" label={t("auth.uPass")} required={true} />
 				</Col>
-				{/* <Col xs={24} md={8}>
-					<Selects
-						showSearch
-						name="originCountryId"
-						options={countries}
-						label={t("auth.region")}
-						required={true}
-					/>
-				</Col>
-				<Col xs={24} md={8}>
-					<Selects
-						name="genderTypeId"
-						label={t("auth.gender")}
-						required={true}
-						options={enums?.["101"] || []}
-					/>
-				</Col> */}
 				<Col xs={24} md={{ offset: 12, span: 12 }}>
 					<Buttons
 						htmlType="submit"
