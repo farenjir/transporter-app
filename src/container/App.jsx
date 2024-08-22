@@ -52,7 +52,12 @@ const userRoutes = {
 	children: [
 		{
 			index: true,
-			id: "profile",
+			id: "dashboard",
+			lazy: async () => ({ Component: (await import("../pages/user/dashboard")).default }),
+		},
+		{
+			path: "profile",
+			id: "history/profile",
 			lazy: async () => ({ Component: (await import("../pages/user/profile")).default }),
 		},
 		{
