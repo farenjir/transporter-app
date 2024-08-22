@@ -40,12 +40,14 @@ const useLanguage = () => {
 	let configs = rtlLangs.includes(language)
 		? {
 			direction: "rtl",
+			deDirection: "ltr",
 			placement: "left",
 			dePlacement: "right",
 			jalali: true,
 		}
 		: {
 			direction: "ltr",
+			deDirection: "rtl",
 			placement: "right",
 			dePlacement: "left",
 			jalali: false,

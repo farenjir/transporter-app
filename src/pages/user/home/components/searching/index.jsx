@@ -16,6 +16,7 @@ const SearchRequest = ({ appMode }) => {
 	const [list, setList] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [pgn, setPgn] = useState(1);
+	const [totalElements, setTotalElements] = useState(0);
 	// hooks
 	const { callApi } = useAppContext();
 	const { token } = theme.useToken();
@@ -30,17 +31,20 @@ const SearchRequest = ({ appMode }) => {
 			};
 			switch (appMode) {
 				case "send": {
-					let { content: carrierList } = await getRequestForCarrier(callApi, queriesParams);
+					let { content: carrierList, totalElements } = await getRequestForCarrier(callApi, queriesParams);
 					setList(carrierList || []);
+					setTotalElements(totalElements);
 					break;
 				}
 				case "get": {
-					let { content: annonceList } = await getCarrierAnnonce(callApi, queriesParams);
+					let { content: annonceList, totalElements } = await getCarrierAnnonce(callApi, queriesParams);
 					setList(annonceList || []);
+					setTotalElements(totalElements);
 					break;
 				}
 				default:
 					setList([]);
+					setList(0);
 					break;
 			}
 			setLoading(false);
@@ -50,19 +54,22 @@ const SearchRequest = ({ appMode }) => {
 	const onReset = () => {
 		onFinish({ pgn: 1 });
 	};
+	const onChangePage = (nextPage) => {
+		setPgn(nextPage);
+	};
 	// options
 	const tabItems = {
 		send: <InternationalSearch />,
 		get: <InternationalGetSearch />,
 	};
 	const optionList = {
-		send: <RequeuedSend {...{ list, pgn, onChangeList: undefined, loading }} />,
-		get: <RequeuedGet {...{ list, pgn, onChangeList: undefined, loading }} />,
+		send: <RequeuedSend {...{ list, pgn, totalElements, onChangePage, loading }} />,
+		get: <RequeuedGet {...{ list, pgn, totalElements, onChangePage, loading }} />,
 	};
 	// init
 	useEffect(() => {
-		onFinish({});
-	}, [appMode]);
+		onFinish();
+	}, [onFinish]);
 	// return
 	return (
 		<>

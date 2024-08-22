@@ -13,7 +13,7 @@ import { AppCard, RequestDetails } from "components/App";
 
 const { Title } = Typography;
 
-export default function RequeuedSend({ list = [], pgn = 1, onChangeList = () => {}, loading = false }) {
+export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChangePage = () => {}, loading = false }) {
 	const [selectRequest, setSelectRequest] = useState({});
 	const [open, setOpen] = useState(false);
 	const [drawerMode, setDrawerMode] = useState("details");
@@ -62,7 +62,8 @@ export default function RequeuedSend({ list = [], pgn = 1, onChangeList = () => 
 					showSizeChanger: false,
 					pageSize: 9,
 					current: pgn,
-					onChange: onChangeList,
+					onChange: onChangePage,
+					total: totalElements,
 				}}
 				gutter={[16, 16]}
 				dataSource={list.map(

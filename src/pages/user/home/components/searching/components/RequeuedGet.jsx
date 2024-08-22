@@ -12,10 +12,9 @@ import { AppCardGet, RequestDetails } from "components/App";
 
 const { Title } = Typography;
 
-export default function RequeuedGet({ list = [] }) {
+export default function RequeuedGet({ list = [], pgn, totalElements, onChangePage, loading }) {
 	const [requestGroups, setRequestGroups] = useState([]);
 	const [selectRequest, setSelectRequest] = useState({});
-	const [loading, setLoading] = useState(true);
 	const [open, setOpen] = useState(false);
 	const [drawerMode, setDrawerMode] = useState("details");
 	// hooks
@@ -45,10 +44,8 @@ export default function RequeuedGet({ list = [] }) {
 	// init
 	useEffect(() => {
 		const getAllProducers = () => {
-			setLoading(true);
 			const cardGroups = [list.slice(0, 3), list.slice(3, 6), list.slice(6, 9)].filter((item) => item?.length);
 			setRequestGroups(cardGroups);
-			setLoading(false);
 		};
 		getAllProducers();
 	}, [list]);

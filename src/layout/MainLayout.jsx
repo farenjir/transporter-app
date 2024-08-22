@@ -41,7 +41,7 @@ const MainLayout = () => {
 	};
 	const handleLogout = () => {
 		logout();
-		navigate("/main", { replace: true });
+		navigate("/login", { replace: true });
 	};
 	// return
 	return (

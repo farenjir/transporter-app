@@ -22,7 +22,7 @@ const CommentForm = ({ requestType, record }) => {
 	// hooks
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
-	const { callApi } = useAppContext();
+	const { callApi, direction, deDirection } = useAppContext();
 	const { user } = useSelector(authSelector);
 	// handles
 	const handleChange = (e) => {
@@ -54,12 +54,12 @@ const CommentForm = ({ requestType, record }) => {
 				content: <p>{value}</p>,
 				datetime: dayjs().fromNow(),
 				date: dayjs().format(),
-				className: "px-[5%]",
+				className: `px-[5%] ${direction}`,
 			},
 			...perComments,
 		]);
 		setSubmitting(false);
-	}, [callApi, record.id, requestType, comments, value, user.fullName, user.avatarUrl, t]);
+	}, [value, callApi, record.id, requestType, comments, user.fullName, user.avatarUrl, direction, t]);
 	// init
 	useEffect(() => {
 		const getComments = async () => {
@@ -78,7 +78,7 @@ const CommentForm = ({ requestType, record }) => {
 					datetime: dayjs(registerDate).fromNow(),
 					date: registerDate,
 					userId,
-					className: `px-[5%] ${requestOwnerUserId === userId ? "rtl" : "ltr"}`,
+					className: `px-[5%] ${requestOwnerUserId === userId ? direction : deDirection}`,
 				}))
 				.reverse();
 			setComments(transformComments);
@@ -90,7 +90,7 @@ const CommentForm = ({ requestType, record }) => {
 		return () => {
 			setComments([]);
 		};
-	}, [callApi, record, requestType]);
+	}, [callApi, deDirection, direction, record, requestType]);
 	// returnJSX
 	return (
 		<>
