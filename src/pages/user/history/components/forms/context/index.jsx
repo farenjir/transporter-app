@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Form } from "antd";
 
 import { useSelector } from "react-redux";
-import { baseSelector } from "store/selector";
+import { baseSelector } from "store/base";
 
 import { useAppContext } from "hooks";
 import { notificationMaker } from "utils/notification";
@@ -52,9 +52,9 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 	const onSubmit = useCallback(
 		async (formValues) => {
 			setLoading(false);
-			const { datePicker, fromLocationId, toLocationId, ...value } = formValues;
+			const { datePicker, from, to, fromLocationId, toLocationId, ...value } = formValues;
 			let response = {};
-			switch (Array.isArray(datePicker)) {
+			switch (from && to) {
 				case true:
 					response = await putRequestForCarrier(callApi, {
 						langType: 10,
@@ -64,8 +64,8 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 						id: record.id,
 						...locationIdDetector(fromLocationId, "from"),
 						...locationIdDetector(toLocationId, "to"),
-						from: dateToApi(datePicker[0]),
-						to: dateToApi(datePicker[1]),
+						from: dateToApi(from),
+						to: dateToApi(to),
 						...value,
 					});
 					break;

@@ -1,50 +1,47 @@
-import dayjs from "dayjs";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
-import { DatePicker, Form } from "antd";
 import "./style.css";
-
-const { RangePicker } = DatePicker;
+import { Calendars } from "components";
 
 const CalenderDateRange = ({
 	extraClasses = "",
-	label = "",
-	placement = "",
-	name = "datePicker",
-	size = "large",
 	initialValue,
+	placement = "",
+	size = "large",
+	format = "YYYY/MM/DD - hh:mm",
 	required = false,
+	disabled = false,
+	showHour = true,
+	showMinute = true,
+	showTime = true,
+	showNow = false,
 	allowClear = false,
-	format = "YYYY/MM/DD",
 	locale = i18next.language,
 	jalali,
 }) => {
 	const { t } = useTranslation();
-	const rules = [
-		{
-			required: required,
-			message: t("schemas.required"),
-		},
-	];
-	const defaultValue = dayjs(dayjs().locale(locale).format(), { jalali });
+	const commons = {
+		extraClasses,
+		initialValue,
+		placement,
+		size,
+		format,
+		required,
+		disabled,
+		showHour,
+		showMinute,
+		showTime,
+		showNow,
+		allowClear,
+		locale,
+		jalali,
+	};
 	return (
-		<Form.Item
-			labelCol={{ xs: 24 }}
-			wrapperCol={{ xs: 24 }}
-			className={`${extraClasses}`}
-			label={label}
-			name={name}
-			rules={rules}
-			initialValue={initialValue ?? defaultValue}
-		>
-			<RangePicker
-				className="w-full"
-				maxTagCount="responsive"
-				defaultValue={initialValue ?? defaultValue}
-				{...{ placement, size, allowClear, format }}
-			/>
-		</Form.Item>
+		<div className="flex gap-1">
+			<Calendars label={t("commons.from")} name="from" {...commons} />
+			<Calendars label={t("commons.to")} name="to" {...commons} />
+		</div>
 	);
 };
 

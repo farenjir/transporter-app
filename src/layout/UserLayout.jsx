@@ -3,7 +3,7 @@ import { Link, Outlet, Navigate, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { useSelector } from "react-redux";
-import { authSelector } from "store/selector";
+import { authSelector } from "store/auth";
 
 import { SettingOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Col, Layout, Row, Spin, theme, Tooltip, Typography } from "antd";
@@ -54,7 +54,7 @@ const UserLayout = () => {
 						<span className="text-sm uppercase mx-3">{user?.fullName}</span>
 					</Link>
 				</div> */}
-				<Link to={"/main"} className="hidden md:block">
+				<Link to={"/main"}>
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
 				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>

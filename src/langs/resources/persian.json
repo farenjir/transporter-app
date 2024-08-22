@@ -25,7 +25,9 @@
 		"loading": "لطفا صبر نمایید",
 		"comment": "پیام ها",
 		"send": "ارسال",
-		"details": "جزییات"
+		"details": "جزییات",
+		"from": "از تاریخ",
+		"to": "تا تاریخ"
 	},
 	"messages": {
 		"noAccess": "درحال بررسی سطح دسترسی ...",
@@ -138,8 +140,8 @@
 		"description": "برای ورود به سامانه ایمیل خود را همراه با کللمه عبور وارد نمایید و درصورت نیاز می توانید "
 	},
 	"home": {
-		"searching": "جستجو درخواست های ارسال بسته",
-		"request": "ثبت درخواست ارسال بسته",
+		"searching": "درخواست ارسال بسته",
+		"request": "درخواست ارسال بسته",
 		"get": "اشتراک گذاری سفر",
 		"getAll": "اشتراک گذاری سفرها",
 		"send": "ارسال بسته",
@@ -162,6 +164,10 @@
 		"getRequest": "ثبت اشتراک گذاری سفر",
 		"cargoMax": "حداکثر وزن بسته",
 		"cargoMaxSize": "حداکثر سایز بسته",
+		"searchingIt": "درخواست های ارسال بسته",
+		"requestIt": "درخواست های اشتراک گذاری سفر",
+		"search": "جستجو",
+		"save": "ثبت",
 		"cards": {
 			"sendTo": "{{fromCountryName}} ( {{fromLocationName}} ) به {{toCountryName}} ( {{toLocationName}} )",
 			"priceIsNegotiable": "توافقی",

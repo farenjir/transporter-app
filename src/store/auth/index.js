@@ -42,3 +42,5 @@ export const {
 	reducer: authReducer,
 	actions: { clearUser },
 } = authSlice;
+
+export const authSelector = (state) => state?.auth || {};

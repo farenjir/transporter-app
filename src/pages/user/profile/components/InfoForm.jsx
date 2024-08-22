@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Form, Row, Col } from "antd";
 
 import { useDispatch, useSelector } from "react-redux";
-import { authSelector, baseSelector } from "store/selector";
+import { authSelector } from "store/auth";
+import { baseSelector } from "store/base";
 
 import { useAppContext } from "hooks";
 import { notificationMaker } from "utils/notification";
@@ -78,12 +79,7 @@ export default function InfoForm() {
 					<Inputs name="email" type="email" label={t("auth.email")} required={true} />
 				</Col>
 				<Col xs={24} md={8}>
-					<Inputs
-						name="oldPass"
-						type="password"
-						label={t("user.oldPass")}
-						onChange={onChangeOldPass}
-					/>
+					<Inputs name="oldPass" type="password" label={t("user.oldPass")} onChange={onChangeOldPass} />
 				</Col>
 				<Col xs={24} md={8}>
 					<Inputs
@@ -95,13 +91,7 @@ export default function InfoForm() {
 					/>
 				</Col>
 				<Col xs={24} md={8}>
-					<Inputs
-						name="uPass"
-						type="password"
-						label={t("auth.uPass")}
-						required={activePass}
-						disabled={!activePass}
-					/>
+					<Inputs name="uPass" type="password" label={t("auth.uPass")} required={activePass} disabled={!activePass} />
 				</Col>
 				<Col xs={24} md={24}>
 					<Row gutter={[8, 8]} align={"middle"}>
@@ -115,12 +105,7 @@ export default function InfoForm() {
 							/>
 						</Col>
 						<Col xs={24} md={8}>
-							<Inputs
-								name="phoneNumber"
-								type="text"
-								label={t("auth.phoneNumber")}
-								required={true}
-							/>
+							<Inputs name="phoneNumber" type="text" label={t("auth.phoneNumber")} required={true} />
 						</Col>
 						<Col xs={24} md={8}>
 							<Selects
@@ -134,12 +119,7 @@ export default function InfoForm() {
 					</Row>
 				</Col>
 				<Col xs={24} md={8}>
-					<Selects
-						name="genderTypeId"
-						label={t("auth.gender")}
-						required={true}
-						options={enums?.["101"] || []}
-					/>
+					<Selects name="genderTypeId" label={t("auth.gender")} required={true} options={enums?.["101"] || []} />
 				</Col>
 				<Col xs={24} md={8}>
 					<Buttons

@@ -55,3 +55,5 @@ const baseSlice = createSlice({
 });
 
 export const { reducer: basesReducer } = baseSlice;
+
+export const baseSelector = (state) => state?.bases || [];

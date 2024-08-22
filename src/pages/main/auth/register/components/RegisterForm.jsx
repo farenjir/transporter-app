@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Form, Typography, Row, Col, theme } from "antd";
 
 import { useSelector } from "react-redux";
-import { baseSelector } from "store/selector";
+import { baseSelector } from "store/base";
 
 import { useAppContext } from "hooks";
 import { notificationMaker } from "utils/notification";

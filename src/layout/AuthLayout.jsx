@@ -2,7 +2,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { Layout, Spin, theme } from "antd";
 
 import { useSelector } from "react-redux";
-import { authSelector } from "store/selector";
+import { authSelector } from "store/auth";
 
 import { INIT_APP } from "utils/constance";
 import { getFromStorage } from "utils/storage";

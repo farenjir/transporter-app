@@ -6,7 +6,7 @@ import { Comment } from "@ant-design/compatible";
 import { UserOutlined } from "@ant-design/icons";
 
 import { useSelector } from "react-redux";
-import { authSelector } from "store/selector";
+import { authSelector } from "store/auth";
 
 import { notificationMaker } from "utils/notification";
 import { useAppContext } from "hooks";

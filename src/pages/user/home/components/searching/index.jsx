@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import { theme } from "antd";
-import { RadioGroup } from "components";
 
 import { useAppContext } from "hooks";
 import { getCarrierAnnonce, getRequestForCarrier } from "service/main";
@@ -13,15 +11,12 @@ import RequeuedGet from "./components/RequeuedGet";
 import SearchContextApi from "./components/forms/context";
 import InternationalSearch from "./components/forms/InternationalSearch";
 import InternationalGetSearch from "./components/forms/InternationalGetSearch";
-import { ImportOutlined, SelectOutlined } from "@ant-design/icons";
 
-const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
-	const [activeType, setActiveType] = useState("send");
+const SearchRequest = ({ appMode }) => {
 	const [list, setList] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [pgn, setPgn] = useState(1);
 	// hooks
-	const { t } = useTranslation();
 	const { callApi } = useAppContext();
 	const { token } = theme.useToken();
 	// onFinish
@@ -53,35 +48,10 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 		},
 		[callApi, pgn],
 	);
-	const onChangeType = (type) => {
-		onFinish({ requestType: type, pgn: 1 });
-		setActiveType(type);
-		onChangeActiveType(type);
-	};
 	const onReset = useCallback(() => {
-		onFinish({ requestType: activeType, pgn: 1 });
-	}, [activeType]);
+		onFinish({ requestType: appMode, pgn: 1 });
+	}, [appMode]);
 	// options
-	const requestType = [
-		{
-			label: (
-				<span className="flex gap-3 items-center align-middle">
-					<span> {t("search.send")}</span>
-					<SelectOutlined className="pb-1" />
-				</span>
-			),
-			value: "send",
-		},
-		{
-			label: (
-				<span className="flex gap-3 items-center align-middle">
-					<span> {t("search.get")}</span>
-					<ImportOutlined className="pb-1" />
-				</span>
-			),
-			value: "get",
-		},
-	];
 	const tabItems = {
 		send: <InternationalSearch />,
 		get: <InternationalGetSearch />,
@@ -92,8 +62,8 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 	};
 	// init
 	useEffect(() => {
-		onFinish({ requestType: "send" });
-	}, []);
+		onFinish({ requestType: appMode });
+	}, [appMode]);
 	// return
 	return (
 		<>
@@ -102,19 +72,11 @@ const SearchRequest = ({ onChangeType: onChangeActiveType }) => {
 				style={{ background: token?.colorBgBase }}
 			>
 				<SearchContextApi loading={loading} onFinish={onFinish} onReset={onReset}>
-					<div className="md:-mt-[90px] md:mb-14">
-						<RadioGroup
-							name="requestType"
-							plainOptions={requestType}
-							initialValue={activeType}
-							onChange={onChangeType}
-						/>
-					</div>
-					{tabItems[activeType]}
+					{tabItems[appMode]}
 				</SearchContextApi>
 			</section>
 			{/* <SupportSection background={token?.colorBgBase} /> */}
-			{optionList[activeType]}
+			{optionList[appMode]}
 		</>
 	);
 };

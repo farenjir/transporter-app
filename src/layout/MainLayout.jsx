@@ -3,7 +3,7 @@ import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { useSelector } from "react-redux";
-import { authSelector } from "store/selector";
+import { authSelector } from "store/auth";
 
 import { SettingOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Skeleton, Spin, theme, Tooltip, Typography } from "antd";

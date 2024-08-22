@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Typography } from "antd";
 
 import { useSelector } from "react-redux";
-import { baseSelector } from "store/selector";
+import { baseSelector } from "store/base";
 import { useAppContext } from "hooks";
 import { dateToLocale } from "utils/globals";
 

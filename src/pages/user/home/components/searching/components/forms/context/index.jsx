@@ -3,7 +3,7 @@ import { Form } from "antd";
 
 import { useSelector } from "react-redux";
 import { useAppContext } from "hooks";
-import { baseSelector } from "store/selector";
+import { baseSelector } from "store/base";
 
 import { getLocationWithText } from "service/main";
 

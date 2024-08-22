@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { baseSelector } from "store/selector";
+import { baseSelector } from "store/base";
 
 import { dateToLocale } from "utils/globals";
 

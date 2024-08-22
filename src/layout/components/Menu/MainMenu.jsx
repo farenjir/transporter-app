@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { Typography } from "antd";
 import { useSelector } from "react-redux";
-import { authSelector } from "store/selector";
+import { authSelector } from "store/auth";
 
 import { Icons } from "components";
 

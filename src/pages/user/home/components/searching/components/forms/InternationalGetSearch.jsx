@@ -13,7 +13,7 @@ const InternationalGet = () => {
 	return (
 		<Spin spinning={loading}>
 			<Row gutter={[8, 8]} align={"middle"} className="international-form">
-				<Col xs={24} md={12} lg={6}>
+				<Col xs={24} md={12} lg={5}>
 					<AutocompletePublic
 						name="fromCountry"
 						label={
@@ -32,7 +32,7 @@ const InternationalGet = () => {
 						}
 					/>
 				</Col>
-				<Col xs={24} md={12} lg={6}>
+				<Col xs={24} md={12} lg={5}>
 					<AutocompletePublic
 						name="toCountry"
 						label={
@@ -51,7 +51,7 @@ const InternationalGet = () => {
 						}
 					/>
 				</Col>
-				<Col xs={24} md={12} lg={6}>
+				<Col xs={24} md={12} lg={8}>
 					<CalenderDateRange label={t("commons.date")} jalali={jalali} />
 				</Col>
 				<Col xs={24} md={12} lg={6} className="flex gap-2">

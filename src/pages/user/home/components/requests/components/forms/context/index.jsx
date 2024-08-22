@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Form } from "antd";
 
 import { useSelector } from "react-redux";
-import { baseSelector } from "store/selector";
+import { baseSelector } from "store/base";
 
 import { notificationMaker } from "utils/notification";
 import { dateToApi } from "utils/globals";
@@ -31,8 +31,8 @@ function RequestContextApi({ children }) {
 	// handles
 	const locationIdDetector = useCallback(
 		(locationText, type) => {
-			console.log(backUpLocations, locationText);
-			const { countryId, id } =	backUpLocations.find(({ fullGeoLocationTitle: location }) => locationText.includes(location)) || {};
+			const { countryId, id } =
+				backUpLocations.find(({ fullGeoLocationTitle: location }) => locationText.includes(location)) || {};
 			return { [`${type}CountryId`]: countryId, [`${type}LocationId`]: id };
 		},
 		[backUpLocations],
@@ -48,9 +48,9 @@ function RequestContextApi({ children }) {
 	// onSubmit
 	const onSubmit = async (formValues) => {
 		setLoading(false);
-		const { datePicker, fromLocationId, toLocationId, ...value } = formValues;
+		const { datePicker, from, to, fromLocationId, toLocationId, ...value } = formValues;
 		let response = {};
-		switch (Array.isArray(datePicker)) {
+		switch (from && to) {
 			case true:
 				response = await postRequestForCarrier(callApi, {
 					langType: 10,
@@ -58,8 +58,8 @@ function RequestContextApi({ children }) {
 					id: 0,
 					timeZoneId: 0,
 					imageId: 0,
-					from: dateToApi(datePicker[0]),
-					to: dateToApi(datePicker[1]),
+					from: dateToApi(from),
+					to: dateToApi(to),
 					...locationIdDetector(fromLocationId, "from"),
 					...locationIdDetector(toLocationId, "to"),
 					...value,
