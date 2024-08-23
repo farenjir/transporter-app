@@ -6,7 +6,7 @@ import { notificationMaker } from "utils/notification";
 import { requestCommentType } from "utils/constance";
 import { useAppContext } from "hooks";
 
-import { getMyAnnonceRequest, getMyCarrierRequest } from "service/user";
+import { getMyChatAnnonceRequest, getMyChatCarrierRequest } from "service/user";
 import { deleteMyAnnonceRequest, deleteMyCarrierRequest } from "service/user";
 import { Modals, confirmModal } from "components";
 
@@ -32,9 +32,9 @@ const HistoryComment = () => {
 		setLoading(true);
 		let data = {};
 		if (type === "get") {
-			data = await getMyAnnonceRequest(callApi);
+			data = await getMyChatAnnonceRequest(callApi);
 		} else {
-			data = await getMyCarrierRequest(callApi);
+			data = await getMyChatCarrierRequest(callApi);
 		}
 		if (data?.content) {
 			setDataSource(data);

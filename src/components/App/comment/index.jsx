@@ -78,7 +78,7 @@ const CommentForm = ({ requestType, record }) => {
 					datetime: dayjs(registerDate).fromNow(),
 					date: registerDate,
 					userId,
-					className: `px-[5%] ${requestOwnerUserId === userId ? direction : deDirection}`,
+					className: `px-[5%] ${requestOwnerUserId === userId ? deDirection : direction }`,
 				}))
 				.reverse();
 			setComments(transformComments);

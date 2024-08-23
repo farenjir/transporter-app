@@ -17,7 +17,7 @@ const Calendars = ({
 	showHour = true,
 	showMinute = true,
 	showTime = true,
-	showNow = false,
+	showNow = true,
 	allowClear = false,
 	locale = i18next.language,
 	minDate = dayjs().locale(locale),
@@ -44,7 +44,6 @@ const Calendars = ({
 				className="w-full"
 				maxTagCount="responsive"
 				defaultValue={initialValue}
-				locale={"fa"}
 				{...{ format, disabled, size, placement }}
 				{...{ allowClear, showNow, showTime, showHour, showMinute, minDate }}
 			/>

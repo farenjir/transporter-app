@@ -24,14 +24,24 @@ export const deleteMyAnnonceRequest = (callApi, carrierAnnonceId) => {
 		.catch(() => []);
 };
 
-
 export const getChatRequest = (callApi, { RecordId, requestType, pgs, pgn }) => {
-	return callApi({ url: "RequestChat/GetPagedResultChat",  params: { RecordId, requestType, pgs, pgn } })
+	return callApi({ url: "RequestChat/GetPagedResultChat", params: { RecordId, requestType, pgs, pgn } })
 		.then((response = {}) => response)
-		.catch(() => { });
+		.catch(() => {});
 };
 export const chatRequest = (callApi, bodyData) => {
 	return callApi({ url: "RequestChat/SendMessage", method: "POST", data: bodyData })
 		.then((response = {}) => response)
-		.catch(() => { });
+		.catch(() => {});
+};
+
+export const getMyChatAnnonceRequest = (callApi, queries = { pgs: 1000, pgn: 1 }) => {
+	return callApi({ url: "UserBusuinesIntraction/MyBizDialogue2", params: queries })
+		.then((response) => response)
+		.catch(() => []);
+};
+export const getMyChatCarrierRequest = (callApi, queries = { pgs: 1000, pgn: 1 }) => {
+	return callApi({ url: "UserBusuinesIntraction/MyBizDialogue1", params: queries })
+		.then((response) => response)
+		.catch(() => []);
 };
