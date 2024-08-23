@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { TOKEN_NAME } from "utils/constance";
+
 import { getCurrentUser } from "./action";
 import { removeFromCookie } from "utils/storage";
-import { TOKEN_NAME } from "utils/constance";
 
 const initialState = {
 	user: null,
@@ -14,7 +15,7 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		clearUser: (state) => {
-			removeFromCookie(TOKEN_NAME);
+			removeFromCookie(TOKEN_NAME, { path: "/" });
 			state.user = null;
 		},
 	},
@@ -30,9 +31,7 @@ const authSlice = createSlice({
 			})
 			.addCase(getCurrentUser.fulfilled, (state, action) => {
 				const { firstName, lastName, ...info } = action.payload || {};
-				state.user = action.payload
-					? { fullName: `${firstName} ${lastName}`, lastName, firstName, ...info }
-					: null;
+				state.user = action.payload ? { fullName: `${firstName} ${lastName}`, lastName, firstName, ...info } : null;
 				state.loading = false;
 			});
 	},

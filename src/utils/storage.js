@@ -1,7 +1,5 @@
 import Cookie from "universal-cookie";
 
-const cookie = new Cookie();
-
 export const setToStorage = (key = "", value = {}, sessionStorage = false) => {
 	if (typeof window !== "undefined") {
 		try {
@@ -36,6 +34,7 @@ export const removeFromStorage = (key = "", sessionStorage = false) => {
 };
 
 export const setToCookie = (key = "", value = {}, potions = {}) => {
+	const cookie = new Cookie();
 	try {
 		cookie.set(key, value, {
 			httpOnly: false,
@@ -49,6 +48,7 @@ export const setToCookie = (key = "", value = {}, potions = {}) => {
 };
 
 export const getFromCookie = (key = "") => {
+	const cookie = new Cookie();
 	try {
 		const value = cookie.get(key);
 		if (value) {
@@ -59,9 +59,10 @@ export const getFromCookie = (key = "") => {
 	}
 };
 
-export const removeFromCookie = (key = "") => {
+export const removeFromCookie = (key = "", options = {}) => {
+	const cookie = new Cookie();
 	try {
-		cookie.remove(key);
+		cookie.remove(key, options);
 	} catch {
 		return null;
 	}

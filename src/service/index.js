@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { TOKEN_NAME } from "utils/constance";
+
 import { getFromCookie } from "../utils/storage";
 
 const baseURL = import.meta.env.VITE_BACKEND_SERVER;
@@ -21,9 +23,10 @@ const callApi = ({
 	data, // body
 	params, // query
 	contentType = "application/json",
+	updateToken = "",
 }) => {
 	// set request configs
-	const token = getFromCookie("access_token");
+	const token = updateToken || getFromCookie(TOKEN_NAME);
 	axiosInstance.interceptors.request.use(
 		(config) => {
 			if (token) {

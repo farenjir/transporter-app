@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Form, Typography, theme } from "antd";
@@ -21,7 +21,6 @@ const { Paragraph, Title } = Typography;
 export default function AuthForm() {
 	const [loading, setLoading] = useState(false);
 	// hooks
-	let navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
@@ -34,8 +33,7 @@ export default function AuthForm() {
 		if (response?.result) {
 			setToCookie(TOKEN_NAME, response.result);
 			notificationMaker(t("commons.success"), "success", t("auth.successLogin"));
-			await dispatch(getCurrentUser({ callApi }));
-			navigate("/main", { replace: true });
+			dispatch(getCurrentUser({ callApi }));
 		} else {
 			setLoading(false);
 			notificationMaker(t("commons.error"), "error", t("auth.failed"));
@@ -56,27 +54,9 @@ export default function AuthForm() {
 					</strong>
 				</Paragraph>
 			</div>
-			<Inputs
-				name="cpid"
-				type="text"
-				label={t("auth.email")}
-				required={true}
-				addonAfter={<MailOutlined />}
-			/>
-			<Inputs
-				name="pNumber"
-				type="password"
-				label={t("auth.uPassword")}
-				required={true}
-				addonAfter={<LockOutlined />}
-			/>
-			<Buttons
-				htmlType="submit"
-				block={true}
-				content={t("auth.login")}
-				classes="mt-3"
-				loading={loading}
-			/>
+			<Inputs name="cpid" type="text" label={t("auth.email")} required={true} addonAfter={<MailOutlined />} />
+			<Inputs name="pNumber" type="password" label={t("auth.uPassword")} required={true} addonAfter={<LockOutlined />} />
+			<Buttons htmlType="submit" block={true} content={t("auth.login")} classes="mt-3" loading={loading} />
 			<div className="relative flex mb-2 items-center">
 				<div className="flex-grow border-t border-gray-400"></div>
 				<span className="flex-shrink mx-4 text-gray-400">{t("auth.otherLogin")}</span>
