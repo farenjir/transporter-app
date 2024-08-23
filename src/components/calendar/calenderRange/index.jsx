@@ -1,8 +1,11 @@
+import { useState } from "react";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 
 import "./style.css";
-import { Calendars } from "components";
+
+import Calendars from "../index";
+import CalenderProgress from "../calenderProgress";
 
 const CalenderDateRange = ({
 	extraClasses = "",
@@ -19,6 +22,7 @@ const CalenderDateRange = ({
 	allowClear = false,
 	locale = i18next.language,
 }) => {
+	const [calenderMode, setCalenderMode] = useState("progress"); //  standard
 	const { t } = useTranslation();
 	const commons = {
 		extraClasses,
@@ -37,8 +41,17 @@ const CalenderDateRange = ({
 	};
 	return (
 		<div className="flex flex-col md:flex-row gap-1">
-			<Calendars label={t("commons.from")} name="from" {...commons} />
-			<Calendars label={t("commons.to")} name="to" {...commons} />
+			{calenderMode === "progress" ? (
+				<>
+					<CalenderProgress label={t("commons.from")} name="from" {...commons} />
+					<CalenderProgress label={t("commons.to")} name="to" {...commons} />
+				</>
+			) : (
+				<>
+					<Calendars label={t("commons.from")} name="from" {...commons} />
+					<Calendars label={t("commons.to")} name="to" {...commons} />
+				</>
+			)}
 		</div>
 	);
 };
