@@ -57,6 +57,7 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 			/>
 			{/* SearchItems */}
 			<ListModule
+				key="send-req"
 				loading={loading}
 				pagination={{
 					showSizeChanger: false,

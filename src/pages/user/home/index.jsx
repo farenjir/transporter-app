@@ -32,7 +32,7 @@ const HomePage = () => {
 			label: (
 				<div className="flex flex-col gap-1 justify-center align-middle items-center">
 					<FileSearchOutlined className="text-lg font-extrabold" />
-					<span className="hidden md:block">{t("home.search")}</span>
+					<span>{t("home.search")}</span>
 					<polygon className="text-xs">{t("home.searchingIt")}</polygon>
 				</div>
 			),
@@ -43,7 +43,7 @@ const HomePage = () => {
 			label: (
 				<div className="flex flex-col gap-1 justify-center align-middle items-center">
 					<FileSearchOutlined className="text-lg font-extrabold" />
-					<span className="hidden md:block">{t("home.search")}</span>
+					<span>{t("home.search")}</span>
 					<p className="text-xs">{t("home.requestIt")}</p>
 				</div>
 			),
@@ -54,7 +54,7 @@ const HomePage = () => {
 			label: (
 				<div className="flex flex-col gap-1 justify-center align-middle items-center">
 					<FileDoneOutlined className="text-lg font-extrabold" />
-					<span className="hidden md:block">{t("home.save")}</span>
+					<span>{t("home.save")}</span>
 					<p className="text-xs">{t("home.searchingIt")}</p>
 				</div>
 			),
@@ -65,13 +65,13 @@ const HomePage = () => {
 			label: (
 				<div className="flex flex-col gap-1 justify-center align-middle items-center">
 					<FileDoneOutlined className="text-lg font-extrabold" />
-					<span className="hidden md:block">{t("home.save")}</span>
+					<span>{t("home.save")}</span>
 					<p className="text-xs">{t("home.requestIt")}</p>
 				</div>
 			),
 			children: <RequestSection {...{ appMode }} />,
 		},
-	];
+	].filter(({ key }) => key.includes(appMode));
 	// returnJSX
 	return (
 		<>

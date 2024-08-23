@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "store/auth";
+import { modeSelector, setAppMode } from "store/mode";
 
 import { SettingOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Skeleton, Spin, theme, Tooltip, Typography } from "antd";
@@ -25,6 +26,8 @@ const MainLayout = () => {
 	let navigate = useNavigate();
 	const { t } = useTranslation();
 	const { token } = theme.useToken();
+	const dispatch = useDispatch();
+	const { appMode } = useSelector(modeSelector);
 	const { user, loading } = useSelector(authSelector);
 	const { direction, placement, logout, ...otherParams } = useAppContext();
 	// handles
@@ -43,29 +46,49 @@ const MainLayout = () => {
 		logout();
 		navigate("/login", { replace: true });
 	};
+	const handleChangeAppMode = (mode) => {
+		dispatch(setAppMode(mode));
+	};
 	// return
 	return (
 		<Layout dir={direction} className="min-h-screen">
 			<Header
-				className="flex h-12 items-center justify-between sticky top-0"
+				className="flex h-12 align-middle items-center justify-between sticky top-0 px-3 md:px-8"
 				style={{ background: token?.colorPrimaryLight }}
 			>
-				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-xl`}>
+				<div className={`flex items-center align-middle gap-3 md:gap-5 text-[${token?.colorPrimary}]`}>
 					{loading ? (
 						<Skeleton active paragraph={{ rows: 1, width: 100 }} title={false} className="mx-1" />
 					) : user ? (
-						<Link to={"/user"} className="pt-2">
-							<UserOutlined className={`text-[${token?.colorPrimary}] text-xl`} onClick={() => onOpen("menu")} />
-							<span className="text-sm uppercase mx-1">{user?.fullName}</span>
-						</Link>
+						<>
+							<Link to={"/main"} className="hidden md:block pb-2">
+								<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
+							</Link>
+							<Link to={"/user"} className="pt-1">
+								<UserOutlined
+									className={`text-[${token?.colorPrimary}] text-xl`}
+									onClick={() => onOpen("menu")}
+								/>
+								<span className="text-sm uppercase mx-1">{user?.fullName}</span>
+							</Link>
+							<span
+								className={`${appMode === "send" ? "underline" : "text-gray-500"} text-base md:text-lg cursor-pointer`}
+								onClick={() => handleChangeAppMode("send")}
+							>
+								{t("home.send")}
+							</span>
+							<span
+								className={`${appMode === "get" ? "underline" : "text-gray-500"} text-base md:text-lg cursor-pointer`}
+								onClick={() => handleChangeAppMode("get")}
+							>
+								{t("home.get")}
+							</span>
+						</>
 					) : (
 						<div className="mx-10"></div>
 					)}
 				</div>
-				<Link to={"/main"} className="hidden md:block">
-					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
-				</Link>
-				<div className={`flex items-center gap-5 text-[${token?.colorPrimary}] text-lg`}>
+				<div className={`flex items-center align-middle gap-3 md:gap-5 text-[${token?.colorPrimary}] text-lg`}>
 					{loading ? (
 						<Skeleton active paragraph={{ rows: 1, width: 100 }} title={false} className="mx-1" />
 					) : user ? (

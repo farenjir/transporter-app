@@ -1,4 +1,6 @@
 export const faMonths = [
+	"بهمن",
+	"اسفند",
 	"فروردین",
 	"اردیبهشت",
 	"خرداد",
@@ -9,8 +11,6 @@ export const faMonths = [
 	"آبان",
 	"آذر",
 	"دی",
-	"بهمن",
-	"اسفند",
 ];
 
 export const langList = {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { GoogleOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Form, Typography, theme } from "antd";
 
 import { TOKEN_NAME } from "utils/constance";
@@ -33,9 +33,9 @@ export default function AuthForm() {
 		const response = await userAuthentication(callApi, cpid, pNumber);
 		if (response?.result) {
 			setToCookie(TOKEN_NAME, response.result);
-			navigate("/main", { replace: true });
 			notificationMaker(t("commons.success"), "success", t("auth.successLogin"));
-			dispatch(getCurrentUser({ callApi }));
+			await dispatch(getCurrentUser({ callApi }));
+			navigate("/main", { replace: true });
 		} else {
 			setLoading(false);
 			notificationMaker(t("commons.error"), "error", t("auth.failed"));
