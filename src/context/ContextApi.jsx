@@ -16,7 +16,7 @@ function ContextApi({ children }) {
 	// hooks
 	const dispatch = useDispatch();
 	// language
-	const { language, direction, locale, placement, ...langConfigs } = useLanguage();
+	const { dateConfigs, language, direction, locale, placement, ...langConfigs } = useLanguage();
 	// theme
 	const { themeAntMode, fontAntMode, fontMode, selectedToken, tokens, ...themeConfigs } = useTheme(theme);
 	// global handles
@@ -53,8 +53,7 @@ function ContextApi({ children }) {
 			}}
 		>
 			<ConfigProvider
-				// locale={{ ...locale, DatePicker: dateConfigs }}
-				locale={locale}
+				locale={{ ...locale, DatePicker: dateConfigs }}
 				direction={direction}
 				theme={{
 					algorithm: [themeAntMode, ...fontAntMode],

@@ -21,7 +21,6 @@ import { LANG_NAME } from "utils/constance";
 import { initDayjs } from "./configs/dayjs";
 import { rtlLangs } from "./configs";
 
-
 const useLanguage = () => {
 	const [language, setLanguage] = useState();
 	// handles
@@ -39,19 +38,19 @@ const useLanguage = () => {
 	// configs
 	let configs = rtlLangs.includes(language)
 		? {
-			direction: "rtl",
-			deDirection: "ltr",
-			placement: "left",
-			dePlacement: "right",
-			jalali: true,
-		}
+				direction: "rtl",
+				deDirection: "ltr",
+				placement: "left",
+				dePlacement: "right",
+				jalali: true,
+			}
 		: {
-			direction: "ltr",
-			deDirection: "rtl",
-			placement: "right",
-			dePlacement: "left",
-			jalali: false,
-		};
+				direction: "ltr",
+				deDirection: "rtl",
+				placement: "right",
+				dePlacement: "left",
+				jalali: false,
+			};
 	let locals = {
 		fa: localeFa,
 		en: localeEn,
@@ -70,10 +69,10 @@ const useLanguage = () => {
 	};
 	const buddhistLocale = {
 		...(datePicker[language]?.lang || {}),
-		// fieldDateFormat: 'BBBB-MM-DD',
-		// fieldDateTimeFormat: 'BBBB-MM-DD HH:mm:ss',
-		// yearFormat: 'BBBB',
-		// cellYearFormat: 'BBBB',
+		fieldDateFormat: "YYYY/MM/DD",
+		fieldDateTimeFormat: "YYYY/MM/DD HH:mm:ss",
+		yearFormat: "YYYY",
+		cellYearFormat: "YYYY",
 	};
 	// return
 	return {
