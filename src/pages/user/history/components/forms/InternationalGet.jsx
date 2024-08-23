@@ -63,7 +63,7 @@ const InternationalGetRequest = ({ edit, info }) => {
 				</Col>
 			</Row>
 			<Row gutter={[8, 8]} align={"middle"}>
-				<Col xs={24} md={12} lg={2}>
+				<Col xs={24} md={12} lg={3}>
 					<Selects
 						name="cargoWeightUnitIssueId"
 						placeholder={t("home.unitIssue")}
@@ -72,7 +72,7 @@ const InternationalGetRequest = ({ edit, info }) => {
 						initialValue={enums?.["104"]?.[1]?.id}
 					/>
 				</Col>
-				<Col xs={24} md={12} lg={6}>
+				<Col xs={24} md={12} lg={5}>
 					<InputType
 						type={"number"}
 						name="cargoMaxWeightCapacity"

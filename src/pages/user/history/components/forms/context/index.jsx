@@ -64,8 +64,8 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 						id: record.id,
 						...locationIdDetector(fromLocationId, "from"),
 						...locationIdDetector(toLocationId, "to"),
-						from: dateToApi(from),
-						to: dateToApi(to),
+						from: dateToApi(from, jalali),
+						to: dateToApi(to, jalali),
 						...value,
 					});
 					break;
@@ -78,7 +78,7 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 						id: record.id,
 						...locationIdDetector(fromLocationId, "from"),
 						...locationIdDetector(toLocationId, "to"),
-						dateOfDeliver: dateToApi(datePicker),
+						dateOfDeliver: dateToApi(datePicker, jalali),
 						...value,
 					});
 					break;
