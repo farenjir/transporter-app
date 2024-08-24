@@ -15,7 +15,7 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		clearUser: (state) => {
-			removeFromCookie(TOKEN_NAME, { path: "/" });
+			removeFromCookie(TOKEN_NAME);
 			state.user = null;
 		},
 	},

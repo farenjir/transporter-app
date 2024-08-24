@@ -27,7 +27,7 @@ const persistedReducer = persistReducer(
 	{
 		key: "root",
 		storage,
-		blacklist: ["auth"]
+		blacklist: ["auth"],
 	},
 	reducers,
 );
