@@ -42,7 +42,7 @@ const UserLayout = () => {
 	};
 	const handleLogout = () => {
 		logout();
-		navigate("/login", { replace: true });
+		navigate(0);
 	};
 	// return
 	return (

@@ -44,7 +44,7 @@ const MainLayout = () => {
 	};
 	const handleLogout = () => {
 		logout();
-		navigate("/login", { replace: true });
+		navigate(0);
 	};
 	const handleChangeAppMode = (mode) => {
 		dispatch(setAppMode(mode));
