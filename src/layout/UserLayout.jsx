@@ -47,7 +47,10 @@ const UserLayout = () => {
 	// return
 	return (
 		<Layout dir={direction} className="min-h-screen">
-			<Header className="relative flex h-12 items-center justify-between" style={{ background: token?.colorPrimaryLight }}>
+			<Header
+				className="relative flex h-12 items-center justify-between px-5 md:px-8"
+				style={{ background: token?.colorPrimaryLight }}
+			>
 				<Link to={"/main"}>
 					<img src="/assets/icons/vite.svg" alt="logo" height={25} width={25} />
 				</Link>
@@ -55,7 +58,7 @@ const UserLayout = () => {
 					<Tooltip title={t("layouts.exit")}>
 						<LogoutOutlined className="cursor-pointer" onClick={handleLogout} />
 					</Tooltip>
-					<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl`} onClick={() => onOpen()} />
+					<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl`} onClick={onOpen} />
 				</div>
 			</Header>
 			<Content style={{ background: token?.colorPrimaryLighter }}>

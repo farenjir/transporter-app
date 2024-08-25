@@ -11,7 +11,7 @@ const AppCard = ({ id, imgUrl, title = "", description = "", onClickBtn = () => 
 		<Card hoverable cover={<img alt={`cover-${id || "card"}`} src={imgUrl} className="object-cover max-h-[100px]" />}>
 			<Meta title={title} description={description} />
 			<Row gutter={[8, 2]} className="pt-5 opacity-80">
-				<Col md={12}>
+				<Col xs={12}>
 					<Buttons
 						onClick={() => onClickBtn("details")}
 						content={t("commons.contentView")}
@@ -20,7 +20,7 @@ const AppCard = ({ id, imgUrl, title = "", description = "", onClickBtn = () => 
 						block={true}
 					/>
 				</Col>
-				<Col md={12}>
+				<Col xs={12}>
 					<Buttons
 						onClick={() => onClickBtn("comment")}
 						content={t("request.sendMessage")}

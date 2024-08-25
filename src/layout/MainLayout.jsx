@@ -66,19 +66,19 @@ const MainLayout = () => {
 							</Link>
 							<Link to={"/user"} className="pt-1">
 								<UserOutlined
-									className={`text-[${token?.colorPrimary}] text-xl`}
+									className={`text-[${token?.colorPrimary}] text-base md:text-xl`}
 									onClick={() => onOpen("menu")}
 								/>
-								<span className="text-sm uppercase mx-1">{user?.fullName}</span>
+								<span className="text-xs md:text-base uppercase mx-1">{user?.fullName}</span>
 							</Link>
 							<span
-								className={`${appMode === "send" ? "underline" : "text-gray-500"} text-base md:text-lg cursor-pointer`}
+								className={`${appMode === "send" ? "underline" : "text-gray-500"} text-sm md:text-lg cursor-pointer`}
 								onClick={() => handleChangeAppMode("send")}
 							>
 								{t("home.send")}
 							</span>
 							<span
-								className={`${appMode === "get" ? "underline" : "text-gray-500"} text-base md:text-lg cursor-pointer`}
+								className={`${appMode === "get" ? "underline" : "text-gray-500"} text-sm md:text-lg cursor-pointer`}
 								onClick={() => handleChangeAppMode("get")}
 							>
 								{t("home.get")}
