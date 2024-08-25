@@ -1,11 +1,14 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { Spin } from "antd";
+
+import { I18nextProvider, useTranslation } from "react-i18next";
+import i18n from "langs/i18n";
+
+import store from "../store/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 
-import store from "../store/store";
 import ContextApi from "context/ContextApi";
 // layout
 import AuthLayout from "layout/AuthLayout";
@@ -92,16 +95,18 @@ const persistor = persistStore(store);
 const App = () => {
 	const { t } = useTranslation();
 	return (
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<ContextApi>
-					<RouterProvider
-						router={router}
-						fallbackElement={<Spin size="large" tip={t("commons.loading")} fullscreen />}
-					/>
-				</ContextApi>
-			</PersistGate>
-		</Provider>
+		<I18nextProvider i18n={i18n}>
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					<ContextApi>
+						<RouterProvider
+							router={router}
+							fallbackElement={<Spin size="large" tip={t("commons.loading")} fullscreen />}
+						/>
+					</ContextApi>
+				</PersistGate>
+			</Provider>
+		</I18nextProvider>
 	);
 };
 

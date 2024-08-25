@@ -29,7 +29,6 @@ export default defineConfig({
 			/** custom certification directory */
 			// certDir: '/Users/.../.devServer/cert'
 		}),
-
 		// https://www.saurabhmisra.dev/setup-react-pwa-using-vite/
 		VitePWA({
 			registerType: "autoUpdate",
