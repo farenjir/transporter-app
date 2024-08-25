@@ -8,9 +8,15 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	// server: {
-	// 	port: 3000,
-	// },
+	server: {
+		proxy: {
+			"/api": {
+				target: process.env.VITE_SIGNALR_HUB, // Your SignalR server URL
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/api/, ""),
+			},
+		},
+	},
 	plugins: [
 		react(),
 		jsconfigPaths(),
@@ -23,6 +29,7 @@ export default defineConfig({
 			/** custom certification directory */
 			// certDir: '/Users/.../.devServer/cert'
 		}),
+
 		// https://www.saurabhmisra.dev/setup-react-pwa-using-vite/
 		VitePWA({
 			registerType: "autoUpdate",
