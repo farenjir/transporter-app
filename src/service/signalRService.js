@@ -1,14 +1,12 @@
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
+const hubURL = import.meta.env.VITE_SIGNALR_HUB;
+
 let connection = null;
 
 export function createConnection() {
 	if (connection === null) {
-		connection = new HubConnectionBuilder()
-			// eslint-disable-next-line no-undef
-			.withUrl(process.env.VITE_SIGNALR_HUB)
-			.configureLogging(LogLevel.Information)
-			.build();
+		connection = new HubConnectionBuilder().withUrl(hubURL).configureLogging(LogLevel.Information).build();
 
 		connection
 			.start()
