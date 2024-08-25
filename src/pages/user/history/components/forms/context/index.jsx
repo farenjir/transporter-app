@@ -94,7 +94,7 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 			}
 			setLoading(false);
 		},
-		[record.id],
+		[callApi, record.id, locationIdDetector, jalali, handleCloseModals, getDataSource, t],
 	);
 	useEffect(() => {
 		const {
@@ -103,8 +103,10 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 			toDateValidOfDeliver,
 			toCountryName,
 			toCityName,
+			toLocationName,
 			fromCountryName,
 			fromCityName,
+			fromLocationName,
 			...other
 		} = record;
 		// setFieldsValue
@@ -113,8 +115,8 @@ function RequestContextApi({ children, record, handleCloseModals, getDataSource 
 			from: dayjs(fromDateValidOfDeliver),
 			to: dayjs(toDateValidOfDeliver),
 			...other,
-			fromLocationId: `${fromCountryName} ( ${fromCityName} )`,
-			toLocationId: `${toCountryName} ( ${toCityName} )`,
+			fromLocationId: `${fromCountryName} ( ${fromCityName || fromLocationName} )`,
+			toLocationId: `${toCountryName} ( ${toCityName || toLocationName} )`,
 		});
 	}, [form, record]);
 	return (
