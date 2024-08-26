@@ -30,13 +30,13 @@ const SearchRequest = ({ appMode }) => {
 				...paramsTransform,
 			};
 			switch (appMode) {
-				case "send": {
+				case "get": {
 					let { content: carrierList, totalElements } = await getRequestForCarrier(callApi, queriesParams);
 					setList(carrierList || []);
 					setTotalElements(totalElements);
 					break;
 				}
-				case "get": {
+				case "send": {
 					let { content: annonceList, totalElements } = await getCarrierAnnonce(callApi, queriesParams);
 					setList(annonceList || []);
 					setTotalElements(totalElements);
@@ -63,8 +63,8 @@ const SearchRequest = ({ appMode }) => {
 		get: <InternationalGetSearch />,
 	};
 	const optionList = {
-		send: <RequeuedSend {...{ list, pgn, totalElements, onChangePage, loading }} />,
-		get: <RequeuedGet {...{ list, pgn, totalElements, onChangePage, loading }} />,
+		send: <RequeuedGet {...{ list, pgn, totalElements, onChangePage, loading }} />,
+		get: <RequeuedSend {...{ list, pgn, totalElements, onChangePage, loading }} />,
 	};
 	// init
 	useEffect(() => {

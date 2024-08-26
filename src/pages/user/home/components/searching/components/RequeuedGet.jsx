@@ -42,8 +42,12 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 	};
 	return (
 		<section className="producer-sections mx-auto p-5 mt-8 md:mx-12">
-			<div className="producer-title md:text-center mb-5">
+			{/* <div className="producer-title md:text-center mb-5">
 				<Title level={2}>{t("home.getAll")}</Title>
+				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
+			</div> */}
+			<div className="producer-title md:text-center mb-5">
+				<Title level={2}>{t("home.sendAll")}</Title>
 				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
 			</div>
 			<Drawers

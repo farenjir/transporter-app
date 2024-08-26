@@ -6,14 +6,12 @@ import jsconfigPaths from "vite-jsconfig-paths";
 
 import { VitePWA } from "vite-plugin-pwa";
 
-const hubURL = import.meta.env.VITE_SIGNALR_HUB;
-
 // https://vitejs.dev/config/
 export default defineConfig({
 	server: {
 		proxy: {
 			"/api": {
-				target: hubURL, // Your SignalR server URL
+				target: process.env.VITE_SIGNALR_HUB, // Your SignalR server URL
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api/, ""),
 			},

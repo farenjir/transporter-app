@@ -71,14 +71,14 @@ const CommentForm = ({ requestType, record }) => {
 				requestType,
 			});
 			const transformComments = content
-				.map(({ firstName, lastName, registerDate, userComment, userId, avatarUrl, requestOwnerUserId }) => ({
-					author: <span className="uppercase">{`${firstName} ${lastName}`}</span>,
+				.map(({ fromFirstName, fromLastName, fromUserId, registerDate, userComment, userId, avatarUrl }) => ({
+					author: <span className="uppercase">{`${fromFirstName} ${fromLastName}`}</span>,
 					avatar: avatarUrl || <UserOutlined className="border rounded-full shadow-lg p-2" />,
 					content: <p>{userComment}</p>,
 					datetime: dayjs(registerDate).fromNow(),
 					date: registerDate,
 					userId,
-					className: `px-[5%] ${requestOwnerUserId === userId ? deDirection : direction }`,
+					className: `px-[5%] ${fromUserId === userId ? deDirection : direction}`,
 				}))
 				.reverse();
 			setComments(transformComments);
