@@ -13,6 +13,9 @@ import { useAppContext } from "hooks";
 import { Drawers } from "components";
 import { SettingDrawer } from "components/App";
 
+import AppTour from "./components/tour";
+import { useTourStore } from "./components/tour/index.store";
+
 import Sidebar from "./components/Menu/MainMenu";
 
 const { Text } = Typography;
@@ -30,6 +33,7 @@ const MainLayout = () => {
 	const { appMode } = useSelector(modeSelector);
 	const { user, loading } = useSelector(authSelector);
 	const { direction, placement, logout, ...otherParams } = useAppContext();
+	const references = useTourStore((state) => state.references);
 	// handles
 	const onClose = () => {
 		setOpen(false);
@@ -69,17 +73,21 @@ const MainLayout = () => {
 									className={`text-[${token?.colorPrimary}] text-base md:text-xl`}
 									onClick={() => onOpen("menu")}
 								/>
-								<span className="text-xs md:text-base uppercase mx-1">{user?.fullName}</span>
+								<span className="text-xs md:text-base uppercase mx-1" ref={references.profileRef}>
+									{user?.fullName}
+								</span>
 							</Link>
 							<span
 								className={`${appMode === "send" ? "underline" : "text-gray-500"} text-sm md:text-lg cursor-pointer`}
 								onClick={() => handleChangeAppMode("send")}
+								ref={references.sendTypeRef}
 							>
 								{t("home.send")}
 							</span>
 							<span
 								className={`${appMode === "get" ? "underline" : "text-gray-500"} text-sm md:text-lg cursor-pointer`}
 								onClick={() => handleChangeAppMode("get")}
+								ref={references.getTypeRef}
 							>
 								{t("home.get")}
 							</span>
@@ -101,11 +109,16 @@ const MainLayout = () => {
 							<UserOutlined />
 						</Link>
 					)}
-					<SettingOutlined className={`text-[${token?.colorPrimary}] text-xl`} onClick={() => onOpen()} />
+					<SettingOutlined
+						className={`text-[${token?.colorPrimary}] text-xl`}
+						onClick={() => onOpen()}
+						ref={references.settingRef}
+					/>
 				</div>
 			</Header>
 			<Content style={{ background: token?.colorPrimaryLighter }} className="px-2">
 				{/* <FloatLabel /> */}
+				<AppTour />
 				{/* children */}
 				{loading ? (
 					<Spin spinning fullscreen tip={t("messages.noAccess")} size="large" />

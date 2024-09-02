@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { setAppMode, modeSelector, setFormMode } from "store/mode";
 
+import { useTourStore } from "layout/components/tour/index.store";
 import { FileDoneOutlined, FileSearchOutlined } from "@ant-design/icons";
 import { AppTabs } from "components";
 
@@ -16,6 +17,7 @@ const imagesList = {
 
 const HomePage = () => {
 	const { appMode } = useSelector(modeSelector);
+	const references = useTourStore((state) => state.references);
 	// hooks
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
@@ -30,13 +32,13 @@ const HomePage = () => {
 		{
 			key: "search-send",
 			label: (
-				<div className="flex flex-col gap-1 justify-center align-middle items-center">
+				<div className="flex flex-col gap-1 justify-center align-middle items-center" ref={references.searchSendRef}>
 					<FileSearchOutlined className="text-lg font-extrabold" />
 					<span>{t("home.search")}</span>
 					<polygon className="text-xs">{t("home.searchingIt")}</polygon>
 				</div>
 			),
-			children: <SearchRequest {...{ appMode }} />,
+			children: <SearchRequest {...{ appMode, componentRef: references.componentRef }} />,
 		},
 		{
 			key: "search-get",
@@ -52,7 +54,7 @@ const HomePage = () => {
 		{
 			key: "request-send",
 			label: (
-				<div className="flex flex-col gap-1 justify-center align-middle items-center">
+				<div className="flex flex-col gap-1 justify-center align-middle items-center" ref={references.requestSendRef}>
 					<FileDoneOutlined className="text-lg font-extrabold" />
 					<span>{t("home.save")}</span>
 					<p className="text-xs">{t("home.searchingIt")}</p>

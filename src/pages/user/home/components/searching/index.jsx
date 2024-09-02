@@ -12,7 +12,7 @@ import SearchContextApi from "./components/forms/context";
 import InternationalSearch from "./components/forms/InternationalSearch";
 import InternationalGetSearch from "./components/forms/InternationalGetSearch";
 
-const SearchRequest = ({ appMode }) => {
+const SearchRequest = ({ appMode, componentRef }) => {
 	const [list, setList] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [pgn, setPgn] = useState(1);
@@ -76,6 +76,7 @@ const SearchRequest = ({ appMode }) => {
 			<section
 				className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
 				style={{ background: token?.colorBgBase }}
+				ref={componentRef}
 			>
 				<SearchContextApi loading={loading} onFinish={onFinish} onReset={onReset}>
 					{tabItems[appMode]}
