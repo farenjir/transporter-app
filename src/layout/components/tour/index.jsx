@@ -70,20 +70,11 @@ const AppTour = () => {
 				setReferences({ searchSendRef, requestSendRef, componentRef, profileRef, sendTypeRef, getTypeRef, settingRef });
 				setOpen(true);
 				setToStorage("tour", { checked: true });
-			}, 5000);
+			}, 4000);
 		}
 	}, []);
 
-	return (
-		<Tour
-			open={open}
-			onClose={() => setOpen(false)}
-			steps={steps}
-			animated
-			arrow
-			closable
-		/>
-	);
+	return <Tour open={open} onClose={() => setOpen(false)} steps={steps} animated arrow closable />;
 };
 
 export default AppTour;
