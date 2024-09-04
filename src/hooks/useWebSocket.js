@@ -3,15 +3,18 @@ import { useCallback, useEffect, useState } from "react";
 import { createConnection, getConnection } from "service/signalRService";
 
 export const useWebSocket = ({ receiveType, sendType, connectionType, recordId }) => {
+	const [loading, setLoading] = useState(true);
 	const [messages, setMessages] = useState([]);
 
 	useEffect(() => {
 		let connection;
 		const startConnection = async () => {
+			setLoading(true);
 			connection = await createConnection(connectionType);
 			connection.on(receiveType, (user, message) => {
 				setMessages((prevMessages) => [...prevMessages, { user, message }]);
 			});
+			setLoading(false);
 		};
 		startConnection();
 		// cleanUp
@@ -32,5 +35,5 @@ export const useWebSocket = ({ receiveType, sendType, connectionType, recordId }
 		[sendType],
 	);
 
-	return { messages, sendMessage };
+	return { messages, loading, sendMessage };
 };

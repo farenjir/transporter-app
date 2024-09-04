@@ -19,7 +19,6 @@ const { TextArea } = Input;
 const CommentForm = ({ requestType, record }) => {
 	const [comments, setComments] = useState([]);
 	const [submitting, setSubmitting] = useState(false);
-	const [loading, setLoading] = useState(false);
 	// hooks
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
@@ -28,7 +27,7 @@ const CommentForm = ({ requestType, record }) => {
 	const [form] = Form.useForm();
 	// socket type
 	const { type: connectionType, source: sendType, target: receiveType } = chatType[requestType];
-	const { messages, sendMessage } = useWebSocket({ receiveType, sendType, connectionType, recordId: record.id });
+	const { loading, messages, sendMessage } = useWebSocket({ receiveType, sendType, connectionType, recordId: record.id });
 	// handles
 	const handleSubmit = useCallback(
 		async ({ message }) => {
@@ -43,7 +42,6 @@ const CommentForm = ({ requestType, record }) => {
 	// init
 	useEffect(() => {
 		const getComments = async () => {
-			setLoading(true);
 			const transformComments = messages
 				.map(({ user, message }) => ({
 					author: <span className="uppercase">{`${"userID"} : ${user}`}</span>,
@@ -53,7 +51,6 @@ const CommentForm = ({ requestType, record }) => {
 				}))
 				.reverse();
 			setComments(transformComments);
-			setLoading(false);
 		};
 		if (record.id) {
 			getComments();
