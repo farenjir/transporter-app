@@ -9,8 +9,7 @@ import { authReducer } from "./auth";
 import { modeReducer } from "./mode";
 import { basesReducer } from "./base";
 
-// eslint-disable-next-line no-undef
-const isNotProduction = process.env.NODE_ENV !== "production";
+const isNotProduction = import.meta.env.NODE_ENV !== "production";
 
 const additionalMiddleware = [];
 if (isNotProduction) {

@@ -1,28 +1,30 @@
-import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { HubConnectionBuilder } from "@microsoft/signalr";
+import { HttpTransportType, LogLevel } from "@microsoft/signalr";
 
 import { TOKEN_NAME } from "utils/constance";
 import { getFromCookie } from "utils/storage";
+
+const developmentMode = import.meta.env.NODE_ENV === "development";
 
 const hubURL = import.meta.env.VITE_SIGNALR_HUB;
 
 let connection = null;
 
 export async function createConnection(type) {
+	const token = getFromCookie(TOKEN_NAME);
 	if (connection === null) {
 		connection = new HubConnectionBuilder()
 			.withUrl(`${hubURL}${type}`, {
+				transport: HttpTransportType.WebSockets, // signalR.HttpTransportType.LongPolling ,
 				skipNegotiation: false,
-				accessTokenFactory: () => getFromCookie(TOKEN_NAME),
 				withCredentials: true,
+				accessTokenFactory: () => token,
 			})
 			.withAutomaticReconnect()
-			.configureLogging(LogLevel.Information)
+			.configureLogging(developmentMode ? LogLevel.Error : LogLevel.Information)
 			.build();
 
-		await connection
-			.start()
-			.then(() => console.log("SignalR Connected"))
-			.catch((err) => console.error("SignalR Connection Error:", err));
+		await connection.start();
 	}
 
 	return connection;
@@ -31,3 +33,16 @@ export async function createConnection(type) {
 export async function getConnection() {
 	return await connection;
 }
+
+// (options) => {
+// 	Object.assign(options, {
+// 		transport: HttpTransportType.WebSockets, // signalR.HttpTransportType.LongPolling ,
+// 		skipNegotiation: false,
+// 		withCredentials: true,
+// 		accessTokenFactory: () => token,
+// 		headers: {
+// 			Authorization: `Bearer ${token}`,
+// 		},
+// 	});
+// 	return options;
+// },

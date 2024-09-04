@@ -1,86 +1,55 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import dayjs from "dayjs";
+
 import { List, Skeleton, theme } from "antd";
-import { Comment } from "@ant-design/compatible";
+import { Avatar, Button, Form, Input } from "antd";
+
 import { UserOutlined } from "@ant-design/icons";
+import { Comment } from "@ant-design/compatible";
 
 import { useSelector } from "react-redux";
 import { authSelector } from "store/auth";
 
-import { notificationMaker } from "utils/notification";
 import { useAppContext } from "hooks";
-
-import { chatRequest, getChatRequest } from "service/user";
-import CommentSection from "./CommentSection";
-import { useWebSocket } from "hooks/useWebSocket";
 import { chatType } from "utils/constance";
+import { useWebSocket } from "hooks/useWebSocket";
+
+const { TextArea } = Input;
 
 const CommentForm = ({ requestType, record }) => {
 	const [comments, setComments] = useState([]);
 	const [submitting, setSubmitting] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [value, setValue] = useState("");
 	// hooks
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
-	const { callApi, direction, deDirection } = useAppContext();
+	const { direction, deDirection } = useAppContext();
 	const { user } = useSelector(authSelector);
+	const [form] = Form.useForm();
 	// socket type
 	const { type: connectionType, source: sendType, target: receiveType } = chatType[requestType];
-	const { messages, sendMessage } = useWebSocket({ receiveType, sendType, connectionType });
+	const { messages, sendMessage } = useWebSocket({ receiveType, sendType, connectionType, recordId: record.id });
 	// handles
-	const handleChange = (e) => {
-		setValue(e.target.value);
-	};
-	const handleSubmit = useCallback(async () => {
-		if (!value) return;
-		setSubmitting(true);
-		const commentResult = await sendMessage(record.id, 1, value);
-		// if (!commentResult.result) {
-		// 	setSubmitting(false);
-		// 	return notificationMaker(t("commons.error"), "error", t("notification.error"));
-		// }
-		console.log({ commentResult });
-		setValue("");
-		// const perComments = comments.map(({ date, ...other }) => ({
-		// 	...other,
-		// 	date,
-		// 	datetime: dayjs(date).fromNow(),
-		// }));
-		// setComments([
-		// 	{
-		// 		author: <span className="uppercase">{user.fullName}</span>,
-		// 		avatar: user.avatarUrl || <UserOutlined className="border rounded-full shadow-lg p-2" />,
-		// 		content: <p>{value}</p>,
-		// 		datetime: dayjs().fromNow(),
-		// 		date: dayjs().format(),
-		// 		className: `px-[5%] ${direction}`,
-		// 	},
-		// 	...perComments,
-		// ]);
-		setSubmitting(false);
-	}, [value, sendMessage, record.id]);
+	const handleSubmit = useCallback(
+		async ({ message }) => {
+			if (!message) return;
+			setSubmitting(true);
+			await sendMessage(record.id, user.id, message);
+			form.setFieldValue("message", "");
+			setSubmitting(false);
+		},
+		[form, record.id, sendMessage, user.id],
+	);
 	// init
 	useEffect(() => {
 		const getComments = async () => {
 			setLoading(true);
-			// const { content = [] } = await getChatRequest(callApi, {
-			// 	pgs: 1000,
-			// 	pgn: 1,
-			// 	RecordId: record.id,
-			// 	requestType,
-			// });
-			console.log({ messages });
 			const transformComments = messages
-				.map(({ fromFirstName, fromLastName, fromUserId, registerDate, userComment, userId, avatarUrl }) => ({
-					author: <span className="uppercase">{`${fromFirstName} ${fromLastName}`}</span>,
-					avatar: avatarUrl || <UserOutlined className="border rounded-full shadow-lg p-2" />,
-					content: <p>{userComment}</p>,
-					datetime: dayjs(registerDate).fromNow(),
-					date: registerDate,
-					userId,
-					className: `px-[5%] ${fromUserId === userId ? deDirection : direction}`,
+				.map(({ user, message }) => ({
+					author: <span className="uppercase">{`${"userID"} : ${user}`}</span>,
+					avatar: <UserOutlined className="border rounded-full shadow-lg p-2" />,
+					content: <p>{message}</p>,
+					className: `px-[5%] ${user === user ? deDirection : direction}`,
 				}))
 				.reverse();
 			setComments(transformComments);
@@ -92,7 +61,7 @@ const CommentForm = ({ requestType, record }) => {
 		return () => {
 			setComments([]);
 		};
-	}, [messages, deDirection, direction, record, requestType]);
+	}, [messages, deDirection, direction, record.id, requestType]);
 	// returnJSX
 	return (
 		<>
@@ -107,7 +76,21 @@ const CommentForm = ({ requestType, record }) => {
 					/>
 				)}
 			</div>
-			<CommentSection {...{ handleSubmit, user, submitting, handleChange, value }} />
+			<Comment
+				avatar={<Avatar src={user.avatarUrl || ""} icon={<UserOutlined />} alt={user.fullName} />}
+				content={
+					<Form form={form} onFinish={handleSubmit}>
+						<Form.Item name="message">
+							<TextArea rows={4} />
+						</Form.Item>
+						<Form.Item>
+							<Button htmlType="submit" loading={submitting} type="primary">
+								{t("commons.send")}
+							</Button>
+						</Form.Item>
+					</Form>
+				}
+			/>
 		</>
 	);
 };

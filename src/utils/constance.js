@@ -19,13 +19,13 @@ export const requestCommentType = {
 
 export const chatType = {
 	send: {
-		type: "SendingPackHub",
-		source: "SendMessageP",
-		target: "ReceiveMessageP",
+		type: "SendPackHub",
+		source: "SendMessage",
+		target: "ReceiveMessage",
 	},
 	get: {
 		type: "ShareTripHub",
-		source: "SendMessageT",
-		target: "ReceiveMessageT",
+		source: "SendMessage",
+		target: "ReceiveMessage",
 	},
 };
