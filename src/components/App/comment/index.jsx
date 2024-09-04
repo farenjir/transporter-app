@@ -36,7 +36,7 @@ const CommentForm = ({ requestType, record }) => {
 	const handleSubmit = useCallback(async () => {
 		if (!value) return;
 		setSubmitting(true);
-		const commentResult = await sendMessage(record.id, value);
+		const commentResult = await sendMessage(record.id, 1, value);
 		// if (!commentResult.result) {
 		// 	setSubmitting(false);
 		// 	return notificationMaker(t("commons.error"), "error", t("notification.error"));
@@ -60,7 +60,7 @@ const CommentForm = ({ requestType, record }) => {
 		// 	...perComments,
 		// ]);
 		setSubmitting(false);
-	}, [value, callApi, record.id, requestType, comments, user.fullName, user.avatarUrl, direction, t]);
+	}, [value, sendMessage, record.id]);
 	// init
 	useEffect(() => {
 		const getComments = async () => {

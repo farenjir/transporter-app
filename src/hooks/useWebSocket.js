@@ -9,10 +9,8 @@ export const useWebSocket = ({ receiveType, sendType, connectionType }) => {
 		let connection;
 		const startConnection = async () => {
 			connection = await createConnection(connectionType);
-			console.log({ connection });
 			// ReceiveMessage
 			connection.on(receiveType, (user, message) => {
-				console.log({ receiveType, user, message });
 				setMessages((prevMessages) => [...prevMessages, { user, message }]);
 			});
 		};
@@ -24,13 +22,11 @@ export const useWebSocket = ({ receiveType, sendType, connectionType }) => {
 	}, [connectionType, receiveType]);
 
 	const sendMessage = useCallback(
-		async (recordId, message) => {
+		async (recordId, userId, message) => {
 			const connection = await getConnection();
 			try {
 				// SendMessage
-				console.log({ sendType, recordId, message });
-				await connection.invoke(sendType, recordId, message);
-				console.log({ sendType, recordId, message }, "test");
+				await connection.invoke(sendType, recordId, userId, 0, message);
 			} catch (err) {
 				console.error("Error sending message:", err);
 			}
