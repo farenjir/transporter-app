@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { theme } from "antd";
 import { InfoCircleOutlined, MessageOutlined } from "@ant-design/icons";
@@ -8,7 +9,6 @@ import { AppTabs } from "components";
 import CommentForm from "components/App/comment";
 import GetDetails from "./components/GetDetails";
 import SendDetails from "./components/SendDetails";
-import { useEffect, useState } from "react";
 
 const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details" }) => {
 	const [activeKey, setActiveKey] = useState();
