@@ -16,7 +16,7 @@ export const useWebSocket = ({ receiveType, sendType, connectionType, recordId }
 		startConnection();
 		// cleanUp
 		return () => {
-			connection?.stop?.();
+			connection.stop();
 		};
 	}, [connectionType, receiveType, recordId]);
 
