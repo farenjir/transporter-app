@@ -4,11 +4,9 @@ import { HttpTransportType, LogLevel } from "@microsoft/signalr";
 import { TOKEN_NAME } from "utils/constance";
 import { getFromCookie } from "utils/storage";
 
-// eslint-disable-next-line no-undef
-const developmentMode = process.env.NODE_ENV === "development";
+const developmentMode = import.meta.env.NODE_ENV === "development";
 
-// eslint-disable-next-line no-undef
-const hubURL = process.env.VITE_SIGNALR_HUB;
+const hubURL = import.meta.env.VITE_SIGNALR_HUB;
 
 let connection = null;
 
