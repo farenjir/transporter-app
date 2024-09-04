@@ -4,11 +4,14 @@ const hubURL = import.meta.env.VITE_SIGNALR_HUB;
 
 let connection = null;
 
-export function createConnection() {
+export async function createConnection(type) {
 	if (connection === null) {
-		connection = new HubConnectionBuilder().withUrl(hubURL).configureLogging(LogLevel.Information).build();
+		connection = new HubConnectionBuilder()
+			.withUrl(hubURL + type)
+			// .configureLogging(LogLevel.Information)
+			.build();
 
-		connection
+		await connection
 			.start()
 			.then(() => console.log("SignalR Connected"))
 			.catch((err) => console.error("SignalR Connection Error:", err));
@@ -17,6 +20,6 @@ export function createConnection() {
 	return connection;
 }
 
-export function getConnection() {
-	return connection;
+export async function getConnection() {
+	return await connection;
 }

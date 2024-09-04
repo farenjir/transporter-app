@@ -3,7 +3,6 @@ import { theme } from "antd";
 import { InfoCircleOutlined, MessageOutlined } from "@ant-design/icons";
 
 import { useWindowDimensions } from "hooks";
-import { requestCommentType } from "utils/constance";
 
 import { AppTabs } from "components";
 import CommentForm from "components/App/comment";
@@ -36,7 +35,7 @@ const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details" }) =>
 					<span>{t("request.sendMessage")}</span>
 				</div>
 			),
-			children: <CommentForm record={selectRequest} requestType={requestCommentType[mode]} />,
+			children: <CommentForm record={selectRequest} requestType={mode} />,
 		},
 	];
 	// init

@@ -16,3 +16,16 @@ export const requestCommentType = {
 	send: 1,
 	get: 2,
 };
+
+export const chatType = {
+	send: {
+		type: "SendingPackHub",
+		source: "SendMessageP",
+		target: "ReceiveMessageP",
+	},
+	get: {
+		type: "ShareTripHub",
+		source: "SendMessageT",
+		target: "ReceiveMessageT",
+	},
+};
