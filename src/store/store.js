@@ -9,11 +9,10 @@ import { authReducer } from "./auth";
 import { modeReducer } from "./mode";
 import { basesReducer } from "./base";
 
-// eslint-disable-next-line no-undef
-const isNotProduction = process.env.NODE_ENV !== "production";
+const developmentMode = import.meta.env.NODE_ENV === "development";
 
 const additionalMiddleware = [];
-if (isNotProduction) {
+if (developmentMode) {
 	additionalMiddleware.push(logger);
 }
 
@@ -35,5 +34,5 @@ const persistedReducer = persistReducer(
 export default configureStore({
 	reducer: persistedReducer,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(additionalMiddleware),
-	devTools: isNotProduction,
+	devTools: developmentMode,
 });
