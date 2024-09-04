@@ -5,7 +5,7 @@ import { Tour } from "antd";
 import { useTourStore } from "./index.store";
 import { getFromStorage, setToStorage } from "utils/storage";
 
-import { useAppContext } from "hooks";
+import { getWindowDimensions, useAppContext } from "hooks";
 
 const tourTimeout = getFromStorage("tour");
 
@@ -13,6 +13,7 @@ const AppTour = () => {
 	const { t } = useTranslation();
 	const { placement, dePlacement } = useAppContext();
 	const { setReferences, open, setOpen } = useTourStore();
+	const { width } = getWindowDimensions();
 	// header references
 	const profileRef = useRef(null);
 	const sendTypeRef = useRef(null);
@@ -29,7 +30,7 @@ const AppTour = () => {
 			title: t("tour.profileRef"),
 			description: t("tour.profileRefDes"),
 			target: () => profileRef.current,
-			placement: placement,
+			placement: width > 1024 ? placement : "",
 		},
 		{
 			title: t("tour.sendTypeRef"),
@@ -45,7 +46,7 @@ const AppTour = () => {
 			title: t("tour.settingRef"),
 			description: t("tour.settingRefDes"),
 			target: () => settingRef.current,
-			placement: dePlacement,
+			placement: width > 1024 ? dePlacement : "",
 		},
 		{
 			title: t("tour.searchSendRef"),
