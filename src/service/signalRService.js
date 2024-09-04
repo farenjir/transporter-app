@@ -33,16 +33,3 @@ export async function createConnection(type) {
 export async function getConnection() {
 	return await connection;
 }
-
-// (options) => {
-// 	Object.assign(options, {
-// 		transport: HttpTransportType.WebSockets, // signalR.HttpTransportType.LongPolling ,
-// 		skipNegotiation: false,
-// 		withCredentials: true,
-// 		accessTokenFactory: () => token,
-// 		headers: {
-// 			Authorization: `Bearer ${token}`,
-// 		},
-// 	});
-// 	return options;
-// },
