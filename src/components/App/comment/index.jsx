@@ -17,7 +17,7 @@ import { getChatRequest } from "service/user";
 
 const { TextArea } = Input;
 
-const CommentForm = ({ requestType, record }) => {
+const CommentForm = ({ requestType, record, yourselfOrder }) => {
 	const [comments, setComments] = useState([]);
 	const [submitting, setSubmitting] = useState(false);
 	const [initializeHistory, setInitializeHistory] = useState(false);
@@ -80,14 +80,14 @@ const CommentForm = ({ requestType, record }) => {
 						toUserId,
 						userComment,
 					}) => {
-						const isMyMessage = user?.id !== fromUserId;
+						const isMyMessage = yourselfOrder ? user?.id !== fromUserId : user?.id === fromUserId;
 						return {
 							author: (
-								<span className="uppercase">{`${isMyMessage ? fromFirstName : toFirstName} ${isMyMessage ? fromLastName : toLastName}`}</span>
+								<span className="uppercase">{`${!isMyMessage ? fromFirstName : toFirstName} ${!isMyMessage ? fromLastName : toLastName}`}</span>
 							),
 							avatar: <UserOutlined className="border rounded-full shadow-lg p-2" />,
 							content: <p>{userComment}</p>,
-							className: `px-[5%] ${isMyMessage ? deDirection : direction}`,
+							className: `px-[5%] ${(yourselfOrder ? !isMyMessage : isMyMessage) ? direction : deDirection}`,
 						};
 					},
 				)
@@ -102,7 +102,7 @@ const CommentForm = ({ requestType, record }) => {
 			setComments([]);
 			setInitializeHistory(false);
 		};
-	}, [callApi, deDirection, direction, record.id, requestType, user?.id]);
+	}, [callApi, deDirection, direction, record.id, requestType, user?.id, yourselfOrder]);
 	// render
 	useEffect(() => {
 		initializeHistory && updateMessageOnSocket();
