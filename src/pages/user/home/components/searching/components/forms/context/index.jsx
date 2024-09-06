@@ -6,6 +6,7 @@ import { useAppContext } from "hooks";
 import { baseSelector } from "store/base";
 
 import { getLocationWithText } from "service/main";
+import { dateToApi } from "utils/globals";
 
 export const SearchContext = createContext({});
 
@@ -36,8 +37,8 @@ function SearchContextApi({ children, loading, onFinish = () => {}, onReset = ()
 	const handleOnFinishForm = (formValues) => {
 		const { requestType, from, to, fromCountry, toCountry } = formValues;
 		const queries = {
-			fromDate: from?.toISOString?.(),
-			toDate: to?.toISOString?.(),
+			fromDate: dateToApi(from, jalali),
+			toDate: dateToApi(to, jalali),
 			fromCountry: locationIdDetector(fromCountry, "from"),
 			toCountry: locationIdDetector(toCountry, "to"),
 			requestType,

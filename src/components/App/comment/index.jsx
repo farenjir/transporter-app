@@ -26,7 +26,7 @@ const CommentForm = ({ requestType, record }) => {
 	const { user } = useSelector(authSelector);
 	const [form] = Form.useForm();
 	// socket type
-	const { type: connectionType, source: sendType, target: receiveType } = chatType[requestType];
+	const { type: connectionType, source: sendType, target: receiveType } = chatType[requestType] || {};
 	const { loading, messages, sendMessage } = useWebSocket({ receiveType, sendType, connectionType, recordId: record.id });
 	// handles
 	const handleSubmit = useCallback(

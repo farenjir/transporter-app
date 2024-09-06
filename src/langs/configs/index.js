@@ -1,4 +1,5 @@
 export const faMonths = [
+	"دی",
 	"بهمن",
 	"اسفند",
 	"فروردین",
@@ -10,7 +11,6 @@ export const faMonths = [
 	"مهر",
 	"آبان",
 	"آذر",
-	"دی",
 ];
 
 export const langList = {
@@ -31,11 +31,19 @@ export const langConfigs = {
 export const localeList = {
 	fa: "fa-IR-u-nu-latn",
 	en: "en-US",
+	de:"",
+	it:"",
+	tr:"",
+	ar:"",
 };
 
 export const timeZones = {
 	fa: "Asia/Tehran",
-	en: undefined,
+	en: "Europe/London",
+	de:"Europe/Berlin",
+	it:"Europe/Rome",
+	tr:"Turkey",
+	ar:"",
 };
 
 export const rtlLangs = ["fa", "ar"];

@@ -9,7 +9,8 @@ import { authReducer } from "./auth";
 import { modeReducer } from "./mode";
 import { basesReducer } from "./base";
 
-const developmentMode = import.meta.env.NODE_ENV === "development";
+// eslint-disable-next-line no-undef
+const developmentMode = process.env.NODE_ENV === "development";
 
 const additionalMiddleware = [];
 if (developmentMode) {

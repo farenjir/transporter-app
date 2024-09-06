@@ -3,15 +3,7 @@ import dayjs from "dayjs";
 import { localeList, timeZones } from "langs/configs";
 
 // *** export handles
-export {
-	dateToGeo,
-	dateToApi,
-	dateTransformer,
-	dateToLocale,
-	dateToInitializeOnForm,
-	uIdMaker,
-	transformerAppData,
-};
+export { dateToGeo, dateToApi, dateTransformer, dateToLocale, dateToInitializeOnForm, uIdMaker, transformerAppData };
 
 // ***
 const dateToGeo = (year, month, day, language = i18next.language) => {
@@ -53,9 +45,10 @@ const dateTransformer = (date, jalali = true, locale = i18next.language, format 
 		return null;
 	}
 };
-const dateToApi = (date, jalali = true, locale = i18next.language) => {
+const dateToApi = (date, jalali = true, format = "YYYY-MM-DDTHH:mm:ss", locale = i18next.language) => {
 	if (date) {
-		return dayjs(dayjs(date).locale(locale).format(), { jalali }).toISOString();
+		const toLocaleData = dayjs(date).locale(locale).format(format);
+		return dayjs(toLocaleData, { jalali }).tz(timeZones[locale]).locale("en").format(format);
 	} else {
 		return null;
 	}
