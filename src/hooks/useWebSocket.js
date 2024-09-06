@@ -20,6 +20,8 @@ export const useWebSocket = ({ receiveType, sendType, connectionType, recordId }
 		// cleanUp
 		return () => {
 			connection?.stop?.();
+			connection = null;
+			setMessages([]);
 		};
 	}, [connectionType, receiveType, recordId]);
 

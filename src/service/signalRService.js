@@ -12,20 +12,18 @@ let connection = null;
 
 export async function createConnection(type) {
 	const token = getFromCookie(TOKEN_NAME);
-	if (connection === null) {
-		connection = new HubConnectionBuilder()
-			.withUrl(`${hubURL}${type}`, {
-				transport: HttpTransportType.WebSockets, // signalR.HttpTransportType.LongPolling ,
-				skipNegotiation: false,
-				withCredentials: true,
-				accessTokenFactory: () => token,
-			})
-			.withAutomaticReconnect()
-			.configureLogging(developmentMode ? LogLevel.Error : LogLevel.Information)
-			.build();
+	connection = new HubConnectionBuilder()
+		.withUrl(`${hubURL}${type}`, {
+			transport: HttpTransportType.WebSockets, // signalR.HttpTransportType.LongPolling ,
+			skipNegotiation: false,
+			withCredentials: true,
+			accessTokenFactory: () => token,
+		})
+		.withAutomaticReconnect()
+		.configureLogging(developmentMode ? LogLevel.Error : LogLevel.Information)
+		.build();
 
-		await connection.start();
-	}
+	await connection.start();
 
 	return connection;
 }
