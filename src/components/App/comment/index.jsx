@@ -33,11 +33,11 @@ const CommentForm = ({ requestType, record }) => {
 		async ({ message }) => {
 			if (!message) return;
 			setSubmitting(true);
-			await sendMessage(record.id, user.id, message);
+			await sendMessage(record.id, record.carrierUserId || record.requesterUserId, 0, message);
 			form.setFieldValue("message", "");
 			setSubmitting(false);
 		},
-		[form, record.id, sendMessage, user.id],
+		[form, record.carrierUserId, record.id, record.requesterUserId, sendMessage],
 	);
 	// init
 	useEffect(() => {
@@ -81,7 +81,7 @@ const CommentForm = ({ requestType, record }) => {
 							<TextArea rows={4} />
 						</Form.Item>
 						<Form.Item>
-							<Button htmlType="submit" loading={submitting} type="primary">
+							<Button htmlType="submit" loading={submitting} type="primary" disabled={loading}>
 								{t("commons.send")}
 							</Button>
 						</Form.Item>

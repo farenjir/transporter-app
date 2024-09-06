@@ -4,8 +4,10 @@ import { Typography } from "antd";
 
 import { useSelector } from "react-redux";
 import { baseSelector } from "store/base";
-import { useAppContext } from "hooks";
+import { authSelector } from "store/auth";
+
 import { dateToLocale } from "utils/globals";
+import { useAppContext } from "hooks";
 
 import { Drawers, ListModule } from "components";
 import { AppCardGet, RequestDetails } from "components/App";
@@ -20,6 +22,7 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 	const { t } = useTranslation();
 	const { dePlacement } = useAppContext();
 	const { enums } = useSelector(baseSelector);
+	const { user } = useSelector(authSelector);
 	// modal handles
 	const onClose = () => {
 		setOpen(false);
@@ -42,10 +45,6 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 	};
 	return (
 		<section className="producer-sections mx-auto p-5 mt-8 md:mx-12">
-			{/* <div className="producer-title md:text-center mb-5">
-				<Title level={2}>{t("home.getAll")}</Title>
-				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
-			</div> */}
 			<div className="producer-title md:text-center mb-5">
 				<Title level={2}>{t("home.sendAll")}</Title>
 				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
@@ -56,7 +55,14 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 				onClose={onClose}
 				placement={dePlacement}
 				size="large"
-				content={<RequestDetails selectRequest={selectRequest} mode={"get"} drawerMode={drawerMode} />}
+				content={
+					<RequestDetails
+						selectRequest={selectRequest}
+						mode={"get"}
+						drawerMode={drawerMode}
+						yourselfOrder={user?.id === Number(selectRequest?.carrierUserId)}
+					/>
+				}
 			/>
 			<ListModule
 				key="get-req"
@@ -113,6 +119,7 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 								id={id.toString()}
 								onClickBtn={(mode) => onSelectRecord(id, mode)}
 								imgUrl={"/assets/images/international-banner.webp"}
+								yourselfOrder={user?.id === Number(carrierUserId)}
 								{...{
 									title: (
 										<div className="flex flex-col gap-2">

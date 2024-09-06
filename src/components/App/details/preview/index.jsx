@@ -10,7 +10,7 @@ import CommentForm from "components/App/comment";
 import GetDetails from "./components/GetDetails";
 import SendDetails from "./components/SendDetails";
 
-const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details" }) => {
+const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details", yourselfOrder = false }) => {
 	const [activeKey, setActiveKey] = useState();
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
@@ -29,6 +29,7 @@ const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details" }) =>
 		},
 		{
 			key: "comment",
+			disabled: yourselfOrder,
 			label: (
 				<div className="flex flex-col gap-1 justify-center align-middle items-center">
 					<MessageOutlined className="text-lg" />

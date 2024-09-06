@@ -19,15 +19,15 @@ export const useWebSocket = ({ receiveType, sendType, connectionType, recordId }
 		startConnection();
 		// cleanUp
 		return () => {
-			connection.stop();
+			connection?.stop?.();
 		};
 	}, [connectionType, receiveType, recordId]);
 
 	const sendMessage = useCallback(
-		async (recordId, userId, message) => {
+		async (recordId, toUserId, relationId, message) => {
 			const connection = await getConnection();
 			try {
-				await connection.invoke(sendType, `${userId}`, message);
+				await connection.invoke(sendType, `${recordId}`, `${toUserId}`, relationId, message);
 			} catch (err) {
 				console.error("Error sending message:", err);
 			}

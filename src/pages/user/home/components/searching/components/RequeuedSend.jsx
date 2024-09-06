@@ -4,6 +4,7 @@ import { Typography } from "antd";
 
 import { useSelector } from "react-redux";
 import { baseSelector } from "store/base";
+import { authSelector } from "store/auth";
 
 import { useAppContext } from "hooks";
 import { dateToLocale } from "utils/globals";
@@ -21,6 +22,7 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 	const { t } = useTranslation();
 	const { dePlacement } = useAppContext();
 	const { enums } = useSelector(baseSelector);
+	const { user } = useSelector(authSelector);
 	// modal handles
 	const onClose = () => {
 		setOpen(false);
@@ -43,10 +45,6 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 	};
 	return (
 		<section className="producer-sections mx-auto p-5 mt-8 md:mx-12">
-			{/* <div className="producer-title md:text-center mb-5">
-				<Title level={2}>{t("home.sendAll")}</Title>
-				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
-			</div> */}
 			<div className="producer-title md:text-center mb-5">
 				<Title level={2}>{t("home.getAll")}</Title>
 				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
@@ -57,7 +55,14 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 				onClose={onClose}
 				placement={dePlacement}
 				size="large"
-				content={<RequestDetails selectRequest={selectRequest} mode={"send"} drawerMode={drawerMode} />}
+				content={
+					<RequestDetails
+						selectRequest={selectRequest}
+						mode={"send"}
+						drawerMode={drawerMode}
+						yourselfOrder={user?.id === Number(selectRequest?.requesterUserId)}
+					/>
+				}
 			/>
 			{/* SearchItems */}
 			<ListModule
@@ -110,6 +115,7 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 								key={id.toString()}
 								id={id.toString()}
 								onClickBtn={(mode) => onSelectRecord(id, mode)}
+								yourselfOrder={user?.id === Number(requesterUserId)}
 								imgUrl={"/assets/images/international-banner.webp"}
 								title={
 									<div className="flex flex-col gap-2">

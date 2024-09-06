@@ -5,13 +5,13 @@ import { Buttons } from "components";
 
 const { Meta } = Card;
 
-const AppCardGet = ({ id, imgUrl, title = "", description = "", onClickBtn = () => {} }) => {
+const AppCardGet = ({ id, imgUrl, title = "", description = "", onClickBtn = () => {}, yourselfOrder = false }) => {
 	const { t } = useTranslation();
 	return (
 		<Card hoverable cover={<img alt={`cover-${id || "card"}`} src={imgUrl} className="object-cover max-h-[100px]" />}>
 			<Meta title={title} description={description} />
 			<Row gutter={[8, 2]} className="pt-5 opacity-80">
-				<Col xs={12}>
+				<Col xs={yourselfOrder ? 24 : 12}>
 					<Buttons
 						onClick={() => onClickBtn("details")}
 						content={t("commons.contentView")}
@@ -20,15 +20,17 @@ const AppCardGet = ({ id, imgUrl, title = "", description = "", onClickBtn = () 
 						block={true}
 					/>
 				</Col>
-				<Col xs={12}>
-					<Buttons
-						onClick={() => onClickBtn("comment")}
-						content={t("request.sendMessage")}
-						htmlType="button"
-						size="middle"
-						block={true}
-					/>
-				</Col>
+				{!yourselfOrder && (
+					<Col xs={12}>
+						<Buttons
+							onClick={() => onClickBtn("comment")}
+							content={t("request.sendMessage")}
+							htmlType="button"
+							size="middle"
+							block={true}
+						/>
+					</Col>
+				)}
 			</Row>
 		</Card>
 	);
