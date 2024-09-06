@@ -27,7 +27,7 @@ export const useWebSocket = ({ receiveType, sendType, connectionType, recordId }
 		async (recordId, toUserId, relationId, message) => {
 			const connection = await getConnection();
 			try {
-				await connection.invoke(sendType, `${recordId}`, `${toUserId}`, relationId, message);
+				await connection.invoke(sendType, recordId, toUserId, relationId, message);
 			} catch (err) {
 				console.error("Error sending message:", err);
 			}
