@@ -3,17 +3,16 @@ import { useSelector } from "react-redux";
 import { baseSelector } from "store/base";
 
 import { dateToLocale } from "utils/globals";
-import { theme } from "antd";
 
 import { Details } from "components";
 
-const GetDetails = ({ title = "", params = {} }) => {
+const GetDetails = ({ params = {} }) => {
 	// hooks
 	const { t } = useTranslation();
-	const { token } = theme.useToken();
 	const { enums } = useSelector(baseSelector);
 	// items
 	const items = [
+		{ valueParam: "requesterUserId", label: t("request.user"), type: "text", span: { xs: 5, md: 5 } },
 		{ valueParam: "fromLocationName", label: t("request.source"), type: "text", span: { xs: 5, md: 3 } },
 		{ valueParam: "fromCountryName", label: t("request.cSource"), type: "text", span: { xs: 5, md: 2 } },
 		{ valueParam: "toLocationName", label: t("request.destination"), type: "text", span: { xs: 5, md: 3 } },
@@ -77,13 +76,6 @@ const GetDetails = ({ title = "", params = {} }) => {
 	return (
 		<>
 			<Details
-				title={
-					<div className="flex justify-between align-middle items-center">
-						<p className="text-base lg:text-xl" style={{ color: token?.colorPrimary }}>
-							{title}
-						</p>
-					</div>
-				}
 				layout="vertical"
 				size="small"
 				classes="text-xl"
@@ -92,7 +84,9 @@ const GetDetails = ({ title = "", params = {} }) => {
 					label,
 					span,
 					key: valueParam,
-					children: <span className="text-lg">{generateValue(params[valueParam], type, enumType, condition)}</span>,
+					children: (
+						<span className="text-lg">{generateValue(params[valueParam], type, enumType, condition) || "-"}</span>
+					),
 				}))}
 			/>
 		</>

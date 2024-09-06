@@ -12,16 +12,16 @@ const SendDetails = ({ params = {} }) => {
 	const { enums } = useSelector(baseSelector);
 	// items
 	const items = [
+		{ valueParam: "carrierUserId", label: t("request.user"), type: "text", span: { xs: 5, md: 5 } },
 		{ valueParam: "fromLocationName", label: t("request.source"), type: "text", span: { xs: 5, md: 3 } },
 		{ valueParam: "fromCountryName", label: t("request.cSource"), type: "text", span: { xs: 5, md: 2 } },
 		{ valueParam: "toLocationName", label: t("request.destination"), type: "text", span: { xs: 5, md: 3 } },
 		{ valueParam: "toCountryName", label: t("request.cDestination"), type: "text", span: { xs: 5, md: 2 } },
 		// date
-		{ valueParam: "fromDateValidOfDeliver", label: t("request.dateSource"), type: "date", span: { xs: 5, md: 3 } },
-		{ valueParam: "toDateValidOfDeliver", label: t("request.dateDes"), type: "date", span: { xs: 5, md: 3 } },
+		{ valueParam: "dateOfDeliver", label: t("request.date"), type: "date", span: { xs: 5, md: 5 } },
 		// size
 		{ valueParam: "cargoItemNo", label: t("request.count"), type: "text", span: { xs: 5, md: 1 } },
-		{ valueParam: "cargoWeight", label: t("request.weight"), type: "text", span: { xs: 5, md: 1 } },
+		{ valueParam: "cargoMaxWeightCapacity", label: t("request.weight"), type: "text", span: { xs: 5, md: 1 } },
 		{
 			valueParam: "cargoWeightUnitIssueTitle",
 			label: t("request.scale"),
@@ -29,7 +29,7 @@ const SendDetails = ({ params = {} }) => {
 			span: { xs: 5, md: 1 },
 		},
 		{
-			valueParam: "cargoSize",
+			valueParam: "cargoMaxSizeCapacity",
 			label: t("request.size"),
 			type: "enum",
 			enumType: "107",
@@ -86,7 +86,7 @@ const SendDetails = ({ params = {} }) => {
 					key: valueParam,
 					children: (
 						<span className="text-lg">
-							{generateValue(params[valueParam], type, enumType, condition)}
+							{generateValue(params[valueParam], type, enumType, condition) || "-"}
 						</span>
 					),
 				}))}

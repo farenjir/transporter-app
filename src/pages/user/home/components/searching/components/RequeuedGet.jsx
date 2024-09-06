@@ -50,7 +50,7 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
 			</div>
 			<Drawers
-				title={t("home.get")}
+				title={t("home.send")}
 				open={open}
 				onClose={onClose}
 				placement={dePlacement}
@@ -58,7 +58,7 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 				content={
 					<RequestDetails
 						selectRequest={selectRequest}
-						mode={"get"}
+						mode={"send"}
 						drawerMode={drawerMode}
 						yourselfOrder={user?.id === Number(selectRequest?.carrierUserId)}
 					/>

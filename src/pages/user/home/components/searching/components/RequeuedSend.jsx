@@ -50,7 +50,7 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 				<p className="my-1 text-slate-400 text-xs md:text-base">{t("search.topTitle")}</p>
 			</div>
 			<Drawers
-				title={t("home.send")}
+				title={t("home.get")}
 				open={open}
 				onClose={onClose}
 				placement={dePlacement}
@@ -58,7 +58,7 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 				content={
 					<RequestDetails
 						selectRequest={selectRequest}
-						mode={"send"}
+						mode={"get"}
 						drawerMode={drawerMode}
 						yourselfOrder={user?.id === Number(selectRequest?.requesterUserId)}
 					/>
@@ -93,8 +93,8 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 						cargoDesc,
 						fromDateValidOfDeliver,
 						toDateValidOfDeliver,
-						requestLangaheTypeID,
 						requesterUserId,
+						requestLangaheTypeID,
 						requestType,
 						registerDate,
 						cargoWeightUnitIssueId,

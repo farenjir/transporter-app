@@ -36,7 +36,7 @@ const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details", your
 					<span>{t("request.sendMessage")}</span>
 				</div>
 			),
-			children: <CommentForm record={selectRequest} requestType={mode} yourselfOrder />,
+			children: <CommentForm record={selectRequest} requestType={mode} yourselfOrder={yourselfOrder} />,
 		},
 	];
 	// init
