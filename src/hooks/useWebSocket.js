@@ -11,8 +11,8 @@ export const useWebSocket = ({ receiveType, sendType, connectionType, recordId }
 		const startConnection = async () => {
 			setLoading(true);
 			connection = await createConnection(connectionType);
-			connection.on(receiveType, (user, message) => {
-				setMessages((prevMessages) => [...prevMessages, { user, message }]);
+			connection.on(receiveType, (recordId, fromUserName, parentId, message) => {
+				setMessages((prevMessages) => [...prevMessages, { recordId, fromUserName, parentId, message }]);
 			});
 			setLoading(false);
 		};

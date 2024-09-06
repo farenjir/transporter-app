@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { authSelector } from "store/auth";
 
 import { useAppContext } from "hooks";
-import { chatType } from "utils/constance";
+import { chatType, requestCommentType } from "utils/constance";
 import { useWebSocket } from "hooks/useWebSocket";
 import { getChatRequest } from "service/user";
 
@@ -33,15 +33,15 @@ const CommentForm = ({ requestType, record }) => {
 	// handles
 	const updateMessageOnSocket = useCallback(async () => {
 		const transformComments = messages
-			.map(({ user, message }) => ({
-				author: <span className="uppercase">{`${"userID"} : ${user}`}</span>,
+			.map(({ recordId, fromUserName, parentId, message }) => ({
+				author: <span className="uppercase">{fromUserName}</span>,
 				avatar: <UserOutlined className="border rounded-full shadow-lg p-2" />,
 				content: <p>{message}</p>,
-				className: `px-[5%] ${user === user ? deDirection : direction}`,
+				className: `px-[5%] ${direction}`,
 			}))
 			.reverse();
 		setComments((perMessage) => [...transformComments, ...perMessage]);
-	}, [deDirection, direction, messages]);
+	}, [direction, messages]);
 
 	const handleSubmit = useCallback(
 		async ({ message }) => {
@@ -58,18 +58,39 @@ const CommentForm = ({ requestType, record }) => {
 		const getComments = async () => {
 			setInitializeHistory(false);
 			const { content = [] } = await getChatRequest(callApi, {
-				pgs: 1000,
+				pgs: 9999,
 				pgn: 1,
 				RecordId: record.id,
-				requestType: requestType === "send" ? 1 : 2,
+				requestType: requestCommentType[requestType],
 			});
 			const transformComments = content
-				.map(({ fromFirstName, fromLastName, fromUserId, userComment, userId, avatarUrl }) => ({
-					author: <span className="uppercase">{`${fromFirstName} ${fromLastName}`}</span>,
-					avatar: avatarUrl || <UserOutlined className="border rounded-full shadow-lg p-2" />,
-					content: <p>{userComment}</p>,
-					className: `px-[5%] ${fromUserId === userId ? deDirection : direction}`,
-				}))
+				.map(
+					({
+						businesIntractionId,
+						fromFirstName,
+						fromLastName,
+						fromUserId,
+						id,
+						parentChatId,
+						recordId,
+						registerDate,
+						tableId,
+						toFirstName,
+						toLastName,
+						toUserId,
+						userComment,
+					}) => {
+						const isMyMessage = user?.id !== fromUserId;
+						return {
+							author: (
+								<span className="uppercase">{`${isMyMessage ? fromFirstName : toFirstName} ${isMyMessage ? fromLastName : toLastName}`}</span>
+							),
+							avatar: <UserOutlined className="border rounded-full shadow-lg p-2" />,
+							content: <p>{userComment}</p>,
+							className: `px-[5%] ${isMyMessage ? deDirection : direction}`,
+						};
+					},
+				)
 				.reverse();
 			setComments(transformComments);
 			setInitializeHistory(true);
@@ -81,7 +102,7 @@ const CommentForm = ({ requestType, record }) => {
 			setComments([]);
 			setInitializeHistory(false);
 		};
-	}, [callApi, deDirection, direction, record.id, requestType]);
+	}, [callApi, deDirection, direction, record.id, requestType, user?.id]);
 	// render
 	useEffect(() => {
 		initializeHistory && updateMessageOnSocket();

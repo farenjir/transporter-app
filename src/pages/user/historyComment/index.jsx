@@ -3,15 +3,14 @@ import { useTranslation } from "react-i18next";
 
 import { theme } from "antd";
 import { notificationMaker } from "utils/notification";
-import { requestCommentType } from "utils/constance";
 import { useAppContext } from "hooks";
 
 import { getMyChatAnnonceRequest, getMyChatCarrierRequest } from "service/user";
 import { deleteMyAnnonceRequest, deleteMyCarrierRequest } from "service/user";
 import { Modals, confirmModal } from "components";
+import { CommentForm } from "components/App";
 
 import HistoryList from "./components/HistoryList";
-import CommentForm from "./components/comments";
 import HistoryListGet from "./components/HistoryListGet";
 
 const HistoryComment = () => {
@@ -124,7 +123,7 @@ const HistoryComment = () => {
 		>
 			{lists[type]}
 			<Modals reference={modalComment} title={t("commons.comment")}>
-				<CommentForm requestType={requestCommentType[type]} record={selectedRecord} />
+				<CommentForm requestType={type} record={selectedRecord} />
 			</Modals>
 		</section>
 	);
