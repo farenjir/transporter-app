@@ -13,3 +13,4 @@ export { default as AppCardCommentGet } from "./card/AppCardCommentGet";
 export { default as RequestDetails } from "./details/preview";
 
 export { default as CommentForm } from "./comment";
+export { default as OwnerCommentForm } from "./ownerComment";
