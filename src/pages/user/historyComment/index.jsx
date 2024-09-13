@@ -8,7 +8,7 @@ import { useAppContext } from "hooks";
 import { getMyChatAnnonceRequest, getMyChatCarrierRequest } from "service/user";
 import { deleteMyAnnonceRequest, deleteMyCarrierRequest } from "service/user";
 import { Modals, confirmModal } from "components";
-import { OwnerCommentForm } from "components/App";
+import { CommentForm } from "components/App";
 
 import HistoryList from "./components/HistoryList";
 import HistoryListGet from "./components/HistoryListGet";
@@ -123,7 +123,7 @@ const HistoryComment = () => {
 		>
 			{lists[type]}
 			<Modals reference={modalComment} title={t("commons.comment")}>
-				<OwnerCommentForm requestType={type} record={selectedRecord} />
+				<CommentForm requestType={type} record={selectedRecord} />
 			</Modals>
 		</section>
 	);

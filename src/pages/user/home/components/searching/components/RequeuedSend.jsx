@@ -7,7 +7,6 @@ import { baseSelector } from "store/base";
 import { authSelector } from "store/auth";
 
 import { useAppContext } from "hooks";
-import { dateToLocale } from "utils/globals";
 
 import { Drawers, ListModule } from "components";
 import { AppCard, RequestDetails } from "components/App";
@@ -58,7 +57,7 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 				content={
 					<RequestDetails
 						selectRequest={selectRequest}
-						mode={"get"}
+						mode={"send"}
 						drawerMode={drawerMode}
 						yourselfOrder={user?.id === Number(selectRequest?.requesterUserId)}
 					/>
@@ -68,6 +67,7 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 			<ListModule
 				key="send-req"
 				loading={loading}
+				column={1}
 				pagination={{
 					showSizeChanger: false,
 					pageSize: 9,
@@ -117,46 +117,23 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 								onClickBtn={(mode) => onSelectRecord(id, mode)}
 								yourselfOrder={user?.id === Number(requesterUserId)}
 								imgUrl={"/assets/images/international-banner.webp"}
-								title={
-									<div className="flex flex-col gap-2">
-										<span className="text-xl">
-											{t("home.cards.sendTo", {
-												fromCountryName,
-												toCountryName,
-												fromLocationName,
-												toLocationName,
-											})}
-										</span>
-										<span className="text-sm">
-											{t("home.cards.dateFrom", {
-												from: dateToLocale(fromDateValidOfDeliver),
-											})}
-										</span>
-										<span className="text-sm">
-											{t("home.cards.dateTo", {
-												to: dateToLocale(toDateValidOfDeliver),
-											})}
-										</span>
-										<span className="text-base">{t("home.cards.weight")}</span>
-										<span className="text-sm">
-											{t("home.cards.weightDes", {
-												cargoWeight,
-												cargoSize,
-												cargoWeightUnitIssueTitle,
-												cargoItemNo,
-												cargoDesc,
-											})}
-										</span>
-										<span className="text-base">
-											{t("home.cards.price", {
-												price: priceIsNegotiable
-													? t("home.cards.priceIsNegotiable")
-													: proposedPrice.toLocaleString(),
-												label: getPriceType(priceCurrencyTypeId),
-											})}
-										</span>
-									</div>
-								}
+								{...{
+									fromDateValidOfDeliver,
+									toDateValidOfDeliver,
+									priceIsNegotiable,
+									proposedPrice,
+									priceLabel: getPriceType(priceCurrencyTypeId),
+									cargoWeight,
+									cargoSize: cargoWeightUnitIssueId,
+									cargoWeightUnitIssueTitle,
+									cargoItemNo,
+									cargoDesc,
+									fromCountryName,
+									toCountryName,
+									fromLocationName,
+									toLocationName,
+									carrierUserId:requesterUserId,
+								}}
 							/>
 						),
 					}),

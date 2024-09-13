@@ -65,6 +65,9 @@ function ContextApi({ children }) {
 							dotWidth: 8,
 							dotHeight: 8,
 						},
+						Timeline: {
+							itemPaddingBottom: 30,
+						},
 					},
 				}}
 			>

@@ -83,7 +83,7 @@ const SearchRequest = ({ appMode, componentRef }) => {
 				</SearchContextApi>
 			</section>
 			{/* <SupportSection background={token?.colorBgBase} /> */}
-			{optionList[appMode]}
+			<div className="responsive-layout">{optionList[appMode]}</div>
 		</>
 	);
 };

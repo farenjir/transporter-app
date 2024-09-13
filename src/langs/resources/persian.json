@@ -190,8 +190,8 @@
 			"price": "قیمت : {{price}} {{label}}",
 			"weight": "مشخصات بار :",
 			"weightDes": "وزن : {{cargoWeight}} ({{cargoWeightUnitIssueTitle}}) - تعداد : {{cargoItemNo}} - سایز : {{cargoSize}}",
-			"dateFrom": "از : {{from}}",
-			"dateTo": "تا : {{to}}"
+			"dateFrom": "{{from}}",
+			"dateTo": "{{to}}"
 		},
 		"support": {
 			"auth": "احراز هویت",

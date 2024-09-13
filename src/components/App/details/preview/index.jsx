@@ -25,7 +25,7 @@ const RequestDetails = ({ mode, selectRequest = {}, drawerMode = "details", your
 					<span>{t("request.details")}</span>
 				</div>
 			),
-			children: <>{mode === "send" ? <SendDetails params={selectRequest} /> : <GetDetails params={selectRequest} />}</>,
+			children: <>{mode === "get" ? <SendDetails params={selectRequest} /> : <GetDetails params={selectRequest} />}</>,
 		},
 		{
 			key: "comment",

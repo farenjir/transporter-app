@@ -16,6 +16,7 @@
 		"@ant-design/icons": "^5.4.0",
 		"@microsoft/signalr": "^8.0.7",
 		"@reduxjs/toolkit": "^2.2.7",
+		"@tabler/icons-react": "^3.16.0",
 		"antd": "^5.20.4",
 		"axios": "^1.7.7",
 		"dayjs": "^1.11.13",

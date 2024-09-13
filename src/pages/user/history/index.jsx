@@ -8,7 +8,7 @@ import { useAppContext } from "hooks";
 import { getMyAnnonceRequest, getMyCarrierRequest } from "service/user";
 import { deleteMyAnnonceRequest, deleteMyCarrierRequest } from "service/user";
 import { Modals, confirmModal } from "components";
-import { CommentForm } from "components/App";
+import { OwnerCommentForm } from "components/App";
 
 import RequestContextApi from "./components/forms/context";
 import HistoryList from "./components/HistoryList";
@@ -157,7 +157,7 @@ const HistoryPage = () => {
 				</RequestContextApi>
 			</Modals>
 			<Modals reference={modalComment} title={t("commons.comment")}>
-				<CommentForm requestType={type} record={selectedRecord} />
+				<OwnerCommentForm requestType={type} record={selectedRecord} />
 			</Modals>
 		</section>
 	);
