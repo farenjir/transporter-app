@@ -20,14 +20,14 @@ import { AppTabs } from "components";
 const { TextArea } = Input;
 
 const OwnerCommentForm = ({ requestType, record }) => {
-	const [businesIntractionId, setBusinesIntractionId] = useState("businesIntractionId-0");
+	const [businesIntractionId, setBusinesIntractionId] = useState("0");
 	const [comments, setComments] = useState({});
 	const [submitting, setSubmitting] = useState(false);
 	const [initializeHistory, setInitializeHistory] = useState(false);
 	// hooks
 	const { token } = theme.useToken();
 	const { t } = useTranslation();
-	const { callApi, direction, deDirection } = useAppContext();
+	const { callApi, direction, deDirection, dePlacement } = useAppContext();
 	const { user } = useSelector(authSelector);
 	const [form] = Form.useForm();
 	// socket type
@@ -35,17 +35,20 @@ const OwnerCommentForm = ({ requestType, record }) => {
 	const { loading, messages, sendMessage } = useWebSocket({ receiveType, sendType, connectionType, recordId: record.id });
 	// handles
 	const updateMessageOnSocket = useCallback(async () => {
-		const transformComments = messages
-			.map(({ recordId, fromUserName, parentId, message }) => ({
+		const transformComments = messages.map(({ recordId, fromUserName, parentId, message }) => {
+			return {
+				fromUserName,
 				author: <span className="uppercase">{fromUserName}</span>,
 				avatar: <UserOutlined className="border rounded-full shadow-lg p-2" />,
 				content: <p>{message}</p>,
 				className: `px-[5%] ${direction}`,
-			}))
-			.reverse();
-		setComments((perMessage) => [...transformComments, ...perMessage]);
-	}, [direction, messages]);
-
+			};
+		});
+		const updateMessages = comments;
+		updateMessages[businesIntractionId] = transformComments;
+		setComments(updateMessages);
+	}, [messages, comments, businesIntractionId, direction]);
+	// handleSubmit
 	const handleSubmit = useCallback(
 		async ({ message }) => {
 			if (!message) return;
@@ -67,7 +70,6 @@ const OwnerCommentForm = ({ requestType, record }) => {
 				requestType: requestCommentType[requestType],
 			});
 			const transformComments = {};
-
 			content.forEach(
 				({
 					businesIntractionId,
@@ -84,12 +86,15 @@ const OwnerCommentForm = ({ requestType, record }) => {
 					toUserId,
 					userComment,
 				}) => {
-					const recordRoundId = `businesIntractionId-${businesIntractionId}`;
+					const recordRoundId = `${businesIntractionId}`;
 					const isMyMessage = user?.id === fromUserId;
 					if (!transformComments[recordRoundId]) {
 						transformComments[recordRoundId] = [];
+						setBusinesIntractionId(recordRoundId);
 					}
 					transformComments[recordRoundId].push({
+						fromFirstName,
+						fromLastName,
 						author: (
 							<span className="uppercase">{`${!isMyMessage ? fromFirstName : toFirstName} ${!isMyMessage ? fromLastName : toLastName}`}</span>
 						),
@@ -99,7 +104,6 @@ const OwnerCommentForm = ({ requestType, record }) => {
 					});
 				},
 			);
-
 			setComments(transformComments);
 			setInitializeHistory(true);
 		};
@@ -112,11 +116,10 @@ const OwnerCommentForm = ({ requestType, record }) => {
 		};
 	}, [callApi, deDirection, direction, record.id, requestType, user?.id]);
 	// render
-	// useEffect(() => {
-	// 	initializeHistory && updateMessageOnSocket();
-	// }, [updateMessageOnSocket, initializeHistory]);
+	useEffect(() => {
+		initializeHistory && updateMessageOnSocket();
+	}, [messages, initializeHistory]);
 	// returnJSX
-
 	const Comments = ({ comments, user, submitting, loading }) => (
 		<>
 			<div className="h-[300px] overflow-y-scroll border-r-2 rounded-3xl shadow-md">
@@ -147,19 +150,25 @@ const OwnerCommentForm = ({ requestType, record }) => {
 			/>
 		</>
 	);
-
 	// tabs
-	const appTabOptions = Object.entries(comments).map(([key, arrayValue]) => ({
-		key: key.toString(),
-		label: <span>{key.toString()}</span>,
-		children: <Comments {...{ comments: arrayValue, user, submitting, loading }} />,
-	}));
-
-	console.log({ appTabOptions, comments });
+	const appTabOptions = Object.entries(comments).map(([key, arrayValue]) => {
+		const { fromUserName, fromFirstName, fromLastName } = arrayValue?.[0] || {};
+		return {
+			key: key.toString(),
+			label: <span className="uppercase">{fromUserName ?? `${fromFirstName} ${fromLastName}`}</span>,
+			children: <Comments {...{ comments: arrayValue, user, submitting, loading }} />,
+		};
+	});
 	return (
 		<>
 			{appTabOptions?.length ? (
-				<AppTabs items={appTabOptions} type="card" onChange={setBusinesIntractionId} />
+				<AppTabs
+					items={appTabOptions}
+					type="card"
+					onChange={setBusinesIntractionId}
+					tabPosition={dePlacement}
+					defaultActiveKey={businesIntractionId}
+				/>
 			) : (
 				<div className="min-h-[500px] grid place-content-center">
 					<Spin size="large"></Spin>

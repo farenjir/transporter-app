@@ -7,8 +7,6 @@ import { getFromStorage, setToStorage } from "utils/storage";
 
 import { getWindowDimensions, useAppContext } from "hooks";
 
-const tourTimeout = getFromStorage("tour");
-
 const AppTour = () => {
 	const { t } = useTranslation();
 	const { placement, dePlacement } = useAppContext();
@@ -30,7 +28,7 @@ const AppTour = () => {
 			title: t("tour.profileRef"),
 			description: t("tour.profileRefDes"),
 			target: () => profileRef.current,
-			placement: width > 1024 ? placement : "",
+			placement: width > 1200 ? placement : "",
 		},
 		{
 			title: t("tour.sendTypeRef"),
@@ -46,7 +44,7 @@ const AppTour = () => {
 			title: t("tour.settingRef"),
 			description: t("tour.settingRefDes"),
 			target: () => settingRef.current,
-			placement: width > 1024 ? dePlacement : "",
+			placement: width > 1200 ? dePlacement : "",
 		},
 		{
 			title: t("tour.searchSendRef"),
@@ -66,6 +64,7 @@ const AppTour = () => {
 	];
 
 	useEffect(() => {
+		const tourTimeout = getFromStorage("tour");
 		if (!tourTimeout) {
 			setTimeout(() => {
 				setReferences({ searchSendRef, requestSendRef, componentRef, profileRef, sendTypeRef, getTypeRef, settingRef });
