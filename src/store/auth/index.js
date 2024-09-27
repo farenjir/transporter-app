@@ -30,8 +30,12 @@ const authSlice = createSlice({
 				state.loading = false;
 			})
 			.addCase(getCurrentUser.fulfilled, (state, action) => {
-				const { firstName, lastName, ...info } = action.payload || {};
-				state.user = action.payload ? { fullName: `${firstName} ${lastName}`, lastName, firstName, ...info } : null;
+				if(!action.payload?.id){
+					state.user = null;
+				}else{
+					const { firstName, lastName, ...info } = action.payload
+					state.user = { fullName: `${firstName} ${lastName}`, lastName, firstName, ...info }
+				}
 				state.loading = false;
 			});
 	},
