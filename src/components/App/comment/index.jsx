@@ -33,7 +33,6 @@ const OwnerCommentForm = ({ requestType, record }) => {
 	const { type: connectionType, source: sendType, target: receiveType } = chatType[requestType] || {};
 	const { loading, messages, sendMessage } = useWebSocket({ receiveType, sendType, connectionType, recordId: record.id });
 	// handles
-	console.log({ businessInfraction, comments });
 	const updateMessageOnSocket = useCallback(
 		(messages) => {
 			const transformComments = messages.map(({ recordId, fromUserName, parentId, message }) => {
@@ -61,14 +60,13 @@ const OwnerCommentForm = ({ requestType, record }) => {
 	// handleSubmit
 	const handleSubmit = useCallback(
 		async ({ message }) => {
-			const { toName, iName, iId, toId } = businessInfraction;
 			if (!message) return;
 			setSubmitting(true);
-			await sendMessage(record.id, toId, 0, message);
+			await sendMessage(record.id, record.carrierUserId || record.requesterUserId, 0, message);
 			form.setFieldValue("message", "");
 			setSubmitting(false);
 		},
-		[businessInfraction, form, record.id, sendMessage],
+		[form, record.carrierUserId, record.id, record.requesterUserId, sendMessage],
 	);
 	// init
 	useEffect(() => {

@@ -201,7 +201,7 @@ const OwnerCommentForm = ({ requestType, record }) => {
 	});
 	return (
 		<>
-			{appTabOptions?.length ? (
+			{initializeHistory ? (
 				<AppTabs
 					items={appTabOptions}
 					type="card"
