@@ -80,6 +80,7 @@ const HistoryTable = ({ content, activeType, loading, handleModals }) => {
 								<AppCardComment
 									key={id.toString()}
 									id={id.toString()}
+									type={activeType}
 									hoverable={false}
 									onClick={(type) =>
 										handleModals(type, {

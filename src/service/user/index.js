@@ -45,3 +45,25 @@ export const getMyChatCarrierRequest = (callApi, queries = { pgs: 1000, pgn: 1 }
 		.then((response) => response)
 		.catch(() => []);
 };
+
+export const getMyUnReadMessage = (callApi) => {
+	return callApi({ url: "RequestChat/GetMyUnReadMessage" })
+		.then((response = {}) => response)
+		.catch(() => {});
+};
+export const getMyUnReadMessageCount = (callApi, { recordId, requestType }) => {
+	return callApi({ url: "RequestChat/GetMyUnReadMessage2", params: { recordId, requestType } })
+		.then((response = {}) => response)
+		.catch(() => {});
+};
+
+export const getCountUnReadMessage = (callApi) => {
+	return callApi({ url: "RequestChat/GetCountUnReadMessage" })
+		.then((response = {}) => response)
+		.catch(() => {});
+};
+export const getCountUnReadMessageCount = (callApi, { recordId, requestType }) => {
+	return callApi({ url: "RequestChat/GetCountUnReadMessage2", params: { recordId, requestType } })
+		.then((response = {}) => response)
+		.catch(() => {});
+};

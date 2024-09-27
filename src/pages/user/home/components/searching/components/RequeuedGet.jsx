@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Typography } from "antd";
 
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { baseSelector } from "store/base";
 import { authSelector } from "store/auth";
@@ -18,6 +19,7 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 	const [open, setOpen] = useState(false);
 	const [drawerMode, setDrawerMode] = useState("details");
 	// hooks
+	let navigate = useNavigate();
 	const { t } = useTranslation();
 	const { dePlacement } = useAppContext();
 	const { enums } = useSelector(baseSelector);
@@ -30,7 +32,10 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 		setOpen(true);
 	};
 	const onSelectRecord = useCallback(
-		(selectedId, mode) => {
+		(selectedId, mode, yourselfOrder) => {
+			if (yourselfOrder) {
+				return navigate("/user/history/send");
+			}
 			const record = list.find(({ id }) => id === selectedId) || {};
 			setDrawerMode(mode);
 			setSelectRequest(record);
@@ -117,7 +122,8 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 							<AppCardGet
 								key={id.toString()}
 								id={id.toString()}
-								onClickBtn={(mode) => onSelectRecord(id, mode)}
+								mode={"get"}
+								onClickBtn={(mode, yourselfOrder) => onSelectRecord(id, mode, yourselfOrder)}
 								imgUrl={"/assets/images/international-banner.webp"}
 								yourselfOrder={user?.id === Number(carrierUserId)}
 								{...{

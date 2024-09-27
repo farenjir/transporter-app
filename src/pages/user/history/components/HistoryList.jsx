@@ -81,6 +81,7 @@ const HistoryTable = ({ content, activeType, loading, handleModals }) => {
 									key={id.toString()}
 									id={id.toString()}
 									hoverable={false}
+									type={activeType}
 									onClick={(type) =>
 										handleModals(type, {
 											...params,

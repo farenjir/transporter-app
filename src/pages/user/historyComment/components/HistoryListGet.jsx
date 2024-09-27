@@ -83,6 +83,7 @@ const HistoryListGet = ({ content, activeType, loading, handleModals }) => {
 								<AppCardCommentGet
 									key={id.toString()}
 									id={id.toString()}
+									type={activeType}
 									hoverable={false}
 									onClick={(type) =>
 										handleModals(type, {
