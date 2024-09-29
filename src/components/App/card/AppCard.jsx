@@ -14,6 +14,8 @@ const { Meta } = Card;
 const AppCardGet = ({
 	mode,
 	id,
+	carrierFullName,
+	requesterFullName,
 	imgUrl,
 	onClickBtn = () => {},
 	yourselfOrder = false,
@@ -32,7 +34,6 @@ const AppCardGet = ({
 	toCountryName,
 	fromLocationName,
 	toLocationName,
-	carrierUserId,
 }) => {
 	const { t } = useTranslation();
 	const { token } = theme.useToken();
@@ -56,7 +57,7 @@ const AppCardGet = ({
 							title={
 								<div className="flex gap-2 items-center">
 									<SafetyCertificateOutlined style={{ fontSize: 14, color: token?.colorPrimary }} />
-									<span className="pt-1"> {`carrierUserName-${carrierUserId}`}</span>
+									<span className="pt-1 uppercase"> {carrierFullName || requesterFullName}</span>
 								</div>
 							}
 							description={

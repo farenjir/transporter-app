@@ -84,6 +84,8 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 				dataSource={list.map(
 					({
 						id,
+						carrierFullName,
+						requesterFullName,
 						fromCountryName,
 						toCountryName,
 						toLocationName,
@@ -124,6 +126,8 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 								yourselfOrder={user?.id === Number(requesterUserId)}
 								imgUrl={"/assets/images/international-banner.webp"}
 								{...{
+									carrierFullName,
+									requesterFullName,
 									fromDateValidOfDeliver,
 									toDateValidOfDeliver,
 									priceIsNegotiable,
@@ -138,7 +142,6 @@ export default function RequeuedSend({ list = [], pgn = 1, totalElements, onChan
 									toCountryName,
 									fromLocationName,
 									toLocationName,
-									carrierUserId: requesterUserId,
 								}}
 							/>
 						),

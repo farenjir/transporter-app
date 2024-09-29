@@ -19,8 +19,7 @@ import { setToStorage } from "utils/storage";
 import { LANG_NAME } from "utils/constance";
 
 import { initDayjs } from "./configs/dayjs";
-import { rtlLangs } from "./configs";
-
+import { languageTypes, rtlLangs } from "./configs";
 
 const useLanguage = () => {
 	const [language, setLanguage] = useState();
@@ -39,19 +38,19 @@ const useLanguage = () => {
 	// configs
 	let configs = rtlLangs.includes(language)
 		? {
-			direction: "rtl",
-			deDirection: "ltr",
-			placement: "left",
-			dePlacement: "right",
-			jalali: true,
-		}
+				direction: "rtl",
+				deDirection: "ltr",
+				placement: "left",
+				dePlacement: "right",
+				jalali: true,
+			}
 		: {
-			direction: "ltr",
-			deDirection: "rtl",
-			placement: "right",
-			dePlacement: "left",
-			jalali: false,
-		};
+				direction: "ltr",
+				deDirection: "rtl",
+				placement: "right",
+				dePlacement: "left",
+				jalali: false,
+			};
 	let locals = {
 		fa: localeFa,
 		en: localeEn,
@@ -77,6 +76,7 @@ const useLanguage = () => {
 	};
 	// return
 	return {
+		lngTypeId: languageTypes[language],
 		language,
 		changeLanguage,
 		locale: locals[language],

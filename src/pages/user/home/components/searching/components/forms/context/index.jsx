@@ -16,20 +16,21 @@ function SearchContextApi({ children, loading, onFinish = () => {}, onReset = ()
 	const [autocompleteLoading, setAutocompleteLoading] = useState(false);
 	// hooks
 	const [form] = Form.useForm();
-	const { jalali, callApi } = useAppContext();
+	const { jalali, lngTypeId, callApi } = useAppContext();
 	const { countries } = useSelector(baseSelector);
 	// handles
 	const onChangeAutocomplete = async (locationTitle = "", _selected) => {
 		if (locationTitle?.length <= 1) return;
 		setAutocompleteLoading(true);
-		const locations = await getLocationWithText(callApi, { locationTitle, pgn: 1, pgs: 10 });
+		const locations = await getLocationWithText(callApi, { locationTitle, pgn: 1, pgs: 10, lngTypeId });
 		setAutoData(locations);
 		setBackUpLocations((perArray) => perArray.concat(locations));
 		setAutocompleteLoading(false);
 	};
 	const locationIdDetector = useCallback(
 		(locationText = "", _type) => {
-			const { id } = backUpLocations.find(({ fullGeoLocationTitle }) => locationText?.includes?.(fullGeoLocationTitle)) || {};
+			const { id } =
+				backUpLocations.find(({ fullGeoLocationTitle }) => locationText?.includes?.(fullGeoLocationTitle)) || {};
 			return id;
 		},
 		[backUpLocations],

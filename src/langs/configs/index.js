@@ -1,17 +1,4 @@
-export const faMonths = [
-	"دی",
-	"بهمن",
-	"اسفند",
-	"فروردین",
-	"اردیبهشت",
-	"خرداد",
-	"تیر",
-	"مرداد",
-	"شهریور",
-	"مهر",
-	"آبان",
-	"آذر",
-];
+export const faMonths = ["دی", "بهمن", "اسفند", "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر"];
 
 export const langList = {
 	English: "en",
@@ -19,8 +6,20 @@ export const langList = {
 	Deutsch: "de",
 	Italian: "it",
 	Turkish: "tr",
-	Arabic: "ar"
+	Arabic: "ar",
 };
+
+export const languageTypes = {
+	en: 10,
+	de: 11,
+	it: 12,
+	ar: 13,
+	fa: 14,
+	fr: 15,
+	sp: 16,
+	tr: 17,
+};
+
 export const langConfigs = {
 	fa: {
 		monthsShort: faMonths,
@@ -31,19 +30,19 @@ export const langConfigs = {
 export const localeList = {
 	fa: "fa-IR-u-nu-latn",
 	en: "en-US",
-	de:"",
-	it:"",
-	tr:"",
-	ar:"",
+	de: "",
+	it: "",
+	tr: "",
+	ar: "",
 };
 
 export const timeZones = {
 	fa: "Asia/Tehran",
 	en: "Europe/London",
-	de:"Europe/Berlin",
-	it:"Europe/Rome",
-	tr:"Turkey",
-	ar:"",
+	de: "Europe/Berlin",
+	it: "Europe/Rome",
+	tr: "Turkey",
+	ar: "",
 };
 
 export const rtlLangs = ["fa", "ar"];

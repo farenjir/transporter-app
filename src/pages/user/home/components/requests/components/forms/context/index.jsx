@@ -21,7 +21,7 @@ function RequestContextApi({ children }) {
 	// hooks
 	const { t } = useTranslation();
 	const [form] = Form.useForm();
-	const { callApi, jalali } = useAppContext();
+	const { callApi, lngTypeId, jalali } = useAppContext();
 	const { enums } = useSelector(baseSelector);
 	// options
 	const priceTypes = [
@@ -40,7 +40,7 @@ function RequestContextApi({ children }) {
 	const onChangeAutocomplete = async (locationTitle = "", _selected) => {
 		if (locationTitle?.length <= 1) return;
 		setAutocompleteLoading(true);
-		const locations = await getLocationWithText(callApi, { locationTitle, pgn: 1, pgs: 10 });
+		const locations = await getLocationWithText(callApi, { locationTitle, pgn: 1, pgs: 10, lngTypeId });
 		setAutoData(locations);
 		setBackUpLocations((perArray) => perArray.concat(locations));
 		setAutocompleteLoading(false);

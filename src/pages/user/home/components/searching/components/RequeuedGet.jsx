@@ -83,6 +83,8 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 				dataSource={list.map(
 					({
 						id,
+						carrierFullName,
+						requesterFullName,
 						priceIsNegotiable,
 						proposedPrice,
 						priceCurrencyTypeId,
@@ -127,6 +129,8 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 								imgUrl={"/assets/images/international-banner.webp"}
 								yourselfOrder={user?.id === Number(carrierUserId)}
 								{...{
+									carrierFullName,
+									requesterFullName,
 									dateOfDeliver,
 									priceIsNegotiable,
 									proposedPrice,
@@ -140,7 +144,6 @@ export default function RequeuedGet({ list = [], pgn, totalElements, onChangePag
 									toCountryName,
 									fromLocationName,
 									toLocationName,
-									carrierUserId,
 								}}
 							/>
 						),

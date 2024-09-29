@@ -10,10 +10,7 @@ export const getAllLocationByCountry = (callApi, lngTypeId = 10, countryId = 1) 
 		.then((response) => transformer.locationsTransformData(response, countryId))
 		.catch(() => []);
 };
-export const getLocationWithText = (
-	callApi,
-	{ lngTypeId = 10, locationTitle, pgn, pgs, countryId, cityId, stateId },
-) => {
+export const getLocationWithText = (callApi, { lngTypeId = 10, locationTitle, pgn, pgs, countryId, cityId, stateId }) => {
 	return callApi({
 		url: "GeoLocation/GetPagedResultByText",
 		params: { lngTypeId, locationTitle, pgn, pgs, countryId, cityId, stateId },
