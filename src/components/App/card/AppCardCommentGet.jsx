@@ -2,7 +2,10 @@ import { useTranslation } from "react-i18next";
 import { Badge, Card, theme } from "antd";
 
 import { uIdMaker } from "utils/globals";
+import { requestCommentType } from "utils/constance";
 import { useAppContext, useNewMessageCount } from "hooks";
+
+import { postMessageAsRead } from "service/user";
 
 import { Buttons } from "components";
 
@@ -25,8 +28,11 @@ const AppCardCommentGet = ({ type, id, imgUrl, title = "", hoverable = true, des
 					htmlType="button"
 					block={true}
 					content={t("user.showComment")}
-					onClick={() => onClick("comment")}
 					classes="mt-5 opacity-80"
+					onClick={() => {
+						onClick("comment");
+						postMessageAsRead(callApi, { recordId: id, requestType: requestCommentType[type] });
+					}}
 				/>
 			</Card>
 		</Badge.Ribbon>

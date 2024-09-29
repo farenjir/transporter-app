@@ -67,3 +67,9 @@ export const getCountUnReadMessageCount = (callApi, { recordId, requestType }) =
 		.then((response = {}) => response)
 		.catch(() => {});
 };
+
+export const postMessageAsRead = (callApi, { recordId, requestType }) => {
+	return callApi({ url: "RequestChat/SetAsReadMessage", method: "POST", data: { recordId, requestType } })
+		.then((response = {}) => response)
+		.catch(() => {});
+};

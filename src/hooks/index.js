@@ -30,7 +30,7 @@ export const useNewMessageCount = (callApi, { recordId, requestType }) => {
 				recordId,
 				requestType: requestCommentType[requestType],
 			});
-			Number.isInteger(response) && setCount(response);
+			response && Number.isInteger(response) && setCount(response);
 		};
 		getCountUnReadMessage();
 	}, [recordId]);

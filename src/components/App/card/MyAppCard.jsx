@@ -2,7 +2,10 @@ import { useTranslation } from "react-i18next";
 import { Badge, Card, theme } from "antd";
 
 import { uIdMaker } from "utils/globals";
+import { requestCommentType } from "utils/constance";
 import { useAppContext, useNewMessageCount } from "hooks";
+
+import { postMessageAsRead } from "service/user";
 
 import { Icons } from "components";
 
@@ -26,7 +29,10 @@ const MyAppCard = ({ type, id, imgUrl, title = "", hoverable = true, description
 						type="CommentOutlined"
 						classes="text-green-500 mx-5"
 						title={t("commons.comment")}
-						onClick={() => onClick("comment")}
+						onClick={() => {
+							onClick("comment");
+							postMessageAsRead(callApi, { recordId: id, requestType: requestCommentType[type] });
+						}}
 					/>
 					<Icons
 						type="InfoCircleOutlined"
