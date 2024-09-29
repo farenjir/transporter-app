@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../context";
 
-import { getCountUnReadMessageCount } from "service/user";
+import { getCountUnReadMessageCount, postMessageAsRead } from "service/user";
 import { requestCommentType } from "utils/constance";
 
 export const useAppContext = () => useContext(AppContext);
@@ -24,6 +24,14 @@ export const useWindowDimensions = () => {
 export const useNewMessageCount = (callApi, { recordId, requestType }) => {
 	const [count, setCount] = useState(0);
 
+	const handleMessageRead = () => {
+		postMessageAsRead(callApi, {
+			recordId,
+			requestType: requestCommentType[requestType],
+		});
+		setCount(0);
+	};
+
 	useEffect(() => {
 		const getCountUnReadMessage = async () => {
 			const response = await getCountUnReadMessageCount(callApi, {
@@ -35,5 +43,5 @@ export const useNewMessageCount = (callApi, { recordId, requestType }) => {
 		getCountUnReadMessage();
 	}, [recordId]);
 
-	return { count };
+	return { count, handleMessageRead };
 };

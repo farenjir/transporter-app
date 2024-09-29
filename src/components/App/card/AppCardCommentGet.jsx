@@ -2,10 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Badge, Card, theme } from "antd";
 
 import { uIdMaker } from "utils/globals";
-import { requestCommentType } from "utils/constance";
 import { useAppContext, useNewMessageCount } from "hooks";
-
-import { postMessageAsRead } from "service/user";
 
 import { Buttons } from "components";
 
@@ -15,7 +12,7 @@ const AppCardCommentGet = ({ type, id, imgUrl, title = "", hoverable = true, des
 	const { t } = useTranslation();
 	const { token } = theme.useToken();
 	const { callApi } = useAppContext();
-	const { count } = useNewMessageCount(callApi, { recordId: id, requestType: type });
+	const { count, handleMessageRead } = useNewMessageCount(callApi, { recordId: id, requestType: type });
 	return (
 		<Badge.Ribbon text={t("notification.newMessage", { count })} color="red" className={count ? "" : "hidden"}>
 			<Card
@@ -31,7 +28,7 @@ const AppCardCommentGet = ({ type, id, imgUrl, title = "", hoverable = true, des
 					classes="mt-5 opacity-80"
 					onClick={() => {
 						onClick("comment");
-						postMessageAsRead(callApi, { recordId: id, requestType: requestCommentType[type] });
+						handleMessageRead();
 					}}
 				/>
 			</Card>
