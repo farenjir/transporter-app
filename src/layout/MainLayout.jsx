@@ -48,7 +48,9 @@ const MainLayout = () => {
 	};
 	const handleLogout = () => {
 		logout();
-		navigate(0);
+		setTimeout(() => {
+			navigate(0);
+		}, 500);
 	};
 	const handleChangeAppMode = (mode) => {
 		dispatch(setAppMode(mode));

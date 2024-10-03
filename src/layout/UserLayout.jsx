@@ -42,7 +42,9 @@ const UserLayout = () => {
 	};
 	const handleLogout = () => {
 		logout();
-		navigate(0);
+		setTimeout(() => {
+			navigate(0);
+		}, 500);
 	};
 	// return
 	return (
