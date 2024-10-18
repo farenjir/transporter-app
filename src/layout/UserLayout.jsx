@@ -12,7 +12,6 @@ import { useAppContext } from "hooks";
 import { Drawers } from "components";
 import { SettingDrawer } from "components/App";
 
-import Sidebar from "./components/Menu/MainMenu";
 import UserMenu from "./components/Menu/UserMenu";
 
 const { Text } = Typography;
@@ -21,7 +20,6 @@ const { Header, Content, Footer } = Layout;
 
 const UserLayout = () => {
 	const [open, setOpen] = useState(false);
-	const [openMenu, setOpenMenu] = useState(false);
 	// hooks
 	let navigate = useNavigate();
 	const { t } = useTranslation();
@@ -31,14 +29,9 @@ const UserLayout = () => {
 	// handles
 	const onClose = () => {
 		setOpen(false);
-		setOpenMenu(false);
 	};
-	const onOpen = (isMenu) => {
-		if (isMenu) {
-			setOpenMenu(true);
-		} else {
-			setOpen(true);
-		}
+	const onOpen = () => {
+		setOpen(true);
 	};
 	const handleLogout = () => {
 		logout();
@@ -82,13 +75,6 @@ const UserLayout = () => {
 					<Navigate to={{ pathname: "/login", state: { referrer: "/main" } }} />
 				)}
 				{/* children */}
-				<Drawers
-					title={t("layouts.sidebar.menu")}
-					open={openMenu}
-					onClose={onClose}
-					placement={placement === "left" ? "right" : "left"}
-					content={<Sidebar {...{ token }} />}
-				/>
 				<Drawers
 					title={t("layouts.drawerTitle")}
 					open={open}

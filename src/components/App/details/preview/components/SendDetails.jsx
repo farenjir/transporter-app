@@ -12,7 +12,7 @@ const SendDetails = ({ params = {} }) => {
 	const { enums } = useSelector(baseSelector);
 	// items
 	const items = [
-		{ valueParam: "carrierUserId", label: t("request.user"), type: "text", span: { xs: 5, md: 5 } },
+		{ valueParam: "carrierFullName", label: t("request.user"), type: "text", span: { xs: 5, md: 5 }, classes: "uppercase" },
 		{ valueParam: "fromLocationName", label: t("request.source"), type: "text", span: { xs: 5, md: 3 } },
 		{ valueParam: "fromCountryName", label: t("request.cSource"), type: "text", span: { xs: 5, md: 2 } },
 		{ valueParam: "toLocationName", label: t("request.destination"), type: "text", span: { xs: 5, md: 3 } },
@@ -40,8 +40,7 @@ const SendDetails = ({ params = {} }) => {
 			valueParam: "priceIsNegotiable",
 			label: t("request.price"),
 			type: "boolean",
-			condition: (condition) =>
-				condition ? t("commonPages.priceNegotiable") : t("commonPages.priceNotNegotiable"),
+			condition: (condition) => (condition ? t("commonPages.priceNegotiable") : t("commonPages.priceNotNegotiable")),
 			span: { xs: 5, md: 2 },
 		},
 		{ valueParam: "proposedPrice", label: t("request.sugPrice"), type: "money", span: { xs: 5, md: 2 } },
@@ -80,12 +79,12 @@ const SendDetails = ({ params = {} }) => {
 				size="small"
 				classes="text-xl"
 				column={5}
-				items={items.map(({ valueParam, label, span, type, enumType, condition }) => ({
+				items={items.map(({ valueParam, label, classes = "", span, type, enumType, condition }) => ({
 					label,
 					span,
 					key: valueParam,
 					children: (
-						<span className="text-lg">
+						<span className={`text-lg ${classes}`}>
 							{generateValue(params[valueParam], type, enumType, condition) || "-"}
 						</span>
 					),

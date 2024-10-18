@@ -11,15 +11,17 @@ import { useSelector } from "react-redux";
 import { authSelector } from "store/auth";
 
 import { chatType, requestCommentType } from "utils/constance";
-import { useAppContext } from "hooks";
+import { useAppContext, useNewMessageCount } from "hooks";
 import { useWebSocket } from "hooks/useWebSocket";
 import { getChatRequest } from "service/user";
 
 import { AppTabs } from "components";
+import useScrollToBottom from "hooks/scrollToButtom";
 
 const { TextArea } = Input;
 
 const OwnerCommentForm = ({ requestType, record }) => {
+	const [defaultComments, setDefaultComments] = useState([]);
 	const [comments, setComments] = useState({});
 	const [submitting, setSubmitting] = useState(false);
 	const [initializeHistory, setInitializeHistory] = useState(false);
@@ -32,9 +34,15 @@ const OwnerCommentForm = ({ requestType, record }) => {
 	const { callApi, direction, deDirection, dePlacement } = useAppContext();
 	const { user } = useSelector(authSelector);
 	const [form] = Form.useForm();
+	const { handleMessageRead } = useNewMessageCount(callApi, {
+		recordId: record?.id,
+		requestType: requestType,
+		onlyUseHandle: true,
+	});
 	// socket type
 	const { type: connectionType, source: sendType, target: receiveType } = chatType[requestType] || {};
 	const { loading, messages, sendMessage } = useWebSocket({ receiveType, sendType, connectionType, recordId: record.id });
+	const { listRef } = useScrollToBottom({ chats: comments });
 	// handles
 	const updateMessageOnSocket = useCallback(
 		(messages) => {
@@ -49,16 +57,16 @@ const OwnerCommentForm = ({ requestType, record }) => {
 					iId,
 					author: <span className="uppercase">{fromUserName}</span>,
 					avatar: <UserOutlined className="border rounded-full shadow-lg p-2" />,
-					content: <p>{message}</p>,
+					content: <p className={`inline-block ${direction}`}>{message}</p>,
 					className: `px-[2%] ${isMyMessage ? direction : deDirection}`,
 				};
 			});
 			if (transformComments?.length) {
-				const updateMessages = transformComments.concat(comments[activeChatBI]);
+				const updateMessages = defaultComments[activeChatBI].concat(transformComments);
 				setComments((perComments) => ({ ...perComments, [activeChatBI]: updateMessages }));
 			}
 		},
-		[comments, businessInfraction, activeChatBI, direction, deDirection],
+		[defaultComments, businessInfraction, activeChatBI, direction, deDirection],
 	);
 	// handleSubmit
 	const handleSubmit = useCallback(
@@ -137,14 +145,15 @@ const OwnerCommentForm = ({ requestType, record }) => {
 						iId,
 						author: <span className="uppercase">{isMyMessage ? iName : toName}</span>,
 						avatar: <UserOutlined className="border rounded-full shadow-lg p-2" />,
-						content: <p>{userComment}</p>,
+						content: <p className={`inline-block ${direction}`}>{userComment}</p>,
 						className: `px-[2%] ${isMyMessage ? direction : deDirection}`,
 					});
 				},
 			);
-			const comments = {};
-			Object.entries(transformComments).forEach(([key, arrayValue]) => (comments[key] = arrayValue.reverse()));
-			setComments(comments);
+			// const comments = {};
+			// Object.entries(transformComments).forEach(([key, arrayValue]) => (comments[key] = arrayValue.reverse()));
+			setComments(transformComments);
+			setDefaultComments(transformComments);
 			setInitializeHistory(true);
 		};
 		if (record.id) {
@@ -152,7 +161,9 @@ const OwnerCommentForm = ({ requestType, record }) => {
 		}
 		return () => {
 			setComments([]);
+			setDefaultComments([]);
 			setInitializeHistory(false);
+			handleMessageRead();
 		};
 	}, [callApi, deDirection, direction, record.id, requestType, user?.id]);
 	// render
@@ -172,6 +183,7 @@ const OwnerCommentForm = ({ requestType, record }) => {
 						renderItem={(props) => <Comment {...props} style={{ background: token?.colorPrimaryLighter }} />}
 					/>
 				)}
+				<div ref={listRef}></div>
 			</div>
 			<Comment
 				avatar={<Avatar src={user.avatarUrl || ""} icon={<UserOutlined />} alt={iName} />}

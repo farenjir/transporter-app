@@ -21,7 +21,7 @@ export const useWindowDimensions = () => {
 	return windowDimensions;
 };
 
-export const useNewMessageCount = (callApi, { recordId, requestType }) => {
+export const useNewMessageCount = (callApi, { recordId, requestType, onlyUseHandle }) => {
 	const [count, setCount] = useState(0);
 
 	const handleMessageRead = () => {
@@ -40,8 +40,8 @@ export const useNewMessageCount = (callApi, { recordId, requestType }) => {
 			});
 			response && Number.isInteger(response) && setCount(response);
 		};
-		getCountUnReadMessage();
-	}, [recordId]);
+		!onlyUseHandle && getCountUnReadMessage();
+	}, [recordId, onlyUseHandle]);
 
 	return { count, handleMessageRead };
 };

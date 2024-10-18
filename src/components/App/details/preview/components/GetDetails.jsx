@@ -12,7 +12,7 @@ const GetDetails = ({ params = {} }) => {
 	const { enums } = useSelector(baseSelector);
 	// items
 	const items = [
-		{ valueParam: "requesterUserId", label: t("request.user"), type: "text", span: { xs: 5, md: 5 } },
+		{ valueParam: "requesterFullName", label: t("request.user"), type: "text", span: { xs: 5, md: 5 }, classes: "uppercase" },
 		{ valueParam: "fromLocationName", label: t("request.source"), type: "text", span: { xs: 5, md: 3 } },
 		{ valueParam: "fromCountryName", label: t("request.cSource"), type: "text", span: { xs: 5, md: 2 } },
 		{ valueParam: "toLocationName", label: t("request.destination"), type: "text", span: { xs: 5, md: 3 } },
@@ -80,12 +80,14 @@ const GetDetails = ({ params = {} }) => {
 				size="small"
 				classes="text-xl"
 				column={5}
-				items={items.map(({ valueParam, label, span, type, enumType, condition }) => ({
+				items={items.map(({ valueParam, label, classes = "", span, type, enumType, condition }) => ({
 					label,
 					span,
 					key: valueParam,
 					children: (
-						<span className="text-lg">{generateValue(params[valueParam], type, enumType, condition) || "-"}</span>
+						<span className={`text-lg ${classes}`}>
+							{generateValue(params[valueParam], type, enumType, condition) || "-"}
+						</span>
 					),
 				}))}
 			/>
