@@ -1,75 +1,178 @@
-import { useEffect } from "react";
-import { Card, theme, Typography } from "antd";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ChartMainContainer, useChart } from "components";
+import { theme } from "antd";
+import { useAppContext } from "hooks";
+import { deleteMyAnnonceRequest, deleteMyCarrierRequest, getMyAnnonceRequest, getMyCarrierRequest } from "service/user";
 
-const { Title } = Typography;
+import { Modals, RadioGroup, confirmModal } from "components";
 
-const UserDashboard = () => {
+import RequestContextApi from "./components/forms/context";
+import HistoryList from "./components/HistoryList";
+import InternationalRequest from "./components/forms/International";
+import InternationalGetRequest from "./components/forms/InternationalGet";
+import { notificationMaker } from "utils/notification";
+
+const defaultQueries = { pgs: 5, pgn: 1 };
+const SearchPage = () => {
+	const { type = "send" } = history?.state?.usr || {};
+	// state
+	const [activeType, setActiveType] = useState(type);
+	const [{ content, totalElements, totalPages }, setDataSource] = useState({
+		content: [],
+		totalElements: 0,
+		totalPages: 0,
+	});
+	const [loading, setLoading] = useState(false);
+	const [queries, setQueries] = useState(defaultQueries);
+	const [selectedRecord, setSelectedRecord] = useState({});
+	// hooks
 	const { t } = useTranslation();
 	const { token } = theme.useToken();
-
-	const { chart, chartId } = useChart({ chartId: "dashboard" });
-
-	useEffect(() => {
-		chart?.setOption({
-			tooltip: {
-				textStyle: {
-					fontSize: 14,
-					fontWeight: "bolder",
-					fontFamily: "YekanBakh-Regular, sans-serif",
-				},
-				trigger: "item",
-				formatter: "{b} : {c} ({d}%)",
-			},
-			legend: {
-				top: "bottom",
-				textStyle: {
-					fontSize: 12,
-					fontFamily: "YekanBakh-Regular, sans-serif",
-				},
-			},
-			series: [
-				{
-					name: "Nightingale Chart",
-					type: "pie",
-					radius: [50, 120],
-					center: ["50%", "50%"],
-					roseType: "area",
-					itemStyle: {
-						borderRadius: 8,
-            textStyle: {
-              fontSize: 12,
-              fontFamily: "YekanBakh-Regular, sans-serif",
-            },
-					},
-					data: [
-						{ value: 5, name: t("user.myHistorySend") },
-						{ value: 2, name: t("user.myHistoryGet") },
-						{ value: 10, name: t("user.myHistorySendComment") },
-						{ value: 2, name: t("user.myHistoryGetComment") },
-					],
-				},
-			],
-		});
-	}, [chart, t]);
-
-	return (
-		<Card
-			title={
-				<Title level={4} className="pt-3" style={{ color: token?.colorPrimary }}>
-					{t("user.dashboard")}
-				</Title>
+	const { callApi, direction } = useAppContext();
+	const modalInfo = useRef();
+	const modalEdit = useRef();
+	// data actions
+	const getDataSource = useCallback(async () => {
+		setLoading(true);
+		let data = {};
+		if (activeType === "get") {
+			data = await getMyAnnonceRequest(callApi, queries);
+		} else {
+			data = await getMyCarrierRequest(callApi, queries);
+		}
+		if (data?.content) {
+			setDataSource(data);
+		}
+		setLoading(false);
+	}, [activeType, callApi, queries]);
+	// submit actions
+	const handleDelete = useCallback(
+		async ({ id }) => {
+			setLoading(true);
+			let data = {};
+			if (activeType === "get") {
+				data = await deleteMyAnnonceRequest(callApi, id);
+			} else {
+				data = await deleteMyCarrierRequest(callApi, id);
 			}
+			if (data?.succeeded) {
+				notificationMaker(t("commons.success", "success", t("messages.requestSuccess")));
+				getDataSource();
+			} else {
+				notificationMaker(t("commons.error", "error", t("messages.requestFailed")));
+			}
+			setLoading(false);
+		},
+		[activeType],
+	);
+	// handles
+	const onChangeType = (type) => {
+		setQueries(defaultQueries);
+		setSelectedRecord({});
+		setActiveType(type);
+	};
+	const onChangeQueries = (queries = {}) => {
+		setQueries(queries);
+	};
+	const handleModals = (mode, record) => {
+		setSelectedRecord(record);
+		switch (mode) {
+			case "info":
+				modalInfo.current.open();
+				break;
+			case "edit":
+				modalEdit.current.open();
+				break;
+			case "delete":
+				confirmModal({
+					customOptions: {
+						okType: "danger",
+						direction,
+						content: t("messages.sure"),
+						title: t("user.deleteRequest"),
+					},
+					onCancel: () => {},
+					onOk: () => handleDelete(record),
+				});
+				break;
+			default:
+				break;
+		}
+	};
+	const handleCloseModals = () => {
+		setSelectedRecord({});
+		modalInfo.current.close();
+		modalEdit.current.close();
+	};
+	// options
+	const requestType = [
+		{
+			label: t("search.send"),
+			value: "send",
+		},
+		{
+			label: t("search.get"),
+			value: "get",
+		},
+	];
+	const contextProvider = {
+		record: selectedRecord,
+		handleModals,
+		handleCloseModals,
+	};
+	// init
+	useEffect(() => {
+		getDataSource();
+	}, [getDataSource]);
+	// return
+	return (
+		<section
+			className={`responsive-layout sticky mx-auto p-8 rounded-3xl shadow-2xl border`}
+			style={{ background: token?.colorBgBase, minHeight: "70vh" }}
 		>
-			<div className="h-[58vh]">
-				<div className="flex justify-center align-middle items-center h-[55vh]">
-					<ChartMainContainer id={chartId} chart={chart} />
-				</div>
-			</div>
-		</Card>
+			<RadioGroup
+				disabled={loading}
+				plainOptions={requestType}
+				name="requestType"
+				initialValue={activeType}
+				required={true}
+				onChange={onChangeType}
+			/>
+			<HistoryList
+				{...{
+					onChangeQueries,
+					content,
+					totalElements,
+					totalPages,
+					activeType,
+					loading,
+					handleModals,
+					queries,
+				}}
+			/>
+			<Modals reference={activeType === "send" ? modalInfo : null} title={t("user.infoRequest")} width="70%">
+				<RequestContextApi {...contextProvider}>
+					<InternationalRequest info />
+				</RequestContextApi>
+			</Modals>
+			<Modals reference={activeType === "send" ? modalEdit : null} title={t("user.editRequest")} width="70%">
+				<RequestContextApi {...contextProvider}>
+					<InternationalRequest edit />
+				</RequestContextApi>
+			</Modals>
+			<Modals reference={activeType === "get" ? modalInfo : null} title={t("user.infoRequest")} width="70%">
+				<RequestContextApi {...contextProvider}>
+					<InternationalGetRequest info />
+				</RequestContextApi>
+			</Modals>
+			<Modals reference={activeType === "get" ? modalEdit : null} title={t("user.editRequest")} width="70%">
+				<RequestContextApi {...contextProvider}>
+					<InternationalGetRequest edit />
+				</RequestContextApi>
+			</Modals>
+		</section>
 	);
 };
 
-export default UserDashboard;
+export default SearchPage;

@@ -95,6 +95,15 @@
 			"copyWrite": "تمام حقوق این سایت متعلق به مجموعه می باشد"
 		}
 	},
+	"tables": {
+		"source": "مبدا",
+		"destination": "مقصد",
+		"createDate": "تاریخ ایجاد",
+		"weight": "وزن بسته",
+		"items": "تعداد",
+		"description": "توضیحات",
+		"actions": "عملیات"
+	},
 	"upload": {
 		"nationalCard": "بارگزاری کارت ملی و شناسنامه",
 		"uploadHint": "فقط فایل با پسوند jpg یا png و حداکثر 5mb بارگزاری شود ."
